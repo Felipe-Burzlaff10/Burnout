@@ -1,2 +1,2 @@
 # Burnout
-respositorio do site mais top de todos
+respositorio do site mais gay de todos!!!
