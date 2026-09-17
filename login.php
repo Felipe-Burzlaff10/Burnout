@@ -29,7 +29,7 @@
 $host = "localhost";
 $usuario = "root";
 $senha = "";
-$banco = "trabalho";
+$banco = "burnout";
 
 $conexao = new mysqli($host, $usuario, $senha, $banco);
 
@@ -69,8 +69,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         echo "Usuário não encontrado";
     }
 }
-
-print_r($_SESSION);
 
 $conexao->close();
 ?>

@@ -43,7 +43,7 @@
 $host = "localhost";
 $usuario = "root";
 $senha = "";
-$banco = "trabalho";
+$banco = "burnout";
 
 $conexao = new mysqli($host, $usuario, $senha, $banco);
 
@@ -52,7 +52,7 @@ if ($conexao->connect_error)
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-    $sql = "SELECT id
+    $sql = "SELECT id_usuario
             FROM usuario
             WHERE email = ? OR cpf = ?";
     
