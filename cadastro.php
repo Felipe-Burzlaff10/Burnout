@@ -4,7 +4,8 @@
         <title>Cadastro</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
-    <style>
+
+        <style>
         /* Estilo para o menu de navegação */
         .nav {
             background-color: #39bf00;
@@ -27,7 +28,6 @@
             border-bottom: 2px solid black;
         }
         </style>
-    
     </head>
     <body>
 
@@ -76,7 +76,7 @@
             <i class="bi bi-person-circle" style="font-size: 38px;"></i>
                 </a>
                 <span style="font-weight: bold; font-size: 18px; line-height: 1.1;">
-                    <a href="login.php" style="color: black;">entrar ou<br> cadastrar</a>  
+                    <a href="login.php" style="color: black;">entrar ou<br> cadastrar</a>
                 </span>
 
             </div>
@@ -103,7 +103,13 @@
 
 </header>
             
-        <form action="" method="POST">
+        <form method="POST">
+
+            <label for="nome">Nome: </label>
+            <input type="text" name="nome" required><br>
+
+            <label for="cpf">CPF: </label>
+            <input type="number" name="cpf" required><br>
 
             <label for="email">Email: </label>
             <input type="email" name="email" required><br>
@@ -111,19 +117,71 @@
             <label for="senha">Senha: </label>
             <input type="password" name="senha" required><br>
 
+            <label for="cep">CEP: </label>
+            <input type="num" name="cep" id="cep" required>
+            <button type="button" onclick="buscarEndereco()">Buscar Endereço</button><br>
+
+            <label for="uf">UF: </label>
+            <input type="text" name="uf" id="uf" required><br>
+
+            <label for="bairro">Bairro: </label>
+            <input type="text" name="bairro" id="bairro" required><br>
+
+            <label for="cidade">Cidade: </label>
+            <input type="text" name="cidade" id="cidade" required><br>
+
+            <label for="rua">Rua: </label>
+            <input type="text" name="rua" id="rua" required><br>
+
+            <label for="num">Nº: </label>
+            <input type="num" name="num" required><br>
+
             <input type="submit" value="Cadastrar">
 
         </form>
 
-        <a href="logout.php">
-            <button>Logout</button>
-        </a>
-
     </body>
+
+
+    <script>
+        function buscarEndereco()
+        {
+
+            let cep = document.getElementById('cep').value;
+
+            if(cep.length != 8)
+            {
+                alert("CEP inválido!");
+                return;
+            }
+
+            let url = 'https://viacep.com.br/ws/' + cep + '/json/';
+
+
+
+            fetch(url)
+                .then(resposta => {return resposta.json()})
+                .then(dados => {
+                                    if (dados.erro)
+                                    {
+                                        alert("CEP não encontrado.");
+                                        return;
+                                    }
+
+                                    document.getElementById("uf").value = dados.uf;
+                                    document.getElementById("cidade").value = dados.localidade;
+                                    document.getElementById("bairro").value = dados.bairro;
+                                    document.getElementById("rua").value = dados.logradouro;
+                
+                                })
+
+
+        }
+    </script>
+
 </html>
 
 <?php
-
 $host = "localhost";
 $usuario = "root";
 $senha = "";
@@ -136,35 +194,43 @@ if ($conexao->connect_error)
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-    $sql = "SELECT nome, senha
+    foreach ($_POST as $key => $value)
+    {
+        if (!$value)
+            echo "Preencha o campo {$key}!<br>";
+    }
+
+    $sql = "SELECT id_usuario
             FROM usuario
-            WHERE email = ?";
+            WHERE email = ? OR cpf = ?";
     
     $stmt = $conexao->prepare($sql);
-    $stmt->bind_param('s', $_POST['email']);
+    $stmt->bind_param('ss', $_POST['email'],  $_POST['cpf']);
     $stmt->execute();
-    $resultado = $stmt->get_result();
-    $stmt->close();
+    $stmt->store_result();
 
-    if ($resultado->num_rows == 1)
+    if ($stmt->num_rows > 0)
     {
-        $usuario = $resultado->fetch_assoc();
+        $stmt->close();
 
-        if (password_verify($_POST['senha'], $usuario['senha']))
-        {
-            echo "Login efetuado com sucesso";
-
-            session_start();
-            $_SESSION['nome'] = $usuario['nome'];
-        }
-        else
-        {
-            echo "Senha incorreta";
-        }
+        echo "<br>Deu erro";
     }
     else
     {
-        echo "Usuário não encontrado";
+        $stmt->close();
+
+        $endereco_final = "{$_POST['rua']}, Nº: {$_POST['num']}, {$_POST['bairro']} - {$_POST['cidade']}/{$_POST['uf']} CEP: {$_POST['cep']}";
+
+        $sql = "INSERT INTO usuario(cpf, nome, email, senha, endereco)
+        VALUES (?, ?, ?, ?, ?)";
+
+        $senha = $_POST["senha"];
+        $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
+
+        $stmt = $conexao->prepare($sql);
+        $stmt->bind_param('sssss', $_POST['cpf'], $_POST['nome'], $_POST['email'], $senha_hash, $endereco_final);
+        $stmt->execute();
+        $stmt->close();
     }
 }
 
