@@ -111,7 +111,7 @@
             <label for="senha">Senha: </label>
             <input type="password" name="senha" required><br>
 
-            <input type="submit" value="Cadastrar">
+            <input type="submit" value="Logar">
 
         </form>
 
@@ -136,7 +136,7 @@ if ($conexao->connect_error)
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-    $sql = "SELECT nome, senha
+    $sql = "SELECT nome, senha, id_usuario, root
             FROM usuario
             WHERE email = ?";
     
@@ -156,6 +156,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
             session_start();
             $_SESSION['nome'] = $usuario['nome'];
+            $_SESSION['id_usuario'] = $usuario['id_usuario'];
+            $_SESSION['root'] = $usuario['root'];
+
+            header("Location: index.php");
         }
         else
         {

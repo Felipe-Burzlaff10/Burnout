@@ -174,14 +174,36 @@
                                     document.getElementById("rua").value = dados.logradouro;
                 
                                 })
-
-
         }
     </script>
 
 </html>
 
 <?php
+function validaCPF($cpf)
+{
+    $cpf = preg_replace('/[^0-9]/is', '', $cpf);
+     
+    if (strlen($cpf) != 11)
+        return false;
+     
+    if (preg_match('/(\d)\1{10}/', $cpf))
+        return false;
+     
+    for ($t = 9; $t < 11; $t++) 
+    {
+        for ($d = 0, $c = 0; $c < $t; $c++) 
+        {
+            $d += $cpf[$c] * (($t + 1) - $c);
+        }
+        $d = ((10 * $d) % 11) % 10;
+        if ($cpf[$c] != $d)
+            return false;
+    }
+    
+    return true;
+}
+
 $host = "localhost";
 $usuario = "root";
 $senha = "";
@@ -200,6 +222,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             echo "Preencha o campo {$key}!<br>";
     }
 
+    if (!validaCPF($_POST['cpf']))
+        die("CPF INVALIDO");
+
     $sql = "SELECT id_usuario
             FROM usuario
             WHERE email = ? OR cpf = ?";
@@ -212,26 +237,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     if ($stmt->num_rows > 0)
     {
         $stmt->close();
-
-        echo "<br>Deu erro";
+        die("Deu erro");
     }
-    else
-    {
-        $stmt->close();
 
-        $endereco_final = "{$_POST['rua']}, Nº: {$_POST['num']}, {$_POST['bairro']} - {$_POST['cidade']}/{$_POST['uf']} CEP: {$_POST['cep']}";
+    $stmt->close();
 
-        $sql = "INSERT INTO usuario(cpf, nome, email, senha, endereco)
-        VALUES (?, ?, ?, ?, ?)";
+    $endereco_final = "{$_POST['rua']}, Nº: {$_POST['num']}, {$_POST['bairro']} - {$_POST['cidade']}/{$_POST['uf']} CEP: {$_POST['cep']}";
 
-        $senha = $_POST["senha"];
-        $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
+    $sql = "INSERT INTO usuario(cpf, nome, email, senha, endereco)
+    VALUES (?, ?, ?, ?, ?)";
 
-        $stmt = $conexao->prepare($sql);
-        $stmt->bind_param('sssss', $_POST['cpf'], $_POST['nome'], $_POST['email'], $senha_hash, $endereco_final);
-        $stmt->execute();
-        $stmt->close();
-    }
+    $senha = $_POST["senha"];
+    $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
+
+    $stmt = $conexao->prepare($sql);
+    $stmt->bind_param('sssss', $_POST['cpf'], $_POST['nome'], $_POST['email'], $senha_hash, $endereco_final);
+    $stmt->execute();
+    $stmt->close();
+
+    echo "<script>window.location.href='login.php';</script>";
 }
 
 $conexao->close();
