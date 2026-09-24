@@ -1,7 +1,3 @@
-<a href="logout.php">
-    <button>logout</button>
-</a>
-
 <?php
 session_start();
 
@@ -13,5 +9,9 @@ if (isset($_SESSION['id_usuario']))
                   </a>";
 }
 else
-    header("Location: login.php");
+    echo "<script>window.location.href='login.php';</script>";
 ?>
+
+<a href="logout.php">
+    <button>logout</button>
+</a>
