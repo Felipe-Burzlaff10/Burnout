@@ -92,8 +92,8 @@ else
                 </a>
 
                 <!-- User -->
-                <span style="font-weight: bold; font-size: 18px; line-height: 1.1;">
-                    <a href="perfil.php"><? echo $_SESSION['nome']; ?></a>
+                <span style="font-weight: bold; font-size: 18px; line-height: 1.1; color: black;">
+                    <a href="perfil.php"><?php echo $_SESSION['nome']; ?></a>
                 </span>
 
             </div>
