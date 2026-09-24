@@ -28,18 +28,24 @@ while($usuario = $resultado -> fetch_assoc())
         if ($key == "root")
         {
             if ($usuario[$key] == 1)
-                echo $key . ": True<br>";
+                echo $key . ": True ";
             else
-                echo $key . ": False<br>";
+                echo $key . ": False ";
             
             continue;
         }
 
-        echo  $key . ": " . htmlspecialchars($usuario[$key]) . "<br>";
+        echo  $key . ": " . htmlspecialchars($usuario[$key]) . " ";
 
     }
 
-    echo "<button type='submit' name='id_deletar' value='" . $usuario['id_usuario'] . "'>apagar</button>";
+    if ($value)
+    {
+        echo "<br>";
+        continue;
+    }
+
+    echo "<button type='submit' name='id_deletar' value='" . $usuario['id_usuario'] . "'>apagar</button><br>";
 }
 
 echo "</form>";
@@ -52,6 +58,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $stmt = $conexao->prepare($sql);
     $stmt->bind_param('i', $_POST['id_deletar']);
     $stmt->execute();
+
+    echo "<script>window.location.href='listar_users.php';</script>";
 }
 
 echo "</div>";
@@ -59,7 +67,3 @@ echo "<hr>";
 
 $conexao->close();
 ?>
-
- <!-- Importação do CSS do Bootstrap -->
-    <link href="https://jsdelivr.net" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
- <script src="https://jsdelivr.net" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

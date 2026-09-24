@@ -45,6 +45,7 @@ else
             border-bottom: 2px solid black;
         }
         </style>
+        </head>
 <body>
 
         <a href="logout.php">
@@ -93,7 +94,7 @@ else
 
                 <!-- User -->
                 <span style="font-weight: bold; font-size: 18px; line-height: 1.1;">
-                    <a href="perfil.php"></a>
+                    <a href="perfil.php"><?php echo $_SESSION['nome']; ?></a>
                 </span>
 
             </div>
@@ -137,5 +138,5 @@ else
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
-</head>
+
 <body>
