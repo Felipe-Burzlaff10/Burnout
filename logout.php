@@ -2,5 +2,5 @@
 session_start();
 $_SESSION = array();
 session_destroy();
-header("Location: cadastro.php");
+echo "<script>window.location.href='login.php';</script>";
 ?>

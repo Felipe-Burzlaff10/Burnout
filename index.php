@@ -9,6 +9,9 @@ if (isset($_SESSION['id_usuario']))
                   </a>";
 }
 else
+    echo "<script>window.location.href='login.php';</script>";
+?>
+<<<<<<< HEAD
     header("Location: login.php");
 ?>
 
@@ -139,3 +142,5 @@ else
   </button>
 </head>
 <body>
+=======
+>>>>>>> 1f4d1a06eb4036c77b0bd4e0458930e6187e581e
