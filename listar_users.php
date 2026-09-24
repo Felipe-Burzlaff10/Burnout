@@ -39,10 +39,20 @@ while($usuario = $resultado -> fetch_assoc())
 
     }
 
-    echo "<input type='submit' value='" . $usuario['id_usuario'] . "'>";
+    echo "<button type='submit' name='id_deletar' value='" . $usuario['id_usuario'] . "'>apagar</button>";
 }
 
 echo "</form>";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST")
+{
+    $sql = "DELETE FROM usuario
+            WHERE id_usuario = ?;";
+    
+    $stmt = $conexao->prepare($sql);
+    $stmt->bind_param('i', $_POST['id_deletar']);
+    $stmt->execute();
+}
 
 echo "</div>";
 echo "<hr>";
