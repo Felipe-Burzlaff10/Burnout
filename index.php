@@ -11,9 +11,6 @@ if (isset($_SESSION['id_usuario']))
 else
     echo "<script>window.location.href='login.php';</script>";
 ?>
-<<<<<<< HEAD
-    header("Location: login.php");
-?>
 
 
 <!DOCTYPE html>
@@ -96,7 +93,7 @@ else
 
                 <!-- User -->
                 <span style="font-weight: bold; font-size: 18px; line-height: 1.1;">
-                    <a href="perfil.php"></a>
+                    <a href="perfil.php"><? echo $_SESSION['nome']; ?></a>
                 </span>
 
             </div>
@@ -142,5 +139,3 @@ else
   </button>
 </head>
 <body>
-=======
->>>>>>> 1f4d1a06eb4036c77b0bd4e0458930e6187e581e
