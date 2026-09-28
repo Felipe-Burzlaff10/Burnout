@@ -143,7 +143,7 @@
     </body>
 
 
-   echo '<script src="API_endereço.js"></script>';
+   echo '<script src="../API_endereço.js"></script>';
 
 </html>
 
@@ -172,15 +172,7 @@ function validaCPF($cpf)
     return true;
 }
 
-$host = "localhost";
-$usuario = "root";
-$senha = "";
-$banco = "burnout";
-
-$conexao = new mysqli($host, $usuario, $senha, $banco);
-
-if ($conexao->connect_error)
-    die("Erro na conexão.");
+require_once "../conexao.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
