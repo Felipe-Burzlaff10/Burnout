@@ -9,7 +9,7 @@ if (isset($_SESSION['id_usuario']))
                   </a>";
 }
 else
-    echo "<script>window.location.href='login.php';</script>";
+    echo "<script>window.location.href='usuario/login.php';</script>";
 ?>
 
 
@@ -47,7 +47,7 @@ else
         </style>
 <body>
 
-        <a href="logout.php">
+        <a href="usuario/logout.php">
             <button>logout</button>
         </a>
 
@@ -63,7 +63,7 @@ else
 
             <!-- Logo -->
             <div class="col-3">
-                <img src="img/logo.png" alt="Logo Burnout" style="width: 170px;">
+                <img src="img_site/logo.png" alt="Logo Burnout" style="width: 170px;">
             </div>
 
             <!-- Título -->
@@ -123,10 +123,10 @@ else
 <div id="carouselExample" class="carousel slide">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="img/imagemPromocional.png" class="d-block w-100" alt="..." width="500px" height="750px">
+      <img src="img_site/imagemPromocional.png" class="d-block w-100" alt="..." width="500px" height="750px">
     </div>
     <div class="carousel-item">
-      <img src="img/imagemLançamento.png" class="d-block w-100" alt="..." width="500px" height="750px">
+      <img src="img_site/imagemLançamento.png" class="d-block w-100" alt="..." width="500px" height="750px">
     </div>
   </div>
   <!--<button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -139,5 +139,5 @@ else
   </button>
 </head>
 
-<a href="alterar_user.php">pcd</a>
+<a href="usuario/alterar.php">pcd</a>
 <body>

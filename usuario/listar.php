@@ -3,16 +3,11 @@ session_start();
 
 if ($_SESSION['root'] != 1)
 {
-    echo "<script>window.location.href='index.php';</script>";
+    echo "<script>window.location.href='../index.php';</script>";
     exit();
 }
 
-$host = "localhost";
-$usuario = "root";
-$senha = "";
-$banco = "burnout";
-
-$conexao = new mysqli($host, $usuario, $senha, $banco);
+require_once "../conexao.php";
 
 $sql = "SELECT * FROM usuario";
 $resultado = ($conexao->query($sql));

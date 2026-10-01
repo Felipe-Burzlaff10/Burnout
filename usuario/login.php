@@ -1,13 +1,5 @@
 <?php
-$host = "localhost";
-$usuario = "root";
-$senha = "";
-$banco = "burnout";
-
-$conexao = new mysqli($host, $usuario, $senha, $banco);
-
-if ($conexao->connect_error)
-    die("Erro na conexão.");
+require_once "../conexao.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
@@ -34,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             $_SESSION['id_usuario'] = $usuario['id_usuario'];
             $_SESSION['root'] = $usuario['root'];
 
-            echo "<script>window.location.href='index.php';</script>";
+            echo "<script>window.location.href='../index.php';</script>";
         }
         else
         {
@@ -167,7 +159,7 @@ $conexao->close();
 
         </form>
 
-        <a href="logout.php">
+        <a href="usuario/logout.php">
             <button>Logout</button>
         </a>
 
