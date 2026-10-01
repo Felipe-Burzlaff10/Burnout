@@ -27,6 +27,108 @@
         .nav-link.active {
             border-bottom: 2px solid black;
         }
+
+
+          body {
+        margin: 0;
+        min-height: 100vh;
+        background: linear-gradient(to bottom, #ffffff, #a8a8a8);
+        font-family: Georgia, 'Times New Roman', serif;
+    }
+
+    /* Área do cadastro */
+    .area-cadastro {
+        padding: 15px 0 30px 0;
+    }
+
+    /* Card verde */
+    .card-cadastro {
+        background-color: #39bf00;
+        border-radius: 20px;
+        width: 740px;
+        max-width: 90%;
+        margin: 0 auto;
+        padding: 5px 70px 25px 70px;
+    }
+
+    /* Título */
+    .titulo-cadastro {
+        font-family: Arial, sans-serif;
+        font-size: 60px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 10px;
+        color: black;
+    }
+
+    /* Labels */
+    .form-label {
+        font-size: 30px;
+        font-weight: bold;
+        margin-bottom: 0;
+        color: black;
+    }
+
+    /* Inputs */
+    .form-control {
+        background-color: transparent;
+        border: none;
+        border-bottom: 3px solid black;
+        border-radius: 0;
+        font-size: 22px;
+        padding: 0 5px;
+        height: 45px;
+        color: black;
+        box-shadow: none !important;
+    }
+
+    .form-control:focus {
+        background-color: transparent;
+        border-color: black;
+        box-shadow: none;
+    }
+
+    /* Espaçamento entre os campos */
+    .campo {
+        margin-bottom: 20px;
+    }
+
+    /* Botão */
+    .btn-cadastrar {
+        display: block;
+        margin: 15px auto 0 auto;
+        background-color: black;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        width: 245px;
+        height: 80px;
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .btn-cadastrar:hover {
+        background-color: #222;
+        color: white;
+    }
+
+    /* Botão de buscar CEP */
+    .btn-cep {
+        background-color: black;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-weight: bold;
+        height: 40px;
+    }
+
+    .btn-cep:hover {
+        background-color: #222;
+        color: white;
+    }
+
+
         </style>
     </head>
     <body>
@@ -103,42 +205,204 @@
 
 </header>
             
+        <div class="container-fluid area-cadastro">
+
+    <div class="card-cadastro">
+
+        <h1 class="titulo-cadastro">
+            CADASTRO
+        </h1>
+
         <form method="POST">
 
-            <label for="nome">Nome: </label>
-            <input type="text" name="nome" required><br>
+            <!-- NOME -->
+            <div class="campo">
+                <label for="nome" class="form-label">
+                    Nome
+                </label>
 
-            <label for="cpf">CPF: </label>
-            <input type="number" name="cpf" required><br>
+                <input 
+                    type="text" 
+                    name="nome" 
+                    id="nome"
+                    class="form-control"
+                    required
+                >
+            </div>
 
-            <label for="email">Email: </label>
-            <input type="email" name="email" required><br>
 
-            <label for="senha">Senha: </label>
-            <input type="password" name="senha" required><br>
+            <!-- CPF -->
+            <div class="campo">
+                <label for="cpf" class="form-label">
+                    CPF
+                </label>
 
-            <label for="cep">CEP: </label>
-            <input type="num" name="cep" id="cep" required>
-            <button type="button" onclick="buscarEndereco()">Buscar Endereço</button><br>
+                <input 
+                    type="text" 
+                    name="cpf" 
+                    id="cpf"
+                    class="form-control"
+                    maxlength="11"
+                    required
+                >
+            </div>
 
-            <label for="uf">UF: </label>
-            <input type="text" name="uf" id="uf" required><br>
 
-            <label for="bairro">Bairro: </label>
-            <input type="text" name="bairro" id="bairro" required><br>
+            <!-- EMAIL -->
+            <div class="campo">
+                <label for="email" class="form-label">
+                    Email
+                </label>
 
-            <label for="cidade">Cidade: </label>
-            <input type="text" name="cidade" id="cidade" required><br>
+                <input 
+                    type="email" 
+                    name="email" 
+                    id="email"
+                    class="form-control"
+                    required
+                >
+            </div>
 
-            <label for="rua">Rua: </label>
-            <input type="text" name="rua" id="rua" required><br>
 
-            <label for="num">Nº: </label>
-            <input type="num" name="num" required><br>
+            <!-- SENHA -->
+            <div class="campo">
+                <label for="senha" class="form-label">
+                    Senha
+                </label>
 
-            <input type="submit" value="Cadastrar">
+                <input 
+                    type="password" 
+                    name="senha" 
+                    id="senha"
+                    class="form-control"
+                    required
+                >
+            </div>
+
+
+            <!-- CEP -->
+            <div class="campo">
+                <label for="cep" class="form-label">
+                    CEP
+                </label>
+
+                <div class="d-flex gap-2">
+
+                    <input 
+                        type="text" 
+                        name="cep" 
+                        id="cep"
+                        class="form-control"
+                        maxlength="8"
+                        required
+                    >
+
+                    <button 
+                        type="button" 
+                        class="btn btn-cep"
+                        onclick="buscarEndereco()"
+                    >
+                        Buscar
+                    </button>
+
+                </div>
+            </div>
+
+
+            <!-- UF -->
+            <div class="campo">
+                <label for="uf" class="form-label">
+                    UF
+                </label>
+
+                <input 
+                    type="text" 
+                    name="uf" 
+                    id="uf"
+                    class="form-control"
+                    maxlength="2"
+                    required
+                >
+            </div>
+
+
+            <!-- BAIRRO -->
+            <div class="campo">
+                <label for="bairro" class="form-label">
+                    Bairro
+                </label>
+
+                <input 
+                    type="text" 
+                    name="bairro" 
+                    id="bairro"
+                    class="form-control"
+                    required
+                >
+            </div>
+
+
+            <!-- CIDADE -->
+            <div class="campo">
+                <label for="cidade" class="form-label">
+                    Cidade
+                </label>
+
+                <input 
+                    type="text" 
+                    name="cidade" 
+                    id="cidade"
+                    class="form-control"
+                    required
+                >
+            </div>
+
+
+            <!-- RUA -->
+            <div class="campo">
+                <label for="rua" class="form-label">
+                    Rua
+                </label>
+
+                <input 
+                    type="text" 
+                    name="rua" 
+                    id="rua"
+                    class="form-control"
+                    required
+                >
+            </div>
+
+
+            <!-- NÚMERO -->
+            <div class="campo">
+                <label for="num" class="form-label">
+                    Nº
+                </label>
+
+                <input 
+                    type="text" 
+                    name="num" 
+                    id="num"
+                    class="form-control"
+                    required
+                >
+            </div>
+
+
+            <!-- BOTÃO -->
+            <button 
+                type="submit" 
+                class="btn btn-cadastrar"
+            >
+                CADASTRAR
+            </button>
 
         </form>
+
+    </div>
+
+</div>
 
     </body>
 
