@@ -85,3 +85,7 @@ $stmt->close();
     <input type="submit" value="Cadastrar">
 
 </form>
+
+<a href="../index.php">
+    <button>Voltar</button>
+</a>
