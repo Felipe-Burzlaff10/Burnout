@@ -18,7 +18,7 @@
    </select><br>
 
     <label for="preco">Preço: </label>
-    <input type="number" name="preco"><br>
+    <input type="number" step="0.01" name="preco"><br>
 
      <label for="tamanho">Tamanho: </label>
     <input type="text" name="tamanho"><br>
@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         VALUES (?, ?, ?, ?, ?) ";
     
         $stmt = $conexao->prepare($sql);
-        $stmt->bind_param('ssiss', $_POST['nome'], $_POST['categoria'], $_POST['preco'], $_POST['tamanho'], $nome_final_imagem);
+        $stmt->bind_param('ssdss', $_POST['nome'], $_POST['categoria'], $_POST['preco'], $_POST['tamanho'], $nome_final_imagem);
         $stmt->execute();
         $stmt->close();
     
