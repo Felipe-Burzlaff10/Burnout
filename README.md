@@ -1,2 +1,2 @@
 # Burnout
-respositorio do site mais gay de todos!!!
+respositorio do SCRUM MASTER MAIS GAY DE TODOS!!!
