@@ -15,6 +15,8 @@ if ($_SESSION['root'] != 1)
 
 require_once "../conexao.php";
 
+$sql = "SELECT * FROM usuario";
+$resultado = ($conexao->query($sql));  
 
 if ($_SERVER["REQUEST_METHOD"] == "GET")
 {
@@ -32,12 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
         $resultado = $stmt->get_result();
         $stmt->close();
     }
-    else
-    {
-        $sql = "SELECT * FROM usuario";
-        $resultado = ($conexao->query($sql));  
-    }
-
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
