@@ -1,3 +1,9 @@
+<form method="GET">
+    <input type="text" name="pesquisa">
+
+    <button type="submit">Pesquisar</button>
+</form>
+
 <?php
 session_start();
 
@@ -77,7 +83,7 @@ while($usuario = $resultado -> fetch_assoc())
     if ($usuario['root'])
         continue;
 
-    echo "<input type='submit' name='id_apagar' value='" . $usuario['id_usuario'] . "'>";
+    echo "<button type='submit' name='id_apagar' value='" . $usuario['id_usuario'] . "'>Apagar</button>";
 }
 
 echo "</form>";
@@ -87,9 +93,3 @@ echo "<hr>";
 
 $conexao->close();
 ?>
-
-<form method="GET">
-    <input type="text" name="pesquisa">
-
-    <button type="submit">Pesquisar</button>
-</form>
