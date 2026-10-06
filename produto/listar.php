@@ -62,18 +62,7 @@ while($produto = $resultado -> fetch_assoc())
     
     foreach ($produto as $key => $value)
     {
-        if ($key == "root")
-        {
-            if ($produto[$key])
-                echo $key . ": True<br>";
-            else
-                echo $key . ": False<br>";
-            
-            continue;
-        }
-
         echo  $key . ": " . htmlspecialchars($produto[$key]) . "<br>";
-
     }
 
     echo "<button type='submit' name='id_apagar' value='" . $produto['id_produto'] . "'>Apagar</button>";
