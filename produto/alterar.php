@@ -55,34 +55,24 @@ $stmt->close();
 
 ?>
 
-<form method="POST">
+<form action="" method="POST" enctype="multipart/form-data">
 
-    <label for="email">Email: </label>
-    <input type="email" name="email"  ><br>
+    <label for="categoria">Nome Produto: </label>
+    <input type="categoria" name="categoria"  ><br>
 
-    <label for="senha">Senha: </label>
-    <input type="password" name="senha"  ><br>
+    <label for="categoria">Categoria: </label>
+    <input type="text" name="categoria"  ><br>
 
-    <label for="cep">CEP: </label>
-    <input type="num" name="cep" id="cep"  >
-    <button type="button" onclick="buscarEndereco()">Buscar Endereço</button><br>
+    <label for="preco">Preço: </label>
+    <input type="num" name="preco" id="preco"  ><br>
 
-    <label for="uf">UF: </label>
-    <input type="text" name="uf" id="uf"  ><br>
+    <label for="tam">Tamanho: </label>
+    <input type="text" name="tam" id="tam"  ><br>
 
-    <label for="bairro">Bairro: </label>
-    <input type="text" name="bairro" id="bairro"  ><br>
+      <label for="imagem">Imagem: </label>
+    <input type="file" name="imagem"><br>
 
-    <label for="cidade">Cidade: </label>
-    <input type="text" name="cidade" id="cidade"  ><br>
-
-    <label for="rua">Rua: </label>
-    <input type="text" name="rua" id="rua"  ><br>
-
-    <label for="num">Nº: </label>
-    <input type="num" name="num"  ><br>
-
-    <input type="submit" value="Cadastrar">
+    <input type="submit" value="Alterar">
 
 </form>
 
