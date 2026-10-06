@@ -31,8 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
     if(!empty($preenchido))
         $endereco_final = "{$_POST['rua']}, Nº: {$_POST['num']}, {$_POST['bairro']} - {$_POST['cidade']}/{$_POST['uf']} CEP: {$_POST['cep']}";
-        else
-            $endereco_final = '';
+    else
+        $endereco_final = '';
 
     if (!empty($_POST['email']))
         $email = $_POST['email'];
