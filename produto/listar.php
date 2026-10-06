@@ -15,7 +15,7 @@ if ($_SESSION['root'] != 1)
 
 require_once "../conexao.php";
 
-$sql = "SELECT * FROM usuario";
+$sql = "SELECT * FROM produto";
 $resultado = ($conexao->query($sql));  
 
 if ($_SERVER["REQUEST_METHOD"] == "GET")
@@ -24,9 +24,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
     {
         $pesquisa = "%" . $_GET['pesquisa'] . "%";
 
-        $sql = "SELECT * FROM usuario
+        $sql = "SELECT * FROM produto
                 WHERE nome LIKE ?
-                OR cpf LIKE ?";
+                OR categoria LIKE ?";
 
         $stmt = $conexao->prepare($sql);
         $stmt->bind_param('ss', $pesquisa, $pesquisa);
@@ -40,8 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
     if (isset($_POST['id_apagar']))
     {
-        $sql = "DELETE FROM usuario
-                WHERE id_usuario = ?";
+        $sql = "DELETE FROM produto
+                WHERE id_produto = ?";
 
         $stmt = $conexao->prepare($sql);
         $stmt->bind_param('i', $_POST['id_apagar']);
@@ -56,15 +56,15 @@ echo "<div class='d-flex p-2 bg-light'>";
 
 echo "<form method='post'>";
 
-while($usuario = $resultado -> fetch_assoc())
+while($produto = $resultado -> fetch_assoc())
 {
     echo "<br>";
     
-    foreach ($usuario as $key => $value)
+    foreach ($produto as $key => $value)
     {
         if ($key == "root")
         {
-            if ($usuario[$key])
+            if ($produto[$key])
                 echo $key . ": True<br>";
             else
                 echo $key . ": False<br>";
@@ -72,14 +72,11 @@ while($usuario = $resultado -> fetch_assoc())
             continue;
         }
 
-        echo  $key . ": " . htmlspecialchars($usuario[$key]) . "<br>";
+        echo  $key . ": " . htmlspecialchars($produto[$key]) . "<br>";
 
     }
 
-    if ($usuario['root'])
-        continue;
-
-    echo "<button type='submit' name='id_apagar' value='" . $usuario['id_usuario'] . "'>Apagar</button>";
+    echo "<button type='submit' name='id_apagar' value='" . $produto['id_produto'] . "'>Apagar</button>";
 }
 
 echo "</form>";

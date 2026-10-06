@@ -7,7 +7,7 @@ if (!isset($_SESSION['id_usuario']))
     exit();
 }
 
-echo '<script src="../API_endereço.js"></script>';
+echo "<script src='../API_endereço.js'></script>";
 
 require_once "../conexao.php";
 
@@ -85,3 +85,7 @@ $stmt->close();
     <input type="submit" value="Cadastrar">
 
 </form>
+
+<a href="../index.php">
+    <button>Voltar</button>
+</a>

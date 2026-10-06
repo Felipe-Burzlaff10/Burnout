@@ -70,6 +70,100 @@ $conexao->close();
         .nav-link.active {
             border-bottom: 2px solid black;
         }
+
+         body {
+        margin: 0;
+        min-height: 100vh;
+        background: linear-gradient(to bottom, #ffffff, #a8a8a8);
+        font-family: Georgia, 'Times New Roman', serif;
+    }
+
+    .area-login {
+        padding: 40px 0;
+    }
+
+    .card-login {
+        background-color: #39bf00;
+        border-radius: 20px;
+        width: 600px;
+        max-width: 90%;
+        margin: 0 auto;
+        padding: 20px 70px 35px 70px;
+    }
+
+    .titulo-login {
+        font-family: Arial, sans-serif;
+        font-size: 60px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 30px;
+        color: black;
+    }
+
+    .form-label {
+        font-size: 30px;
+        font-weight: bold;
+        margin-bottom: 0;
+        color: black;
+    }
+
+    .form-control {
+        background-color: transparent;
+        border: none;
+        border-bottom: 3px solid black;
+        border-radius: 0;
+        font-size: 22px;
+        height: 45px;
+        padding: 0 5px;
+        color: black;
+        box-shadow: none !important;
+    }
+
+    .form-control:focus {
+        background-color: transparent;
+        border-color: black;
+        box-shadow: none;
+    }
+
+    .campo {
+        margin-bottom: 25px;
+    }
+
+    .btn-login {
+        display: block;
+        margin: 30px auto 15px auto;
+        background-color: black;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        width: 245px;
+        height: 75px;
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .btn-login:hover {
+        background-color: #222;
+        color: white;
+    }
+
+    .btn-cadastrar {
+        display: block;
+        margin: 10px auto 0 auto;
+        background-color: transparent;
+        color: black;
+        border: 2px solid black;
+        border-radius: 15px;
+        width: 150px;
+        height: 45px;
+        font-weight: bold;
+    }
+
+    .btn-cadastrar:hover {
+        background-color: black;
+        color: white;
+    }
         </style>
     
     </head>
@@ -87,7 +181,7 @@ $conexao->close();
 
                 <!-- Logo -->
                 <div class="col-3">
-                    <img src="logo.png" alt="Logo Burnout" style="width: 170px;">
+                    <img src="../img_site/logo.png" alt="Logo Burnout" style="width: 170px;">
                 </div>
 
                 <!-- Título -->
@@ -147,21 +241,78 @@ $conexao->close();
 
     </header>
             
+        <div class="container-fluid area-login">
+
+    <div class="card-login">
+
+        <h1 class="titulo-login">
+            LOGIN
+        </h1>
+
         <form action="" method="POST">
 
-            <label for="email">Email: </label>
-            <input type="email" name="email" required><br>
+            <!-- EMAIL -->
+            <div class="campo">
 
-            <label for="senha">Senha: </label>
-            <input type="password" name="senha" required><br>
+                <label for="email" class="form-label">
+                    Email
+                </label>
 
-            <input type="submit" value="Logar">
+                <input 
+                    type="email" 
+                    name="email" 
+                    id="email"
+                    class="form-control"
+                    required
+                >
+
+            </div>
+
+
+            <!-- SENHA -->
+            <div class="campo">
+
+                <label for="senha" class="form-label">
+                    Senha
+                </label>
+
+                <input 
+                    type="password" 
+                    name="senha" 
+                    id="senha"
+                    class="form-control"
+                    required
+                >
+
+            </div>
+
+
+            <!-- LOGIN -->
+            <button 
+                type="submit" 
+                class="btn btn-login"
+            >
+                LOGAR
+            </button>
 
         </form>
 
-        <a href="usuario/logout.php">
-            <button>Logout</button>
+
+        <!-- CADASTRO -->
+        <a href="cadastro.php" class="text-decoration-none">
+
+            <button 
+                type="button" 
+                class="btn btn-cadastrar"
+            >
+                Cadastrar?
+            </button>
+
         </a>
+
+    </div>
+
+</div>
 
     </body>
 </html>

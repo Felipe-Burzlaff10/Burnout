@@ -4,9 +4,9 @@ session_start();
 if (isset($_SESSION['id_usuario']))
 {
     if ($_SESSION['root'])
-            echo "<a href='listar_users.php'>
-                      <button>listar</button>
-                  </a>";
+        echo "<a href='usuario/listar.php'>
+                    <button>listar</button>
+                </a>";
 }
 else
     echo "<script>window.location.href='usuario/login.php';</script>";
