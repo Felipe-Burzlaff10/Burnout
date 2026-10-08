@@ -44,237 +44,885 @@ $conexao->close();
 
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <title>Cadastro</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login - BURNOUT</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
 
     <style>
 
-    body {
-        margin: 0;
-        min-height: 100vh;
-        background: linear-gradient(to bottom, #ffffff, #a8a8a8);
-        font-family: Georgia, 'Times New Roman', serif;
-    }
-
-    .area-login {
-        padding: 40px 0;
-    }
-
-    .card-login {
-        background-color: #39bf00;
-        border-radius: 20px;
-        width: 600px;
-        max-width: 90%;
-        margin: 0 auto;
-        padding: 20px 70px 35px 70px;
-    }
-
-    .titulo-login {
-        font-family: Arial, sans-serif;
-        font-size: 60px;
-        font-weight: bold;
-        text-align: center;
-        margin-bottom: 30px;
-        color: black;
-    }
-
-    .form-label {
-        font-size: 30px;
-        font-weight: bold;
-        margin-bottom: 0;
-        color: black;
-    }
-
-    .form-control {
-        background-color: transparent;
-        border: none;
-        border-bottom: 3px solid black;
-        border-radius: 0;
-        font-size: 22px;
-        height: 45px;
-        padding: 0 5px;
-        color: black;
-        box-shadow: none !important;
-    }
-
-    .form-control:focus {
-        background-color: transparent;
-        border-color: black;
-        box-shadow: none;
-    }
-
-    .campo {
-        margin-bottom: 25px;
-    }
-
-    .btn-login {
-        display: block;
-        margin: 30px auto 15px auto;
-        background-color: black;
-        color: white;
-        border: none;
-        border-radius: 20px;
-        width: 245px;
-        height: 75px;
-        font-family: Georgia, 'Times New Roman', serif;
-        font-size: 20px;
-        font-weight: bold;
-    }
-
-    .btn-login:hover {
-        background-color: #222;
-        color: white;
-    }
-
-    .btn-logout {
-        display: block;
-        margin: 10px auto 0 auto;
-        background-color: transparent;
-        color: black;
-        border: 2px solid black;
-        border-radius: 15px;
-        width: 150px;
-        height: 45px;
-        font-weight: bold;
-    }
-
-    .btn-logout:hover {
-        background-color: black;
-        color: white;
-    }
-        </style>
-    
-    </head>
-    <body>
-
-    <!-- Bootstrap js -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+        * {
+            box-sizing: border-box;
+        }
 
 
-    <header style="background-color: #39bf00; padding: 10px 20px 0;">
+        /* =========================
+           BODY
+        ========================= */
 
-        <!-- Parte superior -->
-        <div class="container-fluid">
-            <div class="row align-items-center">
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(
+                135deg,
+                #ffffff 0%,
+                #eeeeee 50%,
+                #cfcfcf 100%
+            );
+            font-family: Georgia, 'Times New Roman', serif;
+            color: black;
+        }
 
-                <!-- Logo -->
-                <div class="col-3">
-                    <img src="logo.png" alt="Logo Burnout" style="width: 170px;">
-                </div>
 
-                <!-- Título -->
-                <div class="col-6 text-center">
-                    <h1 style="
-                        font-family: Georgia, 'Times New Roman', serif;
-                        font-size: 70px;
-                        font-weight: bold;
-                        margin: 0;
-                        color: black;">
-                        BURNOUT
-                    </h1>
-                </div>
+        /* =========================
+           HEADER
+        ========================= */
 
-                <!-- Ícones e login -->
-                <div class="col-3 d-flex justify-content-end align-items-center gap-3">
+        header {
+            background-color: #39bf00;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.20);
+        }
 
-                    <!-- Pesquisa -->
-                    <a href="pesquisa.php" style="color: black; font-size: 32px;">
-                        <i class="bi bi-search"></i>
-                    </a>
 
-                    <!-- Carrinho -->
-                    <a href="carrinho.php" style="color: black; font-size: 32px;">
-                        <i class="bi bi-cart3"></i>
-                    </a>
+        .header-top {
+            min-height: 120px;
+            padding: 15px 35px;
+        }
 
-                    <!-- Entrar -->
-                    <a href="login.php" style="color: black; text-decoration: none; display: flex; align-items: center; gap: 8px;">
-                <i class="bi bi-person-circle" style="font-size: 38px;"></i>
-                    </a>
-                    <span style="font-weight: bold; font-size: 18px; line-height: 1.1;">
-                        <a href="login.php" style="color: black;">entrar ou<br> cadastrar</a>  
-                    </span>
+
+        /* LOGO */
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+        }
+
+
+        .logo {
+            width: 150px;
+            max-width: 100%;
+        }
+
+
+        /* TÍTULO */
+
+        .titulo-site {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 65px;
+            font-weight: bold;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+
+        /* =========================
+           AÇÕES DO HEADER
+        ========================= */
+
+        .acoes-header {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 22px;
+        }
+
+
+        .icone-header {
+            color: black;
+            text-decoration: none;
+            font-size: 30px;
+            transition: 0.2s;
+        }
+
+
+        .icone-header:hover {
+            color: white;
+            transform: translateY(-2px);
+        }
+
+
+        .login-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            color: black;
+            text-decoration: none;
+
+            font-weight: bold;
+            font-size: 16px;
+            line-height: 1.1;
+
+            transition: 0.2s;
+        }
+
+
+        .login-header i {
+            font-size: 38px;
+        }
+
+
+        .login-header:hover {
+            color: white;
+        }
+
+
+        /* =========================
+           MENU
+        ========================= */
+
+        .menu {
+            background-color: black;
+        }
+
+
+        .menu .nav-link {
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            letter-spacing: 1px;
+
+            padding: 14px 28px;
+
+            transition: 0.2s;
+        }
+
+
+        .menu .nav-link:hover {
+            background-color: #39bf00;
+            color: black;
+        }
+
+
+        .menu .nav-link.active {
+            background-color: #39bf00;
+            color: black;
+        }
+
+
+        /* =========================
+           ÁREA DO LOGIN
+        ========================= */
+
+        .area-login {
+            min-height: calc(100vh - 170px);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 50px 20px 70px;
+        }
+
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .card-login {
+            background-color: #39bf00;
+
+            width: 560px;
+            max-width: 100%;
+
+            padding: 40px 65px 45px;
+
+            border-radius: 25px;
+
+            border: 2px solid rgba(0, 0, 0, 0.15);
+
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, 0.25);
+        }
+
+
+        /* =========================
+           CABEÇALHO LOGIN
+        ========================= */
+
+        .cabecalho-login {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+
+        .icone-login {
+            font-size: 55px;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+
+        .titulo-login {
+            font-family: Arial, sans-serif;
+            font-size: 52px;
+            font-weight: 900;
+
+            margin: 0;
+
+            letter-spacing: 1px;
+        }
+
+
+        .subtitulo-login {
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            font-weight: bold;
+
+            opacity: 0.7;
+
+            margin-top: 6px;
+        }
+
+
+        .linha-titulo {
+            width: 70px;
+            height: 5px;
+
+            background-color: black;
+
+            margin: 14px auto 0;
+
+            border-radius: 10px;
+        }
+
+
+        /* =========================
+           CAMPOS
+        ========================= */
+
+        .campo {
+            margin-bottom: 25px;
+        }
+
+
+        .form-label {
+            display: block;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 18px;
+            font-weight: bold;
+
+            margin-bottom: 8px;
+        }
+
+
+        .form-control {
+            height: 52px;
+
+            background-color: rgba(255, 255, 255, 0.35);
+
+            border: 2px solid transparent;
+
+            border-radius: 10px;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 17px;
+
+            padding: 10px 15px;
+
+            color: black;
+
+            transition: 0.2s;
+
+            box-shadow: none !important;
+        }
+
+
+        .form-control:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+
+        .form-control:focus {
+            background-color: white;
+
+            border-color: black;
+
+            box-shadow:
+                0 0 0 3px rgba(0, 0, 0, 0.10) !important;
+        }
+
+
+        /* =========================
+           BOTÃO LOGIN
+        ========================= */
+
+        .btn-login {
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 10px;
+
+            width: 100%;
+            height: 60px;
+
+            margin: 35px auto 15px;
+
+            background-color: black;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 12px;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 18px;
+            font-weight: 900;
+
+            letter-spacing: 1px;
+
+            transition: 0.25s;
+        }
+
+
+        .btn-login:hover {
+            background-color: #222;
+
+            color: white;
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 8px 15px rgba(0, 0, 0, 0.25);
+        }
+
+
+        .btn-login i {
+            font-size: 20px;
+        }
+
+
+        /* =========================
+           LINKS
+        ========================= */
+
+        .links-login {
+            text-align: center;
+
+            font-family: Arial, sans-serif;
+
+            margin-top: 20px;
+        }
+
+
+        .links-login a {
+            color: black;
+
+            font-weight: bold;
+
+            text-decoration: none;
+
+            transition: 0.2s;
+        }
+
+
+        .links-login a:hover {
+            text-decoration: underline;
+        }
+
+
+        .separador {
+            margin: 0 8px;
+            opacity: 0.5;
+        }
+
+
+        /* =========================
+           LOGOUT
+        ========================= */
+
+        .logout-area {
+            margin-top: 25px;
+
+            padding-top: 20px;
+
+            border-top: 1px solid rgba(0, 0, 0, 0.25);
+
+            text-align: center;
+        }
+
+
+        .btn-logout {
+            background-color: transparent;
+
+            color: black;
+
+            border: 2px solid black;
+
+            border-radius: 10px;
+
+            width: 150px;
+            height: 42px;
+
+            font-family: Arial, sans-serif;
+
+            font-weight: bold;
+
+            transition: 0.2s;
+        }
+
+
+        .btn-logout:hover {
+            background-color: black;
+
+            color: white;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           RESPONSIVIDADE
+        ========================= */
+
+        @media (max-width: 992px) {
+
+            .titulo-site {
+                font-size: 48px;
+            }
+
+            .logo {
+                width: 120px;
+            }
+
+            .acoes-header {
+                gap: 12px;
+            }
+
+            .icone-header {
+                font-size: 25px;
+            }
+
+            .login-header i {
+                font-size: 32px;
+            }
+
+        }
+
+
+        @media (max-width: 768px) {
+
+            .header-top {
+                padding: 15px;
+            }
+
+            .logo-area {
+                justify-content: center;
+                margin-bottom: 10px;
+            }
+
+            .titulo-site {
+                font-size: 42px;
+                text-align: center;
+            }
+
+            .acoes-header {
+                justify-content: center;
+                margin-top: 10px;
+            }
+
+            .menu .nav-link {
+                padding: 12px 10px;
+                font-size: 14px;
+            }
+
+            .card-login {
+                padding: 35px 30px 40px;
+            }
+
+            .titulo-login {
+                font-size: 42px;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .titulo-site {
+                font-size: 34px;
+            }
+
+            .logo {
+                width: 100px;
+            }
+
+            .menu .nav {
+                flex-wrap: wrap;
+            }
+
+            .menu .nav-link {
+                font-size: 12px;
+                padding: 10px 8px;
+            }
+
+            .card-login {
+                padding: 30px 22px 35px;
+            }
+
+            .titulo-login {
+                font-size: 36px;
+            }
+
+            .icone-login {
+                font-size: 45px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header>
+
+        <div class="header-top">
+
+            <div class="container-fluid">
+
+                <div class="row align-items-center">
+
+
+                    <!-- LOGO -->
+
+                    <div class="col-lg-3 col-md-3 col-12">
+
+                        <div class="logo-area">
+
+                            <img
+                                src="logo.png"
+                                alt="Logo BURNOUT"
+                                class="logo"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TÍTULO -->
+
+                    <div class="col-lg-6 col-md-6 col-12">
+
+                        <h1 class="titulo-site">
+                            BURNOUT
+                        </h1>
+
+                    </div>
+
+
+                    <!-- AÇÕES -->
+
+                    <div class="col-lg-3 col-md-3 col-12">
+
+                        <div class="acoes-header">
+
+
+                            <!-- PESQUISA -->
+
+                            <a
+                                href="pesquisa.php"
+                                class="icone-header"
+                                title="Pesquisar"
+                            >
+
+                                <i class="bi bi-search"></i>
+
+                            </a>
+
+
+                            <!-- CARRINHO -->
+
+                            <a
+                                href="carrinho.php"
+                                class="icone-header"
+                                title="Carrinho"
+                            >
+
+                                <i class="bi bi-cart3"></i>
+
+                            </a>
+
+
+                            <!-- LOGIN -->
+
+                            <a
+                                href="login.php"
+                                class="login-header"
+                            >
+
+                                <i class="bi bi-person-circle"></i>
+
+                                <span>
+                                    entrar ou<br>
+                                    cadastrar
+                                </span>
+
+                            </a>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
             </div>
+
         </div>
 
+
+        <!-- MENU -->
+
+        <nav class="menu">
+
+            <ul class="nav justify-content-center">
+
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="home.php"
+                    >
+                        HOME
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="catalogo.php"
+                    >
+                        CATÁLOGO
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="lancamentos.php"
+                    >
+                        LANÇAMENTOS
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link disabled"
+                        aria-disabled="true"
+                    >
+                        PINTO
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </nav>
+
     </header>
-            
-        <div class="container-fluid area-login">
-
-    <div class="card-login">
-
-        <h1 class="titulo-login">
-            LOGIN
-        </h1>
-
-        <form action="" method="POST">
-
-            <!-- EMAIL -->
-            <div class="campo">
-
-                <label for="email" class="form-label">
-                    Email
-                </label>
-
-                <input 
-                    type="email" 
-                    name="email" 
-                    id="email"
-                    class="form-control"
-                    required
-                >
-
-            </div>
 
 
-            <!-- SENHA -->
-            <div class="campo">
 
-                <label for="senha" class="form-label">
-                    Senha
-                </label>
+    <!-- =========================
+         LOGIN
+    ========================= -->
 
-                <input 
-                    type="password" 
-                    name="senha" 
-                    id="senha"
-                    class="form-control"
-                    required
-                >
+    <main class="area-login">
+
+        <div class="card-login">
+
+
+            <!-- CABEÇALHO -->
+
+            <div class="cabecalho-login">
+
+                <div class="icone-login">
+
+                    <i class="bi bi-person-circle"></i>
+
+                </div>
+
+
+                <h1 class="titulo-login">
+                    LOGIN
+                </h1>
+
+
+                <div class="linha-titulo"></div>
+
+
+                <p class="subtitulo-login">
+                    Entre na sua conta BURNOUT
+                </p>
 
             </div>
 
 
-            <!-- LOGIN -->
-            <button 
-                type="submit" 
-                class="btn btn-login"
-            >
-                LOGAR
-            </button>
 
-        </form>
+            <!-- FORMULÁRIO -->
+
+            <form action="" method="POST">
 
 
-        <!-- LOGOUT -->
-        <a href="usuario/logout.php" class="text-decoration-none">
+                <!-- EMAIL -->
 
-            <button 
-                type="button" 
-                class="btn btn-logout"
-            >
-                LOGOUT
-            </button>
+                <div class="campo">
 
-        </a>
+                    <label
+                        for="email"
+                        class="form-label"
+                    >
+                        E-mail
+                    </label>
 
-    </div>
+                    <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        class="form-control"
+                        placeholder="Digite seu e-mail"
+                        required
+                    >
 
-</div>
+                </div>
 
-    </body>
+
+
+                <!-- SENHA -->
+
+                <div class="campo">
+
+                    <label
+                        for="senha"
+                        class="form-label"
+                    >
+                        Senha
+                    </label>
+
+                    <input
+                        type="password"
+                        name="senha"
+                        id="senha"
+                        class="form-control"
+                        placeholder="Digite sua senha"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- LOGIN -->
+
+                <button
+                    type="submit"
+                    class="btn-login"
+                >
+
+                    <i class="bi bi-box-arrow-in-right"></i>
+
+                    ENTRAR
+
+                </button>
+
+            </form>
+
+
+
+            <!-- LINKS -->
+
+            <div class="links-login">
+
+                <span>
+                    Ainda não possui uma conta?
+                </span>
+
+                <a href="cadastro.php">
+                    Cadastre-se
+                </a>
+
+            </div>
+
+
+
+            <!-- LOGOUT -->
+
+            <div class="logout-area">
+
+                <a
+                    href="usuario/logout.php"
+                    class="text-decoration-none"
+                >
+
+                    <button
+                        type="button"
+                        class="btn-logout"
+                    >
+
+                        <i class="bi bi-box-arrow-right"></i>
+
+                        LOGOUT
+
+                    </button>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- Bootstrap JS -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    ></script>
+
+
+</body>
+
 </html>
