@@ -72,6 +72,8 @@ while($produto = $resultado -> fetch_assoc())
     }
 
     echo "<button type='submit' name='id_apagar' value='" . $produto['id_produto'] . "'>Apagar</button>";
+    echo "<button><a href='alterar.php?id_alterar=" . $produto['id_produto'] . "'>Alterar</a></button>";
+
 }
 
 echo "</form>";
