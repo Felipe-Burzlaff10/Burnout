@@ -1,192 +1,184 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-    * {
-        box-sizing: border-box;
-    }
+<!DOCTYPE html> 
+<html lang="pt-br"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Usuários</title> 
 
-    body {
-        margin: 0;
-        padding: 0;
-        background: linear-gradient(to bottom, #ffffff 0%, #ffffff 25%, #b3b3b3 100%);
-        font-family: Georgia, "Times New Roman", serif;
-        color: #000;
-        min-height: 100vh;
-    }
+    <style> 
+        * { 
+            box-sizing: border-box; 
+        } 
 
-    /* ÁREA DA PESQUISA */
-    body > form {
-        width: 740px;
-        margin: 35px auto 25px;
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
+        body { 
+            margin: 0; 
+            padding: 0; 
+            background: linear-gradient(to bottom, #ffffff 0%, #ffffff 25%, #b3b3b3 100%); 
+            font-family: Georgia, "Times New Roman", serif; 
+            color: #000; 
+            min-height: 100vh; 
+        } 
 
-    body > form input[type="text"] {
-        flex: 1;
-        height: 48px;
-        border: none;
-        border-bottom: 3px solid #000;
-        background: transparent;
-        outline: none;
-        font-family: Georgia, "Times New Roman", serif;
-        font-size: 22px;
-        font-weight: bold;
-        color: #000;
-    }
+        /* PESQUISA */
+        body > form { 
+            width: 90%; 
+            max-width: 1100px; 
+            margin: 35px auto 25px; 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+        } 
 
-    body > form input[type="text"]::placeholder {
-        color: #000;
-        opacity: 1;
-    }
+        body > form input[type="text"] { 
+            flex: 1; 
+            height: 48px; 
+            border: none; 
+            border-bottom: 3px solid #000; 
+            background: transparent; 
+            outline: none; 
+            font-family: Georgia, "Times New Roman", serif; 
+            font-size: 22px; 
+            font-weight: bold; 
+            color: #000; 
+        } 
 
-    body > form button {
-        height: 48px;
-        padding: 0 28px;
-        border: none;
-        border-radius: 12px;
-        background: #000;
-        color: #fff;
-        font-family: Georgia, "Times New Roman", serif;
-        font-size: 17px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: 0.2s;
-    }
+        body > form input[type="text"]::placeholder { 
+            color: #000; 
+            opacity: 1; 
+        } 
 
-    body > form button:hover {
-        background: #222;
-        transform: scale(1.03);
-    }
+        body > form button { 
+            height: 48px; 
+            padding: 0 28px; 
+            border: none; 
+            border-radius: 12px; 
+            background: #000; 
+            color: #fff; 
+            font-family: Georgia, "Times New Roman", serif; 
+            font-size: 17px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            transition: 0.2s; 
+        } 
 
-    /* CONTAINER DOS USUÁRIOS */
-    .usuarios-container {
-        width: 740px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
+        body > form button:hover { 
+            background: #222; 
+            transform: scale(1.03); 
+        } 
 
-    /* FORM DO BOTÃO APAGAR */
-    .usuarios-container > form {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
 
-    /* CARD DO USUÁRIO */
-    .usuario-card {
-        background: #22c900;
-        border-radius: 22px;
-        padding: 25px 45px 30px;
-        box-shadow: none;
-        border: none;
-    }
+        /* CONTAINER DA TABELA */
+        .usuarios-container { 
+            width: 90%; 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            background: #22c900; 
+            border-radius: 22px; 
+            padding: 25px; 
+        } 
 
-    .usuario-card .campo {
-        font-size: 20px;
-        font-weight: bold;
-        padding: 9px 0;
-        border-bottom: 3px solid #000;
-        width: 100%;
-    }
-
-    .usuario-card .campo strong {
-        font-weight: bold;
-    }
-
-    /* BOTÃO APAGAR */
-    .btn-apagar {
-        display: block;
-        width: 245px;
-        height: 65px;
-        margin: 25px auto 0;
-
-        border: none;
-        border-radius: 20px;
-
-        background: #000;
-        color: #fff;
-
-        font-family: Georgia, "Times New Roman", serif;
-        font-size: 19px;
-        font-weight: bold;
-
-        cursor: pointer;
-        transition: 0.2s;
-    }
-
-    .btn-apagar:hover {
-        background: #222;
-        transform: scale(1.03);
-    }
-
-    /* REMOVE A LINHA FINAL */
-    hr {
-        width: 740px;
-        margin: 35px auto;
-        border: none;
-        border-top: 3px solid #000;
-    }
-
-    /* RESPONSIVO */
-    @media (max-width: 800px) {
-
-        body > form {
-            width: 90%;
-            flex-direction: column;
-            align-items: stretch;
+        .usuarios-container > form { 
+            width: 100%; 
         }
 
-        body > form button {
-            width: 100%;
+
+        /* TABELA */
+        .tabela-usuarios { 
+            width: 100%; 
+            border-collapse: collapse; 
+            background: #fff; 
+            border-radius: 15px; 
+            overflow: hidden; 
+        } 
+
+        .tabela-usuarios th { 
+            background: #000; 
+            color: #fff; 
+            padding: 16px 12px; 
+            text-align: left; 
+            font-size: 18px; 
+        } 
+
+        .tabela-usuarios td { 
+            padding: 14px 12px; 
+            border-bottom: 2px solid #000; 
+            font-size: 16px; 
+            font-weight: bold; 
+        } 
+
+        .tabela-usuarios tr:last-child td { 
+            border-bottom: none; 
+        } 
+
+        .tabela-usuarios tr:hover td { 
+            background: #eeeeee; 
         }
 
-        .usuarios-container {
-            width: 90%;
+
+        /* BOTÃO APAGAR */
+        .btn-apagar { 
+            padding: 10px 20px; 
+            border: none; 
+            border-radius: 12px; 
+            background: #000; 
+            color: #fff; 
+            font-family: Georgia, "Times New Roman", serif; 
+            font-size: 15px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            transition: 0.2s; 
+        } 
+
+        .btn-apagar:hover { 
+            background: #d00000; 
+            transform: scale(1.03); 
         }
 
-        .usuario-card {
-            padding: 22px 25px 28px;
+
+        hr { 
+            width: 90%; 
+            max-width: 1100px; 
+            margin: 35px auto; 
+            border: none; 
+            border-top: 3px solid #000; 
         }
 
-        hr {
-            width: 90%;
-        }
-    }
 
-    @media (max-width: 500px) {
+        /* RESPONSIVO */
+        @media (max-width: 800px) { 
 
-        body {
-            padding-bottom: 30px;
-        }
+            body > form { 
+                width: 90%; 
+                flex-direction: column; 
+                align-items: stretch; 
+            } 
 
-        .usuario-card .campo {
-            font-size: 16px;
-        }
+            body > form button { 
+                width: 100%; 
+            } 
 
-        .btn-apagar {
-            width: 100%;
-        }
-    }
-</style>
-</head>
-<body>
+            .usuarios-container { 
+                width: 90%; 
+                padding: 15px; 
+                overflow-x: auto; 
+            } 
 
-<form method="GET">
-    <input type="text" name="pesquisa">
+            .tabela-usuarios { 
+                min-width: 700px; 
+            } 
+        } 
+    </style> 
+</head> 
 
-    <button type="submit">Pesquisar</button>
-</form>
-    
-</body>
-</html>
+<body> 
+
+<form method="GET"> 
+    <input type="text" name="pesquisa" placeholder="Pesquisar usuário..."> 
+    <button type="submit">Pesquisar</button> 
+</form> 
+
+</body> 
+</html> 
 
 <?php
 session_start();
