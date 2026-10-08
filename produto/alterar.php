@@ -14,39 +14,60 @@ require_once "../conexao.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-    //verifica se senha foi enviada em branco ou não
-   if (!empty($_POST['senha']))
-    $senha_hash = password_hash($_POST['senha'], PASSWORD_DEFAULT);
-        else
-            $senha_hash = '';
-        
-    $campos_endereco = ['rua', 'num', 'bairro', 'cidade', 'uf', 'cep'];
-    $preenchido = [];
+     if(!empty($_POST['nome']))
+        $nome = $_POST['nome'];
+    else
+        $nome = '';
+    
+    if(!empty($_POST['categoria']))
+    $categoria = $_POST['categoria'];
+    else
+        $categoria = '';
 
-    foreach($campos_endereco as $key)
+    if(!empty($_POST['preco']))
+        $preco = $_POST['preco'];
+    else
+        $preco = 0.0;
+
+    if(!empty($_POST['tam']))
+        $tamanho = $_POST['tam'];
+    else
     {
-        if(!empty($_POST[$key]))
-         $preenchido[] = $key;
+        $tamanho = '';
+        echo "Tamanho invalido";
     }
 
-    if(!empty($preenchido))
-        $endereco_final = "{$_POST['rua']}, Nº: {$_POST['num']}, {$_POST['bairro']} - {$_POST['cidade']}/{$_POST['uf']} CEP: {$_POST['cep']}";
-        else
-            $endereco_final = '';
+    if(isset($_FILES['imagem']))
+    {
+        $nome_arquivo = $_FILES["imagem"]["name"];
+        $nome_temporario = $_FILES['imagem']['tmp_name'];
 
-    if (!empty($_POST['email']))
-        $email = $_POST['email'];
-        else
-            $email = '';
+        $extensao = strtolower(pathinfo($nome_arquivo, PATHINFO_EXTENSION));
 
-    $sql = "UPDATE usuario
-            SET email = COALESCE(NULLIF(?, ''), email),
-                senha = COALESCE(NULLIF(?, ''), senha),
-                endereco = COALESCE(NULLIF(?, ''), endereco)
-            WHERE id_usuario = ?";
+        $extensoes_permitidas = ["jpg", "png", "jpeg"];
+
+        if(!in_array($extensao, $extensoes_permitidas))
+                die("a foto contem um tipo de extensao que não é permitida!.");
+            
+            $nome_final_imagem = uniqid() . "." . $extensao;
+            $caminho_destino = "../img_produto/" . $nome_final_imagem;
+            move_uploaded_file($nome_temporario, $caminho_destino);
+    }
+    else
+        $nome_final_imagem = '';
+
+
+
+     $sql = "UPDATE produto
+            SET nome = COALESCE(NULLIF(?, ''), nome),
+                categoria = COALESCE(NULLIF(?, ''), categoria),
+                preco = COALESCE(NULLIF(?, ''), preco),
+                tamanho = COALESCE(NULLIF(?, ''), tamanho),
+                foto = COALESCE(NULLIF(?, ''), foto)
+            WHERE id_produto = ?";
 
 $stmt = $conexao->prepare($sql);
-$stmt->bind_param('sssi', $email, $senha_hash, $endereco_final, $_SESSION['id_usuario']);
+$stmt->bind_param('ssdssi', $nome, $categoria, $preco, $tamanho, $nome_final_imagem ,$_GET['id_alterar']);
 $stmt->execute();
 $stmt->close();
 
@@ -57,8 +78,8 @@ $stmt->close();
 
 <form action="" method="POST" enctype="multipart/form-data">
 
-    <label for="categoria">Nome Produto: </label>
-    <input type="categoria" name="categoria"  ><br>
+    <label for="nome">Nome Produto: </label>
+    <input type="nome" name="nome"  ><br>
 
     <label for="categoria">Categoria: </label>
     <input type="text" name="categoria"  ><br>
