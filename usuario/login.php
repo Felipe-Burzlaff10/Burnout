@@ -466,7 +466,7 @@ $conexao->close();
             >
 
                 <img
-                    src="logo.png"
+                    src="../img_site/logo.png"
                     alt="Logo BURNOUT"
                     class="logo-auth"
                 >
