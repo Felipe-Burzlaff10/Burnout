@@ -108,7 +108,7 @@ else
     <a class="nav-link" aria-current="page" href="home.php">HOME</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="catalogo.php">CATALOGO</a>
+    <a class="nav-link" href="produto/catalogo.php">CATALOGO</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="lancamentos.php">LANÇAMENTOS</a>

@@ -62,6 +62,12 @@ while($produto = $resultado -> fetch_assoc())
     
     foreach ($produto as $key => $value)
     {
+        if ($key == "foto")
+        {
+            echo "<img src='" . "../img_produto/" . $produto['foto'] . "' width='20%' ><br>";
+            continue;
+        }
+
         echo  $key . ": " . htmlspecialchars($produto[$key]) . "<br>";
     }
 
