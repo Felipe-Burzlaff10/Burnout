@@ -79,9 +79,7 @@
         width: 90%;
         max-width: 1100px;
         margin: 30px auto;
-        padding: 25px;
 
-        background: #22c900;
         border-radius: 22px;
 
         font-family: Georgia, "Times New Roman", serif;
