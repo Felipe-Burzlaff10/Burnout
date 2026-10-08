@@ -42,6 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 $conexao->close();
 ?>
 
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -64,7 +65,6 @@ $conexao->close();
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     >
 
-
     <style>
 
         * {
@@ -79,12 +79,14 @@ $conexao->close();
         body {
             margin: 0;
             min-height: 100vh;
+
             background: linear-gradient(
                 135deg,
                 #ffffff 0%,
                 #eeeeee 50%,
                 #cfcfcf 100%
             );
+
             font-family: Georgia, 'Times New Roman', serif;
             color: black;
         }
@@ -94,125 +96,73 @@ $conexao->close();
            HEADER
         ========================= */
 
-        header {
+        .header-auth {
+            width: 100%;
+            height: 100px;
+
             background-color: #39bf00;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.20);
+
+            border-bottom: 2px solid black;
+
+            display: flex;
+            align-items: center;
+
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
         }
 
 
-        .header-top {
-            min-height: 120px;
-            padding: 15px 35px;
+        .header-auth-conteudo {
+            width: 100%;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+
+            align-items: center;
+
+            padding: 0 35px;
         }
 
 
         /* LOGO */
 
-        .logo-area {
+        .logo-link {
             display: flex;
             align-items: center;
+
+            width: fit-content;
+
+            text-decoration: none;
         }
 
 
-        .logo {
-            width: 150px;
-            max-width: 100%;
+        .logo-auth {
+            width: 115px;
+
+            display: block;
         }
 
 
-        /* TÍTULO */
+        /* NOME BURNOUT */
 
-        .titulo-site {
+        .marca-auth {
+            text-align: center;
+
             font-family: Georgia, 'Times New Roman', serif;
-            font-size: 65px;
+
+            font-size: 48px;
+
             font-weight: bold;
-            margin: 0;
+
             letter-spacing: 2px;
-        }
-
-
-        /* =========================
-           AÇÕES DO HEADER
-        ========================= */
-
-        .acoes-header {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 22px;
-        }
-
-
-        .icone-header {
-            color: black;
-            text-decoration: none;
-            font-size: 30px;
-            transition: 0.2s;
-        }
-
-
-        .icone-header:hover {
-            color: white;
-            transform: translateY(-2px);
-        }
-
-
-        .login-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
 
             color: black;
-            text-decoration: none;
-
-            font-weight: bold;
-            font-size: 16px;
-            line-height: 1.1;
-
-            transition: 0.2s;
         }
 
 
-        .login-header i {
-            font-size: 38px;
-        }
+        /* LADO DIREITO */
 
-
-        .login-header:hover {
-            color: white;
-        }
-
-
-        /* =========================
-           MENU
-        ========================= */
-
-        .menu {
-            background-color: black;
-        }
-
-
-        .menu .nav-link {
-            color: white;
-            font-size: 17px;
-            font-weight: bold;
-            letter-spacing: 1px;
-
-            padding: 14px 28px;
-
-            transition: 0.2s;
-        }
-
-
-        .menu .nav-link:hover {
-            background-color: #39bf00;
-            color: black;
-        }
-
-
-        .menu .nav-link.active {
-            background-color: #39bf00;
-            color: black;
+        .header-auth-direita {
+            min-height: 1px;
         }
 
 
@@ -221,13 +171,13 @@ $conexao->close();
         ========================= */
 
         .area-login {
-            min-height: calc(100vh - 170px);
+            min-height: calc(100vh - 100px);
 
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
 
-            padding: 50px 20px 70px;
+            padding: 40px 20px;
         }
 
 
@@ -236,42 +186,45 @@ $conexao->close();
         ========================= */
 
         .card-login {
-            background-color: #39bf00;
-
-            width: 560px;
+            width: 520px;
             max-width: 100%;
 
-            padding: 40px 65px 45px;
+            background-color: #39bf00;
 
-            border-radius: 25px;
+            padding: 40px 60px 35px;
+
+            border-radius: 22px;
 
             border: 2px solid rgba(0, 0, 0, 0.15);
 
             box-shadow:
-                0 15px 35px rgba(0, 0, 0, 0.25);
+                0 15px 35px rgba(0, 0, 0, 0.22);
         }
 
 
         /* =========================
-           CABEÇALHO LOGIN
+           TÍTULO
         ========================= */
 
         .cabecalho-login {
             text-align: center;
+
             margin-bottom: 35px;
         }
 
 
         .icone-login {
-            font-size: 55px;
-            line-height: 1;
-            margin-bottom: 10px;
+            font-size: 48px;
+
+            margin-bottom: 8px;
         }
 
 
         .titulo-login {
             font-family: Arial, sans-serif;
-            font-size: 52px;
+
+            font-size: 48px;
+
             font-weight: 900;
 
             margin: 0;
@@ -280,26 +233,28 @@ $conexao->close();
         }
 
 
-        .subtitulo-login {
-            font-family: Arial, sans-serif;
-            font-size: 15px;
-            font-weight: bold;
-
-            opacity: 0.7;
-
-            margin-top: 6px;
-        }
-
-
         .linha-titulo {
-            width: 70px;
+            width: 65px;
             height: 5px;
 
             background-color: black;
 
-            margin: 14px auto 0;
+            margin: 13px auto;
 
             border-radius: 10px;
+        }
+
+
+        .subtitulo-login {
+            font-family: Arial, sans-serif;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            opacity: 0.7;
+
+            margin: 0;
         }
 
 
@@ -308,7 +263,7 @@ $conexao->close();
         ========================= */
 
         .campo {
-            margin-bottom: 25px;
+            margin-bottom: 23px;
         }
 
 
@@ -318,16 +273,19 @@ $conexao->close();
             font-family: Arial, sans-serif;
 
             font-size: 18px;
+
             font-weight: bold;
 
-            margin-bottom: 8px;
+            margin-bottom: 7px;
         }
 
 
         .form-control {
+            width: 100%;
+
             height: 52px;
 
-            background-color: rgba(255, 255, 255, 0.35);
+            background-color: rgba(255, 255, 255, 0.4);
 
             border: 2px solid transparent;
 
@@ -341,14 +299,14 @@ $conexao->close();
 
             color: black;
 
-            transition: 0.2s;
-
             box-shadow: none !important;
+
+            transition: 0.2s;
         }
 
 
         .form-control:hover {
-            background-color: rgba(255, 255, 255, 0.5);
+            background-color: rgba(255, 255, 255, 0.6);
         }
 
 
@@ -357,27 +315,20 @@ $conexao->close();
 
             border-color: black;
 
-            box-shadow:
-                0 0 0 3px rgba(0, 0, 0, 0.10) !important;
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.10) !important;
         }
 
 
         /* =========================
-           BOTÃO LOGIN
+           BOTÃO ENTRAR
         ========================= */
 
         .btn-login {
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            gap: 10px;
-
             width: 100%;
+
             height: 60px;
 
-            margin: 35px auto 15px;
+            margin-top: 15px;
 
             background-color: black;
 
@@ -390,11 +341,12 @@ $conexao->close();
             font-family: Arial, sans-serif;
 
             font-size: 18px;
+
             font-weight: 900;
 
             letter-spacing: 1px;
 
-            transition: 0.25s;
+            transition: 0.2s;
         }
 
 
@@ -403,192 +355,88 @@ $conexao->close();
 
             color: white;
 
-            transform: translateY(-3px);
+            transform: translateY(-2px);
 
-            box-shadow:
-                0 8px 15px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.25);
         }
 
 
         .btn-login i {
-            font-size: 20px;
+            margin-right: 8px;
         }
 
 
         /* =========================
-           LINKS
+           LINK PARA CADASTRO
         ========================= */
 
-        .links-login {
+        .link-auth {
             text-align: center;
+
+            margin-top: 23px;
 
             font-family: Arial, sans-serif;
 
-            margin-top: 20px;
+            font-size: 15px;
         }
 
 
-        .links-login a {
+        .link-auth a {
             color: black;
 
             font-weight: bold;
 
             text-decoration: none;
 
-            transition: 0.2s;
+            margin-left: 5px;
         }
 
 
-        .links-login a:hover {
+        .link-auth a:hover {
             text-decoration: underline;
         }
 
 
-        .separador {
-            margin: 0 8px;
-            opacity: 0.5;
-        }
-
-
         /* =========================
-           LOGOUT
+           RESPONSIVO
         ========================= */
 
-        .logout-area {
-            margin-top: 25px;
+        @media (max-width: 600px) {
 
-            padding-top: 20px;
-
-            border-top: 1px solid rgba(0, 0, 0, 0.25);
-
-            text-align: center;
-        }
-
-
-        .btn-logout {
-            background-color: transparent;
-
-            color: black;
-
-            border: 2px solid black;
-
-            border-radius: 10px;
-
-            width: 150px;
-            height: 42px;
-
-            font-family: Arial, sans-serif;
-
-            font-weight: bold;
-
-            transition: 0.2s;
-        }
-
-
-        .btn-logout:hover {
-            background-color: black;
-
-            color: white;
-
-            transform: translateY(-2px);
-        }
-
-
-        /* =========================
-           RESPONSIVIDADE
-        ========================= */
-
-        @media (max-width: 992px) {
-
-            .titulo-site {
-                font-size: 48px;
+            .header-auth {
+                height: 80px;
             }
 
-            .logo {
-                width: 120px;
+
+            .header-auth-conteudo {
+                padding: 0 20px;
             }
 
-            .acoes-header {
-                gap: 12px;
+
+            .logo-auth {
+                width: 85px;
             }
 
-            .icone-header {
-                font-size: 25px;
+
+            .marca-auth {
+                font-size: 30px;
             }
 
-            .login-header i {
-                font-size: 32px;
+
+            .area-login {
+                min-height: calc(100vh - 80px);
+
+                padding: 30px 15px;
             }
 
-        }
-
-
-        @media (max-width: 768px) {
-
-            .header-top {
-                padding: 15px;
-            }
-
-            .logo-area {
-                justify-content: center;
-                margin-bottom: 10px;
-            }
-
-            .titulo-site {
-                font-size: 42px;
-                text-align: center;
-            }
-
-            .acoes-header {
-                justify-content: center;
-                margin-top: 10px;
-            }
-
-            .menu .nav-link {
-                padding: 12px 10px;
-                font-size: 14px;
-            }
 
             .card-login {
-                padding: 35px 30px 40px;
+                padding: 30px 25px;
             }
+
 
             .titulo-login {
-                font-size: 42px;
-            }
-
-        }
-
-
-        @media (max-width: 500px) {
-
-            .titulo-site {
-                font-size: 34px;
-            }
-
-            .logo {
-                width: 100px;
-            }
-
-            .menu .nav {
-                flex-wrap: wrap;
-            }
-
-            .menu .nav-link {
-                font-size: 12px;
-                padding: 10px 8px;
-            }
-
-            .card-login {
-                padding: 30px 22px 35px;
-            }
-
-            .titulo-login {
-                font-size: 36px;
-            }
-
-            .icone-login {
-                font-size: 45px;
+                font-size: 38px;
             }
 
         }
@@ -605,160 +453,39 @@ $conexao->close();
          HEADER
     ========================= -->
 
-    <header>
+    <header class="header-auth">
 
-        <div class="header-top">
-
-            <div class="container-fluid">
-
-                <div class="row align-items-center">
+        <div class="header-auth-conteudo">
 
 
-                    <!-- LOGO -->
+            <!-- LOGO -->
 
-                    <div class="col-lg-3 col-md-3 col-12">
+            <a
+                href="login.php"
+                class="logo-link"
+            >
 
-                        <div class="logo-area">
+                <img
+                    src="logo.png"
+                    alt="Logo BURNOUT"
+                    class="logo-auth"
+                >
 
-                            <img
-                                src="logo.png"
-                                alt="Logo BURNOUT"
-                                class="logo"
-                            >
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- TÍTULO -->
-
-                    <div class="col-lg-6 col-md-6 col-12">
-
-                        <h1 class="titulo-site">
-                            BURNOUT
-                        </h1>
-
-                    </div>
+            </a>
 
 
-                    <!-- AÇÕES -->
+            <!-- BURNOUT -->
 
-                    <div class="col-lg-3 col-md-3 col-12">
-
-                        <div class="acoes-header">
-
-
-                            <!-- PESQUISA -->
-
-                            <a
-                                href="pesquisa.php"
-                                class="icone-header"
-                                title="Pesquisar"
-                            >
-
-                                <i class="bi bi-search"></i>
-
-                            </a>
-
-
-                            <!-- CARRINHO -->
-
-                            <a
-                                href="carrinho.php"
-                                class="icone-header"
-                                title="Carrinho"
-                            >
-
-                                <i class="bi bi-cart3"></i>
-
-                            </a>
-
-
-                            <!-- LOGIN -->
-
-                            <a
-                                href="login.php"
-                                class="login-header"
-                            >
-
-                                <i class="bi bi-person-circle"></i>
-
-                                <span>
-                                    entrar ou<br>
-                                    cadastrar
-                                </span>
-
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
+            <div class="marca-auth">
+                BURNOUT
             </div>
 
+
+            <!-- ESPAÇO -->
+
+            <div class="header-auth-direita"></div>
+
         </div>
-
-
-        <!-- MENU -->
-
-        <nav class="menu">
-
-            <ul class="nav justify-content-center">
-
-
-                <li class="nav-item">
-
-                    <a
-                        class="nav-link"
-                        href="home.php"
-                    >
-                        HOME
-                    </a>
-
-                </li>
-
-
-                <li class="nav-item">
-
-                    <a
-                        class="nav-link"
-                        href="catalogo.php"
-                    >
-                        CATÁLOGO
-                    </a>
-
-                </li>
-
-
-                <li class="nav-item">
-
-                    <a
-                        class="nav-link"
-                        href="lancamentos.php"
-                    >
-                        LANÇAMENTOS
-                    </a>
-
-                </li>
-
-
-                <li class="nav-item">
-
-                    <a
-                        class="nav-link disabled"
-                        aria-disabled="true"
-                    >
-                        PINTO
-                    </a>
-
-                </li>
-
-            </ul>
-
-        </nav>
 
     </header>
 
@@ -853,7 +580,7 @@ $conexao->close();
 
 
 
-                <!-- LOGIN -->
+                <!-- BOTÃO -->
 
                 <button
                     type="submit"
@@ -870,9 +597,9 @@ $conexao->close();
 
 
 
-            <!-- LINKS -->
+            <!-- CADASTRO -->
 
-            <div class="links-login">
+            <div class="link-auth">
 
                 <span>
                     Ainda não possui uma conta?
@@ -884,45 +611,12 @@ $conexao->close();
 
             </div>
 
-
-
-            <!-- LOGOUT -->
-
-            <div class="logout-area">
-
-                <a
-                    href="usuario/logout.php"
-                    class="text-decoration-none"
-                >
-
-                    <button
-                        type="button"
-                        class="btn-logout"
-                    >
-
-                        <i class="bi bi-box-arrow-right"></i>
-
-                        LOGOUT
-
-                    </button>
-
-                </a>
-
-            </div>
-
         </div>
 
     </main>
 
 
-
-    <!-- Bootstrap JS -->
-
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-    ></script>
-
-
 </body>
 
 </html>
+

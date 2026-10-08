@@ -72,6 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 $conexao->close();
 ?>
 
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -94,16 +95,29 @@ $conexao->close();
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     >
 
+
     <style>
 
         * {
             box-sizing: border-box;
         }
 
+
+        /* =========================
+           BODY
+        ========================= */
+
         body {
             margin: 0;
             min-height: 100vh;
-            background: linear-gradient(135deg, #ffffff 0%, #eeeeee 50%, #cfcfcf 100%);
+
+            background: linear-gradient(
+                135deg,
+                #ffffff 0%,
+                #eeeeee 50%,
+                #cfcfcf 100%
+            );
+
             font-family: Georgia, 'Times New Roman', serif;
             color: black;
         }
@@ -113,128 +127,82 @@ $conexao->close();
            HEADER
         ========================= */
 
-        header {
+        .header-auth {
+            width: 100%;
+            height: 100px;
+
             background-color: #39bf00;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.20);
-            position: relative;
-            z-index: 10;
-        }
 
+            border-bottom: 2px solid black;
 
-        .header-top {
-            min-height: 120px;
-            padding: 15px 35px;
-        }
-
-
-        .logo {
-            width: 150px;
-            max-width: 100%;
-        }
-
-
-        .logo-area {
             display: flex;
             align-items: center;
+
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
         }
 
 
-        .titulo-site {
+        .header-auth-conteudo {
+            width: 100%;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+
+            align-items: center;
+
+            padding: 0 35px;
+        }
+
+
+        /* LOGO */
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+
+            width: fit-content;
+
+            text-decoration: none;
+        }
+
+
+        .logo-auth {
+            width: 115px;
+
+            display: block;
+        }
+
+
+        /* NOME BURNOUT */
+
+        .marca-auth {
+            text-align: center;
+
             font-family: Georgia, 'Times New Roman', serif;
-            font-size: 65px;
+
+            font-size: 48px;
+
             font-weight: bold;
-            margin: 0;
+
             letter-spacing: 2px;
+
+            color: black;
+        }
+
+
+        /* LADO DIREITO */
+
+        .header-auth-direita {
+            min-height: 1px;
         }
 
 
         /* =========================
-           ÍCONES DO HEADER
-        ========================= */
-
-        .acoes-header {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 22px;
-        }
-
-
-        .icone-header {
-            color: black;
-            text-decoration: none;
-            font-size: 30px;
-            transition: 0.2s;
-        }
-
-
-        .icone-header:hover {
-            transform: translateY(-2px);
-            color: white;
-        }
-
-
-        .login-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: black;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 16px;
-            line-height: 1.1;
-            transition: 0.2s;
-        }
-
-
-        .login-header i {
-            font-size: 38px;
-        }
-
-
-        .login-header:hover {
-            color: white;
-        }
-
-
-        /* =========================
-           MENU
-        ========================= */
-
-        .menu {
-            background-color: #000000;
-            padding: 0;
-        }
-
-
-        .menu .nav-link {
-            color: white;
-            font-size: 17px;
-            font-weight: bold;
-            letter-spacing: 1px;
-            padding: 14px 28px;
-            transition: 0.2s;
-        }
-
-
-        .menu .nav-link:hover {
-            background-color: #39bf00;
-            color: black;
-        }
-
-
-        .menu .nav-link.active {
-            background-color: #39bf00;
-            color: black;
-        }
-
-
-        /* =========================
-           ÁREA PRINCIPAL
+           ÁREA DO CADASTRO
         ========================= */
 
         .area-cadastro {
-            padding: 45px 20px 60px;
+            padding: 40px 20px 60px;
         }
 
 
@@ -243,54 +211,77 @@ $conexao->close();
         ========================= */
 
         .card-cadastro {
-            background-color: #39bf00;
-            width: 900px;
+            width: 850px;
             max-width: 100%;
-            margin: auto;
-            padding: 35px 55px 45px;
-            border-radius: 25px;
 
-            box-shadow:
-                0 15px 35px rgba(0, 0, 0, 0.25);
+            margin: auto;
+
+            background-color: #39bf00;
+
+            padding: 35px 55px 40px;
+
+            border-radius: 22px;
 
             border: 2px solid rgba(0, 0, 0, 0.15);
+
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, 0.22);
         }
 
 
         /* =========================
-           CABEÇALHO DO FORMULÁRIO
+           CABEÇALHO
         ========================= */
 
         .cabecalho-cadastro {
             text-align: center;
-            margin-bottom: 35px;
+
+            margin-bottom: 30px;
+        }
+
+
+        .icone-cadastro {
+            font-size: 48px;
+
+            margin-bottom: 8px;
         }
 
 
         .titulo-cadastro {
             font-family: Arial, sans-serif;
-            font-size: 52px;
+
+            font-size: 48px;
+
             font-weight: 900;
+
             margin: 0;
+
             letter-spacing: 1px;
         }
 
 
-        .subtitulo {
-            font-family: Arial, sans-serif;
-            font-size: 16px;
-            margin-top: 5px;
-            opacity: 0.75;
-            font-weight: bold;
+        .linha-titulo {
+            width: 65px;
+            height: 5px;
+
+            background-color: black;
+
+            margin: 13px auto;
+
+            border-radius: 10px;
         }
 
 
-        .linha-titulo {
-            width: 80px;
-            height: 5px;
-            background-color: black;
-            margin: 15px auto 0;
-            border-radius: 10px;
+        .subtitulo-cadastro {
+            font-family: Arial, sans-serif;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            opacity: 0.7;
+
+            margin: 0;
         }
 
 
@@ -299,46 +290,88 @@ $conexao->close();
         ========================= */
 
         .campo {
-            margin-bottom: 22px;
+            margin-bottom: 20px;
         }
 
 
         .form-label {
             display: block;
+
             font-family: Arial, sans-serif;
+
             font-size: 18px;
+
             font-weight: bold;
+
             margin-bottom: 7px;
         }
 
 
         .form-control {
+            width: 100%;
+
             height: 50px;
-            background-color: rgba(255, 255, 255, 0.35);
+
+            background-color: rgba(255, 255, 255, 0.4);
+
             border: 2px solid transparent;
+
             border-radius: 10px;
+
             font-family: Arial, sans-serif;
-            font-size: 17px;
+
+            font-size: 16px;
+
             padding: 10px 15px;
+
             color: black;
+
+            box-shadow: none !important;
+
             transition: 0.2s;
         }
 
 
-        .form-control::placeholder {
-            color: #444;
-        }
-
-
         .form-control:hover {
-            background-color: rgba(255, 255, 255, 0.5);
+            background-color: rgba(255, 255, 255, 0.6);
         }
 
 
         .form-control:focus {
             background-color: white;
+
             border-color: black;
-            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.10);
+
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.10) !important;
+        }
+
+
+        /* =========================
+           ENDEREÇO
+        ========================= */
+
+        .titulo-endereco {
+            display: flex;
+            align-items: center;
+
+            gap: 8px;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 20px;
+
+            font-weight: 900;
+
+            margin: 10px 0 20px;
+        }
+
+
+        .divisor {
+            border: 0;
+
+            border-top: 2px solid rgba(0, 0, 0, 0.25);
+
+            margin: 10px 0 25px;
         }
 
 
@@ -348,6 +381,7 @@ $conexao->close();
 
         .cep-area {
             display: flex;
+
             gap: 10px;
         }
 
@@ -359,44 +393,31 @@ $conexao->close();
 
         .btn-cep {
             height: 50px;
-            padding: 0 20px;
+
+            padding: 0 18px;
+
             background-color: black;
+
             color: white;
+
             border: none;
+
             border-radius: 10px;
+
             font-family: Arial, sans-serif;
+
             font-weight: bold;
+
             transition: 0.2s;
         }
 
 
         .btn-cep:hover {
             background-color: #222;
+
+            color: white;
+
             transform: translateY(-1px);
-        }
-
-
-        /* =========================
-           DIVISOR
-        ========================= */
-
-        .divisor {
-            border: 0;
-            border-top: 2px solid rgba(0, 0, 0, 0.25);
-            margin: 10px 0 25px;
-        }
-
-
-        .titulo-endereco {
-            font-family: Arial, sans-serif;
-            font-size: 21px;
-            font-weight: 900;
-            margin-bottom: 20px;
-        }
-
-
-        .titulo-endereco i {
-            margin-right: 7px;
         }
 
 
@@ -405,151 +426,135 @@ $conexao->close();
         ========================= */
 
         .btn-cadastrar {
-            display: block;
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 10px;
+
             width: 280px;
+
             height: 60px;
-            margin: 25px auto 0;
+
+            margin: 20px auto 0;
 
             background-color: black;
+
             color: white;
 
             border: none;
+
             border-radius: 12px;
 
             font-family: Arial, sans-serif;
+
             font-size: 18px;
+
             font-weight: 900;
+
             letter-spacing: 1px;
 
-            transition: 0.25s;
-        }
-
-
-        .btn-cadastrar i {
-            margin-right: 8px;
+            transition: 0.2s;
         }
 
 
         .btn-cadastrar:hover {
             background-color: #222;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
+
+            color: white;
+
+            transform: translateY(-2px);
+
+            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.25);
         }
 
 
         /* =========================
-           RODAPÉ DO FORMULÁRIO
+           LINK PARA LOGIN
         ========================= */
 
-        .aviso {
+        .link-auth {
             text-align: center;
+
+            margin-top: 23px;
+
             font-family: Arial, sans-serif;
-            font-size: 13px;
-            margin-top: 18px;
-            opacity: 0.7;
+
+            font-size: 15px;
+        }
+
+
+        .link-auth a {
+            color: black;
+
+            font-weight: bold;
+
+            text-decoration: none;
+
+            margin-left: 5px;
+        }
+
+
+        .link-auth a:hover {
+            text-decoration: underline;
         }
 
 
         /* =========================
-           RESPONSIVIDADE
+           RESPONSIVO
         ========================= */
-
-        @media (max-width: 992px) {
-
-            .titulo-site {
-                font-size: 48px;
-            }
-
-            .logo {
-                width: 120px;
-            }
-
-            .acoes-header {
-                gap: 12px;
-            }
-
-            .icone-header {
-                font-size: 25px;
-            }
-
-            .login-header i {
-                font-size: 32px;
-            }
-
-        }
-
 
         @media (max-width: 768px) {
 
-            .header-top {
-                padding: 15px;
+            .header-auth {
+                height: 80px;
             }
 
-            .logo-area {
-                justify-content: center;
-                margin-bottom: 10px;
+
+            .header-auth-conteudo {
+                padding: 0 20px;
             }
 
-            .titulo-site {
-                font-size: 42px;
-                text-align: center;
+
+            .logo-auth {
+                width: 85px;
             }
 
-            .acoes-header {
-                justify-content: center;
-                margin-top: 10px;
+
+            .marca-auth {
+                font-size: 30px;
             }
 
-            .menu .nav-link {
-                padding: 12px 10px;
-                font-size: 14px;
+
+            .area-cadastro {
+                padding: 30px 15px 40px;
             }
+
 
             .card-cadastro {
                 padding: 30px 25px 35px;
             }
 
+
             .titulo-cadastro {
-                font-size: 40px;
+                font-size: 38px;
             }
 
         }
 
 
-        @media (max-width: 500px) {
-
-            .titulo-site {
-                font-size: 34px;
-            }
-
-            .logo {
-                width: 100px;
-            }
-
-            .menu .nav {
-                flex-wrap: wrap;
-            }
-
-            .menu .nav-link {
-                font-size: 12px;
-                padding: 10px 8px;
-            }
-
-            .titulo-cadastro {
-                font-size: 34px;
-            }
-
-            .form-label {
-                font-size: 16px;
-            }
+        @media (max-width: 576px) {
 
             .cep-area {
                 flex-direction: column;
             }
 
+
             .btn-cep {
                 width: 100%;
             }
+
 
             .btn-cadastrar {
                 width: 100%;
@@ -569,89 +574,40 @@ $conexao->close();
          HEADER
     ========================= -->
 
-    <header>
+    <header class="header-auth">
 
-        <div class="header-top">
-
-            <div class="container-fluid">
-
-                <div class="row align-items-center">
-
-                    <!-- LOGO -->
-
-                    <div class="col-lg-3 col-md-3 col-12">
-
-                        <div class="logo-area">
-
-                            <img
-                                src="../img_site/logo.png"
-                                alt="Logo BURNOUT"
-                                class="logo"
-                            >
-
-                        </div>
-
-                    </div>
+        <div class="header-auth-conteudo">
 
 
-                    <!-- TÍTULO -->
+            <!-- LOGO -->
 
-                    <div class="col-lg-6 col-md-6 col-12">
+            <a
+                href="login.php"
+                class="logo-link"
+            >
 
-                        <h1 class="titulo-site">
-                            BURNOUT
-                        </h1>
+                <img
+                    src="logo.png"
+                    alt="Logo BURNOUT"
+                    class="logo-auth"
+                >
 
-                    </div>
-
-
-                    <!-- AÇÕES -->
-
-                    <div class="col-lg-3 col-md-3 col-12">
-
-                        <div class="acoes-header">
-
-                            <a
-                                href="pesquisa.php"
-                                class="icone-header"
-                                title="Pesquisar"
-                            >
-                                <i class="bi bi-search"></i>
-                            </a>
+            </a>
 
 
-                            <a
-                                href="carrinho.php"
-                                class="icone-header"
-                                title="Carrinho"
-                            >
-                                <i class="bi bi-cart3"></i>
-                            </a>
+            <!-- BURNOUT -->
 
-
-                            <a
-                                href="login.php"
-                                class="login-header"
-                            >
-
-                                <i class="bi bi-person-circle"></i>
-
-                                <span>
-                                    entrar ou<br>
-                                    cadastrar
-                                </span>
-
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
+            <div class="marca-auth">
+                BURNOUT
             </div>
 
+
+            <!-- ESPAÇO -->
+
+            <div class="header-auth-direita"></div>
+
         </div>
+
     </header>
 
 
@@ -669,13 +625,22 @@ $conexao->close();
 
             <div class="cabecalho-cadastro">
 
+                <div class="icone-cadastro">
+
+                    <i class="bi bi-person-plus-fill"></i>
+
+                </div>
+
+
                 <h1 class="titulo-cadastro">
                     CADASTRO
                 </h1>
 
+
                 <div class="linha-titulo"></div>
 
-                <p class="subtitulo">
+
+                <p class="subtitulo-cadastro">
                     Crie sua conta BURNOUT
                 </p>
 
@@ -691,6 +656,7 @@ $conexao->close();
                 <!-- DADOS PESSOAIS -->
 
                 <div class="row">
+
 
                     <!-- NOME -->
 
@@ -807,6 +773,7 @@ $conexao->close();
                 <!-- DIVISOR -->
 
                 <hr class="divisor">
+
 
 
                 <!-- ENDEREÇO -->
@@ -1004,7 +971,7 @@ $conexao->close();
 
 
 
-                <!-- BOTÃO -->
+                <!-- CADASTRAR -->
 
                 <button
                     type="submit"
@@ -1017,12 +984,23 @@ $conexao->close();
 
                 </button>
 
-
-                <p class="aviso">
-                    Ao cadastrar, você poderá acessar sua conta e realizar compras na BURNOUT.
-                </p>
-
             </form>
+
+
+
+            <!-- LINK PARA LOGIN -->
+
+            <div class="link-auth">
+
+                <span>
+                    Já possui uma conta?
+                </span>
+
+                <a href="login.php">
+                    Fazer login
+                </a>
+
+            </div>
 
         </div>
 
@@ -1030,14 +1008,7 @@ $conexao->close();
 
 
 
-    <!-- Bootstrap JS -->
-
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-    ></script>
-
-
-    <!-- API de endereço -->
+    <!-- API DE ENDEREÇO -->
 
     <script src="../API_endereço.js"></script>
 
