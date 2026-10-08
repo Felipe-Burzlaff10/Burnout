@@ -82,30 +82,7 @@ $conexao->close();
 
 
         <style>
-        /* Estilo para o menu de navegação */
-        .nav {
-            background-color: #39bf00;
-            padding: 10px 0;
-        }
-
-        .nav-link {
-            color: black;
-            font-weight: bold;
-            font-size: 18px;
-            text-transform: uppercase;
-            margin: 0 15px;
-        }
-
-        .nav-link:hover {
-            color: #ffffff;
-        }
-
-        .nav-link.active {
-            border-bottom: 2px solid black;
-        }
-
-
-          body {
+    body {
         margin: 0;
         min-height: 100vh;
         background: linear-gradient(to bottom, #ffffff, #a8a8a8);
@@ -279,23 +256,6 @@ $conexao->close();
         </div>
     </div>
 
-
-    <!-- Menu de navegação -->
-    <ul class="nav justify-content-center">
-  <li class="nav-item">
-    <a class="nav-link" aria-current="page" href="home.php">HOME</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="catalogo.php">CATALOGO</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="lancamentos.php">LANÇAMENTOS</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link disabled" aria-disabled="true">PINTO</a>
-  </li>
-</ul>
-
 </header>
             
         <div class="container-fluid area-cadastro">
@@ -331,7 +291,7 @@ $conexao->close();
                 </label>
 
                 <input 
-                    type="text" 
+                    type="number" 
                     name="cpf" 
                     id="cpf"
                     class="form-control"

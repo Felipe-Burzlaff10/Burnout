@@ -49,29 +49,8 @@ $conexao->close();
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
     <style>
-        /* Estilo para o menu de navegação */
-        .nav {
-            background-color: #39bf00;
-            padding: 10px 0;
-        }
 
-        .nav-link {
-            color: black;
-            font-weight: bold;
-            font-size: 18px;
-            text-transform: uppercase;
-            margin: 0 15px;
-        }
-
-        .nav-link:hover {
-            color: #ffffff;
-        }
-
-        .nav-link.active {
-            border-bottom: 2px solid black;
-        }
-
-         body {
+    body {
         margin: 0;
         min-height: 100vh;
         background: linear-gradient(to bottom, #ffffff, #a8a8a8);
@@ -221,23 +200,6 @@ $conexao->close();
 
             </div>
         </div>
-
-
-            <!-- Menu de navegação -->
-            <ul class="nav justify-content-center">
-        <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="home.php">HOME</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="catalogo.php">CATALOGO</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="lancamentos.php">LANÇAMENTOS</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">PINTO</a>
-        </li>
-        </ul>
 
     </header>
             
