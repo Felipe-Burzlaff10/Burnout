@@ -1,60 +1,91 @@
-<?php
+<form method="GET">
+    <input type="text" name="pesquisa">
 
+    <button type="submit">Pesquisar</button>
+</form>
+
+<?php
 session_start();
+
+if ($_SESSION['root'] != 1)
+{
+    echo "<script>window.location.href='../index.php';</script>";
+    exit();
+}
 
 require_once "../conexao.php";
 
-$mensagem = "";
-$tipoMensagem = "";
+$sql = "SELECT * FROM usuario";
+$resultado = ($conexao->query($sql));  
+
+if ($_SERVER["REQUEST_METHOD"] == "GET")
+{
+    if (isset($_GET['pesquisa']))
+    {
+        $pesquisa = "%" . $_GET['pesquisa'] . "%";
+
+        $sql = "SELECT * FROM usuario
+                WHERE nome LIKE ?
+                OR cpf LIKE ?";
+
+        $stmt = $conexao->prepare($sql);
+        $stmt->bind_param('ss', $pesquisa, $pesquisa);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+        $stmt->close();
+    }
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-    $email = $_POST['email'];
-    $senha = $_POST['senha'];
-
-    $sql = "SELECT nome, senha, id_usuario, root
-            FROM usuario
-            WHERE email = ?";
-
-    $stmt = $conexao->prepare($sql);
-
-    $stmt->bind_param("s", $email);
-
-    $stmt->execute();
-
-    $resultado = $stmt->get_result();
-
-    if ($resultado->num_rows == 1)
+    if (isset($_POST['id_apagar']))
     {
-        $usuario = $resultado->fetch_assoc();
+        $sql = "DELETE FROM usuario
+                WHERE id_usuario = ?";
 
-        if (password_verify($senha, $usuario['senha']))
-        {
-            session_regenerate_id(true);
+        $stmt = $conexao->prepare($sql);
+        $stmt->bind_param('i', $_POST['id_apagar']);
+        $stmt->execute();
+        $stmt->close();
 
-            $_SESSION['nome'] = $usuario['nome'];
-            $_SESSION['id_usuario'] = $usuario['id_usuario'];
-            $_SESSION['root'] = $usuario['root'];
-
-            header("Location: ../index.php");
-            exit;
-        }
-        else
-        {
-            $mensagem = "Senha incorreta.";
-            $tipoMensagem = "danger";
-        }
+        echo "<script>window.location.href='listar.php';</script>";
     }
-    else
-    {
-        $mensagem = "Usuário não encontrado.";
-        $tipoMensagem = "danger";
-    }
-
-    $stmt->close();
 }
 
+echo "<div class='d-flex p-2 bg-light'>";
+
+echo "<form method='post'>";
+
+while($usuario = $resultado -> fetch_assoc())
+{
+    echo "<br>";
+    
+    foreach ($usuario as $key => $value)
+    {
+        if ($key == "root")
+        {
+            if ($usuario[$key])
+                echo $key . ": True<br>";
+            else
+                echo $key . ": False<br>";
+            
+            continue;
+        }
+
+        echo  $key . ": " . htmlspecialchars($usuario[$key]) . "<br>";
+
+    }
+
+    if ($usuario['root'])
+        continue;
+
+    echo "<button type='submit' name='id_apagar' value='" . $usuario['id_usuario'] . "'>Apagar</button>";
+}
+
+echo "</form>";
+
+echo "</div>";
+echo "<hr>";
+
 $conexao->close();
-
 ?>
-
