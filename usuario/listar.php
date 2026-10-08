@@ -59,6 +59,11 @@
         border-top: 3px solid #000;
         margin-top: 25px;
     }
+
+    /* TABELA */
+    table, tr, td, th {
+        border: 1px solid black;
+    }
 </style>
 
 <form method="GET">
@@ -116,40 +121,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     }
 }
 
-echo "<div class='d-flex p-2 bg-light'>";
-
 echo "<form method='post'>";
+
+echo "<table>";
+
+echo "<tr>";
+
+echo "<th>Id</th>";
+
+echo "<th>Nome</th>";
+
+echo "<th>CPF</th>";
+
+echo "<th>Email</th>";
+
+echo "<th>Senha</th>";
+
+echo "<th>Endereço</th>";
+
+echo "<th>Root</th>";
+
+echo "</tr>";
 
 while($usuario = $resultado -> fetch_assoc())
 {
-    echo "<br>";
+    echo "<tr>";
     
     foreach ($usuario as $key => $value)
     {
-        if ($key == "root")
-        {
-            if ($usuario[$key])
-                echo $key . ": True<br>";
-            else
-                echo $key . ": False<br>";
-            
-            continue;
-        }
-
-        echo  $key . ": " . htmlspecialchars($usuario[$key]) . "<br>";
-
+        echo "<td>" . htmlspecialchars($usuario[$key]) . "</td>";
     }
 
     if ($usuario['root'])
         continue;
 
-    echo "<button type='submit' name='id_apagar' value='" . $usuario['id_usuario'] . "'>Apagar</button>";
+    echo "<td><button type='submit' name='id_apagar' value='" . $usuario['id_usuario'] . "'>Apagar</button></td>";
+
+    echo "</tr>";
 }
+
+echo "</table>";
 
 echo "</form>";
 
-echo "</div>";
-echo "<hr>";
 
 $conexao->close();
 ?>
