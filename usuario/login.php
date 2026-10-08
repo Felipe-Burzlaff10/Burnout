@@ -42,53 +42,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 $conexao->close();
 ?>
 
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Login - BURNOUT</title>
+    <title>BURNOUT - Home</title>
 
     <!-- Bootstrap -->
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
         rel="stylesheet"
-    >
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+        crossorigin="anonymous">
 
     <!-- Bootstrap Icons -->
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    >
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <style>
 
-        * {
-            box-sizing: border-box;
-        }
-
-
         /* =========================
-           BODY
+           MENU
         ========================= */
 
-        body {
-            margin: 0;
-            min-height: 100vh;
+        .nav {
+            background-color: #39bf00;
+            padding: 10px 0;
+        }
 
-            background: linear-gradient(
-                135deg,
-                #ffffff 0%,
-                #eeeeee 50%,
-                #cfcfcf 100%
-            );
-
-            font-family: Georgia, 'Times New Roman', serif;
+        .nav-link {
             color: black;
+            font-weight: bold;
+            font-size: 18px;
+            text-transform: uppercase;
+            margin: 0 15px;
+        }
+
+        .nav-link:hover {
+            color: white;
+        }
+
+        .nav-link.active {
+            border-bottom: 2px solid black;
         }
 
 
@@ -96,304 +93,99 @@ $conexao->close();
            HEADER
         ========================= */
 
-        .header-auth {
-            width: 100%;
-            height: 100px;
-
+        .header-home {
             background-color: #39bf00;
-
+            padding: 10px 20px 0;
             border-bottom: 2px solid black;
-
-            display: flex;
-            align-items: center;
-
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
         }
 
-
-        .header-auth-conteudo {
-            width: 100%;
-
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-
-            align-items: center;
-
-            padding: 0 35px;
+        .logo {
+            width: 170px;
         }
 
-
-        /* LOGO */
-
-        .logo-link {
-            display: flex;
-            align-items: center;
-
-            width: fit-content;
-
-            text-decoration: none;
-        }
-
-
-        .logo-auth {
-            width: 115px;
-
-            display: block;
-        }
-
-
-        /* NOME BURNOUT */
-
-        .marca-auth {
-            text-align: center;
-
+        .titulo {
             font-family: Georgia, 'Times New Roman', serif;
-
-            font-size: 48px;
-
+            font-size: 70px;
             font-weight: bold;
-
-            letter-spacing: 2px;
-
+            margin: 0;
             color: black;
         }
 
 
-        /* LADO DIREITO */
-
-        .header-auth-direita {
-            min-height: 1px;
-        }
-
-
         /* =========================
-           ÁREA DO LOGIN
+           ÍCONES
         ========================= */
 
-        .area-login {
-            min-height: calc(100vh - 100px);
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            padding: 40px 20px;
-        }
-
-
-        /* =========================
-           CARD
-        ========================= */
-
-        .card-login {
-            width: 520px;
-            max-width: 100%;
-
-            background-color: #39bf00;
-
-            padding: 40px 60px 35px;
-
-            border-radius: 22px;
-
-            border: 2px solid rgba(0, 0, 0, 0.15);
-
-            box-shadow:
-                0 15px 35px rgba(0, 0, 0, 0.22);
-        }
-
-
-        /* =========================
-           TÍTULO
-        ========================= */
-
-        .cabecalho-login {
-            text-align: center;
-
-            margin-bottom: 35px;
-        }
-
-
-        .icone-login {
-            font-size: 48px;
-
-            margin-bottom: 8px;
-        }
-
-
-        .titulo-login {
-            font-family: Arial, sans-serif;
-
-            font-size: 48px;
-
-            font-weight: 900;
-
-            margin: 0;
-
-            letter-spacing: 1px;
-        }
-
-
-        .linha-titulo {
-            width: 65px;
-            height: 5px;
-
-            background-color: black;
-
-            margin: 13px auto;
-
-            border-radius: 10px;
-        }
-
-
-        .subtitulo-login {
-            font-family: Arial, sans-serif;
-
-            font-size: 15px;
-
-            font-weight: bold;
-
-            opacity: 0.7;
-
-            margin: 0;
-        }
-
-
-        /* =========================
-           CAMPOS
-        ========================= */
-
-        .campo {
-            margin-bottom: 23px;
-        }
-
-
-        .form-label {
-            display: block;
-
-            font-family: Arial, sans-serif;
-
-            font-size: 18px;
-
-            font-weight: bold;
-
-            margin-bottom: 7px;
-        }
-
-
-        .form-control {
-            width: 100%;
-
-            height: 52px;
-
-            background-color: rgba(255, 255, 255, 0.4);
-
-            border: 2px solid transparent;
-
-            border-radius: 10px;
-
-            font-family: Arial, sans-serif;
-
-            font-size: 17px;
-
-            padding: 10px 15px;
-
+        .icone-header {
             color: black;
-
-            box-shadow: none !important;
-
+            font-size: 32px;
+            text-decoration: none;
             transition: 0.2s;
         }
 
-
-        .form-control:hover {
-            background-color: rgba(255, 255, 255, 0.6);
-        }
-
-
-        .form-control:focus {
-            background-color: white;
-
-            border-color: black;
-
-            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.10) !important;
+        .icone-header:hover {
+            color: white;
+            transform: scale(1.1);
         }
 
 
         /* =========================
-           BOTÃO ENTRAR
+           USUÁRIO
         ========================= */
 
-        .btn-login {
+        .usuario-header {
+            color: black;
+            font-weight: bold;
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        .usuario-header:hover {
+            color: white;
+        }
+
+
+        /* =========================
+           CAROUSEL
+        ========================= */
+
+        .carousel img {
             width: 100%;
+            height: 750px;
+            object-fit: cover;
+        }
 
-            height: 60px;
 
-            margin-top: 15px;
+        /* =========================
+           BOTÃO LOGOUT
+        ========================= */
+
+        .logout {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
 
             background-color: black;
-
             color: white;
 
             border: none;
+            border-radius: 10px;
 
-            border-radius: 12px;
+            padding: 10px 18px;
 
-            font-family: Arial, sans-serif;
+            font-weight: bold;
+            text-decoration: none;
 
-            font-size: 18px;
-
-            font-weight: 900;
-
-            letter-spacing: 1px;
+            z-index: 1000;
 
             transition: 0.2s;
         }
 
-
-        .btn-login:hover {
-            background-color: #222;
-
-            color: white;
-
-            transform: translateY(-2px);
-
-            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.25);
-        }
-
-
-        .btn-login i {
-            margin-right: 8px;
-        }
-
-
-        /* =========================
-           LINK PARA CADASTRO
-        ========================= */
-
-        .link-auth {
-            text-align: center;
-
-            margin-top: 23px;
-
-            font-family: Arial, sans-serif;
-
-            font-size: 15px;
-        }
-
-
-        .link-auth a {
+        .logout:hover {
+            background-color: #39bf00;
             color: black;
-
-            font-weight: bold;
-
-            text-decoration: none;
-
-            margin-left: 5px;
-        }
-
-
-        .link-auth a:hover {
-            text-decoration: underline;
+            transform: scale(1.05);
         }
 
 
@@ -401,44 +193,60 @@ $conexao->close();
            RESPONSIVO
         ========================= */
 
+        @media (max-width: 900px) {
+
+            .titulo {
+                font-size: 50px;
+            }
+
+            .logo {
+                width: 130px;
+            }
+
+            .icone-header {
+                font-size: 26px;
+            }
+
+            .usuario-header {
+                font-size: 15px;
+            }
+
+            .carousel img {
+                height: 600px;
+            }
+        }
+
+
         @media (max-width: 600px) {
 
-            .header-auth {
-                height: 80px;
+            .header-home {
+                padding: 10px;
             }
 
-
-            .header-auth-conteudo {
-                padding: 0 20px;
+            .logo {
+                width: 100px;
             }
 
-
-            .logo-auth {
-                width: 85px;
+            .titulo {
+                font-size: 32px;
             }
 
-
-            .marca-auth {
-                font-size: 30px;
+            .icone-header {
+                font-size: 22px;
             }
 
-
-            .area-login {
-                min-height: calc(100vh - 80px);
-
-                padding: 30px 15px;
+            .usuario-header {
+                display: none;
             }
 
-
-            .card-login {
-                padding: 30px 25px;
+            .nav-link {
+                font-size: 14px;
+                margin: 0 5px;
             }
 
-
-            .titulo-login {
-                font-size: 38px;
+            .carousel img {
+                height: 450px;
             }
-
         }
 
     </style>
@@ -453,170 +261,244 @@ $conexao->close();
          HEADER
     ========================= -->
 
-    <header class="header-auth">
+    <header class="header-home">
 
-        <div class="header-auth-conteudo">
+        <div class="container-fluid">
 
+            <div class="row align-items-center">
 
-            <!-- LOGO -->
+                <!-- LOGO -->
+                <div class="col-3">
 
-            <a
-                href="login.php"
-                class="logo-link"
-            >
+                    <img
+                        src="img_site/logo.png"
+                        alt="Logo BURNOUT"
+                        class="logo">
 
-                <img
-                    src="../img_site/logo.png"
-                    alt="Logo BURNOUT"
-                    class="logo-auth"
-                >
-
-            </a>
+                </div>
 
 
-            <!-- BURNOUT -->
+                <!-- TÍTULO -->
+                <div class="col-6 text-center">
 
-            <div class="marca-auth">
-                BURNOUT
+                    <h1 class="titulo">
+                        BURNOUT
+                    </h1>
+
+                </div>
+
+
+                <!-- ÍCONES -->
+                <div class="col-3 d-flex justify-content-end align-items-center gap-3">
+
+
+                    <!-- PESQUISA -->
+                    <a
+                        href="pesquisa.php"
+                        class="icone-header"
+                        title="Pesquisar">
+
+                        <i class="bi bi-search"></i>
+
+                    </a>
+
+
+                    <!-- CARRINHO -->
+                    <a
+                        href="carrinho.php"
+                        class="icone-header"
+                        title="Carrinho">
+
+                        <i class="bi bi-cart3"></i>
+
+                    </a>
+
+
+                    <!-- USUÁRIO -->
+                    <a
+                        href="perfil.php"
+                        class="usuario-header">
+
+                        <?php echo $_SESSION['nome']; ?>
+
+                    </a>
+
+                </div>
+
             </div>
 
-
-            <!-- ESPAÇO -->
-
-            <div class="header-auth-direita"></div>
-
         </div>
+
+
+        <!-- =========================
+             MENU
+        ========================= -->
+
+        <ul class="nav justify-content-center">
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link active"
+                    href="home.php">
+
+                    HOME
+
+                </a>
+
+            </li>
+
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="produto/catalogo.php">
+
+                    CATALOGO
+
+                </a>
+
+            </li>
+
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="lancamentos.php">
+
+                    LANÇAMENTOS
+
+                </a>
+
+            </li>
+
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link disabled"
+                    aria-disabled="true">
+
+                    PINTO
+
+                </a>
+
+            </li>
+
+        </ul>
 
     </header>
 
 
 
     <!-- =========================
-         LOGIN
+         CAROUSEL
     ========================= -->
 
-    <main class="area-login">
+    <div
+        id="carouselExample"
+        class="carousel slide">
 
-        <div class="card-login">
-
-
-            <!-- CABEÇALHO -->
-
-            <div class="cabecalho-login">
-
-                <div class="icone-login">
-
-                    <i class="bi bi-person-circle"></i>
-
-                </div>
+        <div class="carousel-inner">
 
 
-                <h1 class="titulo-login">
-                    LOGIN
-                </h1>
+            <!-- IMAGEM 1 -->
 
+            <div class="carousel-item active">
 
-                <div class="linha-titulo"></div>
-
-
-                <p class="subtitulo-login">
-                    Entre na sua conta BURNOUT
-                </p>
+                <img
+                    src="img_site/imagemPromocional.png"
+                    class="d-block w-100"
+                    alt="Promoção BURNOUT">
 
             </div>
 
 
+            <!-- IMAGEM 2 -->
 
-            <!-- FORMULÁRIO -->
+            <div class="carousel-item">
 
-            <form action="" method="POST">
-
-
-                <!-- EMAIL -->
-
-                <div class="campo">
-
-                    <label
-                        for="email"
-                        class="form-label"
-                    >
-                        E-mail
-                    </label>
-
-                    <input
-                        type="email"
-                        name="email"
-                        id="email"
-                        class="form-control"
-                        placeholder="Digite seu e-mail"
-                        required
-                    >
-
-                </div>
-
-
-
-                <!-- SENHA -->
-
-                <div class="campo">
-
-                    <label
-                        for="senha"
-                        class="form-label"
-                    >
-                        Senha
-                    </label>
-
-                    <input
-                        type="password"
-                        name="senha"
-                        id="senha"
-                        class="form-control"
-                        placeholder="Digite sua senha"
-                        required
-                    >
-
-                </div>
-
-
-
-                <!-- BOTÃO -->
-
-                <button
-                    type="submit"
-                    class="btn-login"
-                >
-
-                    <i class="bi bi-box-arrow-in-right"></i>
-
-                    ENTRAR
-
-                </button>
-
-            </form>
-
-
-
-            <!-- CADASTRO -->
-
-            <div class="link-auth">
-
-                <span>
-                    Ainda não possui uma conta?
-                </span>
-
-                <a href="cadastro.php">
-                    Cadastre-se
-                </a>
+                <img
+                    src="img_site/imagemLançamento.png"
+                    class="d-block w-100"
+                    alt="Lançamento BURNOUT">
 
             </div>
 
         </div>
 
-    </main>
+
+        <!-- BOTÃO PRÓXIMO -->
+
+        <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExample"
+            data-bs-slide="next">
+
+            <span
+                class="carousel-control-next-icon"
+                aria-hidden="true">
+            </span>
+
+            <span class="visually-hidden">
+                Próximo
+            </span>
+
+        </button>
+
+    </div>
+
+
+
+    <!-- =========================
+         LINK DE ALTERAÇÃO
+    ========================= -->
+
+    <a
+        href="usuario/alterar.php"
+        style="
+            display: block;
+            text-align: center;
+            margin: 20px;
+            color: black;
+            font-weight: bold;
+            text-decoration: none;
+        ">
+
+        PCD
+
+    </a>
+
+
+
+    <!-- =========================
+         LOGOUT
+    ========================= -->
+
+    <a
+        href="usuario/logout.php"
+        class="logout">
+
+        <i class="bi bi-box-arrow-right"></i>
+
+        Logout
+
+    </a>
+
+
+
+    <!-- Bootstrap JS -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous">
+    </script>
 
 
 </body>
 
 </html>
-
