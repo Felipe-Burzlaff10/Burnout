@@ -281,6 +281,8 @@ echo "<th>Endereço</th>";
 
 echo "<th>Root</th>";
 
+echo "<th>Apagar</th>";
+
 echo "</tr>";
 
 while($usuario = $resultado -> fetch_assoc())
