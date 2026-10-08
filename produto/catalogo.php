@@ -215,6 +215,136 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa'])) {
 
 </style>
 
+<header class="header-home">
+
+        <div class="container-fluid">
+
+            <div class="row align-items-center">
+
+                <!-- LOGO -->
+                <div class="col-3">
+
+                    <img
+                        src="img_site/logo.png"
+                        alt="Logo BURNOUT"
+                        class="logo">
+
+                </div>
+
+
+                <!-- TÍTULO -->
+                <div class="col-6 text-center">
+
+                    <h1 class="titulo">
+                        BURNOUT
+                    </h1>
+
+                </div>
+
+
+                <!-- ÍCONES -->
+                <div class="col-3 d-flex justify-content-end align-items-center gap-3">
+
+
+                    <!-- PESQUISA -->
+                    <a
+                        href="pesquisa.php"
+                        class="icone-header"
+                        title="Pesquisar">
+
+                        <i class="bi bi-search"></i>
+
+                    </a>
+
+
+                    <!-- CARRINHO -->
+                    <a
+                        href="carrinho.php"
+                        class="icone-header"
+                        title="Carrinho">
+
+                        <i class="bi bi-cart3"></i>
+
+                    </a>
+
+
+                    <!-- USUÁRIO -->
+                    <a
+                        href="perfil.php"
+                        class="usuario-header">
+
+                        <?php echo $_SESSION['nome']; ?>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             MENU
+        ========================= -->
+
+        <ul class="nav justify-content-center">
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link active"
+                    href="home.php">
+
+                    HOME
+
+                </a>
+
+            </li>
+
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="produto/catalogo.php">
+
+                    CATALOGO
+
+                </a>
+
+            </li>
+
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="lancamentos.php">
+
+                    LANÇAMENTOS
+
+                </a>
+
+            </li>
+
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link disabled"
+                    aria-disabled="true">
+
+                    PINTO
+
+                </a>
+
+            </li>
+
+        </ul>
+
+    </header>
+
 
 <div class="catalogo-area">
 
