@@ -80,8 +80,11 @@
         max-width: 1100px;
         margin: 30px auto;
 
+<<<<<<< HEAD
+=======
         border-radius: 22px;
 
+>>>>>>> d6b96adb486a6aab524cc709e5c8b37e098d65c5
         font-family: Georgia, "Times New Roman", serif;
         color: #000;
 

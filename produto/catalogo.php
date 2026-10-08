@@ -1,54 +1,300 @@
-<form method="GET">
-    <input type="text" name="pesquisa">
-
-    <button type="submit">Pesquisar</button>
-</form>
-
 <?php
 session_start();
 
 require_once "../conexao.php";
 
 $sql = "SELECT * FROM produto";
-$resultado = ($conexao->query($sql));  
+$resultado = $conexao->query($sql);
 
-if ($_SERVER["REQUEST_METHOD"] == "GET")
-{
-    if (isset($_GET['pesquisa']))
-    {
-        $pesquisa = "%" . $_GET['pesquisa'] . "%";
+if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa'])) {
 
-        $sql = "SELECT * FROM produto
-                WHERE nome LIKE ?
-                OR categoria LIKE ?";
+    $pesquisa = "%" . $_GET['pesquisa'] . "%";
 
-        $stmt = $conexao->prepare($sql);
-        $stmt->bind_param('ss', $pesquisa, $pesquisa);
-        $stmt->execute();
-        $resultado = $stmt->get_result();
-        $stmt->close();
+    $sql = "SELECT * FROM produto 
+            WHERE nome LIKE ? 
+            OR categoria LIKE ?";
+
+    $stmt = $conexao->prepare($sql);
+    $stmt->bind_param('ss', $pesquisa, $pesquisa);
+    $stmt->execute();
+
+    $resultado = $stmt->get_result();
+
+    $stmt->close();
+}
+?>
+
+<style>
+
+/* =========================
+   CATÁLOGO BURNOUT
+========================= */
+
+.catalogo-area {
+    background: #d3d3d3;
+    min-height: 100vh;
+    padding: 18px 22px 40px 22px;
+
+    /* espaço para a barra lateral do protótipo */
+    margin-left: 255px;
+}
+
+/* PESQUISA */
+
+.pesquisa-container {
+    width: 100%;
+    margin-bottom: 18px;
+}
+
+.pesquisa-container form {
+    display: flex;
+    gap: 8px;
+    max-width: 600px;
+}
+
+.pesquisa-container input {
+    flex: 1;
+    height: 40px;
+
+    border: 2px solid #000;
+    border-radius: 20px;
+
+    padding: 0 18px;
+
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+
+    outline: none;
+}
+
+.pesquisa-container input:focus {
+    border-color: #27d000;
+}
+
+.pesquisa-container button {
+    height: 40px;
+
+    padding: 0 22px;
+
+    border: 2px solid #000;
+    border-radius: 20px;
+
+    background: #000;
+    color: white;
+
+    font-weight: bold;
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.pesquisa-container button:hover {
+    background: #27d000;
+    color: #000;
+}
+
+
+/* GRID DOS PRODUTOS */
+
+.catalogo {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 38px 48px;
+
+    width: 100%;
+}
+
+
+/* CARD */
+
+.produto-card {
+    background: transparent;
+
+    min-width: 0;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* IMAGEM DO PRODUTO */
+
+.produto-imagem {
+    width: 100%;
+    aspect-ratio: 1.35 / 1;
+
+    object-fit: cover;
+
+    display: block;
+
+    border: 4px solid #000;
+
+    border-radius: 28px;
+
+    background: #aaa;
+
+    transition: 0.25s;
+}
+
+.produto-card:hover .produto-imagem {
+    transform: scale(1.02);
+}
+
+
+/* INFORMAÇÕES */
+
+.produto-info {
+    padding: 9px 5px 0 5px;
+}
+
+.produto-nome {
+    margin: 0;
+
+    font-size: 19px;
+    font-weight: bold;
+
+    color: #000;
+}
+
+.produto-categoria {
+    margin-top: 3px;
+
+    font-size: 14px;
+
+    color: #444;
+}
+
+.produto-preco {
+    margin-top: 5px;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    color: #000;
+}
+
+
+/* CASO NÃO ENCONTRE PRODUTOS */
+
+.sem-produtos {
+    grid-column: 1 / -1;
+
+    text-align: center;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    padding: 50px;
+}
+
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 1000px) {
+
+    .catalogo {
+        grid-template-columns: repeat(2, 1fr);
     }
+
 }
 
-echo "<div class='d-flex p-2 bg-light'>";
+@media (max-width: 700px) {
 
-echo "<form method='post'>";
+    .catalogo-area {
+        margin-left: 0;
+    }
 
-while($produto = $resultado -> fetch_assoc())
-{   
-    echo "<img width='20%' src='" . "../img_produto/" . $produto['foto'] . "'>";
+    .catalogo {
+        grid-template-columns: 1fr;
+    }
 
-    echo "Nome: " . $produto['nome'];
-
-    echo "Preço: R$" . $produto['preco'];
-
-    echo "<br>";
 }
 
-echo "</form>";
+</style>
 
-echo "</div>";
-echo "<hr>";
 
+<div class="catalogo-area">
+
+    <!-- PESQUISA -->
+
+    <div class="pesquisa-container">
+
+        <form method="GET">
+
+            <input 
+                type="text" 
+                name="pesquisa"
+                placeholder="Pesquisar produto..."
+                value="<?php echo isset($_GET['pesquisa']) ? htmlspecialchars($_GET['pesquisa']) : ''; ?>"
+            >
+
+            <button type="submit">
+                Pesquisar
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- PRODUTOS -->
+
+    <div class="catalogo">
+
+        <?php
+
+        if ($resultado->num_rows > 0) {
+
+            while ($produto = $resultado->fetch_assoc()) {
+
+                ?>
+
+                <div class="produto-card">
+
+                    <img 
+                        class="produto-imagem"
+                        src="../img_produto/<?php echo htmlspecialchars($produto['foto']); ?>"
+                        alt="<?php echo htmlspecialchars($produto['nome']); ?>"
+                    >
+
+                    <div class="produto-info">
+
+                        <p class="produto-nome">
+                            <?php echo htmlspecialchars($produto['nome']); ?>
+                        </p>
+
+                        <p class="produto-categoria">
+                            <?php echo htmlspecialchars($produto['categoria']); ?>
+                        </p>
+
+                        <p class="produto-preco">
+                            R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?>
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <?php
+
+            }
+
+        } else {
+
+            echo '<div class="sem-produtos">Nenhum produto encontrado.</div>';
+
+        }
+
+        ?>
+
+    </div>
+
+</div>
+
+
+<?php
 $conexao->close();
 ?>
