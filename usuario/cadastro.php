@@ -72,7 +72,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 $conexao->close();
 ?>
 
-```html
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -585,7 +584,7 @@ $conexao->close();
                         <div class="logo-area">
 
                             <img
-                                src="logo.png"
+                                src="../img_site/logo.png"
                                 alt="Logo BURNOUT"
                                 class="logo"
                             >
@@ -653,65 +652,6 @@ $conexao->close();
             </div>
 
         </div>
-
-
-        <!-- MENU -->
-
-        <nav class="menu">
-
-            <ul class="nav justify-content-center">
-
-                <li class="nav-item">
-
-                    <a
-                        class="nav-link"
-                        href="home.php"
-                    >
-                        HOME
-                    </a>
-
-                </li>
-
-
-                <li class="nav-item">
-
-                    <a
-                        class="nav-link"
-                        href="catalogo.php"
-                    >
-                        CATÁLOGO
-                    </a>
-
-                </li>
-
-
-                <li class="nav-item">
-
-                    <a
-                        class="nav-link"
-                        href="lancamentos.php"
-                    >
-                        LANÇAMENTOS
-                    </a>
-
-                </li>
-
-
-                <li class="nav-item">
-
-                    <a
-                        class="nav-link disabled"
-                        aria-disabled="true"
-                    >
-                        PINTO
-                    </a>
-
-                </li>
-
-            </ul>
-
-        </nav>
-
     </header>
 
 
