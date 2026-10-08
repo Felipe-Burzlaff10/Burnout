@@ -144,6 +144,31 @@
         form input[type="submit"] {
             width: 100%;
         }
+
+        .btn-voltar {
+    display: block;
+    width: 220px;
+    height: 50px;
+    margin: 0 auto 20px;
+
+    border: none;
+    border-radius: 15px;
+
+    background: #000;
+    color: #fff;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 17px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-voltar:hover {
+    background: #222;
+    transform: scale(1.03);
+}
     }
 </style>
 
@@ -205,6 +230,10 @@ $stmt->close();
 ?>
 
 <form method="POST">
+
+    <button type="button" onclick="history.back()" class="btn-voltar">
+    ← Voltar
+    </button>
 
     <label for="email">Email: </label>
     <input type="email" name="email"  ><br>

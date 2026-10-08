@@ -76,27 +76,173 @@ $stmt->close();
 
 ?>
 
-<form action="" method="POST" enctype="multipart/form-data">
+<style>
+    * {
+        box-sizing: border-box;
+    }
 
-    <label for="nome">Nome Produto: </label>
-    <input type="nome" name="nome"  ><br>
+    body {
+        margin: 0;
+        min-height: 100vh;
+        padding: 40px 20px;
 
-    <label for="categoria">Categoria: </label>
-    <input type="text" name="categoria"  ><br>
+        background: linear-gradient(
+            to bottom,
+            #ffffff 0%,
+            #ffffff 25%,
+            #b3b3b3 100%
+        );
 
-    <label for="preco">Preço: </label>
-    <input type="num" name="preco" id="preco"  ><br>
+        font-family: Georgia, "Times New Roman", serif;
+        color: #000;
+    }
 
-    <label for="tam">Tamanho: </label>
-    <input type="text" name="tam" id="tam"  ><br>
+    form {
+        width: 90%;
+        max-width: 650px;
+        margin: 20px auto;
 
-      <label for="imagem">Imagem: </label>
-    <input type="file" name="imagem"><br>
+        padding: 35px 45px;
 
-    <input type="submit" value="Alterar">
+        background: #22c900;
+        border-radius: 22px;
+    }
 
-</form>
+    label {
+        display: block;
+        margin: 14px 0 7px;
 
-<a href="../index.php">
-    <button>Voltar</button>
+        font-size: 19px;
+        font-weight: bold;
+    }
+
+    input[type="nome"],
+    input[type="text"],
+    input[type="num"],
+    input[type="file"] {
+        width: 100%;
+        height: 45px;
+
+        padding: 8px 12px;
+
+        border: 3px solid #000;
+        border-radius: 10px;
+
+        background: #fff;
+
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 17px;
+        font-weight: bold;
+
+        outline: none;
+    }
+
+    input[type="file"] {
+        padding: 7px;
+    }
+
+    input:focus {
+        background: #f1f1f1;
+    }
+
+    input[type="submit"] {
+        display: block;
+
+        width: 220px;
+        height: 55px;
+
+        margin: 30px auto 15px;
+
+        border: none;
+        border-radius: 15px;
+
+        background: #000;
+        color: #fff;
+
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 18px;
+        font-weight: bold;
+
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    input[type="submit"]:hover {
+        background: #222;
+        transform: scale(1.03);
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    a button {
+        display: block;
+
+        width: 220px;
+        height: 50px;
+
+        margin: 0 auto;
+
+        border: none;
+        border-radius: 15px;
+
+        background: #000;
+        color: #fff;
+
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 17px;
+        font-weight: bold;
+
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    a button:hover {
+        background: #222;
+        transform: scale(1.03);
+    }
+
+    @media (max-width: 600px) {
+
+        body {
+            padding: 20px 10px;
+        }
+
+        form {
+            width: 100%;
+            padding: 25px 20px;
+        }
+
+        input[type="submit"],
+        a button {
+            width: 100%;
+        }
+    }
+</style>
+
+
+<form action="" method="POST" enctype="multipart/form-data"> 
+ 
+    <label for="nome">Nome Produto: </label> 
+    <input type="nome" name="nome"><br> 
+ 
+    <label for="categoria">Categoria: </label> 
+    <input type="text" name="categoria"><br> 
+ 
+    <label for="preco">Preço: </label> 
+    <input type="num" name="preco" id="preco"><br> 
+ 
+    <label for="tam">Tamanho: </label> 
+    <input type="text" name="tam" id="tam"><br> 
+ 
+    <label for="imagem">Imagem: </label> 
+    <input type="file" name="imagem"><br> 
+ 
+    <input type="submit" value="Alterar"> 
+ 
+</form> 
+ 
+<a href="../index.php"> 
+    <button>← Voltar</button> 
 </a>
