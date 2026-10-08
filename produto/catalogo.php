@@ -293,6 +293,61 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa'])) {
             color: white;
         }
 
+        /* =========================
+           RESPONSIVO
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .titulo {
+                font-size: 50px;
+            }
+
+            .logo {
+                width: 130px;
+            }
+
+            .icone-header {
+                font-size: 26px;
+            }
+
+            .usuario-header {
+                font-size: 15px;
+            }
+
+            .carousel img {
+                height: 600px;
+            }
+        }
+
+
+        @media (max-width: 600px) {
+
+            .header-home {
+                padding: 10px;
+            }
+
+            .logo {
+                width: 100px;
+            }
+
+            .titulo {
+                font-size: 32px;
+            }
+
+            .icone-header {
+                font-size: 22px;
+            }
+
+            .usuario-header {
+                display: none;
+            }
+
+            .nav-link {
+                font-size: 14px;
+                margin: 0 5px;
+            }
+
 }
 
 </style>
