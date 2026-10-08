@@ -11,135 +11,168 @@
 
     body {
         margin: 0;
-        padding: 40px 20px;
-        background: #f4f6f9;
-        font-family: Arial, Helvetica, sans-serif;
-        color: #2d3748;
+        padding: 0;
+        background: linear-gradient(to bottom, #ffffff 0%, #ffffff 25%, #b3b3b3 100%);
+        font-family: Georgia, "Times New Roman", serif;
+        color: #000;
+        min-height: 100vh;
     }
 
-    /* Área de pesquisa */
-    .pesquisa-container {
-        max-width: 1100px;
-        margin: 0 auto 25px auto;
-        background: #ffffff;
-        padding: 25px;
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    }
-
-    .pesquisa-container h1 {
-        margin: 0 0 18px 0;
-        font-size: 24px;
-        color: #1a202c;
-    }
-
-    .pesquisa-form {
+    /* ÁREA DA PESQUISA */
+    body > form {
+        width: 740px;
+        margin: 35px auto 25px;
         display: flex;
-        gap: 10px;
+        align-items: center;
+        gap: 15px;
     }
 
-    .pesquisa-form input {
+    body > form input[type="text"] {
         flex: 1;
-        padding: 12px 15px;
-        border: 1px solid #d1d5db;
-        border-radius: 8px;
-        font-size: 15px;
-        outline: none;
-        transition: 0.2s;
-    }
-
-    .pesquisa-form input:focus {
-        border-color: #2563eb;
-        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
-    }
-
-    .pesquisa-form button {
-        padding: 12px 22px;
+        height: 48px;
         border: none;
-        border-radius: 8px;
-        background: #2563eb;
-        color: white;
-        font-size: 15px;
+        border-bottom: 3px solid #000;
+        background: transparent;
+        outline: none;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 22px;
+        font-weight: bold;
+        color: #000;
+    }
+
+    body > form input[type="text"]::placeholder {
+        color: #000;
+        opacity: 1;
+    }
+
+    body > form button {
+        height: 48px;
+        padding: 0 28px;
+        border: none;
+        border-radius: 12px;
+        background: #000;
+        color: #fff;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 17px;
         font-weight: bold;
         cursor: pointer;
         transition: 0.2s;
     }
 
-    .pesquisa-form button:hover {
-        background: #1d4ed8;
+    body > form button:hover {
+        background: #222;
+        transform: scale(1.03);
     }
 
-    /* Lista */
+    /* CONTAINER DOS USUÁRIOS */
     .usuarios-container {
-        max-width: 1100px;
+        width: 740px;
         margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        display: flex;
+        flex-direction: column;
         gap: 20px;
     }
 
-    .usuario-card {
-        background: white;
-        border-radius: 12px;
-        padding: 22px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
-        border: 1px solid #e5e7eb;
-        transition: 0.2s;
+    /* FORM DO BOTÃO APAGAR */
+    .usuarios-container > form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
     }
 
-    .usuario-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 7px 20px rgba(0, 0, 0, 0.10);
+    /* CARD DO USUÁRIO */
+    .usuario-card {
+        background: #22c900;
+        border-radius: 22px;
+        padding: 25px 45px 30px;
+        box-shadow: none;
+        border: none;
     }
 
     .usuario-card .campo {
-        padding: 8px 0;
-        border-bottom: 1px solid #edf0f3;
-        font-size: 14px;
-    }
-
-    .usuario-card .campo:last-of-type {
-        border-bottom: none;
+        font-size: 20px;
+        font-weight: bold;
+        padding: 9px 0;
+        border-bottom: 3px solid #000;
+        width: 100%;
     }
 
     .usuario-card .campo strong {
-        color: #374151;
+        font-weight: bold;
     }
 
+    /* BOTÃO APAGAR */
     .btn-apagar {
-        width: 100%;
-        margin-top: 18px;
-        padding: 11px;
+        display: block;
+        width: 245px;
+        height: 65px;
+        margin: 25px auto 0;
+
         border: none;
-        border-radius: 8px;
-        background: #dc2626;
-        color: white;
-        font-size: 14px;
+        border-radius: 20px;
+
+        background: #000;
+        color: #fff;
+
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 19px;
         font-weight: bold;
+
         cursor: pointer;
         transition: 0.2s;
     }
 
     .btn-apagar:hover {
-        background: #b91c1c;
+        background: #222;
+        transform: scale(1.03);
     }
 
-    /* Responsividade */
-    @media (max-width: 600px) {
-        body {
-            padding: 20px 12px;
-        }
+    /* REMOVE A LINHA FINAL */
+    hr {
+        width: 740px;
+        margin: 35px auto;
+        border: none;
+        border-top: 3px solid #000;
+    }
 
-        .pesquisa-form {
+    /* RESPONSIVO */
+    @media (max-width: 800px) {
+
+        body > form {
+            width: 90%;
             flex-direction: column;
+            align-items: stretch;
         }
 
-        .pesquisa-form button {
+        body > form button {
             width: 100%;
         }
 
         .usuarios-container {
-            grid-template-columns: 1fr;
+            width: 90%;
+        }
+
+        .usuario-card {
+            padding: 22px 25px 28px;
+        }
+
+        hr {
+            width: 90%;
+        }
+    }
+
+    @media (max-width: 500px) {
+
+        body {
+            padding-bottom: 30px;
+        }
+
+        .usuario-card .campo {
+            font-size: 16px;
+        }
+
+        .btn-apagar {
+            width: 100%;
         }
     }
 </style>
