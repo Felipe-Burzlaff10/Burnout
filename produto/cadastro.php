@@ -1,3 +1,44 @@
+<?php
+if (!$_SESSION['root'])
+{
+    echo "<script>window.location.href='index.php';</script>";
+    exit();
+}
+
+
+require_once "../conexao.php";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST")
+{
+    $nome_arquivo = $_FILES["imagem"]["name"];
+    $nome_temporario = $_FILES['imagem']['tmp_name'];
+
+    $extensao = strtolower(pathinfo($nome_arquivo, PATHINFO_EXTENSION));
+
+    $extensoes_permitidas = ["jpg", "png", "jpeg"];
+
+    if(!in_array($extensao, $extensoes_permitidas))
+            die("a foto contem um tipo de extensao que não é permitida!.");
+        
+            $nome_final_imagem = uniqid() . "." . $extensao;
+
+    $caminho_destino = "../img_produto/" . $nome_final_imagem;
+    move_uploaded_file($nome_temporario, $caminho_destino);
+
+    $sql = "INSERT INTO produto(nome, categoria, preco, tamanho, foto)
+    VALUES (?, ?, ?, ?, ?) ";
+
+    $stmt = $conexao->prepare($sql);
+    $stmt->bind_param('ssdss', $_POST['nome'], $_POST['categoria'], $_POST['preco'], $_POST['tamanho'], $nome_final_imagem);
+    $stmt->execute();
+    $stmt->close();
+
+}
+ 
+$conexao->close();
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -179,36 +220,3 @@
 
 </body>
 </html>
-
-<?php
-
-require_once "../conexao.php";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST")
-{
-    $nome_arquivo = $_FILES["imagem"]["name"];
-    $nome_temporario = $_FILES['imagem']['tmp_name'];
-
-    $extensao = strtolower(pathinfo($nome_arquivo, PATHINFO_EXTENSION));
-
-    $extensoes_permitidas = ["jpg", "png", "jpeg"];
-
-    if(!in_array($extensao, $extensoes_permitidas))
-            die("a foto contem um tipo de extensao que não é permitida!.");
-        
-            $nome_final_imagem = uniqid() . "." . $extensao;
-
-    $caminho_destino = "../img_produto/" . $nome_final_imagem;
-    move_uploaded_file($nome_temporario, $caminho_destino);
-
-    $sql = "INSERT INTO produto(nome, categoria, preco, tamanho, foto)
-    VALUES (?, ?, ?, ?, ?) ";
-
-    $stmt = $conexao->prepare($sql);
-    $stmt->bind_param('ssdss', $_POST['nome'], $_POST['categoria'], $_POST['preco'], $_POST['tamanho'], $nome_final_imagem);
-    $stmt->execute();
-    $stmt->close();
-
-}
- 
-$conexao->close();

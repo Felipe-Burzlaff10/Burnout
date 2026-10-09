@@ -1,6 +1,13 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['id_usuario']))
+{
+    echo "<script>window.location.href='index.php';</script>";
+    exit();
+}
+
+
 require_once "../conexao.php";
 
 $sql = "SELECT * FROM produto";
@@ -25,6 +32,145 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa'])) {
 ?>
 
 <style>
+/* =========================
+    MENU
+========================= */
+
+.nav {
+    background-color: #39bf00;
+    padding: 10px 0;
+}
+
+.nav-link {
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin: 0 15px;
+}
+
+.nav-link:hover {
+    color: white;
+}
+
+.nav-link.active {
+    border-bottom: 2px solid black;
+}
+
+
+/* =========================
+    HEADER
+========================= */
+
+.header-home {
+    background-color: #39bf00;
+    padding: 10px 20px 0;
+    border-bottom: 2px solid black;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.logo {
+    width: 170px;
+}
+
+.titulo {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 70px;
+    font-weight: bold;
+    margin: 0;
+    color: black;
+}
+
+
+/* =========================
+    ÍCONES
+========================= */
+
+.icone-header {
+    color: black;
+    font-size: 32px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.icone-header:hover {
+    color: white;
+    transform: scale(1.1);
+}
+
+
+/* =========================
+    USUÁRIO
+========================= */
+
+.usuario-header {
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.usuario-header:hover {
+    color: white;
+}
+
+/* =========================
+    RESPONSIVO
+========================= */
+
+@media (max-width: 900px) {
+
+    .titulo {
+        font-size: 50px;
+    }
+
+    .logo {
+        width: 130px;
+    }
+
+    .icone-header {
+        font-size: 26px;
+    }
+
+    .usuario-header {
+        font-size: 15px;
+    }
+
+    .carousel img {
+        height: 600px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+.header-home {
+    padding: 10px;
+}
+
+.logo {
+    width: 100px;
+}
+
+.titulo {
+    font-size: 32px;
+}
+
+.icone-header {
+    font-size: 22px;
+}
+
+.usuario-header {
+    display: none;
+}
+
+.nav-link {
+    font-size: 14px;
+    margin: 0 5px;
+}
+}
+
+
 
 /* =========================
    CATÁLOGO BURNOUT
@@ -210,143 +356,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa'])) {
     .catalogo {
         grid-template-columns: 1fr;
     }
-
-    /* =========================
-           MENU
-        ========================= */
-
-        .nav {
-            background-color: #39bf00;
-            padding: 10px 0;
-        }
-
-        .nav-link {
-            color: black;
-            font-weight: bold;
-            font-size: 18px;
-            text-transform: uppercase;
-            margin: 0 15px;
-        }
-
-        .nav-link:hover {
-            color: white;
-        }
-
-        .nav-link.active {
-            border-bottom: 2px solid black;
-        }
-
-
-        /* =========================
-           HEADER
-        ========================= */
-
-        .header-home {
-            background-color: #39bf00;
-            padding: 10px 20px 0;
-            border-bottom: 2px solid black;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-        }
-
-        .logo {
-            width: 170px;
-        }
-
-        .titulo {
-            font-family: Georgia, 'Times New Roman', serif;
-            font-size: 70px;
-            font-weight: bold;
-            margin: 0;
-            color: black;
-        }
-
-
-        /* =========================
-           ÍCONES
-        ========================= */
-
-        .icone-header {
-            color: black;
-            font-size: 32px;
-            text-decoration: none;
-            transition: 0.2s;
-        }
-
-        .icone-header:hover {
-            color: white;
-            transform: scale(1.1);
-        }
-
-
-        /* =========================
-           USUÁRIO
-        ========================= */
-
-        .usuario-header {
-            color: black;
-            font-weight: bold;
-            font-size: 18px;
-            text-decoration: none;
-        }
-
-        .usuario-header:hover {
-            color: white;
-        }
-
-        /* =========================
-           RESPONSIVO
-        ========================= */
-
-        @media (max-width: 900px) {
-
-            .titulo {
-                font-size: 50px;
-            }
-
-            .logo {
-                width: 130px;
-            }
-
-            .icone-header {
-                font-size: 26px;
-            }
-
-            .usuario-header {
-                font-size: 15px;
-            }
-
-            .carousel img {
-                height: 600px;
-            }
-        }
-
-
-        @media (max-width: 600px) {
-
-            .header-home {
-                padding: 10px;
-            }
-
-            .logo {
-                width: 100px;
-            }
-
-            .titulo {
-                font-size: 32px;
-            }
-
-            .icone-header {
-                font-size: 22px;
-            }
-
-            .usuario-header {
-                display: none;
-            }
-
-            .nav-link {
-                font-size: 14px;
-                margin: 0 5px;
-            }
 
 }
 

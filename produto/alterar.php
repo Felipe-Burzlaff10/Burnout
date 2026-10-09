@@ -227,9 +227,13 @@ $stmt->close();
     <label for="nome">Nome Produto: </label> 
     <input type="nome" name="nome"><br> 
  
-    <label for="categoria">Categoria: </label> 
-    <input type="text" name="categoria"><br> 
- 
+   <label for="categoria">Categoria: </label>
+    <select name="categoria" id="categoria">
+        <option value="Camiseta">Camiseta</option>
+        <option value="Calça">Calça</option>
+        <option value="Tênis">Têniss</option>
+    </select><br>
+    
     <label for="preco">Preço: </label> 
     <input type="num" name="preco" id="preco"><br> 
  
