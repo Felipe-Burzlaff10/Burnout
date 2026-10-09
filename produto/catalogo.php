@@ -32,9 +32,96 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa'])) {
 ?>
 
 
+
 <style>
 /* =========================
-   CATÁLOGO BURNOUT
+   HEADER
+========================= */
+
+.header-home {
+    background-color: #39bf00;
+    padding: 10px 20px 0;
+    border-bottom: 2px solid black;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.logo {
+    width: 170px;
+    height: auto;
+    object-fit: contain;
+}
+
+.titulo {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 70px;
+    font-weight: bold;
+    margin: 0;
+    color: black;
+}
+
+/* ÍCONES DO HEADER */
+
+.icone-header {
+    color: black;
+    font-size: 32px;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.icone-header:hover {
+    color: white;
+    transform: scale(1.1);
+}
+
+/* USUÁRIO */
+
+.usuario-header {
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.usuario-header:hover {
+    color: white;
+}
+
+/* =========================
+   MENU DE NAVEGAÇÃO
+========================= */
+
+.nav {
+    background-color: #39bf00;
+    padding: 10px 0;
+}
+
+.nav-link {
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin: 0 15px;
+    transition: 0.2s ease;
+}
+
+.nav-link:hover {
+    color: white;
+}
+
+.nav-link.active {
+    color: black;
+    border-bottom: 2px solid black;
+}
+
+.nav-link.disabled {
+    color: #333;
+    opacity: 0.6;
+}
+
+/* =========================
+   ÁREA DO CATÁLOGO BURNOUT
 ========================= */
 
 .catalogo-area {
@@ -86,7 +173,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa'])) {
     color: white;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.2s;
+    transition: 0.2s ease;
 }
 
 .pesquisa-container button:hover {
@@ -115,9 +202,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa'])) {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-/* =========================
-   IMAGEM DO PRODUTO
-========================= */
+/* IMAGEM DO PRODUTO */
 
 .produto-imagem {
     width: 100%;
@@ -127,7 +212,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa'])) {
     border: 4px solid #000;
     border-radius: 28px;
     background: #aaa;
-    transition: transform 0.25s;
+    transition: transform 0.25s ease;
     box-sizing: border-box;
 }
 
@@ -135,9 +220,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa'])) {
     transform: scale(1.02);
 }
 
-/* =========================
-   INFORMAÇÕES DO PRODUTO
-========================= */
+/* INFORMAÇÕES DO PRODUTO */
 
 .produto-info {
     padding: 9px 5px 0;
@@ -163,9 +246,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa'])) {
     color: #000;
 }
 
-/* =========================
-   NENHUM PRODUTO ENCONTRADO
-========================= */
+/* NENHUM PRODUTO ENCONTRADO */
 
 .sem-produtos {
     grid-column: 1 / -1;
@@ -177,82 +258,12 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa'])) {
 }
 
 /* =========================
-   MENU
+   CARROSSEL
 ========================= */
 
-.nav {
-    background-color: #39bf00;
-    padding: 10px 0;
-}
-
-.nav-link {
-    color: black;
-    font-weight: bold;
-    font-size: 18px;
-    text-transform: uppercase;
-    margin: 0 15px;
-}
-
-.nav-link:hover {
-    color: white;
-}
-
-.nav-link.active {
-    border-bottom: 2px solid black;
-}
-
-/* =========================
-   HEADER
-========================= */
-
-.header-home {
-    background-color: #39bf00;
-    padding: 10px 20px 0;
-    border-bottom: 2px solid black;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-}
-
-.logo {
-    width: 170px;
-}
-
-.titulo {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 70px;
-    font-weight: bold;
-    margin: 0;
-    color: black;
-}
-
-/* =========================
-   ÍCONES DO HEADER
-========================= */
-
-.icone-header {
-    color: black;
-    font-size: 32px;
-    text-decoration: none;
-    transition: 0.2s;
-}
-
-.icone-header:hover {
-    color: white;
-    transform: scale(1.1);
-}
-
-/* =========================
-   USUÁRIO
-========================= */
-
-.usuario-header {
-    color: black;
-    font-weight: bold;
-    font-size: 18px;
-    text-decoration: none;
-}
-
-.usuario-header:hover {
-    color: white;
+.carousel img {
+    height: 600px;
+    object-fit: cover;
 }
 
 /* =========================
@@ -283,8 +294,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa'])) {
         font-size: 15px;
     }
 
-    .carousel img {
-        height: 600px;
+    .nav-link {
+        margin: 0 8px;
+        font-size: 16px;
     }
 }
 
@@ -314,28 +326,51 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa'])) {
 
 @media (max-width: 600px) {
     .header-home {
-        padding: 10px;
+        padding: 10px 5px 0;
+    }
+
+    .header-home .row {
+        flex-wrap: nowrap;
+    }
+
+    .header-home .col-3:first-child {
+        width: 22%;
+    }
+
+    .header-home .col-6 {
+        width: 48%;
+    }
+
+    .header-home .col-3:last-child {
+        width: 30%;
+        gap: 10px !important;
     }
 
     .logo {
-        width: 100px;
+        width: 75px;
     }
 
     .titulo {
-        font-size: 32px;
+        font-size: 27px;
     }
 
     .icone-header {
-        font-size: 22px;
+        font-size: 21px;
     }
 
     .usuario-header {
         display: none;
     }
 
+    .nav {
+        padding: 8px 0;
+        flex-wrap: wrap;
+    }
+
     .nav-link {
-        font-size: 14px;
-        margin: 0 5px;
+        font-size: 12px;
+        margin: 0 4px;
+        padding: 6px 4px;
     }
 
     .carousel img {
@@ -354,135 +389,88 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa'])) {
 </style>
 
 
-<header class="header-home">
-
-        <div class="container-fluid">
-
-            <div class="row align-items-center">
-
-                <!-- LOGO -->
-                <div class="col-3">
-
-                    <img
-                        src="img_site/logo.png"
-                        alt="Logo BURNOUT"
-                        class="logo">
-
-                </div>
 
 
-                <!-- TÍTULO -->
-                <div class="col-6 text-center">
+    <header class="header-home">
 
-                    <h1 class="titulo">
-                        BURNOUT
-                    </h1>
+    <div class="container-fluid">
 
-                </div>
+        <div class="row align-items-center">
 
+            <!-- LOGO -->
+            <div class="col-3">
+                <img
+                    src="img_site/logo.png"
+                    alt="Logo BURNOUT"
+                    class="logo">
+            </div>
 
-                <!-- ÍCONES -->
-                <div class="col-3 d-flex justify-content-end align-items-center gap-3">
+            <!-- TÍTULO -->
+            <div class="col-6 text-center">
+                <h1 class="titulo">BURNOUT</h1>
+            </div>
 
+            <!-- ÍCONES E USUÁRIO -->
+            <div class="col-3 d-flex justify-content-end align-items-center gap-3">
 
-                    <!-- PESQUISA -->
-                    <a
-                        href="pesquisa.php"
-                        class="icone-header"
-                        title="Pesquisar">
+                <a
+                    href="pesquisa.php"
+                    class="icone-header"
+                    title="Pesquisar"
+                    aria-label="Pesquisar">
+                    <i class="bi bi-search"></i>
+                </a>
 
-                        <i class="bi bi-search"></i>
+                <a
+                    href="carrinho.php"
+                    class="icone-header"
+                    title="Carrinho"
+                    aria-label="Carrinho">
+                    <i class="bi bi-cart3"></i>
+                </a>
 
-                    </a>
-
-
-                    <!-- CARRINHO -->
-                    <a
-                        href="carrinho.php"
-                        class="icone-header"
-                        title="Carrinho">
-
-                        <i class="bi bi-cart3"></i>
-
-                    </a>
-
-
-                    <!-- USUÁRIO -->
-                    <a
-                        href="perfil.php"
-                        class="usuario-header">
-
-                        <?php echo $_SESSION['nome']; ?>
-
-                    </a>
-
-                </div>
+                <a href="perfil.php" class="usuario-header">
+                    <?php echo htmlspecialchars($_SESSION['nome'] ?? 'Usuário'); ?>
+                </a>
 
             </div>
 
         </div>
 
+    </div>
 
-        <!-- =========================
-             MENU
-        ========================= -->
+    <!-- MENU -->
+    <ul class="nav justify-content-center">
 
-        <ul class="nav justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link active" href="home.php">
+                HOME
+            </a>
+        </li>
 
-            <li class="nav-item">
+        <li class="nav-item">
+            <a class="nav-link" href="produto/catalogo.php">
+                CATÁLOGO
+            </a>
+        </li>
 
-                <a
-                    class="nav-link active"
-                    href="home.php">
+        <li class="nav-item">
+            <a class="nav-link" href="lancamentos.php">
+                LANÇAMENTOS
+            </a>
+        </li>
 
-                    HOME
+        <li class="nav-item">
+            <a class="nav-link disabled"
+               aria-disabled="true"
+               tabindex="-1">
+                PINTO
+            </a>
+        </li>
 
-                </a>
+    </ul>
 
-            </li>
-
-
-            <li class="nav-item">
-
-                <a
-                    class="nav-link"
-                    href="produto/catalogo.php">
-
-                    CATALOGO
-
-                </a>
-
-            </li>
-
-
-            <li class="nav-item">
-
-                <a
-                    class="nav-link"
-                    href="lancamentos.php">
-
-                    LANÇAMENTOS
-
-                </a>
-
-            </li>
-
-
-            <li class="nav-item">
-
-                <a
-                    class="nav-link disabled"
-                    aria-disabled="true">
-
-                    PINTO
-
-                </a>
-
-            </li>
-
-        </ul>
-
-    </header>
+</header>
 
 
 <div class="catalogo-area">
