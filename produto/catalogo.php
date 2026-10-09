@@ -31,9 +31,153 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa'])) {
 }
 ?>
 
+
 <style>
 /* =========================
-    MENU
+   CATÁLOGO BURNOUT
+========================= */
+
+.catalogo-area {
+    background: #d3d3d3;
+    min-height: 100vh;
+    padding: 18px 22px 40px;
+    margin-left: 255px;
+    box-sizing: border-box;
+}
+
+/* =========================
+   PESQUISA
+========================= */
+
+.pesquisa-container {
+    width: 100%;
+    margin-bottom: 18px;
+}
+
+.pesquisa-container form {
+    display: flex;
+    gap: 8px;
+    max-width: 600px;
+}
+
+.pesquisa-container input {
+    flex: 1;
+    min-width: 0;
+    height: 40px;
+    border: 2px solid #000;
+    border-radius: 20px;
+    padding: 0 18px;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.pesquisa-container input:focus {
+    border-color: #27d000;
+}
+
+.pesquisa-container button {
+    height: 40px;
+    padding: 0 22px;
+    border: 2px solid #000;
+    border-radius: 20px;
+    background: #000;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.pesquisa-container button:hover {
+    background: #27d000;
+    color: #000;
+}
+
+/* =========================
+   GRID DOS PRODUTOS
+========================= */
+
+.catalogo {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 38px 48px;
+    width: 100%;
+}
+
+/* =========================
+   CARD DO PRODUTO
+========================= */
+
+.produto-card {
+    background: transparent;
+    min-width: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =========================
+   IMAGEM DO PRODUTO
+========================= */
+
+.produto-imagem {
+    width: 100%;
+    aspect-ratio: 1.35 / 1;
+    object-fit: cover;
+    display: block;
+    border: 4px solid #000;
+    border-radius: 28px;
+    background: #aaa;
+    transition: transform 0.25s;
+    box-sizing: border-box;
+}
+
+.produto-card:hover .produto-imagem {
+    transform: scale(1.02);
+}
+
+/* =========================
+   INFORMAÇÕES DO PRODUTO
+========================= */
+
+.produto-info {
+    padding: 9px 5px 0;
+}
+
+.produto-nome {
+    margin: 0;
+    font-size: 19px;
+    font-weight: bold;
+    color: #000;
+}
+
+.produto-categoria {
+    margin-top: 3px;
+    font-size: 14px;
+    color: #444;
+}
+
+.produto-preco {
+    margin-top: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+}
+
+/* =========================
+   NENHUM PRODUTO ENCONTRADO
+========================= */
+
+.sem-produtos {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 50px;
+}
+
+/* =========================
+   MENU
 ========================= */
 
 .nav {
@@ -57,9 +201,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa'])) {
     border-bottom: 2px solid black;
 }
 
-
 /* =========================
-    HEADER
+   HEADER
 ========================= */
 
 .header-home {
@@ -81,9 +224,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa'])) {
     color: black;
 }
 
-
 /* =========================
-    ÍCONES
+   ÍCONES DO HEADER
 ========================= */
 
 .icone-header {
@@ -98,9 +240,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa'])) {
     transform: scale(1.1);
 }
 
-
 /* =========================
-    USUÁRIO
+   USUÁRIO
 ========================= */
 
 .usuario-header {
@@ -115,11 +256,17 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa'])) {
 }
 
 /* =========================
-    RESPONSIVO
+   RESPONSIVIDADE - TABLETS
 ========================= */
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
+    .catalogo {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 30px;
+    }
+}
 
+@media (max-width: 900px) {
     .titulo {
         font-size: 50px;
     }
@@ -141,225 +288,71 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa'])) {
     }
 }
 
-
-@media (max-width: 600px) {
-
-.header-home {
-    padding: 10px;
-}
-
-.logo {
-    width: 100px;
-}
-
-.titulo {
-    font-size: 32px;
-}
-
-.icone-header {
-    font-size: 22px;
-}
-
-.usuario-header {
-    display: none;
-}
-
-.nav-link {
-    font-size: 14px;
-    margin: 0 5px;
-}
-}
-
-
-
 /* =========================
-   CATÁLOGO BURNOUT
+   RESPONSIVIDADE - CELULARES
 ========================= */
 
-.catalogo-area {
-    background: #d3d3d3;
-    min-height: 100vh;
-    padding: 18px 22px 40px 22px;
-
-    /* espaço para a barra lateral do protótipo */
-    margin-left: 255px;
-}
-
-/* PESQUISA */
-
-.pesquisa-container {
-    width: 100%;
-    margin-bottom: 18px;
-}
-
-.pesquisa-container form {
-    display: flex;
-    gap: 8px;
-    max-width: 600px;
-}
-
-.pesquisa-container input {
-    flex: 1;
-    height: 40px;
-
-    border: 2px solid #000;
-    border-radius: 20px;
-
-    padding: 0 18px;
-
-    font-family: Arial, sans-serif;
-    font-size: 15px;
-
-    outline: none;
-}
-
-.pesquisa-container input:focus {
-    border-color: #27d000;
-}
-
-.pesquisa-container button {
-    height: 40px;
-
-    padding: 0 22px;
-
-    border: 2px solid #000;
-    border-radius: 20px;
-
-    background: #000;
-    color: white;
-
-    font-weight: bold;
-    cursor: pointer;
-
-    transition: 0.2s;
-}
-
-.pesquisa-container button:hover {
-    background: #27d000;
-    color: #000;
-}
-
-
-/* GRID DOS PRODUTOS */
-
-.catalogo {
-    display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-
-    gap: 38px 48px;
-
-    width: 100%;
-}
-
-
-/* CARD */
-
-.produto-card {
-    background: transparent;
-
-    min-width: 0;
-
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-
-/* IMAGEM DO PRODUTO */
-
-.produto-imagem {
-    width: 100%;
-    aspect-ratio: 1.35 / 1;
-
-    object-fit: cover;
-
-    display: block;
-
-    border: 4px solid #000;
-
-    border-radius: 28px;
-
-    background: #aaa;
-
-    transition: 0.25s;
-}
-
-.produto-card:hover .produto-imagem {
-    transform: scale(1.02);
-}
-
-
-/* INFORMAÇÕES */
-
-.produto-info {
-    padding: 9px 5px 0 5px;
-}
-
-.produto-nome {
-    margin: 0;
-
-    font-size: 19px;
-    font-weight: bold;
-
-    color: #000;
-}
-
-.produto-categoria {
-    margin-top: 3px;
-
-    font-size: 14px;
-
-    color: #444;
-}
-
-.produto-preco {
-    margin-top: 5px;
-
-    font-size: 18px;
-    font-weight: bold;
-
-    color: #000;
-}
-
-
-/* CASO NÃO ENCONTRE PRODUTOS */
-
-.sem-produtos {
-    grid-column: 1 / -1;
-
-    text-align: center;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 20px;
-    font-weight: bold;
-
-    padding: 50px;
-}
-
-
-/* RESPONSIVIDADE */
-
-@media (max-width: 1000px) {
-
-    .catalogo {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-}
-
 @media (max-width: 700px) {
-
     .catalogo-area {
         margin-left: 0;
+        padding: 18px 15px 30px;
     }
 
     .catalogo {
         grid-template-columns: 1fr;
+        gap: 28px;
     }
 
+    .pesquisa-container form {
+        width: 100%;
+    }
+
+    .pesquisa-container button {
+        padding: 0 16px;
+    }
 }
 
+@media (max-width: 600px) {
+    .header-home {
+        padding: 10px;
+    }
+
+    .logo {
+        width: 100px;
+    }
+
+    .titulo {
+        font-size: 32px;
+    }
+
+    .icone-header {
+        font-size: 22px;
+    }
+
+    .usuario-header {
+        display: none;
+    }
+
+    .nav-link {
+        font-size: 14px;
+        margin: 0 5px;
+    }
+
+    .carousel img {
+        height: 300px;
+        object-fit: cover;
+    }
+
+    .produto-nome {
+        font-size: 18px;
+    }
+
+    .produto-preco {
+        font-size: 17px;
+    }
+}
 </style>
+
 
 <header class="header-home">
 
