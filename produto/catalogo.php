@@ -385,6 +385,102 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa'])) {
     .produto-preco {
         font-size: 17px;
     }
+
+
+/* CATÁLOGO DE PRODUTOS */
+
+.catalogo-produtos {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 25px;
+    padding: 25px;
+}
+
+/* CARD DO PRODUTO */
+
+.card-produto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+
+    padding: 25px;
+    background-color: #fff;
+    border-radius: 12px;
+    text-align: center;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.10);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-produto:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.16);
+}
+
+/* IMAGEM */
+
+.imagem-produto {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* NOME */
+
+.nome-produto {
+    margin: 10px 0 0;
+    font-family: Arial, sans-serif;
+    font-size: 22px;
+    color: #333;
+}
+
+/* PREÇO */
+
+.preco-produto {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 26px;
+    font-weight: bold;
+    color: #000;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 1200px) {
+    .catalogo-produtos {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 800px) {
+    .catalogo-produtos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 500px) {
+    .catalogo-produtos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        padding: 10px;
+    }
+
+    .card-produto {
+        padding: 10px;
+    }
+
+    .nome-produto {
+        font-size: 17px;
+    }
+
+    .preco-produto {
+        font-size: 20px;
+    }
+}
+
+
 }
 </style>
 
