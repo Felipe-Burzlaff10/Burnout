@@ -400,7 +400,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa'])) {
             <!-- LOGO -->
             <div class="col-3">
                 <img
-                    src="img_site/logo.png"
+                    src="../img_site/logo.png"
                     alt="Logo BURNOUT"
                     class="logo">
             </div>
@@ -430,7 +430,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa'])) {
                 </a>
 
                 <a href="perfil.php" class="usuario-header">
-                    <?php echo htmlspecialchars($_SESSION['nome'] ?? 'Usuário'); ?>
+                    <?php echo $_SESSION['nome']; ?>
                 </a>
 
             </div>
@@ -485,7 +485,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa'])) {
                 type="text" 
                 name="pesquisa"
                 placeholder="Pesquisar produto..."
-                value="<?php echo isset($_GET['pesquisa']) ? htmlspecialchars($_GET['pesquisa']) : ''; ?>"
             >
 
             <button type="submit">
@@ -503,48 +502,22 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa'])) {
 
         <?php
 
-        if ($resultado->num_rows > 0) {
+        if ($resultado->num_rows > 0)
+        {
+            echo "<div style='display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px;'>";
 
-            while ($produto = $resultado->fetch_assoc()) {
-
-                ?>
-
-                <div class="produto-card">
-
-                    <img 
-                        class="produto-imagem"
-                        src="../img_produto/<?php echo htmlspecialchars($produto['foto']); ?>"
-                        alt="<?php echo htmlspecialchars($produto['nome']); ?>"
-                    >
-
-                    <div class="produto-info">
-
-                        <p class="produto-nome">
-                            <?php echo htmlspecialchars($produto['nome']); ?>
-                        </p>
-
-                        <p class="produto-categoria">
-                            <?php echo htmlspecialchars($produto['categoria']); ?>
-                        </p>
-
-                        <p class="produto-preco">
-                            R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?>
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <?php
-
+            while ($produto = $resultado->fetch_assoc())
+            {
+                echo "<div style='display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 25px; background-color: white; text-align: center;'>"; 
+                echo "<img style='width: 100%; aspect-ratio: 3/4; object-fit: cover;' src='../img_produto/" . $produto['foto'] . "'>"; 
+                echo "<p style='margin: 8px 0 0; font-family: Arial, sans-serif; font-size: 20px; color: #333;'>" . $produto['nome'] . "</p>"; echo "<p style='margin: 0; font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; color: black;'>R$ " . number_format($produto['preco'], 2, ',', '.') . "</p>"; 
+                echo "</div>";
             }
 
-        } else {
-
-            echo '<div class="sem-produtos">Nenhum produto encontrado.</div>';
-
+            echo "</div>";
         }
-
+        else
+            echo '<h2 class="sem-produtos">Nenhum produto encontrado.</h2>';
         ?>
 
     </div>

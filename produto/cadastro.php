@@ -1,7 +1,9 @@
 <?php
+session_start();
+
 if (!$_SESSION['root'])
 {
-    echo "<script>window.location.href='index.php';</script>";
+    echo "<script>window.location.href='../index.php';</script>";
     exit();
 }
 
@@ -198,7 +200,7 @@ $conexao->close();
     <select name="categoria" id="categoria">
         <option value="Camiseta">Camiseta</option>
         <option value="Calça">Calça</option>
-        <option value="Tênis">Têniss</option>
+        <option value="Tênis">Tênis</option>
     </select><br>
 
     <label for="preco">Preço: </label>
