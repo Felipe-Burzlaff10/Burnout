@@ -207,14 +207,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $caminho_destino = "../img_produto/" . $nome_final_imagem;
     move_uploaded_file($nome_temporario, $caminho_destino);
 
-    $sql = "INSERT INTO produto(nome, categoria, preco, tamanho, estoque, descrição, foto)
-    VALUES (?, ?, ?, ?, ?, ?, ?) ";
+    try
+    {
+        if($_POST['estoque'] == 0)
+            throw new InvalidArgumentException("Numero invalido para estoque!");
 
-    $stmt = $conexao->prepare($sql);
-    $stmt->bind_param('ssdsiss', $_POST['nome'], $_POST['categoria'], $_POST['preco'], $_POST['tamanho'], $_POST['estoque'], $_POST['descricao'], $nome_final_imagem);
-    $stmt->execute();
-    $stmt->close();
+        $sql = "INSERT INTO produto(nome, categoria, preco, tamanho, estoque, descrição, foto)
+        VALUES (?, ?, ?, ?, ?, ?, ?) ";
 
+        $stmt = $conexao->prepare($sql);
+        $stmt->bind_param('ssdsiss', $_POST['nome'], $_POST['categoria'], $_POST['preco'], $_POST['tamanho'], $_POST['estoque'], $_POST['descricao'], $nome_final_imagem);
+        $stmt->execute();
+        $stmt->close();
+
+
+    }catch(InvalidArgumentException $e)
+    {
+       echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+        echo "<script> Swal.fire({
+        title: 'ERRO',
+        text: '". $e -> getMessage() . "',
+        icon: 'error',
+        confirmButtonText: 'OK'
+        })</script>";
+        exit;
+    }
+    finally
+    {
+        $conexao->close();
+    }
+   
 }
  
 $conexao->close();
+?>

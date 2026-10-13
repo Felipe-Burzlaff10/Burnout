@@ -43,6 +43,19 @@ while($produto = $resultado -> fetch_assoc())
     echo "Preço: R$" . $produto['preco'];
 
     echo "<br>";
+
+    echo "<details>";
+
+    echo "<summary>Ver mais</summary>";
+
+    echo " Estoque: ". $produto['estoque']. "<br>";
+
+    echo " Tamanho: ". $produto['tamanho']. "<br>";
+
+    echo "Descrição: " . $produto['descrição']. "<br>";
+    
+
+    echo "</details>";
 }
 
 echo "</form>";
