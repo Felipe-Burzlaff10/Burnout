@@ -36,9 +36,9 @@ echo "<form method='post'>";
 
 while($produto = $resultado -> fetch_assoc())
 {   
-    echo "<img width='20%' src='" . "../img_produto/" . $produto['foto'] . "'>";
+    echo "<img width='20%' src='" . "../img_produto/" . $produto['foto'] . "'><br>";
 
-    echo "Nome: " . $produto['nome'];
+    echo "Nome: " . $produto['nome'] . "<br>";
 
     echo "Preço: R$" . $produto['preco'];
 

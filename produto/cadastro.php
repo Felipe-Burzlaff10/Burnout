@@ -166,6 +166,12 @@
     <label for="tamanho">Tamanho: </label>
     <input type="text" name="tamanho"><br>
 
+    <label for="estoque">Estoque: </label>
+    <input type="number" name="estoque"><br>
+
+    <label for="descricao">Descrição: </label>
+    <textarea style="resize: none;"  rows="5" cols="40" id="descricao" name="descricao"></textarea>
+
     <label for="imagem">Imagem: </label>
     <input type="file" name="imagem"><br>
 
@@ -201,11 +207,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $caminho_destino = "../img_produto/" . $nome_final_imagem;
     move_uploaded_file($nome_temporario, $caminho_destino);
 
-    $sql = "INSERT INTO produto(nome, categoria, preco, tamanho, foto)
-    VALUES (?, ?, ?, ?, ?) ";
+    $sql = "INSERT INTO produto(nome, categoria, preco, tamanho, estoque, descrição, foto)
+    VALUES (?, ?, ?, ?, ?, ?, ?) ";
 
     $stmt = $conexao->prepare($sql);
-    $stmt->bind_param('ssdss', $_POST['nome'], $_POST['categoria'], $_POST['preco'], $_POST['tamanho'], $nome_final_imagem);
+    $stmt->bind_param('ssdsiss', $_POST['nome'], $_POST['categoria'], $_POST['preco'], $_POST['tamanho'], $_POST['estoque'], $_POST['descricao'], $nome_final_imagem);
     $stmt->execute();
     $stmt->close();
 
