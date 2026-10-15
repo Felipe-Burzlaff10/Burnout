@@ -223,13 +223,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
     }catch(Exception $e)
     {
-       echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
-        echo "<script> Swal.fire({
-        title: 'ERRO',
-        text: '". $e -> getMessage() . "',
-        icon: 'error',
-        confirmButtonText: 'OK'
-        })</script>";
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+        echo "<script src='../mensagem_erro.js'></script>";
+        echo "<script>erro_mensagem(" . json_encode($e->getMessage()) . ");</script>";
         exit;
     }
     finally
