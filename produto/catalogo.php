@@ -681,7 +681,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
             <ul class="nav justify-content-center">
 
                 <li class="nav-item">
-                    <a class="nav-link active" href="home.php">
+                    <a class="nav-link active" href="index.php">
                         HOME
                     </a>
                 </li>
