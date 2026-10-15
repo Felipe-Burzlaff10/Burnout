@@ -1,177 +1,3 @@
-<style>
-    * {
-        box-sizing: border-box;
-    }
-
-    body {
-        margin: 0;
-        min-height: 100vh;
-        padding: 40px 20px;
-
-        background: linear-gradient(
-            to bottom,
-            #ffffff 0%,
-            #ffffff 25%,
-            #b3b3b3 100%
-        );
-
-        font-family: Georgia, "Times New Roman", serif;
-        color: #000;
-    }
-
-    form {
-        width: 90%;
-        max-width: 650px;
-        margin: 20px auto;
-
-        padding: 35px 45px;
-
-        background: #22c900;
-        border-radius: 22px;
-    }
-
-    form label {
-        display: block;
-        margin: 14px 0 7px;
-
-        font-size: 19px;
-        font-weight: bold;
-    }
-
-    form input[type="email"],
-    form input[type="password"],
-    form input[type="text"],
-    form input[type="num"] {
-        width: 100%;
-        height: 45px;
-
-        padding: 8px 12px;
-
-        border: 3px solid #000;
-        border-radius: 10px;
-
-        background: #fff;
-
-        font-family: Georgia, "Times New Roman", serif;
-        font-size: 17px;
-        font-weight: bold;
-
-        outline: none;
-    }
-
-    form input:focus {
-        background: #f1f1f1;
-    }
-
-    /* CEP + botão */
-    #cep {
-        width: calc(100% - 180px);
-    }
-
-    form button {
-        height: 45px;
-        padding: 0 18px;
-
-        margin-left: 8px;
-
-        border: none;
-        border-radius: 10px;
-
-        background: #000;
-        color: #fff;
-
-        font-family: Georgia, "Times New Roman", serif;
-        font-size: 15px;
-        font-weight: bold;
-
-        cursor: pointer;
-        transition: 0.2s;
-    }
-
-    form button:hover {
-        background: #222;
-        transform: scale(1.02);
-    }
-
-    /* Botão cadastrar */
-    form input[type="submit"] {
-        display: block;
-
-        width: 220px;
-        height: 55px;
-
-        margin: 30px auto 0;
-
-        border: none;
-        border-radius: 15px;
-
-        background: #000;
-        color: #fff;
-
-        font-family: Georgia, "Times New Roman", serif;
-        font-size: 18px;
-        font-weight: bold;
-
-        cursor: pointer;
-        transition: 0.2s;
-    }
-
-    form input[type="submit"]:hover {
-        background: #222;
-        transform: scale(1.03);
-    }
-
-    @media (max-width: 600px) {
-
-        body {
-            padding: 20px 10px;
-        }
-
-        form {
-            width: 100%;
-            padding: 25px 20px;
-        }
-
-        #cep {
-            width: 100%;
-        }
-
-        form button {
-            width: 100%;
-            margin: 8px 0 0;
-        }
-
-        form input[type="submit"] {
-            width: 100%;
-        }
-
-        .btn-voltar {
-    display: block;
-    width: 220px;
-    height: 50px;
-    margin: 0 auto 20px;
-
-    border: none;
-    border-radius: 15px;
-
-    background: #000;
-    color: #fff;
-
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 17px;
-    font-weight: bold;
-
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.btn-voltar:hover {
-    background: #222;
-    transform: scale(1.03);
-}
-    }
-</style>
-
 <?php
 session_start();
 
@@ -181,37 +7,33 @@ if (!isset($_SESSION['dados']['id_usuario']))
     exit();
 }
 
-echo '<script src="../API_endereço.js"></script>';
-
 require_once "../conexao.php";
-
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-    //verifica se senha foi enviada em branco ou não
-   if (!empty($_POST['senha']))
-    $senha_hash = password_hash($_POST['senha'], PASSWORD_DEFAULT);
-        else
-            $senha_hash = '';
-        
+    if (!empty($_POST['senha']))
+        $senha_hash = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+    else
+        $senha_hash = '';
+
     $campos_endereco = ['rua', 'num', 'bairro', 'cidade', 'uf', 'cep'];
     $preenchido = [];
 
-    foreach($campos_endereco as $key)
+    foreach ($campos_endereco as $key)
     {
-        if(!empty($_POST[$key]))
-         $preenchido[] = $key;
+        if (!empty($_POST[$key]))
+            $preenchido[] = $key;
     }
 
-    if(!empty($preenchido))
+    if (!empty($preenchido))
         $endereco_final = "{$_POST['rua']}, Nº: {$_POST['num']}, {$_POST['bairro']} - {$_POST['cidade']}/{$_POST['uf']} CEP: {$_POST['cep']}";
     else
         $endereco_final = '';
 
     if (!empty($_POST['email']))
         $email = $_POST['email'];
-        else
-            $email = '';
+    else
+        $email = '';
 
     $sql = "UPDATE usuario
             SET email = COALESCE(NULLIF(?, ''), email),
@@ -219,47 +41,68 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                 endereco = COALESCE(NULLIF(?, ''), endereco)
             WHERE id_usuario = ?";
 
-$stmt = $conexao->prepare($sql);
-$stmt->bind_param('sssi', $email, $senha_hash, $endereco_final, $_SESSION['dados']['id_usuario']);
-$stmt->execute();
-$stmt->close();
-
-    
+    $stmt = $conexao->prepare($sql);
+    $stmt->bind_param('sssi', $email, $senha_hash, $endereco_final, $_SESSION['dados']['id_usuario']);
+    $stmt->execute();
+    $stmt->close();
 }
-
 ?>
 
-<form method="POST">
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alterar dados - BURNOUT</title>
+    <link rel="stylesheet" href="../assets/css/burnout-admin.css">
+</head>
+<body class="admin-page">
+<header class="admin-header">
+    <a class="admin-brand" href="../index.php">
+        <img src="../img_site/logo.png" alt="">
+        <span>BURNOUT</span>
+    </a>
+    <a class="admin-back" href="../index.php">Voltar à loja</a>
+</header>
 
-    <button type="button" onclick="history.back()" class="btn-voltar">
-    ← Voltar
-    </button>
+<main class="admin-main">
+    <h1 class="admin-heading">Alterar dados da conta</h1>
+    <p class="admin-subheading">Deixe em branco os campos que não deseja modificar.</p>
 
-    <label for="email">Email: </label>
-    <input type="email" name="email"  ><br>
+    <section class="admin-panel">
+        <form class="admin-form" method="POST">
+            <label for="email">E-mail</label>
+            <input type="email" name="email" id="email">
 
-    <label for="senha">Senha: </label>
-    <input type="password" name="senha"  ><br>
+            <label for="senha">Senha</label>
+            <input type="password" name="senha" id="senha">
 
-    <label for="cep">CEP: </label>
-    <input type="num" name="cep" id="cep"  >
-    <button type="button" onclick="buscarEndereco()">Buscar Endereço</button><br>
+            <label for="cep">CEP</label>
+            <div class="admin-inline">
+                <input type="text" name="cep" id="cep">
+                <button type="button" onclick="buscarEndereco()">Buscar endereço</button>
+            </div>
 
-    <label for="uf">UF: </label>
-    <input type="text" name="uf" id="uf"  ><br>
+            <label for="uf">UF</label>
+            <input type="text" name="uf" id="uf">
 
-    <label for="bairro">Bairro: </label>
-    <input type="text" name="bairro" id="bairro"  ><br>
+            <label for="bairro">Bairro</label>
+            <input type="text" name="bairro" id="bairro">
 
-    <label for="cidade">Cidade: </label>
-    <input type="text" name="cidade" id="cidade"  ><br>
+            <label for="cidade">Cidade</label>
+            <input type="text" name="cidade" id="cidade">
 
-    <label for="rua">Rua: </label>
-    <input type="text" name="rua" id="rua"  ><br>
+            <label for="rua">Rua</label>
+            <input type="text" name="rua" id="rua">
 
-    <label for="num">Nº: </label>
-    <input type="num" name="num"  ><br>
+            <label for="num">Nº</label>
+            <input type="number" name="num" id="num">
 
-    <input type="submit" value="Cadastrar">
+            <input type="submit" value="Salvar alterações">
+        </form>
+    </section>
+</main>
 
-</form>
+<script src="../API_endereço.js"></script>
+</body>
+</html>

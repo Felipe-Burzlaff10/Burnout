@@ -191,7 +191,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
             background: #e9e9e9;
             min-height: 100vh;
             padding: 32px;
-            margin-left: 255px;
+            margin: 0 auto;
+            max-width: 1600px;
         }
 
         .catalogo-topo {

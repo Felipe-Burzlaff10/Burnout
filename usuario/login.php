@@ -83,12 +83,7 @@ $conexao->close();
             margin: 0;
             min-height: 100vh;
 
-            background: linear-gradient(
-                135deg,
-                #ffffff 0%,
-                #eeeeee 50%,
-                #cfcfcf 100%
-            );
+            background: #e9e9e9;
 
             font-family: Georgia, 'Times New Roman', serif;
             color: black;

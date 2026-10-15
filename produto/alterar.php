@@ -76,177 +76,51 @@ $stmt->close();
 
 ?>
 
-<style>
-    * {
-        box-sizing: border-box;
-    }
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alterar produto - BURNOUT</title>
+    <link rel="stylesheet" href="../assets/css/burnout-admin.css">
+</head>
+<body class="admin-page">
+<header class="admin-header">
+    <a class="admin-brand" href="../index.php">
+        <img src="../img_site/logo.png" alt="">
+        <span>BURNOUT</span>
+    </a>
+    <a class="admin-back" href="listar.php">Voltar à lista</a>
+</header>
 
-    body {
-        margin: 0;
-        min-height: 100vh;
-        padding: 40px 20px;
+<main class="admin-main">
+    <h1 class="admin-heading">Alterar produto</h1>
+    <p class="admin-subheading">Preencha os campos que deseja atualizar.</p>
 
-        background: linear-gradient(
-            to bottom,
-            #ffffff 0%,
-            #ffffff 25%,
-            #b3b3b3 100%
-        );
+    <section class="admin-panel">
+        <form class="admin-form" action="" method="POST" enctype="multipart/form-data">
+            <label for="nome">Nome do produto</label>
+            <input type="text" name="nome" id="nome">
 
-        font-family: Georgia, "Times New Roman", serif;
-        color: #000;
-    }
+            <label for="categoria">Categoria</label>
+            <select name="categoria" id="categoria">
+                <option value="Camiseta">Camiseta</option>
+                <option value="Calça">Calça</option>
+                <option value="Tênis">Tênis</option>
+            </select>
 
-    form {
-        width: 90%;
-        max-width: 650px;
-        margin: 20px auto;
+            <label for="preco">Preço</label>
+            <input type="number" step="0.01" name="preco" id="preco">
 
-        padding: 35px 45px;
+            <label for="tam">Tamanho</label>
+            <input type="text" name="tam" id="tam">
 
-        background: #22c900;
-        border-radius: 22px;
-    }
+            <label for="imagem">Imagem</label>
+            <input type="file" name="imagem" id="imagem" accept=".jpg,.jpeg,.png">
 
-    label {
-        display: block;
-        margin: 14px 0 7px;
-
-        font-size: 19px;
-        font-weight: bold;
-    }
-
-    input[type="nome"],
-    input[type="text"],
-    input[type="num"],
-    input[type="file"] {
-        width: 100%;
-        height: 45px;
-
-        padding: 8px 12px;
-
-        border: 3px solid #000;
-        border-radius: 10px;
-
-        background: #fff;
-
-        font-family: Georgia, "Times New Roman", serif;
-        font-size: 17px;
-        font-weight: bold;
-
-        outline: none;
-    }
-
-    input[type="file"] {
-        padding: 7px;
-    }
-
-    input:focus {
-        background: #f1f1f1;
-    }
-
-    input[type="submit"] {
-        display: block;
-
-        width: 220px;
-        height: 55px;
-
-        margin: 30px auto 15px;
-
-        border: none;
-        border-radius: 15px;
-
-        background: #000;
-        color: #fff;
-
-        font-family: Georgia, "Times New Roman", serif;
-        font-size: 18px;
-        font-weight: bold;
-
-        cursor: pointer;
-        transition: 0.2s;
-    }
-
-    input[type="submit"]:hover {
-        background: #222;
-        transform: scale(1.03);
-    }
-
-    a {
-        text-decoration: none;
-    }
-
-    a button {
-        display: block;
-
-        width: 220px;
-        height: 50px;
-
-        margin: 0 auto;
-
-        border: none;
-        border-radius: 15px;
-
-        background: #000;
-        color: #fff;
-
-        font-family: Georgia, "Times New Roman", serif;
-        font-size: 17px;
-        font-weight: bold;
-
-        cursor: pointer;
-        transition: 0.2s;
-    }
-
-    a button:hover {
-        background: #222;
-        transform: scale(1.03);
-    }
-
-    @media (max-width: 600px) {
-
-        body {
-            padding: 20px 10px;
-        }
-
-        form {
-            width: 100%;
-            padding: 25px 20px;
-        }
-
-        input[type="submit"],
-        a button {
-            width: 100%;
-        }
-    }
-</style>
-
-
-<form action="" method="POST" enctype="multipart/form-data"> 
- 
-    <label for="nome">Nome Produto: </label> 
-    <input type="nome" name="nome"><br> 
- 
-   <label for="categoria">Categoria: </label>
-    <select name="categoria" id="categoria">
-        <option value="Camiseta">Camiseta</option>
-        <option value="Calça">Calça</option>
-        <option value="Tênis">Têniss</option>
-    </select><br>
-    
-    <label for="preco">Preço: </label> 
-    <input type="num" name="preco" id="preco"><br> 
- 
-    <label for="tam">Tamanho: </label> 
-    <input type="text" name="tam" id="tam"><br> 
- 
-    <label for="imagem">Imagem: </label> 
-    <input type="file" name="imagem"><br> 
- 
-    <input type="submit" value="Alterar"> 
- 
-</form> 
- 
-<a href="../index.php"> 
-    <button>← Voltar</button> 
-</a>
+            <input type="submit" value="Salvar alterações">
+        </form>
+    </section>
+</main>
+</body>
+</html>

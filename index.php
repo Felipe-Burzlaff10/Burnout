@@ -1,15 +1,10 @@
 <?php
 session_start();
 
-if (isset($_SESSION['dados']['id_usuario']))
-{
-    if ($_SESSION['dados']['root'])
-        echo "<a href='usuario/listar.php'>
-                    <button>listar</button>
-                </a>";
-}
-else
+if (!isset($_SESSION['dados']['id_usuario']))
     echo "<script>window.location.href='usuario/login.php';</script>";
+
+$isRoot = !empty($_SESSION['dados']['root']);
 ?>
 
 
@@ -125,8 +120,9 @@ else
         ========================= */
 
         .carousel img {
-            width: 800px;
-            height: 800px;
+            display: block;
+            width: 100%;
+            height: clamp(300px, 55vw, 700px);
             object-fit: cover;
         }
 
@@ -160,6 +156,51 @@ else
             background-color: #39bf00;
             color: black;
             transform: scale(1.05);
+        }
+
+        .admin-shortcut {
+            position: fixed;
+            right: 20px;
+            bottom: 82px;
+            z-index: 1000;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 16px;
+            border: 2px solid #111;
+            border-radius: 10px;
+            background: #fff;
+            color: #111;
+            font-weight: 800;
+            text-decoration: none;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        .admin-shortcut:hover {
+            background: #39bf00;
+            color: #111;
+            transform: translateY(-2px);
+        }
+
+        .account-settings {
+            display: block;
+            width: fit-content;
+            margin: 18px auto;
+            padding: 10px 16px;
+            border: 2px solid #111;
+            border-radius: 10px;
+            background: #fff;
+            color: #111;
+            font-weight: 800;
+            text-decoration: none;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        .account-settings:hover {
+            background: #39bf00;
+            color: #111;
+            transform: translateY(-1px);
         }
 
 
@@ -197,6 +238,19 @@ else
 
             .carousel img {
                 height: 450px;
+            }
+
+            .admin-shortcut {
+                right: 12px;
+                bottom: 76px;
+                padding: 9px 12px;
+                font-size: 13px;
+            }
+
+            .logout {
+                right: 12px;
+                bottom: 12px;
+                padding: 9px 14px;
             }
         }
 
@@ -342,6 +396,13 @@ else
 
     </header>
 
+    <?php if ($isRoot): ?>
+        <a class="admin-shortcut" href="usuario/listar.php">
+            <i class="bi bi-people-fill"></i>
+            Gerenciar usuários
+        </a>
+    <?php endif; ?>
+
 
 
     <!-- =========================
@@ -413,19 +474,8 @@ else
          LINK DE ALTERAÇÃO
     ========================= -->
 
-    <a
-        href="usuario/alterar.php"
-        style="
-            display: block;
-            text-align: center;
-            margin: 20px;
-            color: black;
-            font-weight: bold;
-            text-decoration: none;
-        ">
-
+    <a href="usuario/alterar.php" class="account-settings">
         Alterar dados do usuário
-
     </a>
 
 
