@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!$_SESSION['root'])
+if (!$_SESSION['dados']['root'])
 {
     echo "<script>window.location.href='../index.php';</script>";
     exit();

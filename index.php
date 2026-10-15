@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-if (isset($_SESSION['id_usuario']))
+if (isset($_SESSION['dados']['id_usuario']))
 {
-    if ($_SESSION['root'])
+    if ($_SESSION['dados']['root'])
         echo "<a href='usuario/listar.php'>
                     <button>listar</button>
                 </a>";
@@ -290,7 +290,7 @@ else
                         href="perfil.php"
                         class="usuario-header">
 
-                        <?php echo $_SESSION['nome']; ?>
+                        <?php echo $_SESSION['dados']['nome']; ?>
 
                     </a>
 

@@ -175,7 +175,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['id_usuario']))
+if (!isset($_SESSION['dados']['id_usuario']))
 {
     echo "<script>window.location.href='index.php';</script>";
     exit();
@@ -220,7 +220,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             WHERE id_usuario = ?";
 
 $stmt = $conexao->prepare($sql);
-$stmt->bind_param('sssi', $email, $senha_hash, $endereco_final, $_SESSION['id_usuario']);
+$stmt->bind_param('sssi', $email, $senha_hash, $endereco_final, $_SESSION['dados']['id_usuario']);
 $stmt->execute();
 $stmt->close();
 

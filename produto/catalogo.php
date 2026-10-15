@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['id_usuario']))
+if (!isset($_SESSION['dados']['id_usuario']))
 {
     echo "<script>window.location.href='index.php';</script>";
     exit();
@@ -526,7 +526,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa'])) {
                 </a>
 
                 <a href="perfil.php" class="usuario-header">
-                    <?php echo $_SESSION['nome']; ?>
+                    <?php echo $_SESSION['dados']['nome']; ?>
                 </a>
 
             </div>
