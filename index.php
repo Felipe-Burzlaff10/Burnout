@@ -164,29 +164,6 @@ else
            RESPONSIVO
         ========================= */
 
-        @media (max-width: 900px) {
-
-            .titulo {
-                font-size: 50px;
-            }
-
-            .logo {
-                width: 130px;
-            }
-
-            .icone-header {
-                font-size: 26px;
-            }
-
-            .usuario-header {
-                font-size: 15px;
-            }
-
-            .carousel img {
-                height: 600px;
-            }
-        }
-
 
         @media (max-width: 600px) {
 
@@ -414,23 +391,16 @@ else
 
 
         <!-- BOTÃO PRÓXIMO -->
+         
+    <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExample"
+        data-bs-slide="next">
 
-        <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#carouselExample"
-            data-bs-slide="next">
-
-            <span
-                class="carousel-control-next-icon"
-                aria-hidden="true">
-            </span>
-
-            <span class="visually-hidden">
-                Próximo
-            </span>
-
-        </button>
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Próximo</span>
+    </button>
 
     </div>
 
