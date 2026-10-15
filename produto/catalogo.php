@@ -4,6 +4,7 @@
     <button type="submit">Pesquisar</button>
 </form>
 
+
 <?php
 session_start();
 
@@ -30,38 +31,56 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
     }
 }
 
+
+
 echo "<div class='d-flex p-2 bg-light'>";
 
 echo "<form method='post'>";
-
 while($produto = $resultado -> fetch_assoc())
 {   
+    if($produto['estoque'] > 0)
+    {
+        $disponibilidade = "Em estoque";
+        $estilo = "";
+    }
+    else
+    {
+        $disponibilidade = "Fora de estoque";
+        $estilo = "filter: blur(2px);";
+    }
+    
+    echo "<div class='card' style='$estilo'>";
+    
     echo "<img width='20%' src='" . "../img_produto/" . $produto['foto'] . "'><br>";
-
+    
+    echo "</div>";
     echo "Nome: " . $produto['nome'] . "<br>";
-
+    
     echo "Preço: R$" . $produto['preco'];
-
+    
     echo "<br>";
-
+    
     echo "<details>";
-
+    
     echo "<summary>Ver mais</summary>";
-
+    
     echo " Estoque: ". $produto['estoque']. "<br>";
-
+    
     echo " Tamanho: ". $produto['tamanho']. "<br>";
-
+    
     echo "Descrição: " . $produto['descrição']. "<br>";
+
+    
+    echo "Disponibilidade: " . $disponibilidade. "<br>";
     
 
     echo "</details>";
+
 }
 
 echo "</form>";
 
 echo "</div>";
-echo "<hr>";
 
 $conexao->close();
 ?>

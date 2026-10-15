@@ -210,7 +210,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     try
     {
         if($_POST['estoque'] == 0)
-            throw new InvalidArgumentException("Numero invalido para estoque!");
+            throw new Exception("Numero invalido para estoque!");
 
         $sql = "INSERT INTO produto(nome, categoria, preco, tamanho, estoque, descrição, foto)
         VALUES (?, ?, ?, ?, ?, ?, ?) ";
@@ -221,7 +221,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         $stmt->close();
 
 
-    }catch(InvalidArgumentException $e)
+    }catch(Exception $e)
     {
        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
         echo "<script> Swal.fire({
