@@ -185,10 +185,16 @@ echo '<script src="../API_endereço.js"></script>';
 
 require_once "../conexao.php";
 
-echo $_SESSION['dados']['nome'];
-echo $_SESSION['dados']['email'];
-echo $_SESSION['dados'][''];
+$sql = "SELECT * FROM usuario
+        WHERE id_usuario = ?";
 
+$stmt = $conexao->prepare($sql);
+$stmt->bind_param('i', $_SESSION['dados']['id_usuario']);
+$stmt->execute();
+$resultado = $stmt->get_result();
+$stmt->close();
+
+$usuario = $resultado -> fetch_assoc()
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {

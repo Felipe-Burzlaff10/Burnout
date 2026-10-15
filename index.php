@@ -294,17 +294,20 @@ else
                 <!-- BOTÃO DA BARRA LATERAL + LOGO -->
                 <div class="col-3 d-flex align-items-center gap-2">
 
-                    <button
-                        class="botao-menu"
-                        id="abrirSidebar"
-                        type="button"
-                        aria-label="Abrir menu lateral"
-                        aria-controls="sidebar"
-                        aria-expanded="false">
+                    <?php 
+                        if ($_SESSION['dados']['root'])
+                            echo "<button
+                                  class='botao-menu'
+                                  id='abrirSidebar'
+                                  type='button'
+                                  aria-label='Abrir menu lateral'
+                                  aria-controls='sidebar'
+                                  aria-expanded='false'>
 
-                        <i class="bi bi-list"></i>
+                                    <i class='bi bi-list'></i>
 
-                    </button>
+                                  </button>";
+                    ?>
 
                     <img
                         src="img_site/logo.png"
