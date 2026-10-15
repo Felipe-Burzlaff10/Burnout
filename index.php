@@ -204,7 +204,7 @@ else
 
             .icone-header {
                 font-size: 22px;
-            }
+            } 
 
             .usuario-header {
                 display: none;
@@ -398,6 +398,18 @@ else
 
             </div>
 
+
+            <!-- IMAGEM 3 -->
+
+            <div class="carousel-item">
+
+                <img
+                    src="img_site/imagemPatrocinio.png"
+                    class="d-block w-100"
+                    alt="Patrocínio BURNOUT">
+
+            </div>
+
         </div>
 
 
@@ -439,7 +451,7 @@ else
             text-decoration: none;
         ">
 
-        PCD
+        Alterar dados do usuário
 
     </a>
 
