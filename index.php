@@ -125,8 +125,8 @@ else
         ========================= */
 
         .carousel img {
-            width: 1200px;
-            height: 400px;
+            width: 800px;
+            height: 450px;
             object-fit: cover;
         }
 
