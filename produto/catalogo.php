@@ -7,18 +7,17 @@ if (!isset($_SESSION['dados']['id_usuario']))
     exit();
 }
 
-
 require_once "../conexao.php";
 
 $sql = "SELECT * FROM produto";
 $resultado = $conexao->query($sql);
 
-if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa'])) {
-
+if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
+{
     $pesquisa = "%" . $_GET['pesquisa'] . "%";
 
-    $sql = "SELECT * FROM produto 
-            WHERE nome LIKE ? 
+    $sql = "SELECT * FROM produto
+            WHERE nome LIKE ?
             OR categoria LIKE ?";
 
     $stmt = $conexao->prepare($sql);
@@ -31,607 +30,782 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa'])) {
 }
 ?>
 
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BURNOUT - Home</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        /* =========================
+           CONFIGURAÇÕES GERAIS
+        ========================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #e9e9e9;
+            color: #111;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* =========================
+           CABEÇALHO
+        ========================= */
+
+        .header-home {
+            background: #39bf00;
+            padding: 12px 20px 0;
+            border-bottom: 3px solid #111;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            width: 170px;
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.04);
+        }
+
+        .titulo {
+            margin: 0;
+            color: #080808;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 70px;
+            font-weight: 900;
+            letter-spacing: 5px;
+        }
+
+        /* =========================
+           ÍCONES E USUÁRIO
+        ========================= */
+
+        .icone-header {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #080808;
+            font-size: 30px;
+            text-decoration: none;
+            transition: color 0.25s, transform 0.25s;
+        }
+
+        .icone-header:hover {
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .usuario-header {
+            color: #080808;
+            font-size: 16px;
+            font-weight: 800;
+            text-decoration: none;
+            transition: color 0.25s;
+        }
+
+        .usuario-header:hover {
+            color: white;
+        }
+
+        /* =========================
+           MENU
+        ========================= */
+
+        .menu-principal {
+            background: #39bf00;
+            padding: 10px 0 14px;
+        }
+
+        .menu-principal .nav-link {
+            position: relative;
+            color: #080808;
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-decoration: none;
+            margin: 0 12px;
+            padding: 8px 4px;
+            transition: color 0.25s;
+        }
+
+        .menu-principal .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background: #080808;
+            transition: width 0.25s, left 0.25s;
+        }
+
+        .menu-principal .nav-link:hover::after,
+        .menu-principal .nav-link.active::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .menu-principal .nav-link:hover {
+            color: white;
+        }
+
+        .menu-principal .nav-link.active {
+            color: #080808;
+        }
+
+        .menu-principal .nav-link.disabled {
+            color: #333;
+            opacity: 0.55;
+        }
+
+        /* =========================
+           CATÁLOGO
+        ========================= */
+
+        .catalogo-area {
+            background: #e9e9e9;
+            min-height: 100vh;
+            padding: 32px;
+            margin-left: 255px;
+        }
+
+        .catalogo-topo {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .catalogo-titulo {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .catalogo-titulo::after {
+            content: "";
+            display: block;
+            width: 65px;
+            height: 4px;
+            margin-top: 8px;
+            background: #39bf00;
+            border-radius: 5px;
+        }
+
+        /* =========================
+           PESQUISA
+        ========================= */
+
+        .pesquisa-container {
+            width: 100%;
+            margin-bottom: 28px;
+        }
+
+        .pesquisa-container form {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+            max-width: 650px;
+        }
+
+        .pesquisa-container input {
+            flex: 1;
+            min-width: 0;
+            height: 48px;
+            padding: 0 20px;
+            border: 2px solid #222;
+            border-radius: 10px;
+            background: white;
+            color: #111;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.25s, box-shadow 0.25s;
+        }
+
+        .pesquisa-container input:focus {
+            border-color: #39bf00;
+            box-shadow: 0 0 0 4px rgba(57, 191, 0, 0.13);
+        }
+
+        .pesquisa-container button {
+            height: 48px;
+            padding: 0 24px;
+            border: 2px solid #111;
+            border-radius: 10px;
+            background: #111;
+            color: white;
+            font-size: 14px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: background 0.25s, color 0.25s;
+        }
+
+        .pesquisa-container button:hover {
+            background: #39bf00;
+            color: #111;
+        }
+
+        /* =========================
+           GRADE DE PRODUTOS
+        ========================= */
+
+        .catalogo-produtos {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 24px;
+            width: 100%;
+            align-items: stretch;
+        }
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .card-produto {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 10px;
+            min-width: 0;
+            padding: 14px;
+            background: #fff;
+            border: 1px solid #dedede;
+            border-radius: 14px;
+            text-align: left;
+            overflow: hidden;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease,
+                        box-shadow 0.3s ease,
+                        border-color 0.3s ease;
+        }
+
+        .card-produto:hover {
+            transform: translateY(-5px);
+            border-color: #39bf00;
+            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.12);
+        }
+
+        /* =========================
+           IMAGEM
+        ========================= */
+
+        .imagem-produto {
+            display: block;
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            object-fit: cover;
+            border-radius: 9px;
+            background: #f0f0f0;
+            transition: transform 0.3s ease;
+        }
+
+        .card-produto:hover .imagem-produto {
+            transform: scale(1.02);
+        }
+
+        /* =========================
+           NOME DO PRODUTO
+        ========================= */
+
+        .nome-produto {
+            margin: 5px 0 0;
+            color: #171717;
+            font-size: 17px;
+            line-height: 1.4;
+            font-weight: 800;
+            overflow-wrap: anywhere;
+        }
+
+        /* =========================
+           PREÇO
+        ========================= */
+
+        .preco-produto {
+            margin: auto 0 0;
+            padding-top: 3px;
+            color: #178b00;
+            font-size: 22px;
+            line-height: 1.3;
+            font-weight: 900;
+        }
+
+        /* =========================
+           SEM PRODUTOS
+        ========================= */
+
+        .sem-produtos {
+            grid-column: 1 / -1;
+            padding: 55px 20px;
+            border: 2px dashed #aaa;
+            border-radius: 14px;
+            background: #f7f7f7;
+            color: #444;
+            text-align: center;
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        /* =========================
+           CARROSSEL
+        ========================= */
+
+        .carousel img {
+            display: block;
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+        }
+
+        /* =========================
+           TELAS GRANDES
+        ========================= */
+
+        @media (min-width: 1600px) {
+            .catalogo-produtos {
+                grid-template-columns: repeat(5, minmax(0, 1fr));
+                gap: 26px;
+            }
+        }
+
+        /* =========================
+           NOTEBOOKS
+        ========================= */
+
+        @media (max-width: 1350px) {
+            .catalogo-produtos {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 20px;
+            }
+
+            .catalogo-area {
+                padding: 25px;
+            }
+
+            .titulo {
+                font-size: 56px;
+            }
+
+            .logo {
+                width: 140px;
+            }
+        }
+
+        /* =========================
+           TABLETS
+        ========================= */
+
+        @media (max-width: 900px) {
+            .catalogo-area {
+                margin-left: 0;
+                padding: 25px;
+            }
+
+            .catalogo-produtos {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 16px;
+            }
+
+            .titulo {
+                font-size: 45px;
+                letter-spacing: 2px;
+            }
+
+            .logo {
+                width: 115px;
+            }
+
+            .icone-header {
+                font-size: 25px;
+            }
+
+            .menu-principal .nav-link {
+                font-size: 13px;
+                margin: 0 7px;
+            }
+
+            .carousel img {
+                height: 400px;
+            }
+        }
+
+        /* =========================
+           CELULARES
+        ========================= */
+
+        @media (max-width: 600px) {
+            .header-home {
+                padding: 12px 8px 0;
+            }
+
+            .header-home .row {
+                flex-wrap: nowrap;
+            }
+
+            .header-home .col-3:first-child {
+                width: 22%;
+            }
+
+            .header-home .col-6 {
+                width: 48%;
+            }
+
+            .header-home .col-3:last-child {
+                width: 30%;
+                gap: 8px !important;
+            }
+
+            .logo {
+                width: 65px;
+            }
+
+            .titulo {
+                font-size: 25px;
+                letter-spacing: 0;
+            }
+
+            .icone-header {
+                font-size: 20px;
+            }
+
+            .usuario-header {
+                display: none;
+            }
+
+            .menu-principal {
+                padding: 7px 2px 10px;
+            }
+
+            .menu-principal .nav {
+                gap: 0;
+            }
+
+            .menu-principal .nav-link {
+                font-size: 11px;
+                margin: 0 4px;
+                padding: 7px 3px;
+                letter-spacing: 0;
+            }
+
+            .catalogo-area {
+                margin-left: 0;
+                padding: 22px 12px 35px;
+            }
+
+            .catalogo-topo {
+                margin-bottom: 20px;
+            }
+
+            .catalogo-titulo {
+                font-size: 23px;
+            }
+
+            .pesquisa-container {
+                margin-bottom: 22px;
+            }
+
+            .pesquisa-container form {
+                gap: 7px;
+            }
+
+            .pesquisa-container input {
+                height: 43px;
+                padding: 0 12px;
+                font-size: 13px;
+            }
+
+            .pesquisa-container button {
+                height: 43px;
+                padding: 0 13px;
+                font-size: 12px;
+            }
+
+            .catalogo-produtos {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 12px;
+            }
+
+            .card-produto {
+                gap: 8px;
+                padding: 9px;
+                border-radius: 10px;
+            }
+
+            .imagem-produto {
+                border-radius: 7px;
+            }
+
+            .nome-produto {
+                font-size: 15px;
+            }
+
+            .preco-produto {
+                font-size: 18px;
+            }
+
+            .carousel img {
+                height: 280px;
+            }
+        }
+
+        /* =========================
+           CELULARES PEQUENOS
+        ========================= */
+
+        @media (max-width: 360px) {
+            .titulo {
+                font-size: 21px;
+            }
+
+            .logo {
+                width: 52px;
+            }
+
+            .icone-header {
+                font-size: 18px;
+            }
+
+            .catalogo-produtos {
+                gap: 8px;
+            }
+
+            .card-produto {
+                padding: 7px;
+            }
+
+            .nome-produto {
+                font-size: 13px;
+            }
+
+            .preco-produto {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         CABEÇALHO
+    ========================= -->
 
-
-<style>
-/* =========================
-   HEADER
-========================= */
-
-.header-home {
-    background-color: #39bf00;
-    padding: 10px 20px 0;
-    border-bottom: 2px solid black;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-}
-
-.logo {
-    width: 170px;
-    height: auto;
-    object-fit: contain;
-}
-
-.titulo {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 70px;
-    font-weight: bold;
-    margin: 0;
-    color: black;
-}
-
-/* ÍCONES DO HEADER */
-
-.icone-header {
-    color: black;
-    font-size: 32px;
-    text-decoration: none;
-    transition: 0.2s ease;
-}
-
-.icone-header:hover {
-    color: white;
-    transform: scale(1.1);
-}
-
-/* USUÁRIO */
-
-.usuario-header {
-    color: black;
-    font-weight: bold;
-    font-size: 18px;
-    text-decoration: none;
-    transition: 0.2s ease;
-}
-
-.usuario-header:hover {
-    color: white;
-}
-
-/* =========================
-   MENU DE NAVEGAÇÃO
-========================= */
-
-.nav {
-    background-color: #39bf00;
-    padding: 10px 0;
-}
-
-.nav-link {
-    color: black;
-    font-weight: bold;
-    font-size: 18px;
-    text-transform: uppercase;
-    text-decoration: none;
-    margin: 0 15px;
-    transition: 0.2s ease;
-}
-
-.nav-link:hover {
-    color: white;
-}
-
-.nav-link.active {
-    color: black;
-    border-bottom: 2px solid black;
-}
-
-.nav-link.disabled {
-    color: #333;
-    opacity: 0.6;
-}
-
-/* =========================
-   ÁREA DO CATÁLOGO BURNOUT
-========================= */
-
-.catalogo-area {
-    background: #d3d3d3;
-    min-height: 100vh;
-    padding: 18px 22px 40px;
-    margin-left: 255px;
-    box-sizing: border-box;
-}
-
-/* =========================
-   PESQUISA
-========================= */
-
-.pesquisa-container {
-    width: 100%;
-    margin-bottom: 18px;
-}
-
-.pesquisa-container form {
-    display: flex;
-    gap: 8px;
-    max-width: 600px;
-}
-
-.pesquisa-container input {
-    flex: 1;
-    min-width: 0;
-    height: 40px;
-    border: 2px solid #000;
-    border-radius: 20px;
-    padding: 0 18px;
-    font-family: Arial, sans-serif;
-    font-size: 15px;
-    outline: none;
-    box-sizing: border-box;
-}
-
-.pesquisa-container input:focus {
-    border-color: #27d000;
-}
-
-.pesquisa-container button {
-    height: 40px;
-    padding: 0 22px;
-    border: 2px solid #000;
-    border-radius: 20px;
-    background: #000;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s ease;
-}
-
-.pesquisa-container button:hover {
-    background: #27d000;
-    color: #000;
-}
-
-/* =========================
-   GRID DOS PRODUTOS
-========================= */
-
-.catalogo {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 38px 48px;
-    width: 100%;
-}
-
-/* =========================
-   CARD DO PRODUTO
-========================= */
-
-.produto-card {
-    background: transparent;
-    min-width: 0;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-/* IMAGEM DO PRODUTO */
-
-.produto-imagem {
-    width: 100%;
-    aspect-ratio: 1.35 / 1;
-    object-fit: cover;
-    display: block;
-    border: 4px solid #000;
-    border-radius: 28px;
-    background: #aaa;
-    transition: transform 0.25s ease;
-    box-sizing: border-box;
-}
-
-.produto-card:hover .produto-imagem {
-    transform: scale(1.02);
-}
-
-/* INFORMAÇÕES DO PRODUTO */
-
-.produto-info {
-    padding: 9px 5px 0;
-}
-
-.produto-nome {
-    margin: 0;
-    font-size: 19px;
-    font-weight: bold;
-    color: #000;
-}
-
-.produto-categoria {
-    margin-top: 3px;
-    font-size: 14px;
-    color: #444;
-}
-
-.produto-preco {
-    margin-top: 5px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #000;
-}
-
-/* NENHUM PRODUTO ENCONTRADO */
-
-.sem-produtos {
-    grid-column: 1 / -1;
-    text-align: center;
-    font-family: Arial, sans-serif;
-    font-size: 20px;
-    font-weight: bold;
-    padding: 50px;
-}
-
-/* =========================
-   CARROSSEL
-========================= */
-
-.carousel img {
-    height: 600px;
-    object-fit: cover;
-}
-
-/* =========================
-   RESPONSIVIDADE - TABLETS
-========================= */
-
-@media (max-width: 1000px) {
-    .catalogo {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 30px;
-    }
-}
-
-@media (max-width: 900px) {
-    .titulo {
-        font-size: 50px;
-    }
-
-    .logo {
-        width: 130px;
-    }
-
-    .icone-header {
-        font-size: 26px;
-    }
-
-    .usuario-header {
-        font-size: 15px;
-    }
-
-    .nav-link {
-        margin: 0 8px;
-        font-size: 16px;
-    }
-}
-
-/* =========================
-   RESPONSIVIDADE - CELULARES
-========================= */
-
-@media (max-width: 700px) {
-    .catalogo-area {
-        margin-left: 0;
-        padding: 18px 15px 30px;
-    }
-
-    .catalogo {
-        grid-template-columns: 1fr;
-        gap: 28px;
-    }
-
-    .pesquisa-container form {
-        width: 100%;
-    }
-
-    .pesquisa-container button {
-        padding: 0 16px;
-    }
-}
-
-@media (max-width: 600px) {
-    .header-home {
-        padding: 10px 5px 0;
-    }
-
-    .header-home .row {
-        flex-wrap: nowrap;
-    }
-
-    .header-home .col-3:first-child {
-        width: 22%;
-    }
-
-    .header-home .col-6 {
-        width: 48%;
-    }
-
-    .header-home .col-3:last-child {
-        width: 30%;
-        gap: 10px !important;
-    }
-
-    .logo {
-        width: 75px;
-    }
-
-    .titulo {
-        font-size: 27px;
-    }
-
-    .icone-header {
-        font-size: 21px;
-    }
-
-    .usuario-header {
-        display: none;
-    }
-
-    .nav {
-        padding: 8px 0;
-        flex-wrap: wrap;
-    }
-
-    .nav-link {
-        font-size: 12px;
-        margin: 0 4px;
-        padding: 6px 4px;
-    }
-
-    .carousel img {
-        height: 300px;
-        object-fit: cover;
-    }
-
-    .produto-nome {
-        font-size: 18px;
-    }
-
-    .produto-preco {
-        font-size: 17px;
-    }
-
-
-/* CATÁLOGO DE PRODUTOS */
-
-.catalogo-produtos {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 25px;
-    padding: 25px;
-}
-
-/* CARD DO PRODUTO */
-
-.card-produto {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
-
-    padding: 25px;
-    background-color: #fff;
-    border-radius: 12px;
-    text-align: center;
-
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.10);
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.card-produto:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.16);
-}
-
-/* IMAGEM */
-
-.imagem-produto {
-    width: 100%;
-    aspect-ratio: 3 / 4;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-/* NOME */
-
-.nome-produto {
-    margin: 10px 0 0;
-    font-family: Arial, sans-serif;
-    font-size: 22px;
-    color: #333;
-}
-
-/* PREÇO */
-
-.preco-produto {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    font-size: 26px;
-    font-weight: bold;
-    color: #000;
-}
-
-/* RESPONSIVIDADE */
-
-@media (max-width: 1200px) {
-    .catalogo-produtos {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 800px) {
-    .catalogo-produtos {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 500px) {
-    .catalogo-produtos {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
-        padding: 10px;
-    }
-
-    .card-produto {
-        padding: 10px;
-    }
-
-    .nome-produto {
-        font-size: 17px;
-    }
-
-    .preco-produto {
-        font-size: 20px;
-    }
-}
-
-
-}
-</style>
-
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <header class="header-home">
 
-    <div class="container-fluid">
+        <div class="container-fluid">
 
-        <div class="row align-items-center">
+            <div class="row align-items-center">
 
-            <!-- LOGO -->
-            <div class="col-3">
-                <img
-                    src="../img_site/logo.png"
-                    alt="Logo BURNOUT"
-                    class="logo">
-            </div>
+                <!-- LOGO -->
 
-            <!-- TÍTULO -->
-            <div class="col-6 text-center">
-                <h1 class="titulo">BURNOUT</h1>
-            </div>
+                <div class="col-3">
+                    <img
+                        src="../img_site/logo.png"
+                        alt="Logo BURNOUT"
+                        class="logo">
+                </div>
 
-            <!-- ÍCONES E USUÁRIO -->
-            <div class="col-3 d-flex justify-content-end align-items-center gap-3">
+                <!-- TÍTULO -->
 
-                <a
-                    href="pesquisa.php"
-                    class="icone-header"
-                    title="Pesquisar"
-                    aria-label="Pesquisar">
-                    <i class="bi bi-search"></i>
-                </a>
+                <div class="col-6 text-center">
+                    <h1 class="titulo">BURNOUT</h1>
+                </div>
 
-                <a
-                    href="carrinho.php"
-                    class="icone-header"
-                    title="Carrinho"
-                    aria-label="Carrinho">
-                    <i class="bi bi-cart3"></i>
-                </a>
+                <!-- ÍCONES E USUÁRIO -->
 
-                <a href="perfil.php" class="usuario-header">
-                    <?php echo $_SESSION['dados']['nome']; ?>
-                </a>
+                <div class="col-3 d-flex justify-content-end align-items-center gap-3">
+
+                    <a
+                        href="pesquisa.php"
+                        class="icone-header"
+                        title="Pesquisar"
+                        aria-label="Pesquisar">
+
+                        <i class="bi bi-search"></i>
+
+                    </a>
+
+                    <a
+                        href="carrinho.php"
+                        class="icone-header"
+                        title="Carrinho"
+                        aria-label="Carrinho">
+
+                        <i class="bi bi-cart3"></i>
+
+                    </a>
+
+                    <a href="perfil.php" class="usuario-header">
+                        <?php echo $_SESSION['dados']['nome']; ?>
+                    </a>
+
+                </div>
 
             </div>
 
         </div>
 
-    </div>
+        <!-- MENU -->
 
-    <!-- MENU -->
-    <ul class="nav justify-content-center">
+        <nav class="menu-principal">
 
-        <li class="nav-item">
-            <a class="nav-link active" href="home.php">
-                HOME
-            </a>
-        </li>
+            <ul class="nav justify-content-center">
 
-        <li class="nav-item">
-            <a class="nav-link" href="produto/catalogo.php">
-                CATÁLOGO
-            </a>
-        </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="home.php">
+                        HOME
+                    </a>
+                </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="lancamentos.php">
-                LANÇAMENTOS
-            </a>
-        </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="produto/catalogo.php">
+                        CATÁLOGO
+                    </a>
+                </li>
 
-        <li class="nav-item">
-            <a class="nav-link disabled"
-               aria-disabled="true"
-               tabindex="-1">
-                PINTO
-            </a>
-        </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="lancamentos.php">
+                        LANÇAMENTOS
+                    </a>
+                </li>
 
-    </ul>
+                <li class="nav-item">
+                    <a
+                        class="nav-link disabled"
+                        aria-disabled="true"
+                        tabindex="-1">
+                        PINTO
+                    </a>
+                </li>
 
-</header>
+            </ul>
 
+        </nav>
 
-<div class="catalogo-area">
+    </header>
 
-    <!-- PESQUISA -->
+    <!-- =========================
+         ÁREA PRINCIPAL
+    ========================= -->
 
-    <div class="pesquisa-container">
+    <main class="catalogo-area">
 
-        <form method="GET">
+        <!-- TÍTULO DO CATÁLOGO -->
 
-            <input 
-                type="text" 
-                name="pesquisa"
-                placeholder="Pesquisar produto..."
-            >
+        <div class="catalogo-topo">
 
-            <button type="submit">
-                Pesquisar
-            </button>
+            <h2 class="catalogo-titulo">
+                Nossos produtos
+            </h2>
 
-        </form>
+        </div>
 
-    </div>
+        <!-- PESQUISA -->
 
+        <div class="pesquisa-container">
 
-    <!-- PRODUTOS -->
+            <form method="GET">
 
-    <div class="catalogo">
+                <input
+                    type="text"
+                    name="pesquisa"
+                    placeholder="Pesquisar produto..."
+                    value="<?php echo htmlspecialchars($_GET['pesquisa'] ?? '', ENT_QUOTES, 'UTF-8'); ?>">
 
-        <?php
+                <button type="submit">
+                    <i class="bi bi-search"></i>
+                    Pesquisar
+                </button>
 
-        if ($resultado->num_rows > 0)
-        {
-            echo "<div style='display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px;'>";
+            </form>
 
-            
-echo "<div class='catalogo-produtos'>";
+        </div>
 
-while ($produto = $resultado->fetch_assoc())
-{
-    echo "<div class='card-produto'>";
+        <!-- PRODUTOS -->
 
-    echo "<img class='imagem-produto' src='../img_produto/" . $produto['foto'] . "' alt='" . $produto['nome'] . "'>";
+        <section class="catalogo">
 
-    echo "<p class='nome-produto'>" . $produto['nome'] . "</p>";
+            <?php
 
-    echo "<p class='preco-produto'>R$ " . number_format($produto['preco'], 2, ',', '.') . "</p>";
+            if ($resultado->num_rows > 0)
+            {
+                echo "<div class='catalogo-produtos'>";
 
-    echo "</div>";
-}
+                while ($produto = $resultado->fetch_assoc())
+                {
+                    echo "<div class='card-produto'>";
 
-echo "</div>";
+                    echo "<img
+                            class='imagem-produto'
+                            src='../img_produto/" . htmlspecialchars($produto['foto'], ENT_QUOTES, 'UTF-8') . "'
+                            alt='" . htmlspecialchars($produto['nome'], ENT_QUOTES, 'UTF-8') . "'
+                          >";
 
+                    echo "<p class='nome-produto'>"
+                            . htmlspecialchars($produto['nome'], ENT_QUOTES, 'UTF-8') .
+                         "</p>";
 
+                    echo "<p class='preco-produto'>R$ "
+                            . number_format($produto['preco'], 2, ',', '.') .
+                         "</p>";
 
-            echo "</div>";
-        }
-        else
-            echo '<h2 class="sem-produtos">Nenhum produto encontrado.</h2>';
-        ?>
+                    echo "</div>";
+                }
 
-    </div>
+                echo "</div>";
+            }
+            else
+            {
+                echo '<h2 class="sem-produtos">
+                        Nenhum produto encontrado.
+                      </h2>';
+            }
 
-</div>
+            ?>
 
+        </section>
+
+    </main>
+
+    <!-- =========================
+         RODAPÉ / SCRIPTS
+    ========================= -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+</body>
+
+</html>
 
 <?php
 $conexao->close();
