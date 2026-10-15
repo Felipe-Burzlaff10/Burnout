@@ -185,6 +185,10 @@ echo '<script src="../API_endereço.js"></script>';
 
 require_once "../conexao.php";
 
+echo $_SESSION['dados']['nome'];
+echo $_SESSION['dados']['email'];
+echo $_SESSION['dados'][''];
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
