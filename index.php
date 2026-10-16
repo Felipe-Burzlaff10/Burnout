@@ -284,6 +284,9 @@ else
 
 <body>
 
+<!-- JAVASCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
     <!-- HEADER -->
     <header class="header-home">
 
@@ -492,9 +495,6 @@ else
         Logout
 
     </a>
-
-    <!-- JAVASCRIPT -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
         const sidebar = document.getElementById("sidebar");
