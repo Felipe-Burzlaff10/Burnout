@@ -233,7 +233,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     <input type="text" name="rua" id="rua"  ><br>
 
     <label for="num">Nº: </label>
-    <input type="num" name="num"  ><br>
+    <input type="number" name="num" id="num" ><br>
 
     <input type="submit" value="Cadastrar">
 
