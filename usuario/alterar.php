@@ -211,7 +211,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     </button>
 
     <label for="email">Email: </label>
-    <input type="email" name="email"  ><br>
+    <input type="email" name="email" id="email"  ><br>
 
     <label for="senha">Senha: </label>
     <input type="password" name="senha"  ><br>
@@ -238,3 +238,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     <input type="submit" value="Cadastrar">
 
 </form>
+
+<?php 
+echo "<script src='../sla.js'></script>";
+echo "<script>preencher_input('" . $usuario['email'] . "', '" . $usuario['endereco'] . "')</script>";
+?>
