@@ -515,26 +515,7 @@ $isRoot = !empty($_SESSION['dados']['root']);
             <span class="visually-hidden">Próximo</span>
 
         </button>
-
     </div>
-
-
-
-    <!-- =========================
-         LINK DE ALTERAÇÃO
-    ========================= -->
-
-    <a href="usuario/alterar.php" class="account-settings">
-        Alterar dados do usuário
-    </a>
-
-    <!-- LOGOUT -->
-    <a href="usuario/logout.php" class="logout">
-
-        <i class="bi bi-box-arrow-right"></i>
-        Logout
-
-    </a>
 
 </body>
 </html>
