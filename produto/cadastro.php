@@ -209,6 +209,12 @@ $conexao->close();
     <label for="tamanho">Tamanho: </label>
     <input type="text" name="tamanho"><br>
 
+    <label for="estoque">Estoque: </label>
+    <input type="number" name="estoque"><br>
+
+    <label for="descricao">Descrição: </label>
+    <textarea style="resize: none;"  rows="5" cols="40" id="descricao" name="descricao"></textarea>
+
     <label for="imagem">Imagem: </label>
     <input type="file" name="imagem"><br>
 
@@ -222,3 +228,55 @@ $conexao->close();
 
 </body>
 </html>
+
+<?php
+
+require_once "../conexao.php";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST")
+{
+    $nome_arquivo = $_FILES["imagem"]["name"];
+    $nome_temporario = $_FILES['imagem']['tmp_name'];
+
+    $extensao = strtolower(pathinfo($nome_arquivo, PATHINFO_EXTENSION));
+
+    $extensoes_permitidas = ["jpg", "png", "jpeg"];
+
+    if(!in_array($extensao, $extensoes_permitidas))
+            die("a foto contem um tipo de extensao que não é permitida!.");
+        
+            $nome_final_imagem = uniqid() . "." . $extensao;
+
+    $caminho_destino = "../img_produto/" . $nome_final_imagem;
+    move_uploaded_file($nome_temporario, $caminho_destino);
+
+    try
+    {
+        if($_POST['estoque'] == 0)
+            throw new Exception("Numero invalido para estoque!");
+
+        $sql = "INSERT INTO produto(nome, categoria, preco, tamanho, estoque, descrição, foto)
+        VALUES (?, ?, ?, ?, ?, ?, ?) ";
+
+        $stmt = $conexao->prepare($sql);
+        $stmt->bind_param('ssdsiss', $_POST['nome'], $_POST['categoria'], $_POST['preco'], $_POST['tamanho'], $_POST['estoque'], $_POST['descricao'], $nome_final_imagem);
+        $stmt->execute();
+        $stmt->close();
+
+
+    }catch(Exception $e)
+    {
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+        echo "<script src='../mensagem_erro.js'></script>";
+        echo "<script>erro_mensagem(" . json_encode($e->getMessage()) . ");</script>";
+        exit;
+    }
+    finally
+    {
+        $conexao->close();
+    }
+   
+}
+ 
+$conexao->close();
+?>

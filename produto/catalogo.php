@@ -1,17 +1,5 @@
-<?php session_start(); ?>
+<?php session_start();
 
-<form method="GET">
-    <input type="text" name="pesquisa">
-
-    <button type="submit">Pesquisar</button>
-</form>
-
-  <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-    >
-
-<?php
 require_once "../conexao.php";
 
 $sql = "SELECT * FROM produto";
@@ -602,26 +590,52 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
     <div class="catalogo">
 
 <?php
-
 if ($resultado->num_rows > 0)
 {
-    echo "<div style='display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px;'>";
-
-                
-    echo "<div class='catalogo-produtos'>";
-
-    while ($produto = $resultado->fetch_assoc())
-    {
-        echo "<div class='card-produto'>";
-
-        echo "<img class='imagem-produto' src='../img_produto/" . $produto['foto'] . "' alt='" . $produto['nome'] . "'>";
-
-        echo "<p class='nome-produto'>" . $produto['nome'] . "</p>";
-
-        echo "<p class='preco-produto'>R$ " . number_format($produto['preco'], 2, ',', '.') . "</p>";
-
+    echo "<form method='post' class='d-flex flex-wrap align-items-start p-2 bg-light'>";
+    while($produto = $resultado -> fetch_assoc())
+    {   
+        if($produto['estoque'] > 0)
+        {
+            $disponibilidade = "Em estoque";
+            $estilo = "";
+        }
+        else
+        {
+            $disponibilidade = "Fora de estoque";
+            $estilo = "filter: blur(2px);";
+        }
+        
+        echo "<div class='card m-2 p-2' style='white-space: nowrap;'>";
+        
+    echo "<img style='width: 100%; height: 150px; object-fit: cover; $estilo' src='../img_produto/" . $produto['foto'] . "'><br>";
+        
+        echo "Nome: " . $produto['nome'] . "<br>";
+        
+        echo "Preço: R$" . $produto['preco'];
+        
+        echo "<br>";
+        
+        echo "<details>";
+        
+        echo "<summary>Ver mais</summary>";
+        
+        echo "Estoque: ". $produto['estoque']. "<br>";
+        
+        echo "Tamanho: ". $produto['tamanho']. "<br>";
+        
+        echo "Descrição: " . $produto['descrição']. "<br>";
+        
+        
+        echo "Disponibilidade: " . $disponibilidade. "<br>";
+        
+        
+        echo "</details>";
+        
         echo "</div>";
     }
+
+    echo "</form>";
 }
 ?>
 
