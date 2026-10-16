@@ -1,19 +1,24 @@
+<?php session_start(); ?>
+
+<form method="GET">
+    <input type="text" name="pesquisa">
+
+    <button type="submit">Pesquisar</button>
+</form>
+
+  <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
 <?php
-session_start();
-
-if (!isset($_SESSION['dados']['id_usuario']))
-{
-    echo "<script>window.location.href='index.php';</script>";
-    exit();
-}
-
-
 require_once "../conexao.php";
 
 $sql = "SELECT * FROM produto";
 $resultado = $conexao->query($sql);
 
-if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa'])) {
+if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
+{
 
     $pesquisa = "%" . $_GET['pesquisa'] . "%";
 
@@ -596,39 +601,29 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa'])) {
 
     <div class="catalogo">
 
-        <?php
+<?php
 
-        if ($resultado->num_rows > 0)
-        {
-            echo "<div style='display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px;'>";
-
-            
-echo "<div class='catalogo-produtos'>";
-
-while ($produto = $resultado->fetch_assoc())
+if ($resultado->num_rows > 0)
 {
-    echo "<div class='card-produto'>";
+    echo "<div style='display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px;'>";
 
-    echo "<img class='imagem-produto' src='../img_produto/" . $produto['foto'] . "' alt='" . $produto['nome'] . "'>";
+                
+    echo "<div class='catalogo-produtos'>";
 
-    echo "<p class='nome-produto'>" . $produto['nome'] . "</p>";
+    while ($produto = $resultado->fetch_assoc())
+    {
+        echo "<div class='card-produto'>";
 
-    echo "<p class='preco-produto'>R$ " . number_format($produto['preco'], 2, ',', '.') . "</p>";
+        echo "<img class='imagem-produto' src='../img_produto/" . $produto['foto'] . "' alt='" . $produto['nome'] . "'>";
 
-    echo "</div>";
+        echo "<p class='nome-produto'>" . $produto['nome'] . "</p>";
+
+        echo "<p class='preco-produto'>R$ " . number_format($produto['preco'], 2, ',', '.') . "</p>";
+
+        echo "</div>";
+    }
 }
-
-echo "</div>";
-
-
-
-            echo "</div>";
-        }
-        else
-            echo '<h2 class="sem-produtos">Nenhum produto encontrado.</h2>';
-        ?>
-
-    </div>
+?>
 
 </div>
 
