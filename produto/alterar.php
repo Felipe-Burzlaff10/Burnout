@@ -11,6 +11,17 @@ echo "<script src='../API_endereço.js'></script>";
 
 require_once "../conexao.php";
 
+$sql = "SELECT * FROM produto
+        WHERE id_produto = ?";
+
+$stmt = $conexao->prepare($sql);
+$stmt->bind_param('i', $_GET['id_alterar']);
+$stmt->execute();
+$resultado = $stmt->get_result();
+$stmt->close();
+
+$usuario = $resultado -> fetch_assoc();
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
