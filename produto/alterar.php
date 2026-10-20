@@ -1,23 +1,12 @@
 <script>
-    function preencher_input(endereco, email)
+    function preencher_input(produto)
     {
-        const regex = /^(?<logradouro>.*?),\s*Nº:\s*(?<numero>\d+),\s*(?<bairro>.*?)\s*-\s*(?<cidade>.*?)\/(?<uf>[A-Z]{2})\s*CEP:\s*(?<cep>\d{8})/;
-
-        
-        const resultado = endereco.match(regex);
-        
-        if (resultado)
-        {   
-            const { logradouro, numero, bairro, cidade, uf, cep } = resultado.groups;
-        
-            document.getElementById("rua").value = logradouro;
-            document.getElementById("num").value = numero;
-            document.getElementById("bairro").value = bairro;
-            document.getElementById("cidade").value = cidade;
-            document.getElementById("uf").value = uf;
-            document.getElementById("cep").value = cep;
-            document.getElementById("email").value = email;
-        }
+        document.getElementById("nome").value = produto['nome'];
+        document.getElementById("categoria").value = produto['categoria'];
+        document.getElementById("preco").value = produto['preco'];
+        document.getElementById("tam").value = produto['tamanho'];
+        document.getElementById("estoque").value = produto['estoque'];
+        document.getElementById("descricao").value = produto['descricao'];
     }
 </script>
 
@@ -43,7 +32,7 @@ $stmt->execute();
 $resultado = $stmt->get_result();
 $stmt->close();
 
-$usuario = $resultado -> fetch_assoc();
+$produto = $resultado -> fetch_assoc();
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
@@ -277,7 +266,7 @@ $stmt->close();
 <form action="" method="POST" enctype="multipart/form-data"> 
  
     <label for="nome">Nome Produto: </label> 
-    <input type="nome" name="nome"><br> 
+    <input type="nome" name="nome" id="nome"><br> 
  
    <label for="categoria">Categoria: </label>
     <select name="categoria" id="categoria">
@@ -297,7 +286,7 @@ $stmt->close();
     <input type="number" name="estoque" id="estoque"><br>
 
     <label for="descricao">Descrição: </label>
-    <textarea style="resize: none;"  rows="5" cols="40" id="descricao" name="descricao"></textarea>
+    <textarea style="resize: none;"  rows="5" cols="40" id="descricao" name="descricao" id="descricao"></textarea>
 
     <label for="imagem">Imagem: </label> 
     <input type="file" name="imagem"><br> 
