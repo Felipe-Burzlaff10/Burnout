@@ -48,6 +48,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         echo "Tamanho invalido";
     }
 
+     if(!empty($_POST['estoque']))
+        $estoque = $_POST['estoque'];
+    else
+    {
+        $estoque = '';
+        echo "estoque invalido";
+    }
+
+     if(!empty($_POST['descricao']))
+        $descricao = $_POST['descricao'];
+    else
+    {
+        $descricao = '';
+        echo "descrição invalida";
+    }
+
     if(isset($_FILES['imagem']))
     {
         $nome_arquivo = $_FILES["imagem"]["name"];
@@ -55,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
         $extensao = strtolower(pathinfo($nome_arquivo, PATHINFO_EXTENSION));
 
-        $extensoes_permitidas = ["jpg", "png", "jpeg"];
+        $extensoes_permitidas = ["jpg", "png", "jpeg", ""];
 
         if(!in_array($extensao, $extensoes_permitidas))
                 die("a foto contem um tipo de extensao que não é permitida!.");
@@ -74,11 +90,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                 categoria = COALESCE(NULLIF(?, ''), categoria),
                 preco = COALESCE(NULLIF(?, ''), preco),
                 tamanho = COALESCE(NULLIF(?, ''), tamanho),
+                estoque = COALESCE(NULLIF(?, ''), estoque),
+                descrição = COALESCE(NULLIF(?, ''), descrição),
                 foto = COALESCE(NULLIF(?, ''), foto)
             WHERE id_produto = ?";
 
 $stmt = $conexao->prepare($sql);
-$stmt->bind_param('ssdssi', $nome, $categoria, $preco, $tamanho, $nome_final_imagem ,$_GET['id_alterar']);
+$stmt->bind_param('ssdsissi', $nome, $categoria, $preco, $tamanho, $estoque, $descricao, $nome_final_imagem ,$_GET['id_alterar']);
 $stmt->execute();
 $stmt->close();
 
@@ -246,11 +264,18 @@ $stmt->close();
     </select><br>
     
     <label for="preco">Preço: </label> 
-    <input type="num" name="preco" id="preco"><br> 
- 
+    <input type="number" name="preco" id="preco"><br>
+    
+    
     <label for="tam">Tamanho: </label> 
     <input type="text" name="tam" id="tam"><br> 
- 
+    
+    <label for="estoque">Estoque: </label> 
+    <input type="number" name="estoque" id="estoque"><br>
+
+    <label for="descricao">Descrição: </label>
+    <textarea style="resize: none;"  rows="5" cols="40" id="descricao" name="descricao"></textarea>
+
     <label for="imagem">Imagem: </label> 
     <input type="file" name="imagem"><br> 
  
