@@ -34,6 +34,103 @@ else
 
     <style>
 
+        
+/* =========================
+   USUÁRIO E MENU SUSPENSO
+========================= */
+
+.usuario-menu {
+    position: relative;
+}
+
+.usuario-header {
+    background-color: #111;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    text-decoration: none;
+
+    border: 1px solid #292929;
+    border-radius: 8px 8px 0 0;
+
+    padding: 10px 14px;
+    cursor: pointer;
+    white-space: nowrap;
+
+    transition: 0.2s;
+}
+
+.usuario-header:hover {
+    background-color: #222;
+    color: #39bf00;
+}
+
+#usuarioBtn
+{
+    color: white;
+}
+
+.usuario-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: auto;
+    width: 100%;
+
+    background-color: #111;
+    border: 1px solid #292929;
+    border-top: none;
+
+    border-radius: 0 0 8px 8px;
+
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    z-index: 2000;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.usuario-dropdown.aberto {
+    display: block;
+}
+
+.usuario-dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 13px 16px;
+
+    color: #f2f2f2;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: normal;
+
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.usuario-dropdown a:hover {
+    background-color: #39bf00;
+    color: #000;
+}
+
+.usuario-dropdown .sair {
+    color: #ff5555;
+}
+
+.usuario-dropdown .sair:hover {
+    background-color: #39bf00;
+    color: #000;
+}
+
+.usuario-dropdown hr {
+    margin: 0;
+    border: 0;
+    border-top: 1px solid #333;
+}
+
+
+
         /* =========================
            MENU
         ========================= */
@@ -218,8 +315,9 @@ else
             .carousel img {
                 height: 450px;
             }
-        }
 
+            
+        }
     </style>
 
 </head>
@@ -263,15 +361,6 @@ else
                 <div class="col-3 d-flex justify-content-end align-items-center gap-3">
 
 
-                    <!-- PESQUISA -->
-                    <a
-                        href="pesquisa.php"
-                        class="icone-header"
-                        title="Pesquisar">
-
-                        <i class="bi bi-search"></i>
-
-                    </a>
 
 
                     <!-- CARRINHO -->
@@ -285,14 +374,50 @@ else
                     </a>
 
 
-                    <!-- USUÁRIO -->
-                    <a
-                        href="perfil.php"
-                        class="usuario-header">
+                   
+<!-- USUÁRIO E MENU SUSPENSO -->
+<div class="usuario-menu">
 
-                        <?php echo $_SESSION['nome']; ?>
+    <button
+        type="button"
+        class="usuario-header"
+        id="usuarioBtn"
+        aria-expanded="false"
+        aria-controls="usuarioDropdown">
 
-                    </a>
+        <?php echo htmlspecialchars($_SESSION['nome']); ?>
+        <i class="bi bi-chevron-down"></i>
+
+    </button>
+
+    <div class="usuario-dropdown" id="usuarioDropdown">
+
+        <a href="perfil.php">
+            <i class="bi bi-person"></i>
+            Minha conta
+        </a>
+
+        <a href="historico.php">
+            <i class="bi bi-clock-history"></i>
+            Histórico de compras
+        </a>
+
+        <a href="usuario/alterar.php">
+            <i class="bi bi-gear"></i>
+            Alterar meus dados
+        </a>
+
+        <hr>
+
+        <a href="usuario/logout.php" class="sair">
+            <i class="bi bi-box-arrow-right"></i>
+            Sair da conta
+        </a>
+
+    </div>
+
+</div>
+
 
                 </div>
 
@@ -471,5 +596,10 @@ else
 
 
 </body>
+
+<?php
+ echo "<script src='usuario_menu.js'></script>";
+  echo "<script>usuario_menu_suspenso();</script>";
+?>
 
 </html>
