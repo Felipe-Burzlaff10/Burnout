@@ -1,12 +1,12 @@
 <script>
     function preencher_input(produto)
     {
-        document.getElementById("nome").value = produto['nome'];
-        document.getElementById("categoria").value = produto['categoria'];
-        document.getElementById("preco").value = produto['preco'];
-        document.getElementById("tam").value = produto['tamanho'];
-        document.getElementById("estoque").value = produto['estoque'];
-        document.getElementById("descricao").value = produto['descricao'];
+        document.getElementById("nome").value = produto.nome;
+        document.getElementById("categoria").value = produto.categoria;
+        document.getElementById("preco").value = produto.preco;
+        document.getElementById("tam").value = produto.tamanho;
+        document.getElementById("estoque").value = produto.estoque;
+        document.getElementById("descricao").value = produto.descricao;
     }
 </script>
 
@@ -113,7 +113,7 @@ $stmt->execute();
 $stmt->close();
 
     
-}
+}  
 
 ?>
 
@@ -298,3 +298,9 @@ $stmt->close();
 <a href="../index.php"> 
     <button>← Voltar</button> 
 </a>
+
+
+<script>
+    const produto = <?= json_encode($produto) ?>;
+    preencher_input(produto);
+</script>
