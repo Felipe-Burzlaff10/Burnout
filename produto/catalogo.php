@@ -624,7 +624,7 @@ if ($resultado->num_rows > 0)
         
         echo "Tamanho: ". $produto['tamanho']. "<br>";
         
-        echo "Descrição: " . $produto['descrição']. "<br>";
+        echo "Descrição: " . $produto['descricao']. "<br>";
         
         
         echo "Disponibilidade: " . $disponibilidade. "<br>";
