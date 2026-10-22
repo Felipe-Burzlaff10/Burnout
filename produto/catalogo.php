@@ -68,17 +68,225 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
 
 /* USUÁRIO */
 
+
+/* =========================
+   BOTÃO E MENU DO USUÁRIO
+========================= */
+
+/* Área do usuário */
+.usuario-menu {
+    position: absolute;
+    top: 122px; /* Ajuste conforme a altura do cabeçalho */
+    right: 28px;
+    left: auto;
+    display: inline-block;
+    z-index: 2000;
+}
+
+/* Botão com o nome do usuário */
 .usuario-header {
-    color: black;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    background-color: #111;
+    color: white;
+
     font-weight: bold;
-    font-size: 18px;
+    font-size: 14px;
+
+    border: 1px solid #292929;
+    border-radius: 8px;
+    padding: 10px 14px;
+
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+/* Menu suspenso */
+.usuario-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: auto;
+
+    width: 230px;
+    box-sizing: border-box;
+
+    background-color: #111;
+    border: 1px solid #292929;
+    border-radius: 0 0 8px 8px;
+
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.usuario-dropdown.aberto {
+    display: block;
+}
+
+/* Opções */
+.usuario-dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 13px 14px;
+    color: #f2f2f2;
     text-decoration: none;
-    transition: 0.2s ease;
+    font-size: 14px;
+
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.usuario-dropdown a:hover {
+    background-color: #39bf00;
+    color: black;
+}
+
+.usuario-dropdown hr {
+    margin: 0;
+    border: 0;
+    border-top: 1px solid #333;
+}
+
+.usuario-dropdown .sair {
+    color: #ff5555;
+}
+
+.usuario-dropdown .sair:hover {
+    background-color: #39bf00;
+    color: black;
 }
 
 .usuario-header:hover {
-    color: white;
+    background-color: #222;
+    color: #39bf00;
 }
+
+
+/* =========================
+   MENU SUSPENSO
+========================= */
+
+.usuario-dropdown {
+    display: none;
+
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: auto;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    background-color: #111;
+    border: 1px solid #292929;
+    border-top: none;
+
+    border-radius: 0 0 8px 8px;
+
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+
+    z-index: 2000;
+    overflow: hidden;
+}
+
+.usuario-dropdown.aberto {
+    display: block;
+}
+
+
+/* Une visualmente o botão e o menu */
+
+.usuario-menu:has(.usuario-dropdown.aberto) .usuario-header {
+    border-radius: 8px 8px 0 0;
+    border-bottom-color: #111;
+}
+
+
+/* =========================
+   OPÇÕES DO MENU
+========================= */
+
+.usuario-dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 13px 14px;
+
+    color: #f2f2f2;
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: normal;
+
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.usuario-dropdown a:hover {
+    background-color: #39bf00;
+    color: black;
+}
+
+
+/* ÍCONES */
+
+.usuario-dropdown a i {
+    font-size: 14px;
+}
+
+
+/* SEPARADOR */
+
+.usuario-dropdown hr {
+    margin: 0;
+    border: 0;
+    border-top: 1px solid #333;
+}
+
+
+/* SAIR DA CONTA */
+
+.usuario-dropdown .sair {
+    color: #ff5555;
+}
+
+.usuario-dropdown .sair:hover {
+    background-color: #39bf00;
+    color: black;
+}
+
+
+/* =========================
+   RESPONSIVIDADE DO USUÁRIO
+========================= */
+
+@media (max-width: 900px) {
+    .usuario-header {
+        font-size: 15px;
+        padding: 9px 10px;
+    }
+}
+
+@media (max-width: 600px) {
+    .usuario-header {
+        display: inline-flex;
+        font-size: 12px;
+        padding: 8px;
+        white-space: normal;
+        max-width: 150px;
+    }
+
+    .usuario-dropdown a {
+        padding: 11px 10px;
+        font-size: 12px;
+    }
+}
+
 
 /* =========================
    MENU DE NAVEGAÇÃO
@@ -486,10 +694,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
 
             <!-- LOGO -->
             <div class="col-3">
-                <img
-                    src="../img_site/logo.png"
-                    alt="Logo BURNOUT"
-                    class="logo">
+                <img src="../img_site/logo.png" alt="Logo BURNOUT" class="logo">
             </div>
 
             <!-- TÍTULO -->
@@ -497,28 +702,32 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
                 <h1 class="titulo">BURNOUT</h1>
             </div>
 
-            <!-- ÍCONES E USUÁRIO -->
+            <!-- CARRINHO + USUÁRIO -->
             <div class="col-3 d-flex justify-content-end align-items-center gap-3">
 
-                <a
-                    href="pesquisa.php"
-                    class="icone-header"
-                    title="Pesquisar"
-                    aria-label="Pesquisar">
-                    <i class="bi bi-search"></i>
-                </a>
-
-                <a
-                    href="carrinho.php"
-                    class="icone-header"
-                    title="Carrinho"
-                    aria-label="Carrinho">
+                <a href="carrinho.php" class="icone-header" title="Carrinho" aria-label="Carrinho">
                     <i class="bi bi-cart3"></i>
                 </a>
 
-                <a href="perfil.php" class="usuario-header">
-                    <?php echo $_SESSION['dados']['nome']; ?>
-                </a>
+                <div class="usuario-menu">
+
+                    <button type="button" class="usuario-header" id="usuarioBtn"
+                            aria-expanded="false" aria-controls="usuarioDropdown">
+                        <?php echo htmlspecialchars($_SESSION['dados']['nome']); ?>
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+
+                    <div class="usuario-dropdown" id="usuarioDropdown">
+                        <a href="perfil.php"><i class="bi bi-person"></i> Minha conta</a>
+                        <a href="historico.php"><i class="bi bi-clock-history"></i> Histórico de compras</a>
+                        <a href="usuario/alterar.php"><i class="bi bi-gear"></i> Alterar meus dados</a>
+                        <hr>
+                        <a href="usuario/logout.php" class="sair">
+                            <i class="bi bi-box-arrow-right"></i> Sair da conta
+                        </a>
+                    </div>
+
+                </div>
 
             </div>
 
@@ -528,33 +737,22 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
 
     <!-- MENU -->
     <ul class="nav justify-content-center">
+         <ul class="nav justify-content-center">
 
-        <li class="nav-item">
-            <a class="nav-link active" href="home.php">
-                HOME
-            </a>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="home.php">HOME</a>
+            </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="produto/catalogo.php">
-                CATÁLOGO
-            </a>
-        </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="lancamentos.php">
-                LANÇAMENTOS
-            </a>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link" href="lancamentos.php">LANÇAMENTOS</a>
+            </li>
 
-        <li class="nav-item">
-            <a class="nav-link disabled"
-               aria-disabled="true"
-               tabindex="-1">
-                PINTO
-            </a>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" aria-disabled="true">PINTO</a>
+            </li>
 
+        </ul>
     </ul>
 
 </header>
@@ -641,5 +839,7 @@ if ($resultado->num_rows > 0)
 
 
 <?php
+echo "<script src='../usuario_menu.js'></script>";
+echo "<script>usuario_menu_suspenso();</script>";
 $conexao->close();
 ?>
