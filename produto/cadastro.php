@@ -187,8 +187,9 @@
 </html>
 
 <?php
-
 require_once "../conexao.php";
+echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+echo "<script src='../mensagem_erro.js'></script>";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
@@ -212,7 +213,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         if($_POST['estoque'] == 0)
             throw new Exception("Numero invalido para estoque!");
 
-        $sql = "INSERT INTO produto(nome, categoria, preco, tamanho, estoque, descrição, foto)
+        $sql = "INSERT INTO produto(nome, categoria, preco, tamanho, estoque, descricao, foto)
         VALUES (?, ?, ?, ?, ?, ?, ?) ";
 
         $stmt = $conexao->prepare($sql);
@@ -223,14 +224,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
     }catch(Exception $e)
     {
-        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
-        echo "<script src='../mensagem_erro.js'></script>";
         echo "<script>erro_mensagem(" . json_encode($e->getMessage()) . ");</script>";
         exit;
     }
     finally
     {
-        $conexao->close();
+        echo "<script>sucesso_mensagem('Sucesso ao Cadastrar!');</script>";
     }
    
 }

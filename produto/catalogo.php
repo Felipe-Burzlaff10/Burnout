@@ -69,7 +69,7 @@ while($produto = $resultado -> fetch_assoc())
     
     echo "Tamanho: ". $produto['tamanho']. "<br>";
     
-    echo "Descrição: " . $produto['descrição']. "<br>";
+    echo "Descrição: " . $produto['descricao']. "<br>";
     
     
     echo "Disponibilidade: " . $disponibilidade. "<br>";

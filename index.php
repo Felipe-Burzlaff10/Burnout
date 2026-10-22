@@ -548,28 +548,6 @@ else
     </div>
 
 
-
-    <!-- =========================
-         LINK DE ALTERAÇÃO
-    ========================= -->
-
-    <a
-        href="usuario/alterar.php"
-        style="
-            display: block;
-            text-align: center;
-            margin: 20px;
-            color: black;
-            font-weight: bold;
-            text-decoration: none;
-        ">
-
-        PCD
-
-    </a>
-
-
-
     <!-- =========================
          LOGOUT
     ========================= -->
