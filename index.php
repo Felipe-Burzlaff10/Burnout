@@ -1,18 +1,9 @@
 <?php
 session_start();
 
-if (isset($_SESSION['dados']['id_usuario']))
-{
-    if ($_SESSION['dados']['root'])
-        echo "<a href='usuario/listar.php'>
-                    <button>listar</button>
-                </a>";
-}
-else
+if (!isset($_SESSION['dados']['id_usuario']))
     echo "<script>window.location.href='usuario/login.php';</script>";
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -410,6 +401,14 @@ else
             <i class="bi bi-pencil-square"></i> Alterar Produtos
         </a>
 
+         <a href="usuario/cadastro.php">
+            <i class="bi bi-person-add"></i> Cadastrar Usuário
+        </a>
+
+         <a href="produto/cadastro.php.php">
+            <i class="bi bi-file-earmark-plus"></i> Cadastrar Produto
+        </a>
+
         <hr class="separador">
 
         <a href="usuario/logout.php">
@@ -472,21 +471,6 @@ else
 
     </div>
 
-    <!-- LINK DE ALTERAÇÃO -->
-    <a
-        href="usuario/alterar.php"
-        style="
-            display: block;
-            text-align: center;
-            margin: 20px;
-            color: black;
-            font-weight: bold;
-            text-decoration: none;
-        ">
-
-        Alterar dados do usuário
-
-    </a>
 
     <!-- LOGOUT -->
     <a href="usuario/logout.php" class="logout">
