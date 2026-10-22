@@ -3,7 +3,7 @@ require_once "../conexao.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-    $sql = "SELECT nome, senha, id_usuario, root
+    $sql = "SELECT id_usuario, cpf, nome, senha, root
             FROM usuario
             WHERE email = ?";
     
@@ -22,10 +22,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             echo "Login efetuado com sucesso";
 
             session_start();
-            $_SESSION['nome'] = $usuario['nome'];
-            $_SESSION['id_usuario'] = $usuario['id_usuario'];
-            $_SESSION['root'] = $usuario['root'];
-
+            $_SESSION['dados'] = [
+                'cpf' => $usuario['cpf'],
+                'email' => $_POST['email'],
+                'nome' => $usuario['nome'],
+                'id_usuario' => $usuario['id_usuario'],
+                'root' => $usuario['root']
+            ];
             echo "<script>window.location.href='../index.php';</script>";
         }
         else

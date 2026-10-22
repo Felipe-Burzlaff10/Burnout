@@ -1,7 +1,19 @@
+<script>
+    function preencher_input(produto)
+    {
+        document.getElementById("nome").value = produto.nome;
+        document.getElementById("categoria").value = produto.categoria;
+        document.getElementById("preco").value = produto.preco;
+        document.getElementById("tam").value = produto.tamanho;
+        document.getElementById("estoque").value = produto.estoque;
+        document.getElementById("descricao").value = produto.descricao;
+    }
+</script>
+
 <?php
 session_start();
 
-if (!isset($_SESSION['id_usuario']))
+if (!isset($_SESSION['dados']['id_usuario']))
 {
     echo "<script>window.location.href='index.php';</script>";
     exit();
@@ -10,6 +22,17 @@ if (!isset($_SESSION['id_usuario']))
 echo "<script src='../API_endereço.js'></script>";
 
 require_once "../conexao.php";
+
+$sql = "SELECT * FROM produto
+        WHERE id_produto = ?";
+
+$stmt = $conexao->prepare($sql);
+$stmt->bind_param('i', $_GET['id_alterar']);
+$stmt->execute();
+$resultado = $stmt->get_result();
+$stmt->close();
+
+$produto = $resultado -> fetch_assoc();
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
@@ -37,6 +60,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         echo "Tamanho invalido";
     }
 
+     if(!empty($_POST['estoque']))
+        $estoque = $_POST['estoque'];
+    else
+    {
+        $estoque = '';
+        echo "estoque invalido";
+    }
+
+     if(!empty($_POST['descricao']))
+        $descricao = $_POST['descricao'];
+    else
+    {
+        $descricao = '';
+        echo "descrição invalida";
+    }
+
     if(isset($_FILES['imagem']))
     {
         $nome_arquivo = $_FILES["imagem"]["name"];
@@ -44,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
         $extensao = strtolower(pathinfo($nome_arquivo, PATHINFO_EXTENSION));
 
-        $extensoes_permitidas = ["jpg", "png", "jpeg"];
+        $extensoes_permitidas = ["jpg", "png", "jpeg", ""];
 
         if(!in_array($extensao, $extensoes_permitidas))
                 die("a foto contem um tipo de extensao que não é permitida!.");
@@ -63,16 +102,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                 categoria = COALESCE(NULLIF(?, ''), categoria),
                 preco = COALESCE(NULLIF(?, ''), preco),
                 tamanho = COALESCE(NULLIF(?, ''), tamanho),
+                estoque = COALESCE(NULLIF(?, ''), estoque),
+                descrição = COALESCE(NULLIF(?, ''), descrição),
                 foto = COALESCE(NULLIF(?, ''), foto)
             WHERE id_produto = ?";
 
 $stmt = $conexao->prepare($sql);
-$stmt->bind_param('ssdssi', $nome, $categoria, $preco, $tamanho, $nome_final_imagem ,$_GET['id_alterar']);
+$stmt->bind_param('ssdsissi', $nome, $categoria, $preco, $tamanho, $estoque, $descricao, $nome_final_imagem ,$_GET['id_alterar']);
 $stmt->execute();
 $stmt->close();
 
     
-}
+}  
 
 ?>
 
@@ -225,17 +266,28 @@ $stmt->close();
 <form action="" method="POST" enctype="multipart/form-data"> 
  
     <label for="nome">Nome Produto: </label> 
-    <input type="nome" name="nome"><br> 
+    <input type="nome" name="nome" id="nome"><br> 
  
-    <label for="categoria">Categoria: </label> 
-    <input type="text" name="categoria"><br> 
- 
+   <label for="categoria">Categoria: </label>
+    <select name="categoria" id="categoria">
+        <option value="Camiseta">Camiseta</option>
+        <option value="Calça">Calça</option>
+        <option value="Tênis">Têniss</option>
+    </select><br>
+    
     <label for="preco">Preço: </label> 
-    <input type="num" name="preco" id="preco"><br> 
- 
+    <input type="number" name="preco" id="preco"><br>
+    
+    
     <label for="tam">Tamanho: </label> 
     <input type="text" name="tam" id="tam"><br> 
- 
+    
+    <label for="estoque">Estoque: </label> 
+    <input type="number" name="estoque" id="estoque"><br>
+
+    <label for="descricao">Descrição: </label>
+    <textarea style="resize: none;"  rows="5" cols="40" id="descricao" name="descricao" id="descricao"></textarea>
+
     <label for="imagem">Imagem: </label> 
     <input type="file" name="imagem"><br> 
  
@@ -246,3 +298,9 @@ $stmt->close();
 <a href="../index.php"> 
     <button>← Voltar</button> 
 </a>
+
+
+<script>
+    const produto = <?= json_encode($produto) ?>;
+    preencher_input(produto);
+</script>

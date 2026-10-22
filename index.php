@@ -1,17 +1,9 @@
 <?php
 session_start();
 
-if (isset($_SESSION['id_usuario']))
-{
-    if ($_SESSION['root'])
-        echo "<a href='usuario/listar.php'>
-                    <button>listar</button>
-                </a>";
-}
-else
+if (!isset($_SESSION['dados']['id_usuario']))
     echo "<script>window.location.href='usuario/login.php';</script>";
 ?>
-
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -156,11 +148,7 @@ else
             border-bottom: 2px solid black;
         }
 
-
-        /* =========================
-           HEADER
-        ========================= */
-
+        /* HEADER */
         .header-home {
             background-color: #39bf00;
             padding: 10px 20px 0;
@@ -180,11 +168,25 @@ else
             color: black;
         }
 
+        /* BOTÃO DA SIDEBAR */
+        .botao-menu {
+            background: black;
+            color: #39bf00;
+            border: 2px solid black;
+            border-radius: 8px;
+            padding: 5px 12px;
+            font-size: 27px;
+            cursor: pointer;
+            transition: 0.2s;
+            line-height: 1.2;
+        }
 
-        /* =========================
-           ÍCONES
-        ========================= */
+        .botao-menu:hover {
+            background: white;
+            color: black;
+        }
 
+        /* ÍCONES DO HEADER */
         .icone-header {
             color: black;
             font-size: 32px;
@@ -197,11 +199,7 @@ else
             transform: scale(1.1);
         }
 
-
-        /* =========================
-           USUÁRIO
-        ========================= */
-
+        /* USUÁRIO */
         .usuario-header {
             color: black;
             font-weight: bold;
@@ -213,40 +211,26 @@ else
             color: white;
         }
 
-
-        /* =========================
-           CAROUSEL
-        ========================= */
-
+        /* CAROUSEL */
         .carousel img {
             width: 100%;
-            height: 750px;
+            height: 80vh;
             object-fit: cover;
         }
 
-
-        /* =========================
-           BOTÃO LOGOUT
-        ========================= */
-
+        /* LOGOUT */
         .logout {
             position: fixed;
             right: 20px;
             bottom: 20px;
-
             background-color: black;
             color: white;
-
             border: none;
             border-radius: 10px;
-
             padding: 10px 18px;
-
             font-weight: bold;
             text-decoration: none;
-
             z-index: 1000;
-
             transition: 0.2s;
         }
 
@@ -256,51 +240,122 @@ else
             transform: scale(1.05);
         }
 
-
-        /* =========================
-           RESPONSIVO
-        ========================= */
-
-        @media (max-width: 900px) {
-
-            .titulo {
-                font-size: 50px;
-            }
-
-            .logo {
-                width: 130px;
-            }
-
-            .icone-header {
-                font-size: 26px;
-            }
-
-            .usuario-header {
-                font-size: 15px;
-            }
-
-            .carousel img {
-                height: 600px;
-            }
+        /* FUNDO DA SIDEBAR */
+        .fundo-sidebar {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 1040;
         }
 
+        .fundo-sidebar.aberto {
+            opacity: 1;
+            visibility: visible;
+        }
 
+        /* BARRA LATERAL */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 290px;
+            max-width: 85vw;
+            height: 100vh;
+            background: #111;
+            color: white;
+            padding: 25px 20px;
+            z-index: 1050;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            overflow-y: auto;
+            box-shadow: 5px 0 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .sidebar.aberto {
+            transform: translateX(0);
+        }
+
+        .sidebar-topo {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #39bf00;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-topo h2 {
+            color: #39bf00;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-weight: bold;
+            font-size: 27px;
+            margin: 0;
+        }
+
+        .fechar-sidebar {
+            background: none;
+            color: white;
+            border: none;
+            font-size: 26px;
+            cursor: pointer;
+        }
+
+        .fechar-sidebar:hover {
+            color: #39bf00;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: bold;
+            padding: 14px 12px;
+            margin-bottom: 5px;
+            border-radius: 7px;
+            transition: 0.2s;
+        }
+
+        .sidebar a i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        .sidebar a:hover {
+            background: #39bf00;
+            color: black;
+        }
+
+        .sidebar .separador {
+            border: 0;
+            border-top: 1px solid #444;
+            margin: 15px 0;
+        }
+
+        /* RESPONSIVO */
         @media (max-width: 600px) {
-
             .header-home {
-                padding: 10px;
+                padding: 10px 8px 0;
             }
 
             .logo {
-                width: 100px;
+                width: 75px;
             }
 
             .titulo {
-                font-size: 32px;
+                font-size: 30px;
+            }
+
+            .botao-menu {
+                font-size: 21px;
+                padding: 4px 8px;
             }
 
             .icone-header {
-                font-size: 22px;
+                font-size: 21px;
             }
 
             .usuario-header {
@@ -308,36 +363,47 @@ else
             }
 
             .nav-link {
-                font-size: 14px;
-                margin: 0 5px;
+                font-size: 13px;
+                margin: 0 4px;
             }
 
             .carousel img {
                 height: 450px;
             }
-
             
         }
     </style>
-
 </head>
-
 
 <body>
 
+<!-- JAVASCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- =========================
-         HEADER
-    ========================= -->
-
+    <!-- HEADER -->
     <header class="header-home">
 
         <div class="container-fluid">
 
             <div class="row align-items-center">
 
-                <!-- LOGO -->
-                <div class="col-3">
+                <!-- BOTÃO DA BARRA LATERAL + LOGO -->
+                <div class="col-3 d-flex align-items-center gap-2">
+
+                    <?php 
+                        if ($_SESSION['dados']['root'])
+                            echo "<button
+                                  class='botao-menu'
+                                  id='abrirSidebar'
+                                  type='button'
+                                  aria-label='Abrir menu lateral'
+                                  aria-controls='sidebar'
+                                  aria-expanded='false'>
+
+                                    <i class='bi bi-list'></i>
+
+                                  </button>";
+                    ?>
 
                     <img
                         src="img_site/logo.png"
@@ -346,26 +412,18 @@ else
 
                 </div>
 
-
                 <!-- TÍTULO -->
                 <div class="col-6 text-center">
 
-                    <h1 class="titulo">
-                        BURNOUT
-                    </h1>
+                    <h1 class="titulo">BURNOUT</h1>
 
                 </div>
-
 
                 <!-- ÍCONES -->
                 <div class="col-3 d-flex justify-content-end align-items-center gap-3">
 
 
-
-
-                    <!-- CARRINHO -->
-                    <a
-                        href="carrinho.php"
+                    <a href="carrinho.php"
                         class="icone-header"
                         title="Carrinho">
 
@@ -373,6 +431,7 @@ else
 
                     </a>
 
+                    <a href="perfil.php" class="usuario-header">
 
                    
 <!-- USUÁRIO E MENU SUSPENSO -->
@@ -385,7 +444,7 @@ else
         aria-expanded="false"
         aria-controls="usuarioDropdown">
 
-        <?php echo htmlspecialchars($_SESSION['nome']); ?>
+        <?php echo htmlspecialchars($_SESSION['dados']['nome']); ?>
         <i class="bi bi-chevron-down"></i>
 
     </button>
@@ -425,123 +484,124 @@ else
 
         </div>
 
-
-        <!-- =========================
-             MENU
-        ========================= -->
-
+        <!-- MENU PRINCIPAL -->
         <ul class="nav justify-content-center">
 
             <li class="nav-item">
-
-                <a
-                    class="nav-link active"
-                    href="home.php">
-
-                    HOME
-
-                </a>
-
+                <a class="nav-link active" href="home.php">HOME</a>
             </li>
 
-
             <li class="nav-item">
-
-                <a
-                    class="nav-link"
-                    href="produto/catalogo.php">
-
-                    CATALOGO
-
-                </a>
-
+                <a class="nav-link" href="produto/catalogo.php">CATALOGO</a>
             </li>
 
-
             <li class="nav-item">
-
-                <a
-                    class="nav-link"
-                    href="lancamentos.php">
-
-                    LANÇAMENTOS
-
-                </a>
-
+                <a class="nav-link" href="lancamentos.php">LANÇAMENTOS</a>
             </li>
 
-
             <li class="nav-item">
-
-                <a
-                    class="nav-link disabled"
-                    aria-disabled="true">
-
-                    PINTO
-
-                </a>
-
+                <a class="nav-link disabled" aria-disabled="true">PINTO</a>
             </li>
 
         </ul>
 
     </header>
 
+    <!-- FUNDO ESCURO -->
+    <div class="fundo-sidebar" id="fundoSidebar"></div>
 
+    <!-- BARRA LATERAL -->
+    <aside class="sidebar" id="sidebar" aria-label="Menu lateral">
 
-    <!-- =========================
-         CAROUSEL
-    ========================= -->
+        <div class="sidebar-topo">
 
-    <div
-        id="carouselExample"
-        class="carousel slide">
+            <h2>BURNOUT</h2>
+
+            <button
+                class="fechar-sidebar"
+                id="fecharSidebar"
+                type="button"
+                aria-label="Fechar menu">
+
+                <i class="bi bi-x-lg"></i>
+
+            </button>
+
+        </div>
+
+        <a href="usuario/listar.php">
+            <i class="bi bi-person-circle"></i> Listar Usuarios
+        </a>
+
+        <a href="usuario/alterar.php">
+            <i class="bi bi-pencil-square"></i> Alterar Produtos
+        </a>
+
+         <a href="usuario/cadastro.php">
+            <i class="bi bi-person-add"></i> Cadastrar Usuário
+        </a>
+
+         <a href="produto/cadastro.php.php">
+            <i class="bi bi-file-earmark-plus"></i> Cadastrar Produto
+        </a>
+
+        <hr class="separador">
+
+        <a href="usuario/logout.php">
+            <i class="bi bi-box-arrow-right"></i> Logout
+        </a>
+
+    </aside>
+
+    <!-- CAROUSEL -->
+    <div id="carouselExample" class="carousel slide">
 
         <div class="carousel-inner">
 
-
-            <!-- IMAGEM 1 -->
-
             <div class="carousel-item active">
-
                 <img
                     src="img_site/imagemPromocional.png"
                     class="d-block w-100"
                     alt="Promoção BURNOUT">
-
             </div>
 
-
-            <!-- IMAGEM 2 -->
-
             <div class="carousel-item">
-
                 <img
                     src="img_site/imagemLançamento.png"
                     class="d-block w-100"
                     alt="Lançamento BURNOUT">
+            </div>
 
+            <div class="carousel-item">
+                <img
+                    src="img_site/imagemPatrocinio.png"
+                    class="d-block w-100"
+                    alt="Patrocínio BURNOUT">
             </div>
 
         </div>
 
+        <!-- BOTÃO ANTERIOR -->
+        <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExample"
+            data-bs-slide="prev">
+
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+
+        </button>
 
         <!-- BOTÃO PRÓXIMO -->
-
         <button
             class="carousel-control-next"
             type="button"
             data-bs-target="#carouselExample"
             data-bs-slide="next">
 
-            <span
-                class="carousel-control-next-icon"
-                aria-hidden="true">
-            </span>
-
-            <span class="visually-hidden">
-                Próximo
-            </span>
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Próximo</span>
 
         </button>
 
@@ -557,21 +617,42 @@ else
         class="logout">
 
         <i class="bi bi-box-arrow-right"></i>
-
         Logout
 
     </a>
 
+    <script>
+        const sidebar = document.getElementById("sidebar");
+        const fundoSidebar = document.getElementById("fundoSidebar");
+        const abrirSidebar = document.getElementById("abrirSidebar");
+        const fecharSidebar = document.getElementById("fecharSidebar");
 
+        function abrirMenu() {
+            sidebar.classList.add("aberto");
+            fundoSidebar.classList.add("aberto");
 
-    <!-- Bootstrap JS -->
+            abrirSidebar.setAttribute("aria-expanded", "true");
+            document.body.style.overflow = "hidden";
+        }
 
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous">
+        function fecharMenu() {
+            sidebar.classList.remove("aberto");
+            fundoSidebar.classList.remove("aberto");
+
+            abrirSidebar.setAttribute("aria-expanded", "false");
+            document.body.style.overflow = "";
+        }
+
+        abrirSidebar.addEventListener("click", abrirMenu);
+        fecharSidebar.addEventListener("click", fecharMenu);
+        fundoSidebar.addEventListener("click", fecharMenu);
+
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "Escape") {
+                fecharMenu();
+            }
+        });
     </script>
-
 
 </body>
 

@@ -172,10 +172,33 @@
     }
 </style>
 
+<script>
+    function preencher_input(endereco, email)
+    {
+        const regex = /^(?<logradouro>.*?),\s*Nº:\s*(?<numero>\d+),\s*(?<bairro>.*?)\s*-\s*(?<cidade>.*?)\/(?<uf>[A-Z]{2})\s*CEP:\s*(?<cep>\d{8})/;
+
+        
+        const resultado = endereco.match(regex);
+        
+        if (resultado)
+        {   
+            const { logradouro, numero, bairro, cidade, uf, cep } = resultado.groups;
+        
+            document.getElementById("rua").value = logradouro;
+            document.getElementById("num").value = numero;
+            document.getElementById("bairro").value = bairro;
+            document.getElementById("cidade").value = cidade;
+            document.getElementById("uf").value = uf;
+            document.getElementById("cep").value = cep;
+            document.getElementById("email").value = email;
+        }
+    }
+</script>
+
 <?php
 session_start();
 
-if (!isset($_SESSION['id_usuario']))
+if (!isset($_SESSION['dados']['id_usuario']))
 {
     echo "<script>window.location.href='index.php';</script>";
     exit();
@@ -185,33 +208,42 @@ echo '<script src="../API_endereço.js"></script>';
 
 require_once "../conexao.php";
 
+$sql = "SELECT * FROM usuario
+        WHERE id_usuario = ?";
+
+$stmt = $conexao->prepare($sql);
+$stmt->bind_param('i', $_SESSION['dados']['id_usuario']);
+$stmt->execute();
+$resultado = $stmt->get_result();
+$stmt->close();
+
+$usuario = $resultado -> fetch_assoc();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-    //verifica se senha foi enviada em branco ou não
    if (!empty($_POST['senha']))
-    $senha_hash = password_hash($_POST['senha'], PASSWORD_DEFAULT);
-        else
-            $senha_hash = '';
-        
+        $senha_hash = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+    else
+        $senha_hash = '';
+
     $campos_endereco = ['rua', 'num', 'bairro', 'cidade', 'uf', 'cep'];
     $preenchido = [];
 
-    foreach($campos_endereco as $key)
+    foreach ($campos_endereco as $key)
     {
-        if(!empty($_POST[$key]))
-         $preenchido[] = $key;
+        if (!empty($_POST[$key]))
+            $preenchido[] = $key;
     }
 
-    if(!empty($preenchido))
+    if (!empty($preenchido))
         $endereco_final = "{$_POST['rua']}, Nº: {$_POST['num']}, {$_POST['bairro']} - {$_POST['cidade']}/{$_POST['uf']} CEP: {$_POST['cep']}";
     else
         $endereco_final = '';
 
     if (!empty($_POST['email']))
         $email = $_POST['email'];
-        else
-            $email = '';
+    else
+        $email = '';
 
     $sql = "UPDATE usuario
             SET email = COALESCE(NULLIF(?, ''), email),
@@ -219,11 +251,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                 endereco = COALESCE(NULLIF(?, ''), endereco)
             WHERE id_usuario = ?";
 
-$stmt = $conexao->prepare($sql);
-$stmt->bind_param('sssi', $email, $senha_hash, $endereco_final, $_SESSION['id_usuario']);
-$stmt->execute();
-$stmt->close();
-
+    $stmt = $conexao->prepare($sql);
+    $stmt->bind_param('sssi', $email, $senha_hash, $endereco_final, $_SESSION['dados']['id_usuario']);
+    $stmt->execute();
+    $stmt->close();
     
 }
 
@@ -236,7 +267,7 @@ $stmt->close();
     </button>
 
     <label for="email">Email: </label>
-    <input type="email" name="email"  ><br>
+    <input type="email" name="email" id="email"  ><br>
 
     <label for="senha">Senha: </label>
     <input type="password" name="senha"  ><br>
@@ -258,8 +289,12 @@ $stmt->close();
     <input type="text" name="rua" id="rua"  ><br>
 
     <label for="num">Nº: </label>
-    <input type="num" name="num"  ><br>
+    <input type="number" name="num" id="num" ><br>
 
     <input type="submit" value="Cadastrar">
 
 </form>
+
+<?php 
+echo "<script>preencher_input('" . $usuario['endereco'] . "', '" . $usuario['email'] . "')</script>";
+?>
