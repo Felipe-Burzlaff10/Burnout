@@ -25,98 +25,101 @@ if (!isset($_SESSION['dados']['id_usuario']))
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <style>
-        /* =========================
+
+        
+/* =========================
    USUÁRIO E MENU SUSPENSO
 ========================= */
 
-        .usuario-menu {
-            position: relative;
-        }
+.usuario-menu {
+    position: relative;
+}
 
-        .usuario-header {
-            background-color: #111;
-            color: white;
-            font-weight: bold;
-            font-size: 16px;
-            text-decoration: none;
+.usuario-header {
+    background-color: #111;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    text-decoration: none;
 
-            border: 1px solid #292929;
-            border-radius: 8px 8px 0 0;
+    border: 1px solid #292929;
+    border-radius: 8px 8px 0 0;
 
-            padding: 10px 14px;
-            cursor: pointer;
-            white-space: nowrap;
+    padding: 10px 14px;
+    cursor: pointer;
+    white-space: nowrap;
 
-            transition: 0.2s;
-        }
+    transition: 0.2s;
+}
 
-        .usuario-header:hover {
-            background-color: #222;
-            color: #39bf00;
-        }
+.usuario-header:hover {
+    background-color: #222;
+    color: #39bf00;
+}
 
-        #usuarioBtn {
-            color: white;
-        }
+#usuarioBtn
+{
+    color: white;
+}
 
-        .usuario-dropdown {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: auto;
-            width: 100%;
+.usuario-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: auto;
+    width: 100%;
 
-            background-color: #111;
-            border: 1px solid #292929;
-            border-top: none;
+    background-color: #111;
+    border: 1px solid #292929;
+    border-top: none;
 
-            border-radius: 0 0 8px 8px;
+    border-radius: 0 0 8px 8px;
 
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-            z-index: 2000;
-            overflow: hidden;
-            box-sizing: border-box;
-        }
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    z-index: 2000;
+    overflow: hidden;
+    box-sizing: border-box;
+}
 
-        .usuario-dropdown.aberto {
-            display: block;
-        }
+.usuario-dropdown.aberto {
+    display: block;
+}
 
-        .usuario-dropdown a {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+.usuario-dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 
-            padding: 13px 16px;
+    padding: 13px 16px;
 
-            color: #f2f2f2;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: normal;
+    color: #f2f2f2;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: normal;
 
-            transition: background-color 0.2s, color 0.2s;
-        }
+    transition: background-color 0.2s, color 0.2s;
+}
 
-        .usuario-dropdown a:hover {
-            background-color: #39bf00;
-            color: #000;
-        }
+.usuario-dropdown a:hover {
+    background-color: #39bf00;
+    color: #000;
+}
 
-        .usuario-dropdown .sair {
-            color: #ff5555;
-        }
+.usuario-dropdown .sair {
+    color: #ff5555;
+}
 
-        .usuario-dropdown .sair:hover {
-            background-color: #39bf00;
-            color: #000;
-        }
+.usuario-dropdown .sair:hover {
+    background-color: #39bf00;
+    color: #000;
+}
 
-        .usuario-dropdown hr {
-            margin: 0;
-            border: 0;
-            border-top: 1px solid #333;
-        }
+.usuario-dropdown hr {
+    margin: 0;
+    border: 0;
+    border-top: 1px solid #333;
+}
 
 
 
@@ -332,138 +335,6 @@ if (!isset($_SESSION['dados']['id_usuario']))
             margin: 15px 0;
         }
 
-
-        /* =========================
-   BOTÃO E MENU DO USUÁRIO
-========================= */
-
-        .usuario-menu {
-            position: relative;
-            display: inline-block;
-        }
-
-        /* Botão com o nome do usuário */
-
-        .usuario-header {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-
-            background-color: #111;
-            color: white;
-
-            font-weight: bold;
-            font-size: 16px;
-            text-decoration: none;
-
-            border: 1px solid #292929;
-            border-radius: 8px;
-
-            padding: 10px 14px;
-
-            cursor: pointer;
-            white-space: nowrap;
-
-            transition: background-color 0.2s, color 0.2s;
-        }
-
-        .usuario-header:hover {
-            background-color: #222;
-            color: #39bf00;
-        }
-
-        /* Une o botão ao menu quando aberto */
-
-        .usuario-menu:has(.usuario-dropdown.aberto) .usuario-header {
-            border-radius: 8px 8px 0 0;
-            border-bottom-color: #111;
-        }
-
-
-        /* =========================
-   MENU SUSPENSO
-========================= */
-
-        .usuario-dropdown {
-            display: none;
-
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: auto;
-
-            width: 100%;
-            box-sizing: border-box;
-
-            background-color: #111;
-            border: 1px solid #292929;
-            border-top: none;
-
-            border-radius: 0 0 8px 8px;
-
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-
-            z-index: 2000;
-            overflow: hidden;
-        }
-
-        .usuario-dropdown.aberto {
-            display: block;
-        }
-
-
-        /* =========================
-   OPÇÕES DO MENU
-========================= */
-
-        .usuario-dropdown a {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-
-            padding: 13px 14px;
-
-            color: #f2f2f2;
-            text-decoration: none;
-
-            font-size: 14px;
-            font-weight: normal;
-
-            transition: background-color 0.2s, color 0.2s;
-        }
-
-        .usuario-dropdown a:hover {
-            background-color: #39bf00;
-            color: black;
-        }
-
-        /* Ícones */
-
-        .usuario-dropdown a i {
-            font-size: 14px;
-        }
-
-        /* Separador */
-
-        .usuario-dropdown hr {
-            margin: 0;
-            border: 0;
-            border-top: 1px solid #333;
-        }
-
-        /* Sair da conta */
-
-        .usuario-dropdown .sair {
-            color: #ff5555;
-        }
-
-        .usuario-dropdown .sair:hover {
-            background-color: #39bf00;
-            color: black;
-        }
-
-
         /* RESPONSIVO */
         @media (max-width: 600px) {
             .header-home {
@@ -499,14 +370,14 @@ if (!isset($_SESSION['dados']['id_usuario']))
             .carousel img {
                 height: 450px;
             }
-
+            
         }
     </style>
 </head>
 
 <body>
 
-    <!-- JAVASCRIPT -->
+<!-- JAVASCRIPT -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- HEADER -->
@@ -519,9 +390,9 @@ if (!isset($_SESSION['dados']['id_usuario']))
                 <!-- BOTÃO DA BARRA LATERAL + LOGO -->
                 <div class="col-3 d-flex align-items-center gap-2">
 
-                    <?php
-                    if ($_SESSION['dados']['root'])
-                        echo "<button
+                    <?php 
+                        if ($_SESSION['dados']['root'])
+                            echo "<button
                                   class='botao-menu'
                                   id='abrirSidebar'
                                   type='button'
@@ -560,51 +431,51 @@ if (!isset($_SESSION['dados']['id_usuario']))
 
                     </a>
 
+                
 
+                   
+<!-- USUÁRIO E MENU SUSPENSO -->
+<div class="usuario-menu">
 
+    <button
+        type="button"
+        class="usuario-header"
+        id="usuarioBtn"
+        aria-expanded="false"
+        aria-controls="usuarioDropdown">
 
-                    <!-- USUÁRIO E MENU SUSPENSO -->
-                    <div class="usuario-menu">
+        <?php echo htmlspecialchars($_SESSION['dados']['nome']); ?>
+        <i class="bi bi-chevron-down"></i>
 
-                        <button
-                            type="button"
-                            class="usuario-header"
-                            id="usuarioBtn"
-                            aria-expanded="false"
-                            aria-controls="usuarioDropdown">
+    </button>
 
-                            <?php echo htmlspecialchars($_SESSION['dados']['nome']); ?>
-                            <i class="bi bi-chevron-down"></i>
+    <div class="usuario-dropdown" id="usuarioDropdown">
 
-                        </button>
+        <a href="perfil.php">
+            <i class="bi bi-person"></i>
+            Minha conta
+        </a>
 
-                        <div class="usuario-dropdown" id="usuarioDropdown">
+        <a href="historico.php">
+            <i class="bi bi-clock-history"></i>
+            Histórico de compras
+        </a>
 
-                            <a href="perfil.php">
-                                <i class="bi bi-person"></i>
-                                Minha conta
-                            </a>
+        <a href="usuario/alterar.php">
+            <i class="bi bi-gear"></i>
+            Alterar meus dados
+        </a>
 
-                            <a href="historico.php">
-                                <i class="bi bi-clock-history"></i>
-                                Histórico de compras
-                            </a>
+        <hr>
 
-                            <a href="usuario/alterar.php">
-                                <i class="bi bi-gear"></i>
-                                Alterar meus dados
-                            </a>
+        <a href="usuario/logout.php" class="sair">
+            <i class="bi bi-box-arrow-right"></i>
+            Sair da conta
+        </a>
 
-                            <hr>
+    </div>
 
-                            <a href="usuario/logout.php" class="sair">
-                                <i class="bi bi-box-arrow-right"></i>
-                                Sair da conta
-                            </a>
-
-                        </div>
-
-                    </div>
+</div>
 
 
                 </div>
@@ -662,15 +533,15 @@ if (!isset($_SESSION['dados']['id_usuario']))
             <i class="bi bi-person-circle"></i> Listar Usuarios
         </a>
 
-        <a href="usuario/alterar.php">
+        <a href="produto/alterar.php">
             <i class="bi bi-pencil-square"></i> Alterar Produtos
         </a>
 
-        <a href="usuario/cadastro.php">
+         <a href="usuario/cadastro.php">
             <i class="bi bi-person-add"></i> Cadastrar Usuário
         </a>
 
-        <a href="produto/cadastro.php.php">
+         <a href="produto/cadastro.php">
             <i class="bi bi-file-earmark-plus"></i> Cadastrar Produto
         </a>
 
@@ -733,18 +604,7 @@ if (!isset($_SESSION['dados']['id_usuario']))
     </div>
 
 
-    <!-- =========================
-         LOGOUT
-    ========================= -->
 
-    <a
-        href="usuario/logout.php"
-        class="logout">
-
-        <i class="bi bi-box-arrow-right"></i>
-        Logout
-
-    </a>
 
     <script>
         const sidebar = document.getElementById("sidebar");
@@ -782,8 +642,8 @@ if (!isset($_SESSION['dados']['id_usuario']))
 </body>
 
 <?php
-echo "<script src='usuario_menu.js'></script>";
-echo "<script>usuario_menu_suspenso();</script>";
+ echo "<script src='usuario_menu.js'></script>";
+  echo "<script>usuario_menu_suspenso();</script>";
 ?>
 
 </html>

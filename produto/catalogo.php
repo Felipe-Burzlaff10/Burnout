@@ -8,14 +8,13 @@ $resultado = $conexao->query($sql);
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
 {
 
-    $pesquisa = "%" . $_GET['pesquisa'] . "%";
+    $pesquisa = $_GET['pesquisa'] . "%";
 
     $sql = "SELECT * FROM produto 
-            WHERE nome LIKE ? 
-            OR categoria LIKE ?";
+            WHERE nome LIKE ? ";
 
     $stmt = $conexao->prepare($sql);
-    $stmt->bind_param('ss', $pesquisa, $pesquisa);
+    $stmt->bind_param('s', $pesquisa);
     $stmt->execute();
 
     $resultado = $stmt->get_result();
@@ -740,9 +739,12 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
          <ul class="nav justify-content-center">
 
             <li class="nav-item">
-                <a class="nav-link active" href="home.php">HOME</a>
+                <a class="nav-link" href="../index.php">HOME</a>
             </li>
 
+              <li class="nav-item">
+                <a class="nav-link active" href="">CATALOGO</a>
+            </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="lancamentos.php">LANÇAMENTOS</a>
@@ -815,6 +817,8 @@ if ($resultado->num_rows > 0)
         echo "<details>";
         
         echo "<summary>Ver mais</summary>";
+
+         echo "Categoria: ". $produto['categoria']. "<br>";
         
         echo "Estoque: ". $produto['estoque']. "<br>";
         

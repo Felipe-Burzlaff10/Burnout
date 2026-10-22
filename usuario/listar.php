@@ -311,3 +311,16 @@ $conexao->close();
 ?>
 
 </div>
+
+   <!-- =========================
+         LOGOUT
+    ========================= -->
+
+    <a
+        href="logout.php"
+        class="logout">
+
+        <i class="bi bi-box-arrow-right"></i>
+        Logout
+
+    </a>
