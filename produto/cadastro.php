@@ -36,8 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $stmt->close();
 
 }
- 
-$conexao->close();
+
 ?>
 
 
@@ -255,7 +254,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         if($_POST['estoque'] == 0)
             throw new Exception("Numero invalido para estoque!");
 
-        $sql = "INSERT INTO produto(nome, categoria, preco, tamanho, estoque, descrição, foto)
+        $sql = "INSERT INTO produto(nome, categoria, preco, tamanho, estoque, descricao, foto)
         VALUES (?, ?, ?, ?, ?, ?, ?) ";
 
         $stmt = $conexao->prepare($sql);
@@ -270,10 +269,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         echo "<script src='../mensagem_erro.js'></script>";
         echo "<script>erro_mensagem(" . json_encode($e->getMessage()) . ");</script>";
         exit;
-    }
-    finally
-    {
-        $conexao->close();
     }
    
 }

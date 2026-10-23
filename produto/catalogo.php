@@ -1,4 +1,11 @@
-<?php session_start();
+<?php 
+session_start();
+
+if (!isset($_SESSION['dados']['id_usuario']))
+{
+    echo "<script>window.location.href='../index.php';</script>";
+    exit();
+}
 
 require_once "../conexao.php";
 
@@ -592,7 +599,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
 <?php
 if ($resultado->num_rows > 0)
 {
-    echo "<form method='post' class='d-flex flex-wrap align-items-start p-2 bg-light'>";
     while($produto = $resultado -> fetch_assoc())
     {   
         if($produto['estoque'] > 0)
@@ -615,27 +621,10 @@ if ($resultado->num_rows > 0)
         echo "Preço: R$" . $produto['preco'];
         
         echo "<br>";
-        
-        echo "<details>";
-        
-        echo "<summary>Ver mais</summary>";
-        
-        echo "Estoque: ". $produto['estoque']. "<br>";
-        
-        echo "Tamanho: ". $produto['tamanho']. "<br>";
-        
-        echo "Descrição: " . $produto['descricao']. "<br>";
-        
-        
-        echo "Disponibilidade: " . $disponibilidade. "<br>";
-        
-        
-        echo "</details>";
-        
-        echo "</div>";
-    }
 
-    echo "</form>";
+        echo "<a href='detalhes.php?id_produto=" . $produto['id_produto'] . "'>Ver detalhes</a>";
+
+    }
 }
 ?>
 
