@@ -90,9 +90,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
 <form method="POST">
 
-    <button type="button" onclick="history.back()" class="btn-voltar">
-    ← Voltar
-    </button>
+    <a href="../index.php">
+        <button type="button" class="btn-voltar">
+        ← Voltar
+        </button>
+    </a>
 
     <label for="email">Email: </label>
     <input type="email" name="email" id="email"  ><br>
@@ -119,7 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     <label for="num">Nº: </label>
     <input type="number" name="num" id="num" ><br>
 
-    <input type="submit" value="Cadastrar">
+    <input type="submit" value="Alterar">
 
 </form>
 

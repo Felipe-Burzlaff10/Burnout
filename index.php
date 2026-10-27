@@ -426,7 +426,7 @@ if (!isset($_SESSION['dados']['id_usuario']))
                 <div class="col-3 d-flex justify-content-end align-items-center gap-3">
 
 
-                    <a href="carrinho.php"
+                    <a href="produto/carrinho.php"
                         class="icone-header"
                         title="Carrinho">
 
@@ -499,11 +499,11 @@ if (!isset($_SESSION['dados']['id_usuario']))
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="lancamentos.php">LANÇAMENTOS</a>
+                <a class="nav-link" href="produto/lancamentos.php">LANÇAMENTOS</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link disabled" aria-disabled="true">PINTO</a>
+                <a class="nav-link" >SOBRE NÓS</a>
             </li>
 
         </ul>

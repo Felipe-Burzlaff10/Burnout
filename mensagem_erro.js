@@ -18,6 +18,7 @@ function sucesso_mensagem(mensagem)
         });
 }
 
+// se der tempo no final fazer
 function deletar_mensagem()
 {
    const swalWithBootstrapButtons = Swal.mixin({

@@ -9,11 +9,14 @@ if (isset($_SESSION['dados']['id_usuario']))
 
 function validaCPF($cpf)
 {
+    //pega somente os numeros do input
     $cpf = preg_replace('/[^0-9]/is', '', $cpf);
      
+    //tamanho
     if (strlen($cpf) != 11)
         return false;
-     
+    
+    //numero repetido
     if (preg_match('/(\d)\1{10}/', $cpf))
         return false;
      
