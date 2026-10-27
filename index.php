@@ -2,7 +2,10 @@
 session_start();
 
 if (!isset($_SESSION['dados']['id_usuario']))
+{
     echo "<script>window.location.href='usuario/login.php';</script>";
+    exit();
+}
 ?>
 
 <!DOCTYPE html>

@@ -26,9 +26,9 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['dados']['id_usuario']))
+if ($_SESSION['dados']['root'] != 1)
 {
-    echo "<script>window.location.href='index.php';</script>";
+    echo "<script>window.location.href='../index.php';</script>";
     exit();
 }
 
