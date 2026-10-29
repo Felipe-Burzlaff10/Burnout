@@ -1,296 +1,252 @@
 /* =========================
-   HEADER
-========================= */
-
-.header-home {
-    background-color: #39bf00;
-    padding: 10px 20px 0;
-    border-bottom: 2px solid black;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-}
-
-.logo {
-    width: 170px;
-    height: auto;
-    object-fit: contain;
-}
-
-.titulo {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 70px;
-    font-weight: bold;
-    margin: 0;
-    color: black;
-}
-
-/* ÍCONES DO HEADER */
-
-.icone-header {
-    color: black;
-    font-size: 32px;
-    text-decoration: none;
-    transition: 0.2s ease;
-}
-
-.icone-header:hover {
-    color: white;
-    transform: scale(1.1);
-}
-
-/* USUÁRIO */
-
-
-/* =========================
-   BOTÃO E MENU DO USUÁRIO
-========================= */
-
-/* Área do usuário */
-.usuario-menu {
-    position: absolute;
-    top: 122px; /* Ajuste conforme a altura do cabeçalho */
-    right: 28px;
-    left: auto;
-    display: inline-block;
-    z-index: 2000;
-}
-
-/* Botão com o nome do usuário */
-.usuario-header {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-
-    background-color: #111;
-    color: white;
-
-    font-weight: bold;
-    font-size: 14px;
-
-    border: 1px solid #292929;
-    border-radius: 8px;
-    padding: 10px 14px;
-
-    cursor: pointer;
-    white-space: nowrap;
-}
-
-/* Menu suspenso */
-.usuario-dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    left: auto;
-
-    width: 230px;
-    box-sizing: border-box;
-
-    background-color: #111;
-    border: 1px solid #292929;
-    border-radius: 0 0 8px 8px;
-
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-}
-
-.usuario-dropdown.aberto {
-    display: block;
-}
-
-/* Opções */
-.usuario-dropdown a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    padding: 13px 14px;
-    color: #f2f2f2;
-    text-decoration: none;
-    font-size: 14px;
-
-    transition: background-color 0.2s, color 0.2s;
-}
-
-.usuario-dropdown a:hover {
-    background-color: #39bf00;
-    color: black;
-}
-
-.usuario-dropdown hr {
-    margin: 0;
-    border: 0;
-    border-top: 1px solid #333;
-}
-
-.usuario-dropdown .sair {
-    color: #ff5555;
-}
-
-.usuario-dropdown .sair:hover {
-    background-color: #39bf00;
-    color: black;
-}
-
-.usuario-header:hover {
-    background-color: #222;
-    color: #39bf00;
-}
-
-
-/* =========================
-   MENU SUSPENSO
-========================= */
-
-.usuario-dropdown {
-    display: none;
-
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: auto;
-
-    width: 100%;
-    box-sizing: border-box;
-
-    background-color: #111;
-    border: 1px solid #292929;
-    border-top: none;
-
-    border-radius: 0 0 8px 8px;
-
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-
-    z-index: 2000;
-    overflow: hidden;
-}
-
-.usuario-dropdown.aberto {
-    display: block;
-}
-
-
-/* Une visualmente o botão e o menu */
-
-.usuario-menu:has(.usuario-dropdown.aberto) .usuario-header {
-    border-radius: 8px 8px 0 0;
-    border-bottom-color: #111;
-}
-
-
-/* =========================
-   OPÇÕES DO MENU
-========================= */
-
-.usuario-dropdown a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    padding: 13px 14px;
-
-    color: #f2f2f2;
-    text-decoration: none;
-
-    font-size: 14px;
-    font-weight: normal;
-
-    transition: background-color 0.2s, color 0.2s;
-}
-
-.usuario-dropdown a:hover {
-    background-color: #39bf00;
-    color: black;
-}
-
-
-/* ÍCONES */
-
-.usuario-dropdown a i {
-    font-size: 14px;
-}
-
-
-/* SEPARADOR */
-
-.usuario-dropdown hr {
-    margin: 0;
-    border: 0;
-    border-top: 1px solid #333;
-}
-
-
-/* SAIR DA CONTA */
-
-.usuario-dropdown .sair {
-    color: #ff5555;
-}
-
-.usuario-dropdown .sair:hover {
-    background-color: #39bf00;
-    color: black;
-}
-
-
-/* =========================
-   RESPONSIVIDADE DO USUÁRIO
-========================= */
-
-@media (max-width: 900px) {
-    .usuario-header {
-        font-size: 15px;
-        padding: 9px 10px;
-    }
-}
-
-@media (max-width: 600px) {
-    .usuario-header {
-        display: inline-flex;
-        font-size: 12px;
-        padding: 8px;
-        white-space: normal;
-        max-width: 150px;
-    }
-
-    .usuario-dropdown a {
-        padding: 11px 10px;
-        font-size: 12px;
-    }
-}
-
-
-/* =========================
-   MENU DE NAVEGAÇÃO
-========================= */
-
-.nav {
-    background-color: #39bf00;
-    padding: 10px 0;
-}
-
-.nav-link {
-    color: black;
-    font-weight: bold;
-    font-size: 18px;
-    text-transform: uppercase;
-    text-decoration: none;
-    margin: 0 15px;
-    transition: 0.2s ease;
-}
-
-.nav-link:hover {
-    color: white;
-}
-
-.nav-link.active {
-    color: black;
-    border-bottom: 2px solid black;
-}
-
-.nav-link.disabled {
-    color: #333;
-    opacity: 0.6;
-}
+           MENU
+        ========================= */
+
+        .nav {
+            background-color: #39bf00;
+            padding: 10px 0;
+        }
+
+        .nav-link {
+            color: black;
+            font-weight: bold;
+            font-size: 18px;
+            text-transform: uppercase;
+            margin: 0 15px;
+        }
+
+        .nav-link:hover {
+            color: white;
+        }
+
+        .nav-link.active {
+            border-bottom: 2px solid black;
+        }
+
+        /* HEADER */
+        .header-home {
+            background-color: #39bf00;
+            padding: 10px 20px 0;
+            border-bottom: 2px solid black;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .logo {
+            width: 170px;
+        }
+
+        .titulo {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 70px;
+            font-weight: bold;
+            margin: 0;
+            color: black;
+        }
+
+        /* BOTÃO DA SIDEBAR */
+        .botao-menu {
+            background: black;
+            color: #39bf00;
+            border: 2px solid black;
+            border-radius: 8px;
+            padding: 5px 12px;
+            font-size: 27px;
+            cursor: pointer;
+            transition: 0.2s;
+            line-height: 1.2;
+        }
+
+        .botao-menu:hover {
+            background: white;
+            color: black;
+        }
+
+        /* ÍCONES DO HEADER */
+        .icone-header {
+            color: black;
+            font-size: 32px;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .icone-header:hover {
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* USUÁRIO */
+        .usuario-header {
+            color: black;
+            font-weight: bold;
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        .usuario-header:hover {
+            color: white;
+        }
+
+        /* CAROUSEL */
+        .carousel img {
+            width: 100%;
+            height: 80vh;
+            object-fit: cover;
+        }
+
+        /* LOGOUT */
+        .logout {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 18px;
+            font-weight: bold;
+            text-decoration: none;
+            z-index: 1000;
+            transition: 0.2s;
+        }
+
+        .logout:hover {
+            background-color: #39bf00;
+            color: black;
+            transform: scale(1.05);
+        }
+
+        /* FUNDO DA SIDEBAR */
+        .fundo-sidebar {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 1040;
+        }
+
+        .fundo-sidebar.aberto {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* BARRA LATERAL */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 290px;
+            max-width: 85vw;
+            height: 100vh;
+            background: #111;
+            color: white;
+            padding: 25px 20px;
+            z-index: 1050;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            overflow-y: auto;
+            box-shadow: 5px 0 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .sidebar.aberto {
+            transform: translateX(0);
+        }
+
+        .sidebar-topo {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #39bf00;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-topo h2 {
+            color: #39bf00;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-weight: bold;
+            font-size: 27px;
+            margin: 0;
+        }
+
+        .fechar-sidebar {
+            background: none;
+            color: white;
+            border: none;
+            font-size: 26px;
+            cursor: pointer;
+        }
+
+        .fechar-sidebar:hover {
+            color: #39bf00;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: bold;
+            padding: 14px 12px;
+            margin-bottom: 5px;
+            border-radius: 7px;
+            transition: 0.2s;
+        }
+
+        .sidebar a i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        .sidebar a:hover {
+            background: #39bf00;
+            color: black;
+        }
+
+        .sidebar .separador {
+            border: 0;
+            border-top: 1px solid #444;
+            margin: 15px 0;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 600px) {
+            .header-home {
+                padding: 10px 8px 0;
+            }
+
+            .logo {
+                width: 75px;
+            }
+
+            .titulo {
+                font-size: 30px;
+            }
+
+            .botao-menu {
+                font-size: 21px;
+                padding: 4px 8px;
+            }
+
+            .icone-header {
+                font-size: 21px;
+            }
+
+            .usuario-header {
+                display: none;
+            }
+
+            .nav-link {
+                font-size: 13px;
+                margin: 0 4px;
+            }
+
+            .carousel img {
+                height: 450px;
+            }
+            
+        }
 
 /* =========================
    ÁREA DO CATÁLOGO BURNOUT
