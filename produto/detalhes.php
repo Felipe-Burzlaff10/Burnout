@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="../CSS/produto/detalhes.css">
+
+
 <?php 
 session_start();
 
@@ -48,5 +51,6 @@ if ($resultado->num_rows > 0)
         echo "<br>";
 
     }
+
 }
 ?>
