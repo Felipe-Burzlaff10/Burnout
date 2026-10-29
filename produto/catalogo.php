@@ -15,10 +15,10 @@ $resultado = $conexao->query($sql);
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
 {
 
-    $pesquisa = $_GET['pesquisa'] . "%";
+    $pesquisa = "%" . $_GET['pesquisa'] . "%";
 
     $sql = "SELECT * FROM produto 
-            WHERE nome LIKE ? ";
+            WHERE nome LIKE ?";
 
     $stmt = $conexao->prepare($sql);
     $stmt->bind_param('s', $pesquisa);
