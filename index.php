@@ -503,7 +503,7 @@ if (!isset($_SESSION['dados']['id_usuario']))
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" >SOBRE NÓS</a>
+                <a class="nav-link" href="sobre_nos.php">SOBRE NÓS</a>
             </li>
 
         </ul>

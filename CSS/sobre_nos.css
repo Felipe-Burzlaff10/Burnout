@@ -1,0 +1,379 @@
+:root {
+    --verde: #39bf00;
+    --preto: #111111;
+    --cinza: #f4f4f4;
+    --branco: #ffffff;
+    --texto: #1a1a1a;
+    --cinza-escuro: #2b2b2b;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--cinza);
+    color: var(--texto);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.header-home {
+    background-color: var(--verde);
+    padding: 10px 20px 0;
+    border-bottom: 2px solid var(--preto);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.logo {
+    width: 170px;
+}
+
+.titulo {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 70px;
+    font-weight: bold;
+    margin: 0;
+    color: var(--preto);
+}
+
+.botao-menu {
+    background: var(--preto);
+    color: var(--verde);
+    border: 2px solid var(--preto);
+    border-radius: 8px;
+    padding: 5px 12px;
+    font-size: 27px;
+    cursor: pointer;
+    transition: 0.2s;
+    line-height: 1.2;
+}
+
+.botao-menu:hover {
+    background: var(--branco);
+    color: var(--preto);
+}
+
+.icone-header {
+    color: var(--preto);
+    font-size: 32px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.icone-header:hover {
+    color: var(--branco);
+    transform: scale(1.1);
+}
+
+.usuario-menu {
+    position: relative;
+}
+
+.usuario-header {
+    background-color: var(--preto);
+    color: var(--branco);
+    font-weight: bold;
+    font-size: 16px;
+    border: 1px solid #292929;
+    border-radius: 8px 8px 0 0;
+    padding: 10px 14px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: 0.2s;
+}
+
+.usuario-header:hover {
+    background-color: #222;
+    color: var(--verde);
+}
+
+#usuarioBtn {
+    color: var(--branco);
+}
+
+.usuario-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--preto);
+    border: 1px solid #292929;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    z-index: 2000;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.usuario-dropdown.aberto {
+    display: block;
+}
+
+.usuario-dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 16px;
+    color: #f2f2f2;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: normal;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.usuario-dropdown a:hover {
+    background-color: var(--verde);
+    color: var(--preto);
+}
+
+.usuario-dropdown .sair {
+    color: #ff5555;
+}
+
+.usuario-dropdown .sair:hover {
+    background-color: var(--verde);
+    color: var(--preto);
+}
+
+.usuario-dropdown hr {
+    margin: 0;
+    border: 0;
+    border-top: 1px solid #333;
+}
+
+.nav {
+    background-color: var(--verde);
+    padding: 10px 0;
+}
+
+.nav-link {
+    color: var(--preto);
+    font-weight: bold;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin: 0 15px;
+}
+
+.nav-link:hover {
+    color: var(--branco);
+}
+
+.nav-link.active {
+    border-bottom: 2px solid var(--preto);
+}
+
+.sobre-main {
+    background: var(--cinza);
+}
+
+.sobre-banner {
+    background: linear-gradient(135deg, #d9f7c9 0%, #f4f4f4 100%);
+    padding: 50px 0 25px;
+    border-bottom: 2px solid var(--preto);
+}
+
+.banner-text {
+    text-align: center;
+}
+
+.tag {
+    display: inline-block;
+    background: var(--preto);
+    color: var(--verde);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    padding: 8px 14px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+}
+
+.banner-text h2 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    color: var(--preto);
+}
+
+.sobre-conteudo {
+    padding: 45px 0 70px;
+}
+
+.sobre-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 30px;
+}
+
+.sobre-card {
+    background: var(--branco);
+    border: 2px solid var(--preto);
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(17, 17, 17, 0.08);
+}
+
+.sobre-card h3 {
+    margin: 0 0 18px;
+    font-size: 2rem;
+    color: var(--preto);
+    font-weight: 800;
+    position: relative;
+    padding-bottom: 12px;
+}
+
+.sobre-card h3::after {
+    content: "";
+    display: block;
+    width: 70px;
+    height: 4px;
+    background: var(--verde);
+    border-radius: 999px;
+    margin-top: 12px;
+}
+
+.sobre-card p {
+    margin: 0 0 16px;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #222;
+}
+
+.sobre-card p:last-child {
+    margin-bottom: 0;
+}
+
+.fundo-sidebar {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    z-index: 1040;
+}
+
+.fundo-sidebar.aberto {
+    opacity: 1;
+    visibility: visible;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    background: #111;
+    color: white;
+    padding: 20px 18px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1050;
+    overflow-y: auto;
+}
+
+.sidebar.aberto {
+    transform: translateX(0);
+}
+
+.sidebar-topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.sidebar-topo h2 {
+    margin: 0;
+    font-size: 28px;
+    color: var(--verde);
+    font-weight: bold;
+}
+
+.fechar-sidebar {
+    background: transparent;
+    border: none;
+    color: var(--branco);
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.sidebar a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 10px;
+    color: var(--branco);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.2s ease;
+}
+
+.sidebar a:hover {
+    background: var(--verde);
+    color: var(--preto);
+}
+
+.separador {
+    border-color: rgba(255, 255, 255, 0.2);
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .header-home {
+        padding: 10px 8px 0;
+    }
+
+    .logo {
+        width: 90px;
+    }
+
+    .titulo {
+        font-size: 30px;
+    }
+
+    .botao-menu {
+        font-size: 21px;
+        padding: 4px 8px;
+    }
+
+    .icone-header {
+        font-size: 21px;
+    }
+
+    .usuario-header {
+        display: none;
+    }
+
+    .nav-link {
+        font-size: 13px;
+        margin: 0 4px;
+    }
+
+    .sobre-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sobre-card {
+        padding: 22px 18px;
+    }
+}
