@@ -100,7 +100,7 @@ if (!isset($_SESSION['dados']['id_usuario']))
             <a class="nav-link active" href="lancamentos.php">LANÇAMENTOS</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link">SOBRE NÓS</a>
+                <a class="nav-link" href="sobre_nos.php">SOBRE NÓS</a>
         </li>
     </ul>
 </header>
