@@ -159,11 +159,6 @@ if (!isset($_SESSION['dados']['id_usuario'])) {
                             A Burnout surgiu como parte de um projeto escolar desenvolvido em equipe, com a proposta de criar um site para uma loja de roupas fictícia. A ideia nasceu da vontade de explorar o universo da moda streetwear, unindo atitude, autenticidade e criatividade em uma marca com identidade visual própria. A partir desse conceito, começamos a transformar nossas ideias em um projeto digital, planejando como seria a experiência de quem visitasse nossa loja.
 Durante o desenvolvimento, trabalhamos na criação da identidade da Burnout, desde o estilo das peças e as estampas até as cores, o logotipo e a aparência do site. Inspirados pela estética streetwear, escolhemos elementos marcantes, com predominância do preto e detalhes em verde, para transmitir a personalidade da marca. Cada etapa foi uma oportunidade de colocar em prática nossos conhecimentos, compartilhar ideias e transformar conceitos em algo concreto.
 O resultado foi a criação de um site que representa nossa visão de uma loja de roupas moderna, com personalidade e estilo próprio. Mais do que desenvolver uma página na internet, buscamos construir uma experiência visual coerente com a proposta da Burnout, aplicando os conhecimentos adquiridos durante o projeto escolar e enfrentando, em equipe, os desafios de planejar e desenvolver um site do início ao fim.
-
-                        </p>
-                        <p>
-                            Este espaço pode ser preenchido com a trajetória da empresa, a inspiração da ideia
-                            e o crescimento ao longo do tempo.
                         </p>
                     </article>
 
@@ -173,9 +168,6 @@ O resultado foi a criação de um site que representa nossa visão de uma loja d
                             Acreditamos que estilo não é sobre criar tendências, é sobre criar presença. Cada peça é pensada na atitude no contraste e detalhes marcantes que fazem toda a diferença pra quem te enxerga na rua, transformando o básico em algo memorável. 
 Burnout nasceu não apenas para ser uma loja de roupas, mas sim para criar identidade, atitude e personalidade para quem não foi feito para passar despercebido. Criamos coleções únicas que entregam não só uma estampa, mas sim conforto e caráter em um único visual.
 Vista Burnout, vista indentidade.
-
-                        <p>
-                            Você pode escrever sobre qualidade, compromisso, estilo e relacionamento com a comunidade.
                         </p>
                     </article>
                 </div>
