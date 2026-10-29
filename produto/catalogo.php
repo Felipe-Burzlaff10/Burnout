@@ -36,10 +36,10 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
 
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    
-     <!-- HEADER -->
-    <header class="header-home">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+<header class="header-home">
 
         <div class="container-fluid">
 
@@ -81,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
                 <div class="col-3 d-flex justify-content-end align-items-center gap-3">
 
 
-                    <a href="produto/carrinho.php"
+                    <a href="carrinho.php"
                         class="icone-header"
                         title="Carrinho">
 
@@ -109,24 +109,24 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
 
     <div class="usuario-dropdown" id="usuarioDropdown">
 
-        <a href="perfil.php">
+        <a href="../perfil.php">
             <i class="bi bi-person"></i>
             Minha conta
         </a>
 
-        <a href="historico.php">
+        <a href="../historico.php">
             <i class="bi bi-clock-history"></i>
             Histórico de compras
         </a>
 
-        <a href="usuario/alterar.php">
+        <a href="../usuario/alterar.php">
             <i class="bi bi-gear"></i>
             Alterar meus dados
         </a>
 
         <hr>
 
-        <a href="usuario/logout.php" class="sair">
+        <a href="../usuario/logout.php" class="sair">
             <i class="bi bi-box-arrow-right"></i>
             Sair da conta
         </a>
@@ -146,11 +146,11 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
         <ul class="nav justify-content-center">
 
             <li class="nav-item">
-                <a class="nav-link active" href="index.php">HOME</a>
+                <a class="nav-link" href="../index.php">HOME</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="catalogo.php">CATALOGO</a>
+                <a class="nav-link active" href="catalogo.php">CATALOGO</a>
             </li>
 
             <li class="nav-item">
@@ -187,25 +187,58 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
 
         </div>
 
-        <a href="usuario/listar.php">
+        <a href="../usuario/listar.php">
             <i class="bi bi-person-circle"></i> Listar Usuarios
         </a>
 
-        <a href="produto/alterar.php">
+        <a href="alterar.php">
             <i class="bi bi-pencil-square"></i> Alterar Produtos
         </a>
 
-         <a href="usuario/cadastro.php">
+         <a href="../usuario/cadastro.php">
             <i class="bi bi-person-add"></i> Cadastrar Usuário
         </a>
 
-         <a href="produto/cadastro.php">
+         <a href="cadastro.php">
             <i class="bi bi-file-earmark-plus"></i> Cadastrar Produto
         </a>
 
         <hr class="separador">
 
     </aside>
+
+    <script>
+        const sidebar = document.getElementById("sidebar");
+        const fundoSidebar = document.getElementById("fundoSidebar");
+        const abrirSidebar = document.getElementById("abrirSidebar");
+        const fecharSidebar = document.getElementById("fecharSidebar");
+
+        if (sidebar && fundoSidebar && abrirSidebar && fecharSidebar) {
+            function abrirMenu() {
+                sidebar.classList.add("aberto");
+                fundoSidebar.classList.add("aberto");
+                abrirSidebar.setAttribute("aria-expanded", "true");
+                document.body.style.overflow = "hidden";
+            }
+
+            function fecharMenu() {
+                sidebar.classList.remove("aberto");
+                fundoSidebar.classList.remove("aberto");
+                abrirSidebar.setAttribute("aria-expanded", "false");
+                document.body.style.overflow = "";
+            }
+
+            abrirSidebar.addEventListener("click", abrirMenu);
+            fecharSidebar.addEventListener("click", fecharMenu);
+            fundoSidebar.addEventListener("click", fecharMenu);
+
+            document.addEventListener("keydown", function(event) {
+                if (event.key === "Escape") {
+                    fecharMenu();
+                }
+            });
+        }
+    </script>
 
 
 <div class="catalogo-area">

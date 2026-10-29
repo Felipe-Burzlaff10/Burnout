@@ -155,29 +155,6 @@
     }
 }
 
-@media (max-width: 900px) {
-    .titulo {
-        font-size: 50px;
-    }
-
-    .logo {
-        width: 130px;
-    }
-
-    .icone-header {
-        font-size: 26px;
-    }
-
-    .usuario-header {
-        font-size: 15px;
-    }
-
-    .nav-link {
-        margin: 0 8px;
-        font-size: 16px;
-    }
-}
-
 /* =========================
    RESPONSIVIDADE - CELULARES
 ========================= */
@@ -204,24 +181,7 @@
 
 @media (max-width: 600px) {
     .header-home {
-        padding: 10px 5px 0;
-    }
-
-    .header-home .row {
-        flex-wrap: nowrap;
-    }
-
-    .header-home .col-3:first-child {
-        width: 22%;
-    }
-
-    .header-home .col-6 {
-        width: 48%;
-    }
-
-    .header-home .col-3:last-child {
-        width: 30%;
-        gap: 10px !important;
+        padding: 10px 8px 0;
     }
 
     .logo {
@@ -229,7 +189,7 @@
     }
 
     .titulo {
-        font-size: 27px;
+        font-size: 30px;
     }
 
     .icone-header {
@@ -246,9 +206,8 @@
     }
 
     .nav-link {
-        font-size: 12px;
+        font-size: 13px;
         margin: 0 4px;
-        padding: 6px 4px;
     }
 
     .carousel img {
