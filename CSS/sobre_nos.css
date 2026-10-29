@@ -106,6 +106,17 @@ img {
     color: var(--branco);
 }
 
+.usuario-header {
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.usuario-header:hover {
+    color: white;
+}
+
 .usuario-dropdown {
     display: none;
     position: absolute;
@@ -280,15 +291,17 @@ img {
     position: fixed;
     top: 0;
     left: 0;
-    width: 280px;
+    width: 290px;
+    max-width: 85vw;
     height: 100vh;
     background: #111;
     color: white;
-    padding: 20px 18px;
+    padding: 25px 20px;
+    z-index: 1050;
     transform: translateX(-100%);
     transition: transform 0.3s ease;
-    z-index: 1050;
     overflow-y: auto;
+    box-shadow: 5px 0 20px rgba(0, 0, 0, 0.4);
 }
 
 .sidebar.aberto {
@@ -297,54 +310,78 @@ img {
 
 .sidebar-topo {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    margin-bottom: 25px;
+    align-items: center;
+    border-bottom: 2px solid var(--verde);
+    padding-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .sidebar-topo h2 {
-    margin: 0;
-    font-size: 28px;
     color: var(--verde);
+    font-family: Georgia, 'Times New Roman', serif;
     font-weight: bold;
+    font-size: 27px;
+    margin: 0;
 }
 
 .fechar-sidebar {
-    background: transparent;
+    background: none;
+    color: white;
     border: none;
-    color: var(--branco);
-    font-size: 22px;
+    font-size: 26px;
     cursor: pointer;
 }
 
+.fechar-sidebar:hover {
+    color: var(--verde);
+}
+
 .sidebar a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 10px;
-    color: var(--branco);
+    display: block;
+    color: white;
     text-decoration: none;
-    border-radius: 8px;
-    transition: 0.2s ease;
+    font-size: 17px;
+    font-weight: bold;
+    padding: 14px 12px;
+    margin-bottom: 5px;
+    border-radius: 7px;
+    transition: 0.2s;
+}
+
+.sidebar a i {
+    margin-right: 10px;
+    font-size: 20px;
 }
 
 .sidebar a:hover {
     background: var(--verde);
-    color: var(--preto);
+    color: black;
 }
 
-.separador {
-    border-color: rgba(255, 255, 255, 0.2);
-    margin-top: 20px;
+.sidebar .separador {
+    border: 0;
+    border-top: 1px solid #444;
+    margin: 15px 0;
 }
 
 @media (max-width: 768px) {
+    .sobre-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sobre-card {
+        padding: 22px 18px;
+    }
+}
+
+@media (max-width: 600px) {
     .header-home {
         padding: 10px 8px 0;
     }
 
     .logo {
-        width: 90px;
+        width: 75px;
     }
 
     .titulo {
@@ -367,13 +404,5 @@ img {
     .nav-link {
         font-size: 13px;
         margin: 0 4px;
-    }
-
-    .sobre-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .sobre-card {
-        padding: 22px 18px;
     }
 }

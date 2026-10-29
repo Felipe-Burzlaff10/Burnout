@@ -30,38 +30,57 @@ if (!isset($_SESSION['dados']['id_usuario'])) {
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
+    <!-- HEADER -->
     <header class="header-home">
+
         <div class="container-fluid">
+
             <div class="row align-items-center">
 
+                <!-- BOTÃO DA BARRA LATERAL + LOGO -->
                 <div class="col-3 d-flex align-items-center gap-2">
+
                     <?php
-                    if (!empty($_SESSION['dados']['root'])) {
-                        echo "<button
-                            class='botao-menu'
-                            id='abrirSidebar'
-                            type='button'
-                            aria-label='Abrir menu lateral'
-                            aria-controls='sidebar'
-                            aria-expanded='false'>
-                                <i class='bi bi-list'></i>
-                            </button>";
-                    }
+                        if ($_SESSION['dados']['root'])
+                            echo "<button
+                                  class='botao-menu'
+                                  id='abrirSidebar'
+                                  type='button'
+                                  aria-label='Abrir menu lateral'
+                                  aria-controls='sidebar'
+                                  aria-expanded='false'>
+                                    <i class='bi bi-list'></i>
+                                  </button>";
                     ?>
 
-                    <img src="img_site/logo.png" alt="Logo BURNOUT" class="logo">
+                    <img
+                        src="img_site/logo.png"
+                        alt="Logo BURNOUT"
+                        class="logo">
+
                 </div>
 
+                <!-- TÍTULO -->
                 <div class="col-6 text-center">
+
                     <h1 class="titulo">BURNOUT</h1>
+
                 </div>
 
+                <!-- ÍCONES -->
                 <div class="col-3 d-flex justify-content-end align-items-center gap-3">
-                    <a href="produto/carrinho.php" class="icone-header" title="Carrinho">
+
+                    <a href="produto/carrinho.php"
+                        class="icone-header"
+                        title="Carrinho">
+
                         <i class="bi bi-cart3"></i>
+
                     </a>
 
+                    <!-- USUÁRIO E MENU SUSPENSO -->
                     <div class="usuario-menu">
+
                         <button
                             type="button"
                             class="usuario-header"
@@ -71,9 +90,11 @@ if (!isset($_SESSION['dados']['id_usuario'])) {
 
                             <?php echo htmlspecialchars($_SESSION['dados']['nome']); ?>
                             <i class="bi bi-chevron-down"></i>
+
                         </button>
 
                         <div class="usuario-dropdown" id="usuarioDropdown">
+
                             <a href="perfil.php">
                                 <i class="bi bi-person"></i>
                                 Minha conta
@@ -95,15 +116,22 @@ if (!isset($_SESSION['dados']['id_usuario'])) {
                                 <i class="bi bi-box-arrow-right"></i>
                                 Sair da conta
                             </a>
+
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
+
         </div>
 
+        <!-- MENU PRINCIPAL -->
         <ul class="nav justify-content-center">
+
             <li class="nav-item">
-                <a class="nav-link" href="index.php">HOME</a>
+                <a class="nav-link" href="home.php">HOME</a>
             </li>
 
             <li class="nav-item">
@@ -117,28 +145,52 @@ if (!isset($_SESSION['dados']['id_usuario'])) {
             <li class="nav-item">
                 <a class="nav-link active" href="sobre_nos.php">SOBRE NÓS</a>
             </li>
+
         </ul>
+
     </header>
 
-    <?php if (!empty($_SESSION['dados']['root'])): ?>
-        <div class="fundo-sidebar" id="fundoSidebar"></div>
+    <!-- FUNDO ESCURO -->
+    <div class="fundo-sidebar" id="fundoSidebar"></div>
 
-        <aside class="sidebar" id="sidebar" aria-label="Menu lateral">
-            <div class="sidebar-topo">
-                <h2>BURNOUT</h2>
-                <button class="fechar-sidebar" id="fecharSidebar" type="button" aria-label="Fechar menu">
-                    <i class="bi bi-x-lg"></i>
-                </button>
-            </div>
+    <!-- BARRA LATERAL -->
+    <aside class="sidebar" id="sidebar" aria-label="Menu lateral">
 
-            <a href="usuario/listar.php"><i class="bi bi-person-circle"></i> Listar Usuarios</a>
-            <a href="produto/alterar.php"><i class="bi bi-pencil-square"></i> Alterar Produtos</a>
-            <a href="usuario/cadastro.php"><i class="bi bi-person-add"></i> Cadastrar Usuário</a>
-            <a href="produto/cadastro.php"><i class="bi bi-file-earmark-plus"></i> Cadastrar Produto</a>
+        <div class="sidebar-topo">
 
-            <hr class="separador">
-        </aside>
-    <?php endif; ?>
+            <h2>BURNOUT</h2>
+
+            <button
+                class="fechar-sidebar"
+                id="fecharSidebar"
+                type="button"
+                aria-label="Fechar menu">
+
+                <i class="bi bi-x-lg"></i>
+
+            </button>
+
+        </div>
+
+        <a href="usuario/listar.php">
+            <i class="bi bi-person-circle"></i> Listar Usuarios
+        </a>
+
+        <a href="produto/alterar.php">
+            <i class="bi bi-pencil-square"></i> Alterar Produtos
+        </a>
+
+        <a href="usuario/cadastro.php">
+            <i class="bi bi-person-add"></i> Cadastrar Usuário
+        </a>
+
+        <a href="produto/cadastro.php">
+            <i class="bi bi-file-earmark-plus"></i> Cadastrar Produto
+        </a>
+
+        <hr class="separador">
+
+    </aside>
 
     <main class="sobre-main">
         <section class="sobre-banner">
@@ -179,12 +231,12 @@ Vista Burnout, vista indentidade.
     <script>
         usuario_menu_suspenso();
 
-        <?php if (!empty($_SESSION['dados']['root'])): ?>
-            const sidebar = document.getElementById("sidebar");
-            const fundoSidebar = document.getElementById("fundoSidebar");
-            const abrirSidebar = document.getElementById("abrirSidebar");
-            const fecharSidebar = document.getElementById("fecharSidebar");
+        const sidebar = document.getElementById("sidebar");
+        const fundoSidebar = document.getElementById("fundoSidebar");
+        const abrirSidebar = document.getElementById("abrirSidebar");
+        const fecharSidebar = document.getElementById("fecharSidebar");
 
+        if (sidebar && fundoSidebar && abrirSidebar && fecharSidebar) {
             function abrirMenu() {
                 sidebar.classList.add("aberto");
                 fundoSidebar.classList.add("aberto");
@@ -208,7 +260,7 @@ Vista Burnout, vista indentidade.
                     fecharMenu();
                 }
             });
-        <?php endif; ?>
+        }
     </script>
 </body>
 </html>
