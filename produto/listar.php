@@ -48,7 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         $stmt->execute();
         $stmt->close();
 
-        echo "<script>window.location.href='listar.php';</script>";
+        //apenas para recarregar a pagina e retirar o produto da tela, no banco ja foi excluso
+        echo "<script>window.location.href='listar.php'</script>";
     }
 }
 
