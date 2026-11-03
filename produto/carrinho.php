@@ -1,18 +1,20 @@
 <?php 
 session_start();
 
-require_once "../CLASSE/carrinho.php";
 if (!isset($_SESSION['dados']['id_usuario']))
 {
     echo "<script>window.location.href='../index.php';</script>";
     exit();
 }
 
-Carrinho::listar_produtos($_SESSION['dados']['id_usuario']);
+require "../conexao.php";
+require_once "../CLASSE/carrinho.php";
+
 
 function calcular_frete($id_usuario)
 {
-     require "../conexao.php";
+    require "../conexao.php";
+     
       $sql = "SELECT endereco
               FROM usuario
               WHERE id_usuario = ?";
@@ -34,17 +36,20 @@ function calcular_frete($id_usuario)
 $uf = calcular_frete($_SESSION['dados']['id_usuario']);
 $estados_frete_gratis = ['RS', 'SC', 'PR'];
 
-    if(in_array($uf, $estados_frete_gratis))
-    {
-        echo "Para sua região o frete é grátis";
-        echo "<br>Valor Total: ". Carrinho::$valor_total;
-    }
-    else
-    {
-        echo "Para sua região o frete é R$50.00";
-        Carrinho::$valor_total += 50;
-        echo "<br>Valor Total: ".Carrinho::$valor_total;
-    }
+if(in_array($uf, $estados_frete_gratis))
+{
+    echo "Para sua região o frete é grátis";
+    echo "<br>Valor Total: ". Carrinho::$valor_total;
+}
+else
+{
+    echo "Para sua região o frete é R$50.00";
+    Carrinho::$valor_total += 50;
+    echo "<br>Valor Total: ".Carrinho::$valor_total;
+}
+
+
+
 
 
 ?>
@@ -56,4 +61,4 @@ $estados_frete_gratis = ['RS', 'SC', 'PR'];
         <i class="bi bi-box-arrow-right"></i>
         Voltar
 
-    </a>
+</a>
