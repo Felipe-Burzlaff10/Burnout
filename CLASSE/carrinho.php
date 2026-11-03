@@ -1,7 +1,6 @@
 <?php
 abstract class Carrinho
 {
-    public static $valor_total;
     static function adicionar_produto($id_usuario, $id_produto, $qtd)
     {
         require "../conexao.php";
@@ -35,9 +34,10 @@ abstract class Carrinho
         $stmt = $conexao->prepare($sql);
         $stmt->bind_param('iii', $qtd, $id_usuario, $id_produto);
         $stmt->execute();
-
         $stmt->close();
         $conexao->close();
+
+        echo "<script>window.location.href='carrinho.php';</script>";
     }
 
     static function excluir_produto($id_usuario, $id_produto)
