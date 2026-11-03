@@ -10,6 +10,7 @@ if (!isset($_SESSION['dados']['id_usuario']))
 
 Carrinho::listar_produtos($_SESSION['dados']['id_usuario']);
 
+
 function calcular_frete($id_usuario)
 {
      require "../conexao.php";

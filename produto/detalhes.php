@@ -41,14 +41,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     if($produto['estoque'] == 0)
     {
          echo "<script>erro_mensagem('Não foi possivel adicionar ao carrinho, produto fora de estoque!');</script>";
-         die("<script>window.location.href='catalogo.php';</script>");
     }
-    Carrinho::adicionar_produto($_SESSION['dados']['id_usuario'], $produto['id_produto'], $_POST['qtd']);
+    else
+    {
+        echo "<script>a('O produto adicionado ao carrinho com sucesso!');</script>";
+        Carrinho::adicionar_produto($_SESSION['dados']['id_usuario'], $produto['id_produto'], $_POST['qtd']);
 
-    echo "<script>a('O produto adicionado ao carrinho com sucesso!');</script>";
+    }
+
 }
-
-
 
 if($produto['estoque'] > 0)
 {
@@ -77,7 +78,7 @@ echo "Estoque: " . $produto['estoque'] . "<br>";
 
 echo "<form method='post'>";
 
-echo "<input type='number' value='1' min='1' name='qtd'>";
+echo "<input type='number' value='1' min='1' max='" . $produto['estoque'] . "' name='qtd'>";
 
 echo "<input type='submit' value='Adicionar ao carrinho'>";
 

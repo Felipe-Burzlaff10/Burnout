@@ -11,6 +11,7 @@ abstract class Carrinho
 
         $stmt = $conexao->prepare($sql);
         $stmt->bind_param('iii', $id_usuario, $id_produto, $qtd);
+
         try
         {
             $stmt->execute();
@@ -48,6 +49,7 @@ abstract class Carrinho
                 FROM produto p
                 JOIN carrinho_possui_produto cp  ON p.id_produto = cp.id_produto
                 WHERE cp.id_usuario = ?";
+                
 
 
         $stmt = $conexao->prepare($sql);
@@ -72,6 +74,12 @@ abstract class Carrinho
                 $estilo = "filter: blur(2px);";
             echo "<img style='width: 100%; height: 150px; object-fit: cover; $estilo' src='../img_produto/" . $p['foto'] . "'><br>";
 
+            echo "<input type='submit' name='upd_qtd' value='+'>";
+
+            echo "<input type='number' value='" . $p['qtd_carrinho'] . "'>";
+
+            echo "<input type='submit' name='upd_qtd' value='-'>";
+
             echo "<button type='submit' name='id_apagar' value='" . $p['id_produto'] . "'>Retirar do Carrinho</button><br>";
             
             self::$valor_total += $p['preco'] * $p['qtd_carrinho'];
@@ -81,10 +89,14 @@ abstract class Carrinho
 
         if ($_SERVER["REQUEST_METHOD"] == "POST")
         {
+            $_POST['upd_qtd'] == '+' ? $qtd = 1 : $qtd = -1;
+
+            Carrinho::alterar_qtd($_SESSION['dados']['id_usuario'], $p['id_produto'], $qtd);
+
             if (isset($_POST['id_apagar']))
             {
                 $sql = "DELETE FROM carrinho_possui_produto
-                        WHERE id_produto = ?";
+                        WHERE id_produto = ?  AND id_usuario = ?";
 
                 $stmt = $conexao->prepare($sql);
                 $stmt->bind_param('i', $_POST['id_apagar']);

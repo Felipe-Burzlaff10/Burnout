@@ -18,10 +18,10 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
     $pesquisa = "%" . $_GET['pesquisa'] . "%";
 
     $sql = "SELECT * FROM produto 
-            WHERE nome LIKE ?";
+            WHERE nome LIKE ? AND categoria = ?";
 
     $stmt = $conexao->prepare($sql);
-    $stmt->bind_param('s', $pesquisa);
+    $stmt->bind_param('ss', $pesquisa, $_GET['categoria']);
     $stmt->execute();
 
     $resultado = $stmt->get_result();
@@ -130,7 +130,15 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
                 Pesquisar
             </button>
 
+            <label for="categoria">Categoria: </label>
+        <select name="categoria" id="categoria">
+            <option value="Camiseta">Camiseta</option>
+            <option value="Calça">Calça</option>
+            <option value="Tênis">Tênis</option>
+        </select><br>
+
         </form>
+
 
     </div>
 
