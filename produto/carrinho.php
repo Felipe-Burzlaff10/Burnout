@@ -42,6 +42,7 @@ while($p = $resultado->fetch_assoc())
         $estilo = "";
     else
         $estilo = "filter: blur(2px);";
+
     echo "<img style='width: 100%; height: 150px; object-fit: cover; $estilo' src='../img_produto/" . $p['foto'] . "'><br>";
 
     echo "<input type='hidden' name='id_produto' value='" . $p['id_produto'] . "'>";
@@ -92,7 +93,13 @@ function calcular_frete($id_usuario)
         $linha = $resultado->fetch_assoc();
         $stmt->close();
         $endereco = $linha['endereco'];
-
+        echo "Endereço atual: " . $linha['endereco'] . "<br>";
+       
+       
+       echo "<form method='post' action='../usuario/alterar.php'>
+        <button type='submit' name='acao' value='alterar_endereco'>Alterar Endereço</button>
+      </form>";
+      
         if(preg_match('/\/([A-Z]{2})\s+CEP/', $endereco, $correspondencia))
         {
             $uf = $correspondencia[1];

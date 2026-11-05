@@ -96,6 +96,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         </button>
     </a>
 
+    <?php 
+    if(isset($_POST['acao']) && $_POST['acao'] == 'alterar_endereco')
+    {
+        $_SESSION['alterar_endereco'] = true;
+    }
+    else
+    {
+         $_SESSION['alterar_endereco'] = false;
+    }
+
+    if($_SESSION['alterar_endereco'])
+    {
+        echo " <a href='../produto/carrinho.php'>
+        <button type='button' class='btn-voltar'>
+        ← Voltar para carrinho de compras
+        </button>
+        </a>";
+    }
+    ?>
+
     <label for="email">Email: </label>
     <input type="email" name="email" id="email"  ><br>
 
@@ -127,4 +147,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
 <?php 
 echo "<script>preencher_input('" . $usuario['endereco'] . "', '" . $usuario['email'] . "')</script>";
+unset($_SESSION['alterar_endereco']);
 ?>

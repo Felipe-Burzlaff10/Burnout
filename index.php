@@ -454,7 +454,7 @@ if (!isset($_SESSION['dados']['id_usuario']))
 
     <div class="usuario-dropdown" id="usuarioDropdown">
 
-        <a href="perfil.php">
+        <a href="usuario/perfil.php">
             <i class="bi bi-person"></i>
             Minha conta
         </a>
