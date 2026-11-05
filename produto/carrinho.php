@@ -48,11 +48,7 @@ while($p = $resultado->fetch_assoc())
 
     echo "<input type='hidden' name='produto_estoque' value='" . $p['estoque'] . "'>";
 
-    echo "<input type='submit' name='upd_qtd' value='+'>";
-
-    echo "<input type='number' min='0' name='qtd_carrinho' value='" . $p['qtd_carrinho'] . "'>";
-
-    echo "<input type='submit' name='upd_qtd' value='-'>";
+    echo "<input type='number' onchange='this.form.submit()' min='0' name='qtd_carrinho' value='" . $p['qtd_carrinho'] . "'>";
 
     echo "<button type='submit' name='id_apagar' value='" . $p['id_produto'] . "'>Retirar do Carrinho</button><br>";
     
@@ -69,13 +65,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         Carrinho::excluir_produto($_SESSION['dados']['id_usuario'], $_POST['id_apagar']);
     }
 
-    if (isset($_POST['upd_qtd']))
-    {
-        $_POST['upd_qtd'] == '+' ? $qtd = 1 : $qtd = -1;
 
-        if ($_POST['produto_estoque'] >= $_POST['qtd_carrinho'] + $qtd && ($_POST['produto_estoque'] + $_POST['qtd_carrinho']) > 0)
-            Carrinho::alterar_qtd($_SESSION['dados']['id_usuario'], $_POST['id_produto'], $qtd);
-    }
+    if ($_POST['produto_estoque'] >= $_POST['qtd_carrinho'] && $_POST['qtd_carrinho'] > 0)
+        Carrinho::alterar_qtd($_SESSION['dados']['id_usuario'], $_POST['id_produto'], $_POST['qtd_carrinho']);
+
 }
 
 function calcular_frete($id_usuario)

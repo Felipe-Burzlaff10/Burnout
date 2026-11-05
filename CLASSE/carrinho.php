@@ -5,20 +5,29 @@ abstract class Carrinho
     {
         require "../conexao.php";
 
-        $sql = "INSERT INTO carrinho_possui_produto(id_usuario, id_produto, quantidade)
-                VALUES (?, ?, ?)";
+        $sql = "SELECT quantidade FROM carrinho_possui_produto
+                WHERE id_usuario = ? AND id_produto = ?";
 
         $stmt = $conexao->prepare($sql);
-        $stmt->bind_param('iii', $id_usuario, $id_produto, $qtd);
-        try
+        $stmt->bind_param('ii', $id_usuario, $id_produto);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+        $produto = $resultado -> fetch_assoc();
+        $stmt->close();
+        
+        if ($resultado->num_rows)
+            Carrinho::alterar_qtd($id_usuario, $id_produto, $produto['quantidade'] + $qtd);
+        else
         {
+            $sql = "INSERT INTO carrinho_possui_produto(id_usuario, id_produto, quantidade)
+                    VALUES (?, ?, ?)";
+    
+            $stmt = $conexao->prepare($sql);
+            $stmt->bind_param('iii', $id_usuario, $id_produto, $qtd);
             $stmt->execute();
-        }catch(mysqli_sql_exception $e)
-        {
-            Carrinho::alterar_qtd($id_usuario, $id_produto, $qtd);
+            $stmt->close();
         }
 
-        $stmt->close();
         $conexao->close();
     }
 
@@ -27,7 +36,7 @@ abstract class Carrinho
         require "../conexao.php";
 
         $sql = "UPDATE carrinho_possui_produto 
-                SET quantidade = quantidade + ? 
+                SET quantidade = ? 
                 WHERE id_usuario = ? AND id_produto = ?";
 
 
