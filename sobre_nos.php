@@ -25,6 +25,7 @@ if (!isset($_SESSION['dados']['id_usuario'])) {
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <link rel="stylesheet" href="CSS/sobre_nos.css">
+    <link rel="stylesheet" href="CSS/header-loja.css">
 </head>
 
 <body>
@@ -131,7 +132,7 @@ if (!isset($_SESSION['dados']['id_usuario'])) {
         <ul class="nav justify-content-center">
 
             <li class="nav-item">
-                <a class="nav-link" href="home.php">HOME</a>
+                <a class="nav-link" href="index.php">HOME</a>
             </li>
 
             <li class="nav-item">
