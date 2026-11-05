@@ -48,11 +48,11 @@ while($p = $resultado->fetch_assoc())
 
     echo "<input type='hidden' name='produto_estoque' value='" . $p['estoque'] . "'>";
 
-    echo "<button type='button' onclick=\"document.getElementById('qtd').value = Number(document.getElementById('qtd').value) + 1\">+</button>";
+    echo "<button type='button' onclick=\"var i = document.getElementById('qtd'); i.stepUp(); i.dispatchEvent(new Event('change'));\">+</button>";
 
     echo "<input type='number' id='qtd' onchange='this.form.submit()' min='0' name='qtd_carrinho' value='" . $p['qtd_carrinho'] . "'>";
 
-    echo "<button type='button' onclick=\"document.getElementById('qtd').value = Number(document.getElementById('qtd').value) - 1\">-</button>";
+    echo "<button type='button' onclick=\"var i = document.getElementById('qtd'); i.stepDown(); i.dispatchEvent(new Event('change'));\">-</button>";
 
     echo "<button type='submit' name='id_apagar' value='" . $p['id_produto'] . "'>Retirar do Carrinho</button><br>";
     
