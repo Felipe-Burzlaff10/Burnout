@@ -536,8 +536,8 @@ if (!isset($_SESSION['dados']['id_usuario']))
             <i class="bi bi-person-circle"></i> Listar Usuarios
         </a>
 
-        <a href="produto/alterar.php">
-            <i class="bi bi-pencil-square"></i> Alterar Produtos
+        <a href="produto/listar.php">
+            <i class="bi bi-pencil-square"></i> Listar Produtos
         </a>
 
          <a href="usuario/cadastro.php">

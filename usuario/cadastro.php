@@ -56,6 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $stmt->execute();
     $stmt->store_result();
 
+    //falar com o miguel
     if ($stmt->num_rows > 0)
     {
         $stmt->close();

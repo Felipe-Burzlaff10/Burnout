@@ -18,6 +18,16 @@ function sucesso_mensagem(mensagem)
         });
 }
 
+function a(mensagem)
+{
+  Swal.fire({
+    position: "bottom-end",
+    text: mensagem,
+    showConfirmButton: false,
+    timer: 1500
+  });
+}
+
 // se der tempo no final fazer
 function deletar_mensagem()
 {
