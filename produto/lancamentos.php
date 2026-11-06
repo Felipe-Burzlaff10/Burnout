@@ -28,7 +28,6 @@ if (!isset($_SESSION['dados']['id_usuario']))
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <link rel="stylesheet" href="../CSS/produto/lancamentos.css">
-    <link rel="stylesheet" href="../CSS/header-loja.css">
 </head>
 <body>
 

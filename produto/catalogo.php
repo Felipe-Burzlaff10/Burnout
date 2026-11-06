@@ -48,7 +48,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <link rel="stylesheet" href="../CSS/produto/catalogo.css">
-    <link rel="stylesheet" href="../CSS/header-loja.css">
 </head>
 <body>
 
