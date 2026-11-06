@@ -46,6 +46,7 @@ abstract class Carrinho
         $stmt->close();
         $conexao->close();
 
+       if(!isset($_SESSION['confirma_add']))
         echo "<script>window.location.href='carrinho.php';</script>";
     }
 

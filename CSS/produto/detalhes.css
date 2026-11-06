@@ -1,0 +1,345 @@
+/* =========================================================
+   BURNOUT - Detalhes do produto
+   Salvar em: CSS/produto/detalhes.css
+   ========================================================= */
+
+:root {
+    --verde: #39bf00;
+    --preto: #111;
+    --borda: #292929;
+    --vermelho: #ff5555;
+    --fundo: #e4e4e2;
+    --cinza-texto: #6b6b6b;
+    --serif: Georgia, 'Times New Roman', serif;
+}
+
+body {
+    background-color: var(--fundo);
+    min-height: 100vh;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header-detalhes {
+    background-color: var(--verde);
+    border-bottom: 2px solid black;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    padding: 10px 20px;
+}
+
+.header-detalhes .container-fluid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-detalhes .logo {
+    width: 80px;
+}
+
+.header-detalhes .titulo {
+    font-family: var(--serif);
+    font-size: 44px;
+    font-weight: bold;
+    color: black;
+    margin: 0;
+    text-align: center;
+}
+
+.icone-header {
+    justify-self: end;
+    color: black;
+    font-size: 32px;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.icone-header:hover {
+    color: white;
+    transform: scale(1.1);
+}
+
+/* =========================
+   CARD DO PRODUTO
+   (sobrescreve .card, m-2, p-2 e os estilos inline do PHP)
+========================= */
+
+.pagina-detalhes {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px 60px;
+}
+
+.pagina-detalhes .card {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    overflow: hidden;
+
+    margin: 0 !important;
+    padding: 0 !important;
+    white-space: normal !important;
+
+    background-color: white;
+    border: 2px solid var(--preto);
+    border-radius: 8px;
+    box-shadow: 6px 6px 0 var(--preto);
+}
+
+.pagina-detalhes .card br {
+    display: none;
+}
+
+/* foto grande ocupando toda a coluna da esquerda */
+.pagina-detalhes .card > img {
+    display: block;
+    align-self: stretch;
+    width: 100%;
+    height: 100% !important;
+    min-height: 340px;
+    object-fit: cover;
+    background-color: #f2f2f2;
+    border-right: 2px solid var(--preto);
+}
+
+/* selo automático quando o PHP aplica o blur (sem estoque) */
+.pagina-detalhes .card:has(> img[style*="blur"])::after {
+    content: "Fora de estoque";
+    position: absolute;
+    top: 14px;
+    left: 14px;
+
+    background-color: var(--preto);
+    color: var(--vermelho);
+    border: 1px solid var(--vermelho);
+    border-radius: 6px;
+    padding: 4px 10px;
+
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* =========================
+   INFORMAÇÕES
+========================= */
+
+.detalhes-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 30px 32px;
+    min-width: 0;
+}
+
+.detalhes-info br {
+    display: none;
+}
+
+.detalhes-nome {
+    font-family: var(--serif);
+    font-weight: bold;
+    font-size: 34px;
+    line-height: 1.15;
+    color: black;
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.detalhes-preco {
+    font-size: 30px;
+    font-weight: bold;
+    color: #2a8f00;
+    margin: 4px 0 14px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--preto);
+}
+
+.detalhes-campo {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 6px 0;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 16px;
+}
+
+.detalhes-campo .rotulo {
+    flex: 0 0 90px;
+    font-size: 14px;
+    color: var(--cinza-texto);
+}
+
+.detalhes-campo .valor {
+    font-weight: 600;
+    color: black;
+}
+
+.detalhes-descricao {
+    padding: 14px 0 6px;
+}
+
+.detalhes-descricao .rotulo {
+    display: block;
+    font-size: 14px;
+    color: var(--cinza-texto);
+    margin-bottom: 4px;
+}
+
+.detalhes-descricao p {
+    margin: 0;
+    line-height: 1.55;
+    color: #222;
+    max-width: 62ch;
+    overflow-wrap: anywhere;
+}
+
+/* =========================
+   FORM DO CARRINHO + VOLTAR
+========================= */
+
+.form-carrinho {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.form-carrinho label {
+    flex-basis: 100%;
+    font-size: 14px;
+    font-weight: bold;
+    color: black;
+    margin: 0;
+}
+
+.form-carrinho input[type="number"] {
+    width: 90px;
+    height: 46px;
+
+    background-color: white;
+    color: black;
+    border: 2px solid var(--preto);
+    border-radius: 8px;
+    padding: 0 10px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    transition: 0.2s;
+}
+
+.form-carrinho input[type="number"]:focus {
+    outline: none;
+    border-color: var(--verde);
+    box-shadow: 0 0 0 3px rgba(57, 191, 0, 0.3);
+}
+
+.form-carrinho input[type="submit"] {
+    flex: 1;
+    min-width: 180px;
+    height: 46px;
+
+    background-color: var(--verde);
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
+    border: 2px solid var(--preto);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.form-carrinho input[type="submit"]:hover {
+    background-color: var(--preto);
+    color: var(--verde);
+}
+
+.detalhes-info > a {
+    display: block;
+    margin-top: 12px;
+    text-decoration: none;
+}
+
+.btn-voltar {
+    width: 100%;
+    height: 44px;
+
+    background-color: transparent;
+    color: var(--preto);
+    font-weight: bold;
+    font-size: 15px;
+    border: 2px solid var(--preto);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-voltar:hover {
+    background-color: var(--preto);
+    color: white;
+}
+
+.form-carrinho input:focus-visible,
+.btn-voltar:focus-visible {
+    outline: 3px solid var(--verde);
+    outline-offset: 2px;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 800px) {
+    .pagina-detalhes .card {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .pagina-detalhes .card > img {
+        height: auto !important;
+        min-height: 0;
+        aspect-ratio: 1 / 1;
+        border-right: none;
+        border-bottom: 2px solid var(--preto);
+    }
+
+    .detalhes-info {
+        padding: 22px 20px 26px;
+    }
+
+    .detalhes-nome {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 600px) {
+    .header-detalhes {
+        padding: 10px 8px;
+    }
+
+    .header-detalhes .container-fluid {
+        grid-template-columns: auto 1fr auto;
+    }
+
+    .header-detalhes .logo {
+        width: 55px;
+    }
+
+    .header-detalhes .titulo {
+        font-size: 26px;
+    }
+
+    .icone-header {
+        font-size: 24px;
+    }
+
+    .pagina-detalhes {
+        padding: 22px 12px 40px;
+    }
+
+    .detalhes-preco {
+        font-size: 26px;
+    }
+}

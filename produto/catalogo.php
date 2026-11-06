@@ -30,12 +30,26 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
 }
 ?>
 
+<!DOCTYPE html>
+<html lang="pt-br">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="../CSS/produto/catalogo.css">
+    <title>BURNOUT - Catálogo</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- CSS da página (depois do Bootstrap para poder sobrescrevê-lo) -->
+    <link rel="stylesheet" href="../CSS/produto/catalogo.css">
+</head>
+
+<body>
+
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <header class="header-home">
 
@@ -165,15 +179,15 @@ if ($resultado->num_rows > 0)
         
         echo "<div class='card m-2 p-2' style='white-space: nowrap;'>";
         
-    echo "<img style='width: 100%; height: 150px; object-fit: cover; $estilo' src='../img_produto/" . $produto['foto'] . "'><br>";
+        echo "<img style='width: 100%; height: 150px; object-fit: cover; $estilo' src='../img_produto/" . $produto['foto'] . "'><br>";
         
-        echo "Nome: " . $produto['nome'] . "<br>";
+        echo "<div class='produto-nome'><span class='rotulo'>Nome: </span>" . $produto['nome'] . "</div>";
         
-        echo "Preço: R$" . $produto['preco'];
+        echo "<div class='produto-preco'><span class='rotulo'>Preço: </span>R$" . $produto['preco'] . "</div>";
         
         echo "<br>";
         
-        echo "<a href='detalhes.php?id_produto=" . $produto['id_produto'] . "'>Ver detalhes</a>";
+        echo "<a class='btn-detalhes' href='detalhes.php?id_produto=" . $produto['id_produto'] . "'>Ver detalhes</a>";
         
         echo "</div>";
     }
@@ -186,9 +200,15 @@ if ($resultado->num_rows > 0)
 
 </div>
 
+</div>
+
 
 <?php
 echo "<script src='../usuario_menu.js'></script>";
 echo "<script>usuario_menu_suspenso();</script>";
 $conexao->close();
 ?>
+
+</body>
+
+</html>

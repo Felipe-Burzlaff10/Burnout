@@ -1,3 +1,22 @@
+/* =========================================================
+   BURNOUT - Catálogo (reutilizável em Lançamentos)
+   Salvar em: CSS/produto/catalogo.css
+   ========================================================= */
+
+:root {
+    --verde: #39bf00;
+    --preto: #111;
+    --borda: #292929;
+    --vermelho: #ff5555;
+    --fundo: #e4e4e2;
+    --cinza-texto: #6b6b6b;
+    --serif: Georgia, 'Times New Roman', serif;
+}
+
+body {
+    background-color: var(--fundo);
+}
+
 /* =========================
    HEADER
 ========================= */
@@ -37,24 +56,16 @@
     transform: scale(1.1);
 }
 
-/* USUÁRIO */
-
-
 /* =========================
-   BOTÃO E MENU DO USUÁRIO
+   USUÁRIO E MENU SUSPENSO
 ========================= */
 
-/* Área do usuário */
 .usuario-menu {
-    position: absolute;
-    top: 122px; /* Ajuste conforme a altura do cabeçalho */
-    right: 28px;
-    left: auto;
+    position: relative;
     display: inline-block;
     z-index: 2000;
 }
 
-/* Botão com o nome do usuário */
 .usuario-header {
     display: inline-flex;
     align-items: center;
@@ -65,7 +76,7 @@
     color: white;
 
     font-weight: bold;
-    font-size: 14px;
+    font-size: 16px;
 
     border: 1px solid #292929;
     border-radius: 8px;
@@ -73,63 +84,7 @@
 
     cursor: pointer;
     white-space: nowrap;
-}
-
-/* Menu suspenso */
-.usuario-dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    left: auto;
-
-    width: 230px;
-    box-sizing: border-box;
-
-    background-color: #111;
-    border: 1px solid #292929;
-    border-radius: 0 0 8px 8px;
-
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-}
-
-.usuario-dropdown.aberto {
-    display: block;
-}
-
-/* Opções */
-.usuario-dropdown a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    padding: 13px 14px;
-    color: #f2f2f2;
-    text-decoration: none;
-    font-size: 14px;
-
-    transition: background-color 0.2s, color 0.2s;
-}
-
-.usuario-dropdown a:hover {
-    background-color: #39bf00;
-    color: black;
-}
-
-.usuario-dropdown hr {
-    margin: 0;
-    border: 0;
-    border-top: 1px solid #333;
-}
-
-.usuario-dropdown .sair {
-    color: #ff5555;
-}
-
-.usuario-dropdown .sair:hover {
-    background-color: #39bf00;
-    color: black;
+    transition: 0.2s;
 }
 
 .usuario-header:hover {
@@ -137,30 +92,29 @@
     color: #39bf00;
 }
 
-
-/* =========================
-   MENU SUSPENSO
-========================= */
+/* une visualmente o botão e o menu aberto */
+.usuario-menu:has(.usuario-dropdown.aberto) .usuario-header {
+    border-radius: 8px 8px 0 0;
+    border-bottom-color: #111;
+}
 
 .usuario-dropdown {
     display: none;
-
     position: absolute;
     top: 100%;
-    left: 0;
-    right: auto;
+    right: 0;
+    left: auto;
 
     width: 100%;
+    min-width: 230px;
     box-sizing: border-box;
 
     background-color: #111;
     border: 1px solid #292929;
     border-top: none;
-
     border-radius: 0 0 8px 8px;
 
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-
     z-index: 2000;
     overflow: hidden;
 }
@@ -169,19 +123,6 @@
     display: block;
 }
 
-
-/* Une visualmente o botão e o menu */
-
-.usuario-menu:has(.usuario-dropdown.aberto) .usuario-header {
-    border-radius: 8px 8px 0 0;
-    border-bottom-color: #111;
-}
-
-
-/* =========================
-   OPÇÕES DO MENU
-========================= */
-
 .usuario-dropdown a {
     display: flex;
     align-items: center;
@@ -191,7 +132,6 @@
 
     color: #f2f2f2;
     text-decoration: none;
-
     font-size: 14px;
     font-weight: normal;
 
@@ -203,24 +143,16 @@
     color: black;
 }
 
-
-/* ÍCONES */
-
 .usuario-dropdown a i {
     font-size: 14px;
 }
-
-
-/* SEPARADOR */
 
 .usuario-dropdown hr {
     margin: 0;
     border: 0;
     border-top: 1px solid #333;
+    opacity: 1;
 }
-
-
-/* SAIR DA CONTA */
 
 .usuario-dropdown .sair {
     color: #ff5555;
@@ -231,34 +163,6 @@
     color: black;
 }
 
-
-/* =========================
-   RESPONSIVIDADE DO USUÁRIO
-========================= */
-
-@media (max-width: 900px) {
-    .usuario-header {
-        font-size: 15px;
-        padding: 9px 10px;
-    }
-}
-
-@media (max-width: 600px) {
-    .usuario-header {
-        display: inline-flex;
-        font-size: 12px;
-        padding: 8px;
-        white-space: normal;
-        max-width: 150px;
-    }
-
-    .usuario-dropdown a {
-        padding: 11px 10px;
-        font-size: 12px;
-    }
-}
-
-
 /* =========================
    MENU DE NAVEGAÇÃO
 ========================= */
@@ -266,6 +170,11 @@
 .nav {
     background-color: #39bf00;
     padding: 10px 0;
+}
+
+/* o HTML tem um <ul class="nav"> dentro de outro: evita padding duplo */
+.nav .nav {
+    padding: 0;
 }
 
 .nav-link {
@@ -293,15 +202,26 @@
 }
 
 /* =========================
-   ÁREA DO CATÁLOGO BURNOUT
+   ÁREA DO CATÁLOGO
 ========================= */
 
 .catalogo-area {
-    background: #d3d3d3;
-    min-height: 100vh;
-    padding: 18px 22px 40px;
-    margin-left: 255px;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 30px 22px 60px;
     box-sizing: border-box;
+}
+
+/* título da página (usado em Lançamentos) */
+.catalogo-area > h1 {
+    font-family: var(--serif);
+    font-weight: bold;
+    font-size: 34px;
+    color: black;
+
+    margin: 0 0 28px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--preto);
 }
 
 /* =========================
@@ -309,145 +229,222 @@
 ========================= */
 
 .pesquisa-container {
-    width: 100%;
-    margin-bottom: 18px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--preto);
 }
 
 .pesquisa-container form {
     display: flex;
-    gap: 8px;
-    max-width: 600px;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    max-width: 780px;
 }
 
-.pesquisa-container input {
-    flex: 1;
+.pesquisa-container br {
+    display: none;
+}
+
+.pesquisa-container input[type="text"] {
+    flex: 1 1 240px;
     min-width: 0;
-    height: 40px;
-    border: 2px solid #000;
-    border-radius: 20px;
-    padding: 0 18px;
-    font-family: Arial, sans-serif;
-    font-size: 15px;
-    outline: none;
-    box-sizing: border-box;
+    height: 42px;
+
+    background-color: white;
+    color: black;
+    border: 2px solid var(--preto);
+    border-radius: 8px;
+    padding: 0 14px;
+    font-size: 16px;
+    transition: 0.2s;
 }
 
-.pesquisa-container input:focus {
-    border-color: #27d000;
+.pesquisa-container input[type="text"]:focus {
+    outline: none;
+    border-color: var(--verde);
+    box-shadow: 0 0 0 3px rgba(57, 191, 0, 0.3);
 }
 
 .pesquisa-container button {
-    height: 40px;
+    height: 42px;
     padding: 0 22px;
-    border: 2px solid #000;
-    border-radius: 20px;
-    background: #000;
+
+    background-color: var(--preto);
     color: white;
     font-weight: bold;
+    border: 2px solid var(--preto);
+    border-radius: 8px;
     cursor: pointer;
-    transition: 0.2s ease;
+    transition: 0.2s;
 }
 
 .pesquisa-container button:hover {
-    background: #27d000;
-    color: #000;
+    background-color: var(--verde);
+    border-color: var(--verde);
+    color: black;
+}
+
+.pesquisa-container label {
+    margin: 0 0 0 6px;
+    font-weight: bold;
+    color: black;
+}
+
+.pesquisa-container select {
+    height: 42px;
+    background-color: white;
+    color: black;
+    font-weight: 600;
+    border: 2px solid var(--preto);
+    border-radius: 8px;
+    padding: 0 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.pesquisa-container select:focus {
+    outline: none;
+    border-color: var(--verde);
+    box-shadow: 0 0 0 3px rgba(57, 191, 0, 0.3);
 }
 
 /* =========================
-   GRID DOS PRODUTOS
+   GRID DE PRODUTOS
 ========================= */
 
 .catalogo {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 38px 48px;
-    width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 28px;
+}
+
+/* quando a busca não retorna nada */
+.catalogo:not(:has(.card))::before {
+    content: "Nenhum produto encontrado.";
+    grid-column: 1 / -1;
+    text-align: center;
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--cinza-texto);
+    padding: 60px 0;
 }
 
 /* =========================
    CARD DO PRODUTO
+   (sobrescreve .card, m-2 e p-2 do Bootstrap e os estilos inline do PHP)
 ========================= */
 
-.produto-card {
-    background: transparent;
+.catalogo .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
     min-width: 0;
-    font-family: Arial, Helvetica, sans-serif;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    background-color: white;
+    border: 2px solid var(--preto);
+    border-radius: 8px;
+    box-shadow: 5px 5px 0 var(--preto);
+
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-/* IMAGEM DO PRODUTO */
+.catalogo .card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0 var(--verde);
+}
 
-.produto-imagem {
-    width: 100%;
-    aspect-ratio: 1.35 / 1;
-    object-fit: cover;
+.catalogo .card br {
+    display: none;
+}
+
+.catalogo .card img {
     display: block;
-    border: 4px solid #000;
-    border-radius: 28px;
-    background: #aaa;
-    transition: transform 0.25s ease;
-    box-sizing: border-box;
+    width: 100%;
+    height: auto !important;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    background-color: #f2f2f2;
+    border-bottom: 2px solid var(--preto);
 }
 
-.produto-card:hover .produto-imagem {
-    transform: scale(1.02);
+.catalogo .card .rotulo {
+    display: none;
 }
 
-/* INFORMAÇÕES DO PRODUTO */
+.catalogo .card .produto-nome {
+    min-width: 0;
+    padding: 14px 16px 0;
 
-.produto-info {
-    padding: 9px 5px 0;
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 1.2;
+    color: black;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.produto-nome {
-    margin: 0;
+.catalogo .card .produto-preco {
+    padding: 4px 16px 14px;
     font-size: 19px;
     font-weight: bold;
-    color: #000;
+    color: #2a8f00;
 }
 
-.produto-categoria {
-    margin-top: 3px;
-    font-size: 14px;
-    color: #444;
-}
+.catalogo .card .btn-detalhes {
+    margin: auto 16px 16px;
+    padding: 10px 12px;
 
-.produto-preco {
-    margin-top: 5px;
-    font-size: 18px;
+    background-color: var(--preto);
+    color: white;
     font-weight: bold;
-    color: #000;
-}
-
-/* NENHUM PRODUTO ENCONTRADO */
-
-.sem-produtos {
-    grid-column: 1 / -1;
+    font-size: 15px;
     text-align: center;
-    font-family: Arial, sans-serif;
-    font-size: 20px;
+    text-decoration: none;
+
+    border: 2px solid var(--preto);
+    border-radius: 8px;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.catalogo .card .btn-detalhes:hover {
+    background-color: var(--verde);
+    border-color: var(--verde);
+    color: black;
+}
+
+.catalogo .card .btn-detalhes:focus-visible {
+    outline: 3px solid var(--verde);
+    outline-offset: 2px;
+}
+
+/* selo automático quando o PHP aplica o blur (produto sem estoque) */
+.catalogo .card:has(img[style*="blur"])::after {
+    content: "Fora de estoque";
+    position: absolute;
+    top: 12px;
+    left: 12px;
+
+    background-color: var(--preto);
+    color: var(--vermelho);
+    border: 1px solid var(--vermelho);
+    border-radius: 6px;
+    padding: 4px 10px;
+
+    font-size: 13px;
     font-weight: bold;
-    padding: 50px;
 }
 
 /* =========================
-   CARROSSEL
+   RESPONSIVIDADE
 ========================= */
-
-.carousel img {
-    height: 600px;
-    object-fit: cover;
-}
-
-/* =========================
-   RESPONSIVIDADE - TABLETS
-========================= */
-
-@media (max-width: 1000px) {
-    .catalogo {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 30px;
-    }
-}
 
 @media (max-width: 900px) {
     .titulo {
@@ -464,6 +461,7 @@
 
     .usuario-header {
         font-size: 15px;
+        padding: 9px 10px;
     }
 
     .nav-link {
@@ -472,27 +470,38 @@
     }
 }
 
-/* =========================
-   RESPONSIVIDADE - CELULARES
-========================= */
-
 @media (max-width: 700px) {
     .catalogo-area {
-        margin-left: 0;
-        padding: 18px 15px 30px;
+        padding: 22px 14px 40px;
     }
 
-    .catalogo {
-        grid-template-columns: 1fr;
-        gap: 28px;
+    .catalogo-area > h1 {
+        font-size: 26px;
+        margin-bottom: 20px;
     }
 
     .pesquisa-container form {
-        width: 100%;
+        max-width: none;
     }
 
-    .pesquisa-container button {
-        padding: 0 16px;
+    .catalogo {
+        grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+        gap: 18px;
+    }
+
+    .catalogo .card .produto-nome {
+        padding: 12px 12px 0;
+        font-size: 18px;
+    }
+
+    .catalogo .card .produto-preco {
+        padding: 4px 12px 12px;
+        font-size: 17px;
+    }
+
+    .catalogo .card .btn-detalhes {
+        margin: auto 12px 12px;
+        font-size: 14px;
     }
 }
 
@@ -544,110 +553,12 @@
         margin: 0 4px;
         padding: 6px 4px;
     }
-
-    .carousel img {
-        height: 300px;
-        object-fit: cover;
-    }
-
-    .produto-nome {
-        font-size: 18px;
-    }
-
-    .produto-preco {
-        font-size: 17px;
-    }
-
-
-/* CATÁLOGO DE PRODUTOS */
-
-.catalogo-produtos {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 25px;
-    padding: 25px;
 }
 
-/* CARD DO PRODUTO */
-
-.card-produto {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
-
-    padding: 25px;
-    background-color: #fff;
-    border-radius: 12px;
-    text-align: center;
-
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.10);
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.card-produto:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.16);
-}
-
-/* IMAGEM */
-
-.imagem-produto {
-    width: 100%;
-    aspect-ratio: 3 / 4;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-/* NOME */
-
-.nome-produto {
-    margin: 10px 0 0;
-    font-family: Arial, sans-serif;
-    font-size: 22px;
-    color: #333;
-}
-
-/* PREÇO */
-
-.preco-produto {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    font-size: 26px;
-    font-weight: bold;
-    color: #000;
-}
-}
-/* RESPONSIVIDADE */
-
-@media (max-width: 1200px) {
-    .catalogo-produtos {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 800px) {
-    .catalogo-produtos {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 500px) {
-    .catalogo-produtos {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
-        padding: 10px;
-    }
-
-    .card-produto {
-        padding: 10px;
-    }
-
-    .nome-produto {
-        font-size: 17px;
-    }
-
-    .preco-produto {
-        font-size: 20px;
+@media (prefers-reduced-motion: reduce) {
+    .catalogo .card,
+    .catalogo .card:hover {
+        transition: none;
+        transform: none;
     }
 }
