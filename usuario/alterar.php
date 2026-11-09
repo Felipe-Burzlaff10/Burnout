@@ -96,15 +96,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         </button>
     </a>
 
-    <?php 
+<?php 
     if(isset($_POST['acao']) && $_POST['acao'] == 'alterar_endereco')
-    {
         $_SESSION['alterar_endereco'] = true;
-    }
+
     else
-    {
          $_SESSION['alterar_endereco'] = false;
-    }
 
     if($_SESSION['alterar_endereco'])
     {
@@ -114,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         </button>
         </a>";
     }
-    ?>
+?>
 
     <label for="email">Email: </label>
     <input type="email" name="email" id="email"  ><br>

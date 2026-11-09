@@ -1,0 +1,498 @@
+
+
+:root {
+    --verde: #39bf00;
+    --preto: #111;
+    --borda: #292929;
+    --vermelho: #ff5555;
+    --fundo: #e4e4e2;
+    --cinza-texto: #6b6b6b;
+    --serif: Georgia, 'Times New Roman', serif;
+}
+
+body {
+    background-color: var(--fundo);
+    min-height: 100vh;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header-carrinho {
+    background-color: var(--verde);
+    border-bottom: 2px solid black;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    padding: 10px 20px;
+}
+
+.header-carrinho .container-fluid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-carrinho .logo {
+    width: 80px;
+}
+
+.header-carrinho .titulo {
+    font-family: var(--serif);
+    font-size: 44px;
+    font-weight: bold;
+    color: black;
+    margin: 0;
+    text-align: center;
+}
+
+/* =========================
+   PÁGINA E LAYOUT
+========================= */
+
+.pagina-carrinho {
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 30px 20px 60px;
+}
+
+.pagina-titulo {
+    font-family: var(--serif);
+    font-weight: bold;
+    font-size: 34px;
+    color: black;
+
+    margin: 0 0 28px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--preto);
+}
+
+.carrinho-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 28px;
+    align-items: start;
+}
+
+.carrinho-itens {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    min-width: 0;
+}
+
+/* carrinho vazio */
+.carrinho-itens:not(:has(form))::before {
+    content: "Seu carrinho está vazio.";
+    text-align: center;
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--cinza-texto);
+    padding: 50px 0;
+}
+
+/* =========================
+   ITEM DO CARRINHO
+   (cada produto é um <form>)
+========================= */
+
+.carrinho-itens > form {
+    position: relative;
+    display: grid;
+    grid-template-columns: 170px minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+        "foto info"
+        "foto controles";
+    column-gap: 20px;
+
+    padding: 16px;
+    background-color: white;
+    border: 2px solid var(--preto);
+    border-radius: 8px;
+    box-shadow: 5px 5px 0 var(--preto);
+}
+
+.carrinho-itens > form br {
+    display: none;
+}
+
+.carrinho-itens > form > img {
+    grid-area: foto;
+    align-self: start;
+    display: block;
+    width: 100%;
+    height: auto !important;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    background-color: #f2f2f2;
+    border: 2px solid var(--preto);
+    border-radius: 6px;
+}
+
+/* selo automático quando o PHP aplica o blur (sem estoque) */
+.carrinho-itens > form:has(> img[style*="blur"])::after {
+    content: "Fora de estoque";
+    position: absolute;
+    top: 26px;
+    left: 26px;
+
+    background-color: var(--preto);
+    color: var(--vermelho);
+    border: 1px solid var(--vermelho);
+    border-radius: 6px;
+    padding: 3px 9px;
+
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* informações */
+
+.item-info {
+    grid-area: info;
+    min-width: 0;
+}
+
+.item-nome {
+    display: block;
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1.2;
+    color: black;
+    overflow-wrap: anywhere;
+}
+
+.item-preco {
+    display: block;
+    margin-top: 2px;
+    font-size: 19px;
+    font-weight: bold;
+    color: #2a8f00;
+}
+
+.item-dado {
+    display: inline-block;
+    margin: 10px 8px 0 0;
+    padding: 2px 9px;
+
+    background-color: #f2f2f0;
+    border: 1px solid #d6d6d6;
+    border-radius: 6px;
+
+    font-size: 13px;
+    color: #333;
+}
+
+.item-subtotal {
+    display: block;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px dashed #bbb;
+
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+}
+
+/* controles */
+
+.item-controles {
+    grid-area: controles;
+    align-self: end;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.item-controles br {
+    display: none;
+}
+
+.qtd-controle {
+    display: inline-flex;
+    align-items: stretch;
+    height: 42px;
+
+    border: 2px solid var(--preto);
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: white;
+}
+
+.qtd-controle button {
+    width: 40px;
+    padding: 0;
+
+    background-color: var(--preto);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.qtd-controle button:hover {
+    background-color: var(--verde);
+    color: black;
+}
+
+/* ordem visual: [-] [qtd] [+] (o HTML tem + / qtd / -) */
+.qtd-controle > button:last-of-type {
+    order: 0;
+}
+
+.qtd-controle > input[type="number"] {
+    order: 1;
+}
+
+.qtd-controle > button:first-of-type {
+    order: 2;
+}
+
+.qtd-controle input[type="number"] {
+    width: 56px;
+    border: none;
+    padding: 0;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    background-color: white;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+.qtd-controle input[type="number"]::-webkit-outer-spin-button,
+.qtd-controle input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.qtd-controle input[type="number"]:focus {
+    outline: none;
+    background-color: #f1f1f1;
+}
+
+.item-controles button[name="id_apagar"] {
+    margin-left: auto;
+    height: 42px;
+    padding: 0 16px;
+
+    background-color: transparent;
+    color: #c62828;
+    font-weight: bold;
+    font-size: 14px;
+    border: 2px solid var(--vermelho);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.item-controles button[name="id_apagar"]:hover {
+    background-color: var(--vermelho);
+    color: black;
+}
+
+.item-controles button:focus-visible {
+    outline: 3px solid var(--verde);
+    outline-offset: 2px;
+}
+
+/* =========================
+   RESUMO DO PEDIDO
+========================= */
+
+.carrinho-resumo {
+    position: sticky;
+    top: 20px;
+    overflow: hidden;
+
+    background-color: white;
+    border: 2px solid var(--preto);
+    border-radius: 8px;
+    box-shadow: 6px 6px 0 var(--preto);
+}
+
+.carrinho-resumo br {
+    display: none;
+}
+
+.resumo-titulo {
+    margin: 0;
+    padding: 16px 20px;
+
+    background-color: var(--preto);
+    border-bottom: 3px solid var(--verde);
+
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--verde);
+}
+
+.resumo-endereco {
+    padding: 18px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 15px;
+    line-height: 1.45;
+    color: #222;
+    overflow-wrap: anywhere;
+}
+
+.resumo-endereco form {
+    margin: 14px 0 0;
+}
+
+.resumo-endereco button {
+    width: 100%;
+    padding: 9px 12px;
+
+    background-color: transparent;
+    color: var(--preto);
+    font-weight: bold;
+    font-size: 15px;
+    border: 2px solid var(--preto);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.resumo-endereco button:hover {
+    background-color: var(--preto);
+    color: white;
+}
+
+.resumo-frete {
+    padding: 14px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    border-left: 5px solid var(--preto);
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.resumo-frete.frete-gratis {
+    background-color: #eaf9e3;
+    border-left-color: var(--verde);
+    color: #1f6b00;
+}
+
+.resumo-frete.frete-pago {
+    background-color: #f5f5f3;
+    color: #222;
+}
+
+.resumo-total {
+    padding: 18px 20px;
+    background-color: var(--preto);
+
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: bold;
+    color: var(--verde);
+}
+
+.carrinho-resumo > a {
+    display: block;
+    margin: 18px 20px 20px;
+    padding: 11px 14px;
+
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--preto);
+
+    border: 2px solid var(--preto);
+    border-radius: 8px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.carrinho-resumo > a i {
+    display: inline-block;
+    margin-right: 6px;
+    transform: scaleX(-1); /* seta apontando para trás */
+}
+
+.carrinho-resumo > a:hover {
+    background-color: var(--preto);
+    color: white;
+}
+
+.carrinho-resumo > a:focus-visible {
+    outline: 3px solid var(--verde);
+    outline-offset: 2px;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 900px) {
+    .carrinho-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .carrinho-resumo {
+        position: static;
+    }
+}
+
+@media (max-width: 600px) {
+    .header-carrinho {
+        padding: 10px 8px;
+    }
+
+    .header-carrinho .container-fluid {
+        grid-template-columns: auto 1fr auto;
+    }
+
+    .header-carrinho .logo {
+        width: 55px;
+    }
+
+    .header-carrinho .titulo {
+        font-size: 26px;
+    }
+
+    .pagina-carrinho {
+        padding: 22px 12px 40px;
+    }
+
+    .pagina-titulo {
+        font-size: 26px;
+        margin-bottom: 20px;
+    }
+
+    .carrinho-itens > form {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto;
+        grid-template-areas:
+            "foto"
+            "info"
+            "controles";
+        padding: 14px;
+    }
+
+    .carrinho-itens > form > img {
+        aspect-ratio: 16 / 10;
+        margin-bottom: 14px;
+    }
+
+    .carrinho-itens > form:has(> img[style*="blur"])::after {
+        top: 24px;
+        left: 24px;
+    }
+
+    .item-nome {
+        font-size: 21px;
+    }
+
+    .resumo-total {
+        font-size: 22px;
+    }
+}

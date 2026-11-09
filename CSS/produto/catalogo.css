@@ -319,6 +319,14 @@ body {
     gap: 28px;
 }
 
+/* Lançamentos (o .catalogo logo depois do <h1>): poucos cards,
+   centralizados e com o mesmo espaço entre eles */
+.catalogo-area > h1 + .catalogo {
+    grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 320px));
+    justify-content: center;
+    gap: 40px;
+}
+
 /* quando a busca não retorna nada */
 .catalogo:not(:has(.card))::before {
     content: "Nenhum produto encontrado.";

@@ -1,11 +1,11 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['dados']['id_usuario']))
-{
-    echo "<script>window.location.href='../index.php';</script>";
-    exit();
-}
+// if (!isset($_SESSION['dados']['id_usuario']))
+// {
+//     echo "<script>window.location.href='../index.php';</script>";
+//     exit();
+// }
 
 function validaCPF($cpf)
 {
@@ -60,15 +60,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     if ($stmt->num_rows > 0)
     {
         $stmt->close();
-        die("Deu erro");
+        echo "Dados ja cadastrados no sistema";
+        
+        echo " <a
+        href='../index.php'
+        class='logout'>
+        <i class='bi bi-box-arrow-right'></i>
+        Voltar
+        </a>";
     }
 
     $stmt->close();
 
     $endereco_final = "{$_POST['rua']}, Nº: {$_POST['num']}, {$_POST['bairro']} - {$_POST['cidade']}/{$_POST['uf']} CEP: {$_POST['cep']}";
 
-    $sql = "INSERT INTO usuario(cpf, nome, email, senha, endereco)
-    VALUES (?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO usuario(cpf, nome, email, senha, endereco, root)
+    VALUES (?, ?, ?, ?, ?, 1)";
 
     $senha = $_POST["senha"];
     $senha_hash = password_hash($senha, PASSWORD_DEFAULT);

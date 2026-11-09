@@ -459,7 +459,7 @@ if (!isset($_SESSION['dados']['id_usuario']))
             Minha conta
         </a>
 
-        <a href="historico.php">
+        <a href="usuario/historico_compras.php">
             <i class="bi bi-clock-history"></i>
             Histórico de compras
         </a>
@@ -467,6 +467,11 @@ if (!isset($_SESSION['dados']['id_usuario']))
         <a href="usuario/alterar.php">
             <i class="bi bi-gear"></i>
             Alterar meus dados
+        </a>
+
+         <a href="usuario/alterar_senha.php">
+            <i class="bi bi-lock"></i>
+            Alterar Senha
         </a>
 
         <hr>
