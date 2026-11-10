@@ -55,27 +55,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $stmt->bind_param('ss', $_POST['email'],  $_POST['cpf']);
     $stmt->execute();
     $stmt->store_result();
-
+    
     //falar com o miguel
     if ($stmt->num_rows > 0)
-    {
+        {
+            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+            echo "<script src='../mensagem_erro.js'></script>";
+            echo "<script>erro_mensagem('Email ou CPF já cadastrados no sistema');</script>";
+            echo " <a
+            href='../index.php'
+            class='logout'>
+            <i class='bi bi-box-arrow-right'></i>
+            Voltar
+            </a>";
+        }
         $stmt->close();
-        echo "Dados ja cadastrados no sistema";
-        
-        echo " <a
-        href='../index.php'
-        class='logout'>
-        <i class='bi bi-box-arrow-right'></i>
-        Voltar
-        </a>";
-    }
-
-    $stmt->close();
+            
 
     $endereco_final = "{$_POST['rua']}, Nº: {$_POST['num']}, {$_POST['bairro']} - {$_POST['cidade']}/{$_POST['uf']} CEP: {$_POST['cep']}";
 
-    $sql = "INSERT INTO usuario(cpf, nome, email, senha, endereco, root)
-    VALUES (?, ?, ?, ?, ?, 1)";
+    $sql = "INSERT INTO usuario(cpf, nome, email, senha, endereco)
+    VALUES (?, ?, ?, ?, ?)";
 
     $senha = $_POST["senha"];
     $senha_hash = password_hash($senha, PASSWORD_DEFAULT);

@@ -112,11 +112,11 @@ while($p = $resultado->fetch_assoc())
 
     echo "<div class='qtd-controle'>";
 
-    echo "<button type='button' onclick=\"var i = this.parentNode.querySelector('input[type=number]'); i.stepUp(); i.dispatchEvent(new Event('change'));\">+</button>";
+    echo "<button type='button' onclick=\"var i = document.getElementById('qtd'); i.stepUp(); i.dispatchEvent(new Event('change'));\">+</button>";
 
     echo "<input type='number' id='qtd' onchange='this.form.submit()' min='0' name='qtd_carrinho' value='" . $p['qtd_carrinho'] . "'>";
 
-    echo "<button type='button' onclick=\"var i = this.parentNode.querySelector('input[type=number]'); i.stepDown(); i.dispatchEvent(new Event('change'));\">-</button>";
+    echo "<button type='button' onclick=\"var i = document.getElementById('qtd'); i.stepDown(); i.dispatchEvent(new Event('change'));\">-</button>";
 
     echo "</div>";
 
@@ -140,7 +140,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     }
 
 
-    if ($_POST['produto_estoque'] >= $_POST['qtd_carrinho'] && $_POST['qtd_carrinho'] > 0)
+       if (isset($_POST['produto_estoque'], $_POST['qtd_carrinho'])
+       && $_POST['produto_estoque'] >= $_POST['qtd_carrinho'] && $_POST['qtd_carrinho'] > 0)
         Carrinho::alterar_qtd($_SESSION['dados']['id_usuario'], $_POST['id_produto'], $_POST['qtd_carrinho']);
 
 }
@@ -176,6 +177,8 @@ function calcular_frete($id_usuario)
         return $uf;
 }
 
+echo "<div class='carrinho-lateral'>";
+
 echo "<aside class='carrinho-resumo'>";
 
 echo "<h2 class='resumo-titulo'>Resumo do pedido</h2>";
@@ -209,8 +212,17 @@ else
     echo "</div>";
 }
 
-$conexao->close();
 ?>
+
+<form method="post">
+    <button type="submit" name="comprar" value="1" class="btn-comprar">Comprar</button>
+</form>
+
+<?php 
+ Carrinho::comprar($_SESSION['dados']['id_usuario']);
+?>
+
+</aside>
 
 <a
         href="../index.php"
@@ -221,7 +233,7 @@ $conexao->close();
 
 </a>
 
-</aside>
+</div>
 
 </div>
 
