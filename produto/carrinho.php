@@ -218,8 +218,11 @@ else
     <button type="submit" name="comprar" value="1" class="btn-comprar">Comprar</button>
 </form>
 
-<?php 
- Carrinho::comprar($_SESSION['dados']['id_usuario']);
+<?php
+
+if(isset($_POST['comprar']))
+    Carrinho::comprar_em_carrinho($_SESSION['dados']['id_usuario']);
+
 ?>
 
 </aside>

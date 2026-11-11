@@ -68,11 +68,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     }
     else
     {
-        echo "<script>a('O produto adicionado ao carrinho com sucesso!');</script>";
-        //para resolver conflito com a classe carrinho que estava enviando para carrinho quando adicionava o produto ao carrinho
-        $_SESSION['confirma_add'] = true;
-        Carrinho::adicionar_produto($_SESSION['dados']['id_usuario'], $produto['id_produto'], $_POST['qtd']);
-        unset($_SESSION['confirma_add']);
+        $qtd = $_POST['qtd'];
+
+        if($qtd < 1 || $qtd > $produto['estoque'])
+        {
+            echo "<script>erro_mensagem('Quantidade inválida!');</script>";
+        }
+        elseif(isset($_POST['add_carrinho']))
+        {
+            $_SESSION['confirma_add'] = true;
+            echo "<script>a('O produto adicionado ao carrinho com sucesso!');</script>";
+            Carrinho::adicionar_produto($_SESSION['dados']['id_usuario'], $produto['id_produto'], $qtd);
+            unset($_SESSION['confirma_add']);
+        }
+        elseif(isset($_POST['comprar']))
+        {
+            Carrinho::comprar_em_detalhes($_SESSION['dados']['id_usuario'], $qtd, $produto['id_produto']);
+        }
+
     }
 
 }
@@ -111,15 +124,21 @@ echo "<form method='post' class='form-carrinho'>";
 
 echo "<label for='qtd'>Quantidade</label>";
 
-echo "<input type='number' value='1' min='1' max='" . $produto['estoque'] . "' name='qtd' id='qtd'>";
+echo "<div class='input-group qtd-grupo'>";
+
+echo "<button type='button' class='btn btn-outline-secondary' onclick=\"document.getElementById('qtd').stepDown()\">-</button>";
+
+echo "<input type='number' id='qtd' name='qtd' class='form-control text-center' value='1' min='1' max='" . $produto['estoque'] . "'>";
+
+echo "<button type='button' class='btn btn-outline-secondary' onclick=\"document.getElementById('qtd').stepUp()\">+</button>";
+
+echo "</div>";
 
 echo "<input type='submit' name='add_carrinho' value='Adicionar ao carrinho'>";
-
-
-echo "<input type='submit' value='Comprar'>";
-
+echo "<input type='submit' name='comprar' value='Comprar'>";
 
 echo "</form>";
+
 
 echo "<a href='catalogo.php'><button class='btn-voltar'>Voltar</button></a>";
 echo "<br>";
