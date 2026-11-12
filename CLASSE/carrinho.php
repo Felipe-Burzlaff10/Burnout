@@ -177,7 +177,6 @@ abstract class Carrinho
         echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
         echo "<script src='../mensagem_erro.js'></script>";
         echo "<script>sucesso_mensagem('Pedido realizado com sucesso!');</script>";
-
         
         
     }
