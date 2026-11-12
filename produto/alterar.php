@@ -76,7 +76,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         echo "descrição invalida";
     }
 
-    if(isset($_FILES['imagem']))
+    // a segunda condição do if é para caso eu não envie nenhuma img ele não criar um nome errado e o produto acabar ficando sem img
+    if(isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK)
     {
         $nome_arquivo = $_FILES["imagem"]["name"];
         $nome_temporario = $_FILES['imagem']['tmp_name'];
@@ -103,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                 preco = COALESCE(NULLIF(?, ''), preco),
                 tamanho = COALESCE(NULLIF(?, ''), tamanho),
                 estoque = COALESCE(NULLIF(?, ''), estoque),
-                descrição = COALESCE(NULLIF(?, ''), descrição),
+                descricao = COALESCE(NULLIF(?, ''), descricao),
                 foto = COALESCE(NULLIF(?, ''), foto)
             WHERE id_produto = ?";
 

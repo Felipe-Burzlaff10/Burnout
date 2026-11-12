@@ -69,16 +69,16 @@ abstract class Carrinho
     static function comprar_em_carrinho($id_usuario)
     {
         require "../conexao.php";
-
         $sql = "SELECT *
                 FROM carrinho_possui_produto cp
-                WHERE cp.id_usuario = ?";
+                WHERE cp.id_usuario = ? ";
 
                 $stmt = $conexao->prepare($sql);
                 $stmt->bind_param('i', $id_usuario);
                 $stmt->execute();
                 $resultado = $stmt->get_result();
                 $stmt->close();
+               
 
         //$resultado->num_rows > 0 confere se tem produtos no carrinho
         if($resultado->num_rows > 0)

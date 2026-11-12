@@ -113,7 +113,7 @@ while($p = $resultado->fetch_assoc())
     echo "<div class='qtd-controle'>";
 
     echo "<button type='button' onclick=\"var i = document.getElementById('qtd'); i.stepUp(); i.dispatchEvent(new Event('change'));\">+</button>";
-
+    
     echo "<input type='number' id='qtd' onchange='this.form.submit()' min='0' name='qtd_carrinho' value='" . $p['qtd_carrinho'] . "'>";
 
     echo "<button type='button' onclick=\"var i = document.getElementById('qtd'); i.stepDown(); i.dispatchEvent(new Event('change'));\">-</button>";
@@ -138,7 +138,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
         Carrinho::excluir_produto($_SESSION['dados']['id_usuario'], $_POST['id_apagar']);
     }
-
 
        if (isset($_POST['produto_estoque'], $_POST['qtd_carrinho'])
        && $_POST['produto_estoque'] >= $_POST['qtd_carrinho'] && $_POST['qtd_carrinho'] > 0)
