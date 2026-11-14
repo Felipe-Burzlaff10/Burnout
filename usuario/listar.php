@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <link rel="stylesheet" href="../CSS/usuario/listar.css">
 
 <form method="GET">
@@ -8,8 +10,6 @@
 
 <div>
 <?php
-session_start();
-
 if ($_SESSION['dados']['root'] != 1)
 {
     echo "<script>window.location.href='../index.php';</script>";
@@ -41,6 +41,11 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
+    if (isset($_POST['id_alterar']))
+    {
+        echo "<script>window.location.href='adm_alterar.php?id_usuario=" . $_POST['id_alterar'] . "';</script>";
+    }
+
     if (isset($_POST['id_apagar']))
     {
         $sql = "DELETE FROM usuario
@@ -77,6 +82,8 @@ echo "<th>Root</th>";
 
 echo "<th>Apagar</th>";
 
+echo "<th>Alterar</th>";
+
 echo "</tr>";
 
 while($usuario = $resultado -> fetch_assoc())
@@ -92,6 +99,8 @@ while($usuario = $resultado -> fetch_assoc())
         continue;
 
     echo "<td><button type='submit' name='id_apagar' value='" . $usuario['id_usuario'] . "'>Apagar</button></td>";
+
+    echo "<td><button type='submit' name='id_alterar' value='" . $usuario['id_usuario'] . "'>Alterar</button></td>";
 
     echo "</tr>";
 }
