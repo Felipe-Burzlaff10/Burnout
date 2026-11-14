@@ -108,29 +108,29 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
 
     <div class="usuario-dropdown" id="usuarioDropdown">
 
-        <a href="usuario/perfil.php">
+        <a href="../usuario/perfil.php">
             <i class="bi bi-person"></i>
             Minha conta
         </a>
 
-        <a href="usuario/historico_compras.php">
+        <a href="../usuario/historico_compras.php">
             <i class="bi bi-clock-history"></i>
             Histórico de compras
         </a>
 
-        <a href="usuario/alterar.php">
+        <a href="../usuario/alterar.php">
             <i class="bi bi-gear"></i>
             Alterar meus dados
         </a>
 
-         <a href="usuario/alterar_senha.php">
+         <a href="../usuario/alterar_senha.php">
             <i class="bi bi-lock"></i>
             Alterar Senha
         </a>
 
         <hr>
 
-        <a href="usuario/logout.php" class="sair">
+        <a href="../usuario/logout.php" class="sair">
             <i class="bi bi-box-arrow-right"></i>
             Sair da conta
         </a>

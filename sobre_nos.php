@@ -31,7 +31,7 @@ if (!isset($_SESSION['dados']['id_usuario'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- HEADER -->
-    <header class="header-home">
+      <header class="header-home">
 
         <div class="container-fluid">
 
@@ -40,18 +40,6 @@ if (!isset($_SESSION['dados']['id_usuario'])) {
                 <!-- BOTÃO DA BARRA LATERAL + LOGO -->
                 <div class="col-3 d-flex align-items-center gap-2">
 
-                    <?php
-                        if ($_SESSION['dados']['root'])
-                            echo "<button
-                                  class='botao-menu'
-                                  id='abrirSidebar'
-                                  type='button'
-                                  aria-label='Abrir menu lateral'
-                                  aria-controls='sidebar'
-                                  aria-expanded='false'>
-                                    <i class='bi bi-list'></i>
-                                  </button>";
-                    ?>
 
                     <img
                         src="img_site/logo.png"
@@ -70,6 +58,7 @@ if (!isset($_SESSION['dados']['id_usuario'])) {
                 <!-- ÍCONES -->
                 <div class="col-3 d-flex justify-content-end align-items-center gap-3">
 
+
                     <a href="produto/carrinho.php"
                         class="icone-header"
                         title="Carrinho">
@@ -78,48 +67,57 @@ if (!isset($_SESSION['dados']['id_usuario'])) {
 
                     </a>
 
-                    <!-- USUÁRIO E MENU SUSPENSO -->
-                    <div class="usuario-menu">
+                
 
-                        <button
-                            type="button"
-                            class="usuario-header"
-                            id="usuarioBtn"
-                            aria-expanded="false"
-                            aria-controls="usuarioDropdown">
+                   
+<!-- USUÁRIO E MENU SUSPENSO -->
+<div class="usuario-menu">
 
-                            <?php echo htmlspecialchars($_SESSION['dados']['nome']); ?>
-                            <i class="bi bi-chevron-down"></i>
+    <button
+        type="button"
+        class="usuario-header"
+        id="usuarioBtn"
+        aria-expanded="false"
+        aria-controls="usuarioDropdown">
 
-                        </button>
+        <?php echo htmlspecialchars($_SESSION['dados']['nome']); ?>
+        <i class="bi bi-chevron-down"></i>
 
-                        <div class="usuario-dropdown" id="usuarioDropdown">
+    </button>
 
-                            <a href="perfil.php">
-                                <i class="bi bi-person"></i>
-                                Minha conta
-                            </a>
+    <div class="usuario-dropdown" id="usuarioDropdown">
 
-                            <a href="historico.php">
-                                <i class="bi bi-clock-history"></i>
-                                Histórico de compras
-                            </a>
+        <a href="usuario/perfil.php">
+            <i class="bi bi-person"></i>
+            Minha conta
+        </a>
 
-                            <a href="usuario/alterar.php">
-                                <i class="bi bi-gear"></i>
-                                Alterar meus dados
-                            </a>
+        <a href="usuario/historico_compras.php">
+            <i class="bi bi-clock-history"></i>
+            Histórico de compras
+        </a>
 
-                            <hr>
+        <a href="usuario/alterar.php">
+            <i class="bi bi-gear"></i>
+            Alterar meus dados
+        </a>
 
-                            <a href="usuario/logout.php" class="sair">
-                                <i class="bi bi-box-arrow-right"></i>
-                                Sair da conta
-                            </a>
+         <a href="usuario/alterar_senha.php">
+            <i class="bi bi-lock"></i>
+            Alterar Senha
+        </a>
 
-                        </div>
+        <hr>
 
-                    </div>
+        <a href="usuario/logout.php" class="sair">
+            <i class="bi bi-box-arrow-right"></i>
+            Sair da conta
+        </a>
+
+    </div>
+
+</div>
+
 
                 </div>
 
@@ -142,7 +140,7 @@ if (!isset($_SESSION['dados']['id_usuario'])) {
                 <a class="nav-link" href="produto/lancamentos.php">LANÇAMENTOS</a>
             </li>
 
-            <li class="nav-item">
+             <li class="nav-item">
                 <a class="nav-link active" href="sobre_nos.php">SOBRE NÓS</a>
             </li>
 
@@ -196,7 +194,7 @@ if (!isset($_SESSION['dados']['id_usuario'])) {
         <section class="sobre-banner">
             <div class="container">
                 <div class="banner-text">
-                    <span class="tag">Quem somos</span>
+                    <span class="tag">Quem somos?</span>
                     <h2>Sobre a BURNOUT</h2>
                 </div>
             </div>

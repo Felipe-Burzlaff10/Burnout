@@ -209,7 +209,6 @@ img {
     background: var(--preto);
     color: var(--verde);
     font-size: 12px;
-    text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: bold;
     padding: 8px 14px;
