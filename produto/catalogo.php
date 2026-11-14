@@ -161,8 +161,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
                 <a class="nav-link" href="lancamentos.php">LANÇAMENTOS</a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" >SOBRE NÓS</a>
+             <li class="nav-item">
+                <a class="nav-link" href="../sobre_nos.php">SOBRE NÓS</a>
             </li>
 
         </ul>
