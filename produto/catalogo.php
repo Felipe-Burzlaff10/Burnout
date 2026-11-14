@@ -51,46 +51,94 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
 <body>
 
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+      <!-- HEADER -->
     <header class="header-home">
 
-    <div class="container-fluid">
+        <div class="container-fluid">
 
-        <div class="row align-items-center">
+            <div class="row align-items-center">
 
-            <!-- LOGO -->
-            <div class="col-3">
-                <img src="../img_site/logo.png" alt="Logo BURNOUT" class="logo">
-            </div>
+                <!-- BOTÃO DA BARRA LATERAL + LOGO -->
+                <div class="col-3 d-flex align-items-center gap-2">
 
-            <!-- TÍTULO -->
-            <div class="col-6 text-center">
-                <h1 class="titulo">BURNOUT</h1>
-            </div>
 
-            <!-- CARRINHO + USUÁRIO -->
-            <div class="col-3 d-flex justify-content-end align-items-center gap-3">
+                    <img
+                        src="../img_site/logo.png"
+                        alt="Logo BURNOUT"
+                        class="logo">
 
-                <a href="carrinho.php" class="icone-header" title="Carrinho" aria-label="Carrinho">
-                    <i class="bi bi-cart3"></i>
-                </a>
+                </div>
 
-                <div class="usuario-menu">
+                <!-- TÍTULO -->
+                <div class="col-6 text-center">
 
-                    <button type="button" class="usuario-header" id="usuarioBtn"
-                            aria-expanded="false" aria-controls="usuarioDropdown">
-                        <?php echo htmlspecialchars($_SESSION['dados']['nome']); ?>
-                        <i class="bi bi-chevron-down"></i>
-                    </button>
+                    <h1 class="titulo">BURNOUT</h1>
 
-                    <div class="usuario-dropdown" id="usuarioDropdown">
-                        <a href="perfil.php"><i class="bi bi-person"></i> Minha conta</a>
-                        <a href="historico.php"><i class="bi bi-clock-history"></i> Histórico de compras</a>
-                        <a href="usuario/alterar.php"><i class="bi bi-gear"></i> Alterar meus dados</a>
-                        <hr>
-                        <a href="usuario/logout.php" class="sair">
-                            <i class="bi bi-box-arrow-right"></i> Sair da conta
-                        </a>
-                    </div>
+                </div>
+
+                <!-- ÍCONES -->
+                <div class="col-3 d-flex justify-content-end align-items-center gap-3">
+
+
+                    <a href="carrinho.php"
+                        class="icone-header"
+                        title="Carrinho">
+
+                        <i class="bi bi-cart3"></i>
+
+                    </a>
+
+                
+
+                   
+<!-- USUÁRIO E MENU SUSPENSO -->
+<div class="usuario-menu">
+
+    <button
+        type="button"
+        class="usuario-header"
+        id="usuarioBtn"
+        aria-expanded="false"
+        aria-controls="usuarioDropdown">
+
+        <?php echo htmlspecialchars($_SESSION['dados']['nome']); ?>
+        <i class="bi bi-chevron-down"></i>
+
+    </button>
+
+    <div class="usuario-dropdown" id="usuarioDropdown">
+
+        <a href="usuario/perfil.php">
+            <i class="bi bi-person"></i>
+            Minha conta
+        </a>
+
+        <a href="usuario/historico_compras.php">
+            <i class="bi bi-clock-history"></i>
+            Histórico de compras
+        </a>
+
+        <a href="usuario/alterar.php">
+            <i class="bi bi-gear"></i>
+            Alterar meus dados
+        </a>
+
+         <a href="usuario/alterar_senha.php">
+            <i class="bi bi-lock"></i>
+            Alterar Senha
+        </a>
+
+        <hr>
+
+        <a href="usuario/logout.php" class="sair">
+            <i class="bi bi-box-arrow-right"></i>
+            Sair da conta
+        </a>
+
+    </div>
+
+</div>
+
 
                 </div>
 
@@ -98,18 +146,15 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
 
         </div>
 
-    </div>
-
-    <!-- MENU -->
-    <ul class="nav justify-content-center">
-         <ul class="nav justify-content-center">
+        <!-- MENU PRINCIPAL -->
+        <ul class="nav justify-content-center">
 
             <li class="nav-item">
                 <a class="nav-link" href="../index.php">HOME</a>
             </li>
 
-              <li class="nav-item">
-                <a class="nav-link active" href="">CATALOGO</a>
+            <li class="nav-item">
+                <a class="nav-link active" href="catalogo.php">CATALOGO</a>
             </li>
 
             <li class="nav-item">
@@ -117,14 +162,12 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
             </li>
 
             <li class="nav-item">
-                <a class="nav-link disabled" aria-disabled="true">PINTO</a>
+                <a class="nav-link" >SOBRE NÓS</a>
             </li>
 
         </ul>
-    </ul>
 
-</header>
-
+    </header>
 
 <div class="catalogo-area">
 
