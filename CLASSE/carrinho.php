@@ -83,6 +83,28 @@ abstract class Carrinho
         //$resultado->num_rows > 0 confere se tem produtos no carrinho
         if($resultado->num_rows > 0)
         {
+            $id_produtos = [];
+
+            while ($produtos = $resultado->fetch_assoc())
+            {
+                $sql = "SELECT id_produto, estoque
+                        FROM produto
+                        WHERE id_produto = ?";
+
+                $stmt = $conexao->prepare($sql);
+                $stmt->bind_param('i', $produtos['id_produto']);
+                $stmt->execute();
+                $produto = $stmt->get_result()->fetch_assoc();
+
+                if ($produto['estoque'] >= $produtos['quantidade'])
+                    $id_produtos[] = $produto['id_produto'];
+
+                $stmt->close();
+            }
+
+            if (empty($id_produtos))
+                die();
+
             $sql = "INSERT INTO pedido(id_usuario, data_compra)
             VALUES (?, NOW())";
 
@@ -93,32 +115,35 @@ abstract class Carrinho
             $id_pedido = $stmt->insert_id;
             $stmt->close();
 
+            $placeholders = implode(',', array_fill(0, count($id_produtos), '?'));
+            $tipos = str_repeat('i', count($id_produtos));
+
                 $sql = "INSERT INTO pedido_contem_produto (id_pedido, id_produto, quantidade, preco, preco_unitario)
                 SELECT ?, p.id_produto, cp.quantidade, p.preco * cp.quantidade as subtotal_produto, p.preco 
                 FROM carrinho_possui_produto cp
                 JOIN produto p ON p.id_produto = cp.id_produto
-                WHERE cp.id_usuario = ?";
+                WHERE cp.id_usuario = ? AND cp.id_produto IN ($placeholders)";
 
                 $stmt = $conexao->prepare($sql);
-                $stmt->bind_param('ii', $id_pedido, $id_usuario);
+                $stmt->bind_param('ii'.$tipos, $id_pedido, $id_usuario, ...$id_produtos);
                 $stmt->execute();
                 $stmt->close();
 
                     $sql = "UPDATE produto p
                     JOIN carrinho_possui_produto cp ON p.id_produto = cp.id_produto 
                     SET estoque = p.estoque - cp.quantidade 
-                    WHERE cp.id_usuario = ?";
+                    WHERE cp.id_usuario = ? AND cp.id_produto IN ($placeholders)";
 
                 $stmt = $conexao->prepare($sql);
-                $stmt->bind_param('i', $id_usuario);
+                $stmt->bind_param('i'.$tipos, $id_usuario, ...$id_produtos);
                 $stmt->execute();
                 $stmt->close();
 
                     $sql = "DELETE FROM carrinho_possui_produto 
-                    WHERE id_usuario = ?";
+                    WHERE id_usuario = ? AND id_produto IN ($placeholders)";
 
                 $stmt = $conexao->prepare($sql);
-                $stmt->bind_param('i', $id_usuario);
+                $stmt->bind_param('i'.$tipos, $id_usuario, ...$id_produtos);
                 $stmt->execute();
                 $stmt->close();
 
