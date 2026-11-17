@@ -1,9 +1,3 @@
-/* =========================================================
-   BURNOUT - Histórico de compras
-   Baseado em CSS/produto/catalogo.css
-   Salvar em: CSS/usuario/historico_compras.css
-   ========================================================= */
-
 :root {
     --verde: #39bf00;
     --preto: #111;
@@ -176,7 +170,6 @@ body {
 
 /* =========================
    CARD DO PEDIDO
-   (sobrescreve .card, m-2 e p-2 do Bootstrap e o estilo inline do PHP)
 ========================= */
 
 .catalogo .card {
@@ -225,7 +218,6 @@ body {
     white-space: nowrap;
 }
 
-/* a data é longa: deixa quebrar linha em vez de cortar */
 .catalogo .card .produto-preco {
     padding: 6px 16px 16px;
 

@@ -1,8 +1,3 @@
-/* =========================================================
-   BURNOUT - Detalhes do produto
-   Salvar em: CSS/produto/detalhes.css
-   ========================================================= */
-
 :root {
     --verde: #39bf00;
     --preto: #111;
@@ -63,8 +58,7 @@ body {
 }
 
 /* =========================
-   CARD DO PRODUTO
-   (sobrescreve .card, m-2, p-2 e os estilos inline do PHP)
+   CARD DO PRODUT
 ========================= */
 
 .pagina-detalhes {

@@ -1,8 +1,3 @@
-/* =========================================================
-   BURNOUT - Listar Produtos (admin)
-   Salvar em: CSS/produto/listar.css
-   ========================================================= */
-
 :root {
     --verde: #39bf00;
     --preto: #111;
@@ -112,7 +107,6 @@ body {
     max-width: 760px;
 }
 
-/* o <br> dentro do form quebraria o alinhamento */
 .busca-form br {
     display: none;
 }
@@ -189,7 +183,7 @@ body {
     gap: 28px;
 }
 
-/* quando a busca não retorna nada, o form fica vazio */
+/* quando a busca não retorna nada o form fica vazio */
 .lista-produtos:empty::before {
     content: "Nenhum produto encontrado.";
     grid-column: 1 / -1;
@@ -222,7 +216,6 @@ body {
     box-shadow: 7px 7px 0 var(--verde);
 }
 
-/* os <br> do PHP não são mais necessários dentro do card */
 .produto-card br {
     display: none;
 }
@@ -236,7 +229,7 @@ body {
     border-bottom: 2px solid var(--preto);
 }
 
-/* campos (id, nome, categoria, preço...) */
+/* campos */
 .produto-card .campo {
     display: flex;
     flex-wrap: wrap;
@@ -265,7 +258,7 @@ body {
     font-weight: 600;
 }
 
-/* destaque para o nome: vira o título do card */
+
 .produto-card .campo-nome .rotulo {
     display: none;
 }
@@ -293,7 +286,7 @@ body {
 }
 
 /* =========================
-   BOTÕES (APAGAR / ALTERAR)
+   BOTÕES APAGAR E ALTERAR
 ========================= */
 
 .produto-acoes {
@@ -352,7 +345,7 @@ body {
 }
 
 /* =========================
-   RODAPÉ (HR DO PHP)
+   RODAPÉ
 ========================= */
 
 .pagina-listar hr {

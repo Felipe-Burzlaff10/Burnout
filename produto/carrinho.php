@@ -124,7 +124,8 @@ while($p = $resultado->fetch_assoc())
 
     echo "</div>";
     
-    $valor_total += $p['preco'] * $p['qtd_carrinho'];
+    if($p['estoque'] > 0)
+        $valor_total += $p['preco'] * $p['qtd_carrinho'];
 
     echo "</form>";
 }

@@ -1,17 +1,11 @@
-/* =========================================================
-   BURNOUT - Catálogo (reutilizável em Lançamentos)
-   Salvar em: CSS/produto/catalogo.css
-   O header fica em CSS/header.css
-   ========================================================= */
-
 :root {
-    --verde: #39bf00;
-    --preto: #111;
-    --borda: #292929;
-    --vermelho: #ff5555;
-    --fundo: #e4e4e2;
-    --cinza-texto: #6b6b6b;
-    --serif: Georgia, 'Times New Roman', serif;
+--verde: #39bf00;
+--preto: #111;
+--borda: #292929;
+--vermelho: #ff5555;
+--fundo: #e4e4e2;
+--cinza-texto: #6b6b6b;
+--serif: Georgia, 'Times New Roman', serif;
 }
 
 body {
@@ -136,8 +130,7 @@ body {
     gap: 28px;
 }
 
-/* Lançamentos (o .catalogo logo depois do <h1>): poucos cards,
-   centralizados e com o mesmo espaço entre eles */
+/* Lançamentos */
 .catalogo-area > h1 + .catalogo {
     grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 320px));
     justify-content: center;
@@ -157,7 +150,6 @@ body {
 
 /* =========================
    CARD DO PRODUTO
-   (sobrescreve .card, m-2 e p-2 do Bootstrap e os estilos inline do PHP)
 ========================= */
 
 .catalogo .card {
@@ -250,7 +242,6 @@ body {
     outline-offset: 2px;
 }
 
-/* selo automático quando o PHP aplica o blur (produto sem estoque) */
 .catalogo .card:has(img[style*="blur"])::after {
     content: "Fora de estoque";
     position: absolute;

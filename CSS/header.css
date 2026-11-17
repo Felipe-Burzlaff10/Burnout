@@ -1,12 +1,3 @@
-/* =========================================================
-   BURNOUT - Header compartilhado (header-home)
-   Salvar em: CSS/header.css
-   Usado por: index.php, produto/catalogo.php, produto/lancamentos.php
-   (e demais páginas com menu, carrinho e usuário)
-   ========================================================= */
-
-/* reserva o espaço da barra de rolagem: o header não "pula" alguns pixels
-   entre páginas com e sem rolagem */
 html {
     scrollbar-gutter: stable;
 }
@@ -179,7 +170,6 @@ html {
     padding: 10px 0;
 }
 
-/* o HTML tem um <ul class="nav"> dentro de outro: evita padding duplo */
 .nav .nav {
     padding: 0;
 }

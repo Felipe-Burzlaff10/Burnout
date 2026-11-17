@@ -141,396 +141,396 @@ $conexao->close();
          CADASTRO
     ========================= -->
 
-    <main class="area-cadastro">
+<main class="area-cadastro">
 
-        <div class="card-cadastro">
+<div class="card-cadastro">
 
 
-            <!-- CABEÇALHO -->
+    <!-- CABEÇALHO -->
 
-            <div class="cabecalho-cadastro">
+    <div class="cabecalho-cadastro">
 
-                <div class="icone-cadastro">
+        <div class="icone-cadastro">
 
-                    <i class="bi bi-person-plus-fill"></i>
+            <i class="bi bi-person-plus-fill"></i>
+
+        </div>
+
+
+        <h1 class="titulo-cadastro">
+            CADASTRO
+        </h1>
+
+
+        <div class="linha-titulo"></div>
+
+
+        <p class="subtitulo-cadastro">
+            Crie sua conta BURNOUT
+        </p>
+
+    </div>
+
+
+
+        <!-- FORMULÁRIO -->
+
+    <form method="POST">
+
+
+        <!-- DADOS PESSOAIS -->
+
+        <div class="row">
+
+
+            <!-- NOME -->
+
+            <div class="col-md-6">
+
+                <div class="campo">
+
+                    <label
+                        for="nome"
+                        class="form-label"
+                    >
+                        Nome
+                    </label>
+
+                    <input
+                        type="text"
+                        name="nome"
+                        id="nome"
+                        class="form-control"
+                        placeholder="Digite seu nome"
+                        required
+                    >
 
                 </div>
-
-
-                <h1 class="titulo-cadastro">
-                    CADASTRO
-                </h1>
-
-
-                <div class="linha-titulo"></div>
-
-
-                <p class="subtitulo-cadastro">
-                    Crie sua conta BURNOUT
-                </p>
 
             </div>
 
 
+            <!-- CPF -->
 
-            <!-- FORMULÁRIO -->
+            <div class="col-md-6">
 
-            <form method="POST">
+                <div class="campo">
 
+                    <label
+                        for="cpf"
+                        class="form-label"
+                    >
+                        CPF
+                    </label>
 
-                <!-- DADOS PESSOAIS -->
-
-                <div class="row">
-
-
-                    <!-- NOME -->
-
-                    <div class="col-md-6">
-
-                        <div class="campo">
-
-                            <label
-                                for="nome"
-                                class="form-label"
-                            >
-                                Nome
-                            </label>
-
-                            <input
-                                type="text"
-                                name="nome"
-                                id="nome"
-                                class="form-control"
-                                placeholder="Digite seu nome"
-                                required
-                            >
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- CPF -->
-
-                    <div class="col-md-6">
-
-                        <div class="campo">
-
-                            <label
-                                for="cpf"
-                                class="form-label"
-                            >
-                                CPF
-                            </label>
-
-                            <input
-                                type="text"
-                                name="cpf"
-                                id="cpf"
-                                class="form-control"
-                                maxlength="11"
-                                placeholder="Digite seu CPF"
-                                required
-                            >
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- EMAIL -->
-
-                    <div class="col-md-6">
-
-                        <div class="campo">
-
-                            <label
-                                for="email"
-                                class="form-label"
-                            >
-                                E-mail
-                            </label>
-
-                            <input
-                                type="email"
-                                name="email"
-                                id="email"
-                                class="form-control"
-                                placeholder="seuemail@email.com"
-                                required
-                            >
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- SENHA -->
-
-                    <div class="col-md-6">
-
-                        <div class="campo">
-
-                            <label
-                                for="senha"
-                                class="form-label"
-                            >
-                                Senha
-                            </label>
-
-                            <input
-                                type="password"
-                                name="senha"
-                                id="senha"
-                                class="form-control"
-                                placeholder="Digite sua senha"
-                                required
-                            >
-
-                        </div>
-
-                    </div>
+                    <input
+                        type="text"
+                        name="cpf"
+                        id="cpf"
+                        class="form-control"
+                        maxlength="11"
+                        placeholder="Digite seu CPF"
+                        required
+                    >
 
                 </div>
 
+            </div>
 
 
-                <!-- DIVISOR -->
+            <!-- EMAIL -->
 
-                <hr class="divisor">
+            <div class="col-md-6">
 
+                <div class="campo">
 
+                    <label
+                        for="email"
+                        class="form-label"
+                    >
+                        E-mail
+                    </label>
 
-                <!-- ENDEREÇO -->
-
-                <div class="titulo-endereco">
-
-                    <i class="bi bi-geo-alt-fill"></i>
-
-                    Endereço
+                    <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        class="form-control"
+                        placeholder="seuemail@email.com"
+                        required
+                    >
 
                 </div>
 
+            </div>
 
 
-                <div class="row">
+            <!-- SENHA -->
 
+            <div class="col-md-6">
 
-                    <!-- CEP -->
+                <div class="campo">
 
-                    <div class="col-md-6">
+                    <label
+                        for="senha"
+                        class="form-label"
+                    >
+                        Senha
+                    </label>
 
-                        <div class="campo">
-
-                            <label
-                                for="cep"
-                                class="form-label"
-                            >
-                                CEP
-                            </label>
-
-                            <div class="cep-area">
-
-                                <input
-                                    type="text"
-                                    name="cep"
-                                    id="cep"
-                                    class="form-control"
-                                    maxlength="8"
-                                    placeholder="00000000"
-                                    required
-                                >
-
-                                <button
-                                    type="button"
-                                    class="btn-cep"
-                                    onclick="buscarEndereco()"
-                                >
-                                    <i class="bi bi-search"></i>
-                                    Buscar
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- UF -->
-
-                    <div class="col-md-6">
-
-                        <div class="campo">
-
-                            <label
-                                for="uf"
-                                class="form-label"
-                            >
-                                UF
-                            </label>
-
-                            <input
-                                type="text"
-                                name="uf"
-                                id="uf"
-                                class="form-control"
-                                maxlength="2"
-                                placeholder="RS"
-                                required
-                            >
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- BAIRRO -->
-
-                    <div class="col-md-6">
-
-                        <div class="campo">
-
-                            <label
-                                for="bairro"
-                                class="form-label"
-                            >
-                                Bairro
-                            </label>
-
-                            <input
-                                type="text"
-                                name="bairro"
-                                id="bairro"
-                                class="form-control"
-                                placeholder="Digite seu bairro"
-                                required
-                            >
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- CIDADE -->
-
-                    <div class="col-md-6">
-
-                        <div class="campo">
-
-                            <label
-                                for="cidade"
-                                class="form-label"
-                            >
-                                Cidade
-                            </label>
-
-                            <input
-                                type="text"
-                                name="cidade"
-                                id="cidade"
-                                class="form-control"
-                                placeholder="Digite sua cidade"
-                                required
-                            >
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- RUA -->
-
-                    <div class="col-md-8">
-
-                        <div class="campo">
-
-                            <label
-                                for="rua"
-                                class="form-label"
-                            >
-                                Rua
-                            </label>
-
-                            <input
-                                type="text"
-                                name="rua"
-                                id="rua"
-                                class="form-control"
-                                placeholder="Digite sua rua"
-                                required
-                            >
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- NÚMERO -->
-
-                    <div class="col-md-4">
-
-                        <div class="campo">
-
-                            <label
-                                for="num"
-                                class="form-label"
-                            >
-                                Número
-                            </label>
-
-                            <input
-                                type="text"
-                                name="num"
-                                id="num"
-                                class="form-control"
-                                placeholder="Nº"
-                                required
-                            >
-
-                        </div>
-
-                    </div>
+                    <input
+                        type="password"
+                        name="senha"
+                        id="senha"
+                        class="form-control"
+                        placeholder="Digite sua senha"
+                        required
+                    >
 
                 </div>
-
-
-
-                <!-- CADASTRAR -->
-
-                <button
-                    type="submit"
-                    class="btn-cadastrar"
-                >
-
-                    <i class="bi bi-person-plus-fill"></i>
-
-                    CADASTRAR
-
-                </button>
-
-
-            </form>
-
-
-
-            <!-- LINK PARA LOGIN -->
-
-            <div class="link-auth">
-
-                <span>
-                    Já possui uma conta?
-                </span>
-
-                <a href="login.php">
-                    Fazer login
-                </a>
 
             </div>
 
         </div>
 
-    </main>
+
+
+        <!-- DIVISOR -->
+
+        <hr class="divisor">
+
+
+
+        <!-- ENDEREÇO -->
+
+        <div class="titulo-endereco">
+
+            <i class="bi bi-geo-alt-fill"></i>
+
+            Endereço
+
+        </div>
+
+
+
+        <div class="row">
+
+
+            <!-- CEP -->
+
+            <div class="col-md-6">
+
+                <div class="campo">
+
+                    <label
+                        for="cep"
+                        class="form-label"
+                    >
+                        CEP
+                    </label>
+
+                    <div class="cep-area">
+
+                        <input
+                            type="text"
+                            name="cep"
+                            id="cep"
+                            class="form-control"
+                            maxlength="8"
+                            placeholder="00000000"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="btn-cep"
+                            onclick="buscarEndereco()"
+                        >
+                            <i class="bi bi-search"></i>
+                            Buscar
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- UF -->
+
+            <div class="col-md-6">
+
+                <div class="campo">
+
+                    <label
+                        for="uf"
+                        class="form-label"
+                    >
+                        UF
+                    </label>
+
+                    <input
+                        type="text"
+                        name="uf"
+                        id="uf"
+                        class="form-control"
+                        maxlength="2"
+                        placeholder="RS"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- BAIRRO -->
+
+            <div class="col-md-6">
+
+                <div class="campo">
+
+                    <label
+                        for="bairro"
+                        class="form-label"
+                    >
+                        Bairro
+                    </label>
+
+                    <input
+                        type="text"
+                        name="bairro"
+                        id="bairro"
+                        class="form-control"
+                        placeholder="Digite seu bairro"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- CIDADE -->
+
+            <div class="col-md-6">
+
+                <div class="campo">
+
+                    <label
+                        for="cidade"
+                        class="form-label"
+                    >
+                        Cidade
+                    </label>
+
+                    <input
+                        type="text"
+                        name="cidade"
+                        id="cidade"
+                        class="form-control"
+                        placeholder="Digite sua cidade"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- RUA -->
+
+            <div class="col-md-8">
+
+                <div class="campo">
+
+                    <label
+                        for="rua"
+                        class="form-label"
+                    >
+                        Rua
+                    </label>
+
+                    <input
+                        type="text"
+                        name="rua"
+                        id="rua"
+                        class="form-control"
+                        placeholder="Digite sua rua"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- NÚMERO -->
+
+            <div class="col-md-4">
+
+                <div class="campo">
+
+                    <label
+                        for="num"
+                        class="form-label"
+                    >
+                        Número
+                    </label>
+
+                    <input
+                        type="text"
+                        name="num"
+                        id="num"
+                        class="form-control"
+                        placeholder="Nº"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- CADASTRAR -->
+
+        <button
+            type="submit"
+            class="btn-cadastrar"
+        >
+
+            <i class="bi bi-person-plus-fill"></i>
+
+            CADASTRAR
+
+        </button>
+
+
+    </form>
+
+
+
+        <!-- LINK PARA LOGIN -->
+
+        <div class="link-auth">
+
+            <span>
+                Já possui uma conta?
+            </span>
+
+            <a href="login.php">
+                Fazer login
+            </a>
+
+        </div>
+
+    </div>
+
+</main>
 
 
 
