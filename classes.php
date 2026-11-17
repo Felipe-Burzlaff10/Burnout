@@ -19,26 +19,39 @@ class Usuario
         $this->endereco = $endereco;
     }
 
-    public function salvar_usuario(Usuario $usuario)
+    public function salvar_usuario()
     {
-        $conexao = new Conexao;
-        
+        $conexao = Conexao::criar_conexao();
+
+        $sql = "INSERT INTO usuario(nome, cpf, email, senha, endereco, root)
+        VALUES (?, ?, ?, ?, ?, ?)";
+
+        $stmt = $conexao->prepare($sql);
+        $stmt->bind_param('sssssi', $this->nome, $this->cpf, $this->email, $this->senha_hash, $this->endereco, $this->isRoot);
+        $stmt->execute();
+
+        $this->id_usuario = $conexao->insert_id;
+
+        $stmt->close();
+        $conexao->close();
     }
 }
 
-class Conexao
+abstract class Conexao
 {
-    private $host = "localhost";
-    private $usuario = "root";
-    private $senha = "";
-    private $banco = "burnout";
+    private static $host = "localhost";
+    private static $usuario = "root";
+    private static $senha = "";
+    private static $banco = "burnout";
 
-    function __construct()
+    public static function criar_conexao()
     {
         $conexao = new mysqli(self::$host, self::$usuario, self::$senha, self::$banco);
 
         if ($conexao->connect_error)
-            return false;
+            die("Erro na conexão com o banco de dados: " . $conexao->connect_error);
+
+        return $conexao;
     }
 }
 ?>
