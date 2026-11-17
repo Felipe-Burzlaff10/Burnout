@@ -21,15 +21,24 @@ class Usuario
 
     public function salvar_usuario(Usuario $usuario)
     {
+        $conexao = new Conexao;
         
     }
 }
 
-abstract class Conexao
+class Conexao
 {
-    static function criar_conexao()
+    private $host = "localhost";
+    private $usuario = "root";
+    private $senha = "";
+    private $banco = "burnout";
+
+    function __construct()
     {
-        
+        $conexao = new mysqli(self::$host, self::$usuario, self::$senha, self::$banco);
+
+        if ($conexao->connect_error)
+            return false;
     }
 }
 ?>
