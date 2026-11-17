@@ -1,4 +1,7 @@
-
+/* =========================================================
+   BURNOUT - Carrinho de compras
+   Salvar em: CSS/produto/carrinho.css
+   ========================================================= */
 
 :root {
     --verde: #39bf00;
@@ -308,9 +311,16 @@ body {
    RESUMO DO PEDIDO
 ========================= */
 
-.carrinho-resumo {
+/* coluna da direita: resumo do pedido + botão Voltar separado embaixo */
+.carrinho-lateral {
     position: sticky;
     top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.carrinho-resumo {
     overflow: hidden;
 
     background-color: white;
@@ -397,13 +407,42 @@ body {
     color: var(--verde);
 }
 
-.carrinho-resumo > a {
+/* BOTÃO COMPRAR (dentro do resumo) */
+.btn-comprar {
     display: block;
-    margin: 18px 20px 20px;
-    padding: 11px 14px;
+    width: calc(100% - 40px);
+    margin: 20px;
+    height: 50px;
+
+    background-color: var(--verde);
+    color: black;
+    font-size: 17px;
+    font-weight: bold;
+
+    border: 2px solid var(--preto);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-comprar:hover {
+    background-color: var(--preto);
+    color: var(--verde);
+}
+
+.btn-comprar:focus-visible {
+    outline: 3px solid var(--verde);
+    outline-offset: 2px;
+}
+
+/* BOTÃO VOLTAR (fora do resumo, desgrudado da caixa) */
+.carrinho-lateral > a {
+    display: block;
+    padding: 12px 14px;
 
     text-align: center;
     text-decoration: none;
+    font-size: 17px;
     font-weight: bold;
     color: var(--preto);
 
@@ -412,18 +451,18 @@ body {
     transition: background-color 0.2s, color 0.2s;
 }
 
-.carrinho-resumo > a i {
+.carrinho-lateral > a i {
     display: inline-block;
     margin-right: 6px;
     transform: scaleX(-1); /* seta apontando para trás */
 }
 
-.carrinho-resumo > a:hover {
+.carrinho-lateral > a:hover {
     background-color: var(--preto);
     color: white;
 }
 
-.carrinho-resumo > a:focus-visible {
+.carrinho-lateral > a:focus-visible {
     outline: 3px solid var(--verde);
     outline-offset: 2px;
 }
@@ -437,7 +476,7 @@ body {
         grid-template-columns: minmax(0, 1fr);
     }
 
-    .carrinho-resumo {
+    .carrinho-lateral {
         position: static;
     }
 }
