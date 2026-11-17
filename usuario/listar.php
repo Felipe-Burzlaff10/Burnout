@@ -1,6 +1,17 @@
 <?php session_start(); ?>
 
 <link rel="stylesheet" href="../CSS/usuario/listar.css">
+<link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<header class="header-listar">
+    <div class="container-fluid">
+        <img src="../img_site/logo.png" alt="Logo BURNOUT" class="logo">
+        <h1 class="titulo">BURNOUT</h1>
+        <a href="../index.php" class="link-voltar">
+            <i class="bi bi-arrow-left"></i> <span> Voltar ao início</span>
+        </a>
+    </div>
+</header>
 
 <form method="GET">
     <input type="text" name="pesquisa">
@@ -114,13 +125,3 @@ $conexao->close();
 ?>
 
 </div>
-
-
-    <a
-        href="../index.php"
-        class="logout">
-
-        <i class="bi bi-box-arrow-right"></i>
-        Voltar
-
-    </a>

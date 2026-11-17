@@ -1,3 +1,8 @@
+/* =========================================================
+   BURNOUT - Sobre nós (sobre_nos.php)
+   O header fica em CSS/header.css
+   ========================================================= */
+
 :root {
     --verde: #39bf00;
     --preto: #111111;
@@ -16,7 +21,6 @@ html, body {
     padding: 0;
     background: var(--cinza);
     color: var(--texto);
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -32,166 +36,13 @@ img {
     display: block;
 }
 
-.header-home {
-    background-color: var(--verde);
-    padding: 10px 20px 0;
-    border-bottom: 2px solid var(--preto);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-}
-
-.logo {
-    width: 170px;
-}
-
-.titulo {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 70px;
-    font-weight: bold;
-    margin: 0;
-    color: var(--preto);
-}
-
-.botao-menu {
-    background: var(--preto);
-    color: var(--verde);
-    border: 2px solid var(--preto);
-    border-radius: 8px;
-    padding: 5px 12px;
-    font-size: 27px;
-    cursor: pointer;
-    transition: 0.2s;
-    line-height: 1.2;
-}
-
-.botao-menu:hover {
-    background: var(--branco);
-    color: var(--preto);
-}
-
-.icone-header {
-    color: var(--preto);
-    font-size: 32px;
-    text-decoration: none;
-    transition: 0.2s;
-}
-
-.icone-header:hover {
-    color: var(--branco);
-    transform: scale(1.1);
-}
-
-.usuario-menu {
-    position: relative;
-}
-
-.usuario-header {
-    background-color: var(--preto);
-    color: var(--branco);
-    font-weight: bold;
-    font-size: 16px;
-    border: 1px solid #292929;
-    border-radius: 8px 8px 0 0;
-    padding: 10px 14px;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: 0.2s;
-}
-
-.usuario-header:hover {
-    background-color: #222;
-    color: var(--verde);
-}
-
-#usuarioBtn {
-    color: var(--branco);
-}
-
-.usuario-header {
-    color: var(--branco);
-    font-weight: bold;
-    font-size: 18px;
-    text-decoration: none;
-}
-
-.usuario-header:hover {
-    color: var(--verde);
-}
-
-.usuario-dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: var(--preto);
-    border: 1px solid #292929;
-    border-top: none;
-    border-radius: 0 0 8px 8px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-    z-index: 2000;
-    overflow: hidden;
-    box-sizing: border-box;
-}
-
-.usuario-dropdown.aberto {
-    display: block;
-}
-
-.usuario-dropdown a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 13px 16px;
-    color: #f2f2f2;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: normal;
-    transition: background-color 0.2s, color 0.2s;
-}
-
-.usuario-dropdown a:hover {
-    background-color: var(--verde);
-    color: var(--preto);
-}
-
-.usuario-dropdown .sair {
-    color: #ff5555;
-}
-
-.usuario-dropdown .sair:hover {
-    background-color: var(--verde);
-    color: var(--preto);
-}
-
-.usuario-dropdown hr {
-    margin: 0;
-    border: 0;
-    border-top: 1px solid #333;
-}
-
-.nav {
-    background-color: var(--verde);
-    padding: 10px 0;
-}
-
-.nav-link {
-    color: var(--preto);
-    font-weight: bold;
-    font-size: 18px;
-    text-transform: uppercase;
-    margin: 0 15px;
-}
-
-.nav-link:hover {
-    color: var(--branco);
-}
-
-.nav-link.active {
-    border-bottom: 2px solid var(--preto);
-}
+/* =========================
+   CONTEÚDO
+========================= */
 
 .sobre-main {
     background: var(--cinza);
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .sobre-banner {
@@ -271,6 +122,10 @@ img {
     margin-bottom: 0;
 }
 
+/* =========================
+   FUNDO DA SIDEBAR
+========================= */
+
 .fundo-sidebar {
     position: fixed;
     inset: 0;
@@ -285,6 +140,10 @@ img {
     opacity: 1;
     visibility: visible;
 }
+
+/* =========================
+   BARRA LATERAL
+========================= */
 
 .sidebar {
     position: fixed;
@@ -364,6 +223,10 @@ img {
     margin: 15px 0;
 }
 
+/* =========================
+   RESPONSIVO
+========================= */
+
 @media (max-width: 768px) {
     .sobre-grid {
         grid-template-columns: 1fr;
@@ -371,37 +234,5 @@ img {
 
     .sobre-card {
         padding: 22px 18px;
-    }
-}
-
-@media (max-width: 600px) {
-    .header-home {
-        padding: 10px 8px 0;
-    }
-
-    .logo {
-        width: 75px;
-    }
-
-    .titulo {
-        font-size: 30px;
-    }
-
-    .botao-menu {
-        font-size: 21px;
-        padding: 4px 8px;
-    }
-
-    .icone-header {
-        font-size: 21px;
-    }
-
-    .usuario-header {
-        display: none;
-    }
-
-    .nav-link {
-        font-size: 13px;
-        margin: 0 4px;
     }
 }

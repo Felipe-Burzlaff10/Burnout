@@ -14,11 +14,35 @@ require_once "../conexao.php";
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Cadastro</title>
-   <link rel="stylesheet" href="../CSS/produto/cadastro.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Produto</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+        crossorigin="anonymous">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- CSS da página (depois do Bootstrap para poder sobrescrevê-lo) -->
+    <link rel="stylesheet" href="../CSS/produto/cadastro.css">
 </head>
 
 <body>
+
+<header class="header-listar">
+    <div class="container-fluid">
+        <img src="../img_site/logo.png" alt="Logo BURNOUT" class="logo">
+        <h1 class="titulo">BURNOUT</h1>
+        <a href="../index.php" class="link-voltar">
+            <i class="bi bi-arrow-left"></i> <span>Voltar ao início</span>
+        </a>
+    </div>
+</header>
 
 <form action="" method="POST" enctype="multipart/form-data">
 
@@ -50,12 +74,6 @@ require_once "../conexao.php";
     <input type="submit" value="Cadastrar">
 
 </form>
-
-<a href="../index.php">
-    <button type="button" class="btn-voltar">
-        ← Voltar
-    </button>
-</a>
 
 </body>
 </html>

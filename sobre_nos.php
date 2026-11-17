@@ -24,6 +24,7 @@ if (!isset($_SESSION['dados']['id_usuario'])) {
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
+    <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/sobre_nos.css">
 </head>
 

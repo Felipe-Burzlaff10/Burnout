@@ -5,9 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BURNOUT - Alterar senha</title>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../CSS/usuario/alterar_senha.css">
 </head>
 <body>
+
+<header class="header-listar">
+    <div class="container-fluid">
+        <img src="../img_site/logo.png" alt="Logo BURNOUT" class="logo">
+        <h1 class="titulo">BURNOUT</h1>
+        <a href="../index.php" class="link-voltar">
+            <i class="bi bi-arrow-left"></i> <span>Voltar ao início</span>
+        </a>
+    </div>
+</header>
 
 <h1 class="titulo-pagina">Alterar senha</h1>
 
@@ -58,12 +69,6 @@ else
     $stmt->close();
 }
 ?>
-
- <a href="../index.php">
-        <button type="button" class="btn-voltar">
-        ← Voltar
-        </button>
-    </a>
 
 </body>
 </html>

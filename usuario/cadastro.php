@@ -120,41 +120,20 @@ $conexao->close();
          HEADER
     ========================= -->
 
-    <header class="header-auth">
-
-        <div class="header-auth-conteudo">
-
-
-            <!-- LOGO -->
-
-            <a
-                href="login.php"
-                class="logo-link"
-            >
-
-                <img
-                    src="../img_site/logo.png"
-                    alt="Logo BURNOUT"
-                    class="logo-auth"
-                >
-
-            </a>
-
-
-            <!-- BURNOUT -->
-
-            <div class="marca-auth">
-                BURNOUT
-            </div>
-
-
-            <!-- ESPAÇO -->
-
-            <div class="header-auth-direita"></div>
-
-        </div>
-
-    </header>
+   <header class="header-listar">
+    <div class="container-fluid">
+        <img src="../img_site/logo.png" alt="Logo BURNOUT" class="logo">
+        <h1 class="titulo">BURNOUT</h1>
+        <?php
+        if(isset($_SESSION['dados']['id_usuario']))
+        {
+            echo "<a href='../index.php' class='link-voltar'>
+            <i class='bi bi-arrow-left'></i> <span>Voltar ao início</span>
+            </a>";
+        }
+         ?>
+    </div>
+</header>
 
 
 
@@ -529,6 +508,7 @@ $conexao->close();
                     CADASTRAR
 
                 </button>
+
 
             </form>
 

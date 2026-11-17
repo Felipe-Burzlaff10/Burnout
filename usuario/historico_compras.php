@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['data']))
 <body>
 
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-  <header class="header-listar">
+ <header class="header-listar">
     <div class="container-fluid">
         <img src="../img_site/logo.png" alt="Logo BURNOUT" class="logo">
         <h1 class="titulo">BURNOUT</h1>

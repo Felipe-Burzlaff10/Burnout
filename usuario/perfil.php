@@ -38,11 +38,13 @@ $usuario = $resultado -> fetch_assoc();
 
 <body>
 
-<header class="header-perfil">
+<header class="header-listar">
     <div class="container-fluid">
         <img src="../img_site/logo.png" alt="Logo BURNOUT" class="logo">
         <h1 class="titulo">BURNOUT</h1>
-        <div></div>
+        <a href="../index.php" class="link-voltar">
+            <i class="bi bi-arrow-left"></i> <span>Voltar ao início</span>
+        </a>
     </div>
 </header>
 
@@ -68,12 +70,6 @@ $conexao->close();
     </div>
 
     <div class="perfil-acoes">
-
-<a href="../index.php">
-        <button type="button" class="btn-voltar">
-        ← Voltar
-        </button>
-    </a>
 
         <a href="alterar.php" class="btn-alterar-dados">
             <i class="bi bi-gear"></i> Alterar meus dados

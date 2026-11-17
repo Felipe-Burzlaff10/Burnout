@@ -1,6 +1,7 @@
 /* =========================================================
    BURNOUT - Catálogo (reutilizável em Lançamentos)
    Salvar em: CSS/produto/catalogo.css
+   O header fica em CSS/header.css
    ========================================================= */
 
 :root {
@@ -15,190 +16,6 @@
 
 body {
     background-color: var(--fundo);
-}
-
-/* =========================
-   HEADER
-========================= */
-
-.header-home {
-    background-color: #39bf00;
-    padding: 10px 20px 0;
-    border-bottom: 2px solid black;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-}
-
-.logo {
-    width: 170px;
-    height: auto;
-    object-fit: contain;
-}
-
-.titulo {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 70px;
-    font-weight: bold;
-    margin: 0;
-    color: black;
-}
-
-/* ÍCONES DO HEADER */
-
-.icone-header {
-    color: black;
-    font-size: 32px;
-    text-decoration: none;
-    transition: 0.2s ease;
-}
-
-.icone-header:hover {
-    color: white;
-    transform: scale(1.1);
-}
-
-/* =========================
-   USUÁRIO E MENU SUSPENSO
-========================= */
-
-.usuario-menu {
-    position: relative;
-    display: inline-block;
-    z-index: 2000;
-}
-
-.usuario-header {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-
-    background-color: #111;
-    color: white;
-
-    font-weight: bold;
-    font-size: 16px;
-
-    border: 1px solid #292929;
-    border-radius: 8px;
-    padding: 10px 14px;
-
-    cursor: pointer;
-    white-space: nowrap;
-    transition: 0.2s;
-}
-
-.usuario-header:hover {
-    background-color: #222;
-    color: #39bf00;
-}
-
-/* une visualmente o botão e o menu aberto */
-.usuario-menu:has(.usuario-dropdown.aberto) .usuario-header {
-    border-radius: 8px 8px 0 0;
-    border-bottom-color: #111;
-}
-
-.usuario-dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    left: auto;
-
-    width: 100%;
-    min-width: 230px;
-    box-sizing: border-box;
-
-    background-color: #111;
-    border: 1px solid #292929;
-    border-top: none;
-    border-radius: 0 0 8px 8px;
-
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-    z-index: 2000;
-    overflow: hidden;
-}
-
-.usuario-dropdown.aberto {
-    display: block;
-}
-
-.usuario-dropdown a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    padding: 13px 14px;
-
-    color: #f2f2f2;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: normal;
-
-    transition: background-color 0.2s, color 0.2s;
-}
-
-.usuario-dropdown a:hover {
-    background-color: #39bf00;
-    color: black;
-}
-
-.usuario-dropdown a i {
-    font-size: 14px;
-}
-
-.usuario-dropdown hr {
-    margin: 0;
-    border: 0;
-    border-top: 1px solid #333;
-    opacity: 1;
-}
-
-.usuario-dropdown .sair {
-    color: #ff5555;
-}
-
-.usuario-dropdown .sair:hover {
-    background-color: #39bf00;
-    color: black;
-}
-
-/* =========================
-   MENU DE NAVEGAÇÃO
-========================= */
-
-.nav {
-    background-color: #39bf00;
-    padding: 10px 0;
-}
-
-/* o HTML tem um <ul class="nav"> dentro de outro: evita padding duplo */
-.nav .nav {
-    padding: 0;
-}
-
-.nav-link {
-    color: black;
-    font-weight: bold;
-    font-size: 18px;
-    text-transform: uppercase;
-    text-decoration: none;
-    margin: 0 15px;
-    transition: 0.2s ease;
-}
-
-.nav-link:hover {
-    color: white;
-}
-
-.nav-link.active {
-    color: black;
-    border-bottom: 2px solid black;
-}
-
-.nav-link.disabled {
-    color: #333;
-    opacity: 0.6;
 }
 
 /* =========================
@@ -454,30 +271,6 @@ body {
    RESPONSIVIDADE
 ========================= */
 
-@media (max-width: 900px) {
-    .titulo {
-        font-size: 50px;
-    }
-
-    .logo {
-        width: 130px;
-    }
-
-    .icone-header {
-        font-size: 26px;
-    }
-
-    .usuario-header {
-        font-size: 15px;
-        padding: 9px 10px;
-    }
-
-    .nav-link {
-        margin: 0 8px;
-        font-size: 16px;
-    }
-}
-
 @media (max-width: 700px) {
     .catalogo-area {
         padding: 22px 14px 40px;
@@ -510,56 +303,6 @@ body {
     .catalogo .card .btn-detalhes {
         margin: auto 12px 12px;
         font-size: 14px;
-    }
-}
-
-@media (max-width: 600px) {
-    .header-home {
-        padding: 10px 5px 0;
-    }
-
-    .header-home .row {
-        flex-wrap: nowrap;
-    }
-
-    .header-home .col-3:first-child {
-        width: 22%;
-    }
-
-    .header-home .col-6 {
-        width: 48%;
-    }
-
-    .header-home .col-3:last-child {
-        width: 30%;
-        gap: 10px !important;
-    }
-
-    .logo {
-        width: 75px;
-    }
-
-    .titulo {
-        font-size: 27px;
-    }
-
-    .icone-header {
-        font-size: 21px;
-    }
-
-    .usuario-header {
-        display: none;
-    }
-
-    .nav {
-        padding: 8px 0;
-        flex-wrap: wrap;
-    }
-
-    .nav-link {
-        font-size: 12px;
-        margin: 0 4px;
-        padding: 6px 4px;
     }
 }
 
