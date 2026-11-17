@@ -7,14 +7,9 @@
         min-height: 100vh;
         padding: 30px 20px;
 
-        background: linear-gradient(
-            to bottom,
-            #ffffff 0%,
-            #ffffff 25%,
-            #b3b3b3 100%
-        );
+        background: #e4e4e2;
 
-        font-family: Georgia, "Times New Roman", serif;
+        font-family: Arial, Helvetica, sans-serif;
         color: #000;
     }
 
@@ -34,12 +29,12 @@
 
         padding: 10px 15px;
 
-        border: 3px solid #000;
-        border-radius: 12px;
+        border: 2px solid #111;
+        border-radius: 8px;
 
         background: #fff;
 
-        font-family: Georgia, "Times New Roman", serif;
+        font-family: Arial, Helvetica, sans-serif;
         font-size: 17px;
         font-weight: bold;
 
@@ -47,20 +42,22 @@
     }
 
     body > form input[type="text"]:focus {
-        background: #f1f1f1;
+        outline: none;
+        border-color: #39bf00;
+        box-shadow: 0 0 0 3px rgba(57, 191, 0, 0.3);
     }
 
     body > form button {
         width: 160px;
         height: 48px;
 
-        border: none;
-        border-radius: 12px;
+        border: 2px solid #111;
+        border-radius: 8px;
 
         background: #000;
         color: #fff;
 
-        font-family: Georgia, "Times New Roman", serif;
+        font-family: Arial, Helvetica, sans-serif;
         font-size: 16px;
         font-weight: bold;
 
@@ -69,19 +66,19 @@
     }
 
     body > form button:hover {
-        background: #222;
-        transform: scale(1.03);
+        background: #39bf00;
+        color: #000;
     }
 
     /* DIV QUE ENVOLVE O PHP */
-    div {
+    body > div {
         width: 90%;
         max-width: 1100px;
         margin: 30px auto;
 
-        border-radius: 22px;
+        border-radius: 8px;
 
-        font-family: Georgia, "Times New Roman", serif;
+        font-family: Arial, Helvetica, sans-serif;
         color: #000;
 
         overflow-x: auto;
@@ -94,8 +91,8 @@
 
         background: #fff;
 
-        border: 3px solid #000;
-        border-radius: 12px;
+        border: 2px solid #111;
+        border-radius: 8px;
         overflow: hidden;
 
         font-size: 15px;
@@ -108,7 +105,7 @@
         background: #000;
         color: #fff;
 
-        border: 2px solid #000;
+        border: 1px solid #111;
 
         font-size: 16px;
         font-weight: bold;
@@ -119,14 +116,14 @@
     td {
         padding: 12px 10px;
 
-        border: 1px solid #000;
+        border: 1px solid #d2d2ce;
 
         background: #fff;
 
         text-align: center;
         vertical-align: middle;
 
-        font-weight: bold;
+        font-weight: 500;
     }
 
     /* LINHAS ALTERNADAS */
@@ -136,30 +133,30 @@
 
     /* EFEITO AO PASSAR O MOUSE */
     tr:hover td {
-        background: #d9ffd2;
+        background: #eaf9e3;
     }
 
     /* FORM DOS BOTÕES DE APAGAR */
-    div form {
+    body > div form {
         width: 100%;
         margin: 0;
         padding: 0;
     }
 
     /* BOTÃO APAGAR */
-    div button {
+    body > div button {
         width: 110px;
         height: 40px;
 
         margin: 0;
 
-        border: none;
-        border-radius: 10px;
+        border: 2px solid #111;
+        border-radius: 8px;
 
         background: #000;
         color: #fff;
 
-        font-family: Georgia, "Times New Roman", serif;
+        font-family: Arial, Helvetica, sans-serif;
         font-size: 14px;
         font-weight: bold;
 
@@ -167,13 +164,20 @@
         transition: 0.2s;
     }
 
-    div button:hover {
+    body > div button:hover {
         background: #b00000;
-        transform: scale(1.03);
+        color: #fff;
+    }
+
+    body > form button:focus-visible,
+    body > div button:focus-visible,
+    .logout:focus-visible {
+        outline: 3px solid #39bf00;
+        outline-offset: 2px;
     }
 
     /* LINHA SEPARADORA */
-    div hr {
+    body > div hr {
         border: none;
         border-top: 3px solid #000;
         margin-top: 25px;
@@ -194,7 +198,7 @@
             width: 120px;
         }
 
-        div {
+        body > div {
             width: 100%;
             padding: 15px;
         }
@@ -205,16 +209,22 @@
     }
 
 
-     .logout {
+    .logout {
             position: fixed;
-            left: 400px;
-            background-color: black;
+            right: 20px;
+            bottom: 20px;
+            background-color: #111;
             color: white;
-            border: none;
-            border-radius: 10px;
+            border: 2px solid #111;
+            border-radius: 8px;
             padding: 10px 18px;
             font-weight: bold;
             text-decoration: none;
             z-index: 1000;
             transition: 0.2s;
         }
+
+    .logout:hover {
+        background-color: #39bf00;
+        color: #000;
+    }

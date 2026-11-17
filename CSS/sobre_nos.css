@@ -1,7 +1,7 @@
 :root {
     --verde: #39bf00;
     --preto: #111111;
-    --cinza: #f4f4f4;
+    --cinza: #e4e4e2;
     --branco: #ffffff;
     --texto: #1a1a1a;
     --cinza-escuro: #2b2b2b;
@@ -107,14 +107,14 @@ img {
 }
 
 .usuario-header {
-    color: black;
+    color: var(--branco);
     font-weight: bold;
     font-size: 18px;
     text-decoration: none;
 }
 
 .usuario-header:hover {
-    color: white;
+    color: var(--verde);
 }
 
 .usuario-dropdown {
@@ -236,9 +236,9 @@ img {
 .sobre-card {
     background: var(--branco);
     border: 2px solid var(--preto);
-    border-radius: 18px;
+    border-radius: 8px;
     padding: 30px;
-    box-shadow: 0 10px 25px rgba(17, 17, 17, 0.08);
+    box-shadow: 5px 5px 0 var(--preto);
 }
 
 .sobre-card h3 {
