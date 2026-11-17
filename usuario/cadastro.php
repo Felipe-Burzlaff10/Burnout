@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+require_once "../classe.php";
+
 // if (!isset($_SESSION['dados']['id_usuario']))
 // {
 //     echo "<script>window.location.href='../index.php';</script>";
@@ -34,8 +36,6 @@ function validaCPF($cpf)
     return true;
 }
 
-require_once "../conexao.php";
-
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
     foreach ($_POST as $key => $value)
@@ -47,48 +47,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     if (!validaCPF($_POST['cpf']))
         die("CPF INVALIDO");
 
-    $sql = "SELECT id_usuario
-            FROM usuario
-            WHERE email = ? OR cpf = ?";
     
-    $stmt = $conexao->prepare($sql);
-    $stmt->bind_param('ss', $_POST['email'],  $_POST['cpf']);
-    $stmt->execute();
-    $stmt->store_result();
-
-    //falar com o miguel
-    if ($stmt->num_rows > 0)
-    {
-        $stmt->close();
-        echo "Dados ja cadastrados no sistema";
-        
-        echo " <a
-        href='../index.php'
-        class='logout'>
-        <i class='bi bi-box-arrow-right'></i>
-        Voltar
-        </a>";
-    }
-
-    $stmt->close();
 
     $endereco_final = "{$_POST['rua']}, Nº: {$_POST['num']}, {$_POST['bairro']} - {$_POST['cidade']}/{$_POST['uf']} CEP: {$_POST['cep']}";
+    $senha_hash = password_hash($_POST['senha'], PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO usuario(cpf, nome, email, senha, endereco, root)
-    VALUES (?, ?, ?, ?, ?, 1)";
 
-    $senha = $_POST["senha"];
-    $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
-
-    $stmt = $conexao->prepare($sql);
-    $stmt->bind_param('sssss', $_POST['cpf'], $_POST['nome'], $_POST['email'], $senha_hash, $endereco_final);
-    $stmt->execute();
-    $stmt->close();
+    $usuario = new Usuario($_POST['nome'], $_POST['cpf'], $_POST['email'], $senha_hash, $endereco_final);
+    $usuario->salvar_usuario();
 
     echo "<script>window.location.href='login.php';</script>";
 }
 
-$conexao->close();
 ?>
 
 
