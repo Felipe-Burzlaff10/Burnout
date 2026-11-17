@@ -59,7 +59,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
     if (isset($_POST['id_apagar']))
     {
-        $sql = "DELETE FROM usuario
+
+        $sql = "DELETE FROM pedido_contem_produto 
+                WHERE id_pedido IN (
+                    SELECT id_pedido FROM pedido WHERE id_usuario = ?
+                )";
+
+        $stmt = $conexao->prepare($sql);
+        $stmt->bind_param('i', $_POST['id_apagar']);
+        $stmt->execute();
+        $stmt->close();
+
+        $sql = "DELETE FROM pedido 
+                WHERE id_usuario = ?";
+
+        $stmt = $conexao->prepare($sql);
+        $stmt->bind_param('i', $_POST['id_apagar']);
+        $stmt->execute();
+        $stmt->close();
+
+        $sql = "DELETE FROM carrinho_possui_produto 
+                WHERE id_usuario = ?";
+
+        $stmt = $conexao->prepare($sql);
+        $stmt->bind_param('i', $_POST['id_apagar']);
+        $stmt->execute();
+        $stmt->close();
+
+        $sql = "DELETE FROM usuario 
                 WHERE id_usuario = ?";
 
         $stmt = $conexao->prepare($sql);
