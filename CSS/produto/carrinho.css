@@ -282,6 +282,11 @@ body {
     background-color: #f1f1f1;
 }
 
+.qtd-controle:focus-within {
+    border-color: var(--verde);
+    box-shadow: 0 0 0 3px rgba(57, 191, 0, 0.3);
+}
+
 .item-controles button[name="id_apagar"] {
     margin-left: auto;
     height: 42px;
