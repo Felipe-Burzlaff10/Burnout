@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="../CSS/usuario/alterar.css">
-
+<!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <script>
     function preencher_input(endereco, email)
     {
@@ -95,12 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         <a href="../index.php" class="link-voltar">
             <i class="bi bi-arrow-left"></i> <span>Voltar ao início</span>
         </a>
-    </div>
-</header>
-
-<form method="POST">
-
-<?php 
+           <?php 
     if(isset($_POST['acao']) && $_POST['acao'] == 'alterar_endereco')
         $_SESSION['alterar_endereco'] = true;
 
@@ -110,12 +106,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     if($_SESSION['alterar_endereco'])
     {
         echo " <a href='../produto/carrinho.php'>
-        <button type='button' class='btn-voltar'>
-        ← Voltar para carrinho de compras
+        <button type='button' class='link-voltar'>
+        ← Voltar para carrinho
         </button>
         </a>";
     }
 ?>
+    </div>
+</header>
+
+<form method="POST">
+
+
 
     <label for="email">Email: </label>
     <input type="email" name="email" id="email"  ><br>
