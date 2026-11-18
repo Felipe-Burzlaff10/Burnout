@@ -187,6 +187,10 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
                 Pesquisar
             </button>
 
+            <button type="submit" onclick="document.getElementById('pesquisa').value = ''">
+                Limpar
+            </button>
+
             <label for="categoria">Categoria: </label>
         <select name="categoria" id="categoria">
             <option value="Camiseta">Camiseta</option>

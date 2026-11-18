@@ -3,9 +3,10 @@
 <link rel="stylesheet" href="../CSS/usuario/listar.css">
 
 <form method="GET">
-    <input type="text" name="pesquisa">
+    <input type="text" name="pesquisa" id="pesquisa">
 
     <button type="submit">Pesquisar</button>
+    <button type="submit" onclick="document.getElementById('pesquisa').value = ''">Limpar</button>
 </form>
 
 <div>
