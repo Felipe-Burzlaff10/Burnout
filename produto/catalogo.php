@@ -51,14 +51,14 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
 <body>
 
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-      <!-- HEADER -->
+  
     <header class="header-home">
 
         <div class="container-fluid">
 
             <div class="row align-items-center">
 
-                <!-- BOTÃO DA BARRA LATERAL + LOGO -->
+              
                 <div class="col-3 d-flex align-items-center gap-2">
 
 
@@ -146,7 +146,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
 
         </div>
 
-        <!-- MENU PRINCIPAL -->
+        
         <ul class="nav justify-content-center">
 
             <li class="nav-item">
@@ -171,7 +171,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
 
 <div class="catalogo-area">
 
-    <!-- PESQUISA -->
+   
 
     <div class="pesquisa-container">
 
@@ -200,7 +200,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
     </div>
 
 
-    <!-- PRODUTOS -->
+   
 
     <div class="catalogo">
 

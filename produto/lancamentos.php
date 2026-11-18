@@ -36,7 +36,7 @@ if (!isset($_SESSION['dados']['id_usuario']))
 
             <div class="row align-items-center">
 
-                <!-- BOTÃO DA BARRA LATERAL + LOGO -->
+               
                 <div class="col-3 d-flex align-items-center gap-2">
 
 
@@ -47,14 +47,14 @@ if (!isset($_SESSION['dados']['id_usuario']))
 
                 </div>
 
-                <!-- TÍTULO -->
+               
                 <div class="col-6 text-center">
 
                     <h1 class="titulo">BURNOUT</h1>
 
                 </div>
 
-                <!-- ÍCONES -->
+                
                 <div class="col-3 d-flex justify-content-end align-items-center gap-3">
 
 
@@ -124,7 +124,7 @@ if (!isset($_SESSION['dados']['id_usuario']))
 
         </div>
 
-        <!-- MENU PRINCIPAL -->
+       
         <ul class="nav justify-content-center">
 
             <li class="nav-item">
@@ -150,7 +150,7 @@ if (!isset($_SESSION['dados']['id_usuario']))
 <div class="catalogo-area">
     <h1>Lançamentos - 2026</h1>
     
-    <!-- PRODUTOS -->
+   
 
     <div class="catalogo">
 

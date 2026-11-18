@@ -84,6 +84,14 @@ body {
     outline-offset: 2px;
 }
 
+.header-acoes {
+    justify-self: end;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 10px;
+}
+
 /* =========================
    FORMULÁRIO
 ========================= */

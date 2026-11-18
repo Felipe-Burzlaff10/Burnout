@@ -52,10 +52,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 if(password_verify($_POST['senha_antiga'], $usuario['senha']) && !empty($_POST['senha_antiga']))
 {
     $senha_hash = password_hash($_POST['nova_senha'], PASSWORD_DEFAULT);
-    echo "<p class='mensagem'>senha alterada com sucesso</p>";
+    echo "<p class='mensagem'>senha alterada com sucesso!</p>";
 }
 else
 {
+    echo "<p class='mensagem'>senha antiga está incorreta!</p>";
     $senha_hash = '';
 }
 

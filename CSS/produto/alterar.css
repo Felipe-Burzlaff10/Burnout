@@ -1,17 +1,82 @@
- * {
-        box-sizing: border-box;
-    }
+
+    :root {
+    --verde: #39bf00;
+    --preto: #111;
+    --borda: #292929;
+    --vermelho: #ff5555;
+    --fundo: #e4e4e2;
+    --cinza-texto: #6b6b6b;
+    --serif: Georgia, 'Times New Roman', serif;
+}
 
     body {
         margin: 0;
         min-height: 100vh;
-        padding: 40px 20px;
-
+        
         background: #e4e4e2;
 
         font-family: Georgia, "Times New Roman", serif;
         color: #000;
     }
+
+    /* =========================
+   HEADER
+========================= */
+
+.header-listar {
+    background-color: var(--verde);
+    border-bottom: 2px solid black;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    padding: 10px 20px;
+}
+
+.header-listar .container-fluid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-listar .logo {
+    width: 80px;
+}
+
+.header-listar .titulo {
+    font-family: var(--serif);
+    font-size: 44px;
+    font-weight: bold;
+    color: black;
+    margin: 0;
+    text-align: center;
+}
+
+.link-voltar {
+    justify-self: end;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    background-color: var(--preto);
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    text-decoration: none;
+
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    padding: 10px 14px;
+    transition: 0.2s;
+}
+
+.link-voltar:hover {
+    background-color: #222;
+    color: var(--verde);
+}
+
+.link-voltar:focus-visible {
+    outline: 3px solid black;
+    outline-offset: 2px;
+}
 
     form {
         width: 90%;

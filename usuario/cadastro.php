@@ -29,7 +29,7 @@ function validaCPF($cpf)
 }
 
 require_once "../conexao.php";
-
+ echo " <link rel='stylesheet' href='../CSS/usuario/cadastro.css'>";
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
     foreach ($_POST as $key => $value)
@@ -41,31 +41,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     if (!validaCPF($_POST['cpf']))
         die("CPF INVALIDO");
 
-    $sql = "SELECT id_usuario
-            FROM usuario
-            WHERE email = ? OR cpf = ?";
-    
-    $stmt = $conexao->prepare($sql);
-    $stmt->bind_param('ss', $_POST['email'],  $_POST['cpf']);
-    $stmt->execute();
-    $stmt->store_result();
-    
-    //falar com o miguel
-    if ($stmt->num_rows > 0)
-        {
-            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
-            echo "<script src='../mensagem_erro.js'></script>";
-            echo "<script>erro_mensagem('Email ou CPF já cadastrados no sistema');</script>";
-            echo " <a
-            href='../index.php'
-            class='logout'>
-            <i class='bi bi-box-arrow-right'></i>
-            Voltar
-            </a>";
-        }
-        $stmt->close();
-            
+   try
+    {
+        $sql = "SELECT id_usuario
+                FROM usuario
+                WHERE email = ? OR cpf = ?";
 
+        $stmt = $conexao->prepare($sql);
+        $stmt->bind_param('ss', $_POST['email'], $_POST['cpf']);
+        $stmt->execute();
+        $stmt->store_result();
+
+        if ($stmt->num_rows > 0)
+        {
+            throw new mysqli_sql_exception("CPF ou E-mail já cadastrado!");
+        }
+
+        $stmt->close();
+
+        }catch (mysqli_sql_exception $e)
+        {
+            echo "Erro: " . $e->getMessage();
+            echo "<br>" . " <a style='margin-left:'href='cadastro.php' class='link-voltar'>
+                <i class='bi bi-arrow-left'></i> <span>Voltar</span>
+            </a>";
+            exit();
+        }
+        
     $endereco_final = "{$_POST['rua']}, Nº: {$_POST['num']}, {$_POST['bairro']} - {$_POST['cidade']}/{$_POST['uf']} CEP: {$_POST['cep']}";
 
     $sql = "INSERT INTO usuario(cpf, nome, email, senha, endereco)
@@ -78,6 +80,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $stmt->bind_param('sssss', $_POST['cpf'], $_POST['nome'], $_POST['email'], $senha_hash, $endereco_final);
     $stmt->execute();
     $stmt->close();
+
+    
 
     echo "<script>window.location.href='login.php';</script>";
 }
@@ -108,8 +112,6 @@ $conexao->close();
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     >
 
-
- <link rel="stylesheet" href="../CSS/usuario/cadastro.css">
 </head>
 
 

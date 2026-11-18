@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     else
         $categoria = '';
 
-    if(!empty($_POST['preco']))
+    if(isset($_POST['preco']) && $_POST['preco'] !== '')
         $preco = $_POST['preco'];
     else
         $preco = 0.0;
@@ -57,15 +57,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     else
     {
         $tamanho = '';
-        echo "Tamanho invalido";
     }
 
-     if(!empty($_POST['estoque']))
+     if(isset($_POST['estoque']) && $_POST['estoque'] !== '')
         $estoque = $_POST['estoque'];
     else
     {
         $estoque = '';
-        echo "estoque invalido";
     }
 
      if(!empty($_POST['descricao']))
@@ -73,7 +71,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     else
     {
         $descricao = '';
-        echo "descrição invalida";
     }
 
     // a segunda condição do if é para caso eu não envie nenhuma img ele não criar um nome errado e o produto acabar ficando sem img
@@ -99,27 +96,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
 
      $sql = "UPDATE produto
-            SET nome = COALESCE(NULLIF(?, ''), nome),
-                categoria = COALESCE(NULLIF(?, ''), categoria),
-                preco = COALESCE(NULLIF(?, ''), preco),
-                tamanho = COALESCE(NULLIF(?, ''), tamanho),
-                estoque = COALESCE(NULLIF(?, ''), estoque),
-                descricao = COALESCE(NULLIF(?, ''), descricao),
-                foto = COALESCE(NULLIF(?, ''), foto)
-            WHERE id_produto = ?";
+        SET nome = COALESCE(NULLIF(?, ''), nome),
+            categoria = COALESCE(NULLIF(?, ''), categoria),
+            preco = COALESCE(?, preco),
+            tamanho = COALESCE(NULLIF(?, ''), tamanho),
+            estoque = COALESCE(?, estoque),
+            descricao = COALESCE(NULLIF(?, ''), descricao),
+            foto = COALESCE(NULLIF(?, ''), foto)
+        WHERE id_produto = ?";
+
 
 $stmt = $conexao->prepare($sql);
 $stmt->bind_param('ssdsissi', $nome, $categoria, $preco, $tamanho, $estoque, $descricao, $nome_final_imagem ,$_GET['id_alterar']);
 $stmt->execute();
 $stmt->close();
 
-    
+$id_redirecionar = (int) $_GET['id_alterar'];
+echo "<script>window.location.href = 'alterar.php?id_alterar={$id_redirecionar}';</script>";
+exit();
+
 }  
 
 ?>
 
 <link rel="stylesheet" href="../CSS/produto/alterar.css">
 
+<header class="header-listar">
+    <div class="container-fluid">
+        <img src="../img_site/logo.png" alt="Logo BURNOUT" class="logo">
+        <h1 class="titulo">BURNOUT</h1>
+        <a href="../index.php" class="link-voltar">
+            <i class="bi bi-arrow-left"></i> <span>Voltar ao início</span>
+        </a>
+    </div>
+</header>
 
 <form action="" method="POST" enctype="multipart/form-data"> 
  
@@ -152,10 +162,6 @@ $stmt->close();
     <input type="submit" value="Alterar"> 
  
 </form> 
- 
-<a href="../index.php"> 
-    <button>← Voltar</button> 
-</a>
 
 
 <script>

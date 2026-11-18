@@ -106,7 +106,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['data']))
     </div>
 
 
-    <!-- PRODUTOS -->
 
     <div class="catalogo">
 

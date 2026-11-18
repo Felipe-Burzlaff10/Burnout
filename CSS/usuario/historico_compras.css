@@ -157,17 +157,6 @@ body {
     gap: 28px;
 }
 
-/* quando não há nenhum pedido */
-.catalogo:not(:has(.card))::before {
-    content: "Nenhuma compra encontrada.";
-    grid-column: 1 / -1;
-    text-align: center;
-    font-family: var(--serif);
-    font-size: 22px;
-    color: var(--cinza-texto);
-    padding: 60px 0;
-}
-
 /* =========================
    CARD DO PEDIDO
 ========================= */

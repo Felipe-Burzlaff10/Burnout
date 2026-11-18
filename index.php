@@ -33,17 +33,15 @@ if (!isset($_SESSION['dados']['id_usuario']))
 
 <body>
 
-<!-- JAVASCRIPT -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- HEADER -->
+    
     <header class="header-home">
 
         <div class="container-fluid">
 
             <div class="row align-items-center">
 
-                <!-- BOTÃO DA BARRA LATERAL + LOGO -->
                 <div class="col-3 d-flex align-items-center gap-2">
 
                     <?php 
@@ -68,14 +66,14 @@ if (!isset($_SESSION['dados']['id_usuario']))
 
                 </div>
 
-                <!-- TÍTULO -->
+            
                 <div class="col-6 text-center">
 
                     <h1 class="titulo">BURNOUT</h1>
 
                 </div>
 
-                <!-- ÍCONES -->
+                
                 <div class="col-3 d-flex justify-content-end align-items-center gap-3">
 
 
@@ -145,7 +143,6 @@ if (!isset($_SESSION['dados']['id_usuario']))
 
         </div>
 
-        <!-- MENU PRINCIPAL -->
         <ul class="nav justify-content-center">
 
             <li class="nav-item">

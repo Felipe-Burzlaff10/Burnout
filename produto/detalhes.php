@@ -84,10 +84,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         elseif(isset($_POST['comprar']))
         {
             Carrinho::comprar_em_detalhes($_SESSION['dados']['id_usuario'], $qtd, $produto['id_produto']);
+            $id_redirecionar = $_GET['id_produto'];
+            echo "<script>window.location.href = 'detalhes.php?id_produto={$id_redirecionar}';</script>";
+            exit();
         }
 
     }
-
 }
 
 if($produto['estoque'] > 0)

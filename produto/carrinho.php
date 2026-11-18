@@ -46,11 +46,13 @@ $stmt->close();
 </head>
 <body>
 
-<header class="header-carrinho">
+<header class="header-listar">
     <div class="container-fluid">
         <img src="../img_site/logo.png" alt="Logo BURNOUT" class="logo">
         <h1 class="titulo">BURNOUT</h1>
-        <div></div>
+        <a href="../index.php" class="link-voltar">
+            <i class="bi bi-arrow-left"></i> <span>Voltar ao início</span>
+        </a>
     </div>
 </header>
 
@@ -112,11 +114,15 @@ while($p = $resultado->fetch_assoc())
 
     echo "<div class='qtd-controle'>";
 
-    echo "<button type='button' onclick=\"var i = document.getElementById('qtd'); i.stepUp(); i.dispatchEvent(new Event('change'));\">+</button>";
+    echo "<button type='button' onclick=\"var i = this.form.querySelector('[name=qtd_carrinho]'); i.stepUp(); i.dispatchEvent(new Event('change'));\">
+    +
+</button>";
     
     echo "<input type='number' id='qtd' onchange='this.form.submit()' min='0' name='qtd_carrinho' value='" . $p['qtd_carrinho'] . "'>";
 
-    echo "<button type='button' onclick=\"var i = document.getElementById('qtd'); i.stepDown(); i.dispatchEvent(new Event('change'));\">-</button>";
+    echo "<button type='button' onclick=\"var i = this.form.querySelector('[name=qtd_carrinho]'); i.stepDown(); i.dispatchEvent(new Event('change'));\">
+    -
+</button>";
 
     echo "</div>";
 
@@ -226,15 +232,6 @@ if(isset($_POST['comprar']))
 ?>
 
 </aside>
-
-<a
-        href="../index.php"
-        class="">
-
-        <i class="bi bi-box-arrow-right"></i>
-        Voltar
-
-</a>
 
 </div>
 

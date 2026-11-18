@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 
@@ -9,15 +10,18 @@ if (isset($_SESSION['dados']['id_usuario']))
 
 require_once "../conexao.php";
 
+$mensagem_erro = "";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
     $sql = "SELECT id_usuario, cpf, nome, senha, root
             FROM usuario
             WHERE email = ?";
-    
+
     $stmt = $conexao->prepare($sql);
     $stmt->bind_param('s', $_POST['email']);
     $stmt->execute();
+
     $resultado = $stmt->get_result();
     $stmt->close();
 
@@ -27,9 +31,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
         if (password_verify($_POST['senha'], $usuario['senha']))
         {
-            echo "Login efetuado com sucesso";
-
-            session_start();
             $_SESSION['dados'] = [
                 'cpf' => $usuario['cpf'],
                 'email' => $_POST['email'],
@@ -37,21 +38,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                 'id_usuario' => $usuario['id_usuario'],
                 'root' => $usuario['root']
             ];
+
             echo "<script>window.location.href='../index.php';</script>";
+            exit();
         }
         else
         {
-            echo "Senha incorreta";
+            $mensagem_erro = "Senha incorreta!";
         }
     }
     else
     {
-        echo "Usuário não encontrado";
+        $mensagem_erro = "Usuário não encontrado!";
     }
 }
 
 $conexao->close();
 ?>
+
 
 
 <!DOCTYPE html>
@@ -84,16 +88,12 @@ $conexao->close();
 <body>
 
 
-    <!-- =========================
-         HEADER
-    ========================= -->
 
     <header class="header-auth">
 
         <div class="header-auth-conteudo">
 
 
-            <!-- LOGO -->
 
             <a
                 href="login.php"
@@ -109,14 +109,14 @@ $conexao->close();
             </a>
 
 
-            <!-- BURNOUT -->
+           
 
             <div class="marca-auth">
                 BURNOUT
             </div>
 
 
-            <!-- ESPAÇO -->
+           
 
             <div class="header-auth-direita"></div>
 
@@ -126,16 +126,14 @@ $conexao->close();
 
 
 
-    <!-- =========================
-         LOGIN
-    ========================= -->
+ 
 
     <main class="area-login">
 
         <div class="card-login">
 
 
-            <!-- CABEÇALHO -->
+          
 
             <div class="cabecalho-login">
 
@@ -162,12 +160,12 @@ $conexao->close();
 
 
 
-            <!-- FORMULÁRIO -->
+          
 
             <form action="" method="POST">
 
 
-                <!-- EMAIL -->
+              
 
                 <div class="campo">
 
@@ -191,7 +189,7 @@ $conexao->close();
 
 
 
-                <!-- SENHA -->
+              
 
                 <div class="campo">
 
@@ -215,7 +213,7 @@ $conexao->close();
 
 
 
-                <!-- BOTÃO -->
+               
 
                 <button
                     type="submit"
@@ -232,7 +230,7 @@ $conexao->close();
 
 
 
-            <!-- CADASTRO -->
+           
 
             <div class="link-auth">
 
@@ -250,6 +248,16 @@ $conexao->close();
 
     </main>
 
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../mensagem_erro.js"></script>
+
+<?php
+
+if (!empty($mensagem_erro))
+    echo "<script>erro_mensagem(" . json_encode($mensagem_erro) . ");</script>";
+
+?>
 
 </body>
 

@@ -50,6 +50,10 @@ $usuario = $resultado -> fetch_assoc();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
+      if (!empty($_POST['senha']))
+        $senha_hash = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+    else
+        $senha_hash = '';
 
     $campos_endereco = ['rua', 'num', 'bairro', 'cidade', 'uf', 'cep'];
     $preenchido = [];
@@ -72,11 +76,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
     $sql = "UPDATE usuario
             SET email = COALESCE(NULLIF(?, ''), email),
+                senha = COALESCE(NULLIF(?, ''), senha),
                 endereco = COALESCE(NULLIF(?, ''), endereco)
             WHERE id_usuario = ?";
 
     $stmt = $conexao->prepare($sql);
-    $stmt->bind_param('ssi', $email, $endereco_final, $_GET['id_usuario']);
+    $stmt->bind_param('sssi', $email, $senha_hash, $endereco_final, $_GET['id_usuario']);
     $stmt->execute();
     $stmt->close();
     
@@ -98,6 +103,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
     <label for="email">Email: </label>
     <input type="email" name="email" id="email"  ><br>
+
+    <label for="senha">Senha: </label>
+    <input type="password" name="senha"  ><br>
 
     <label for="cep">CEP: </label>
     <input type="num" name="cep" id="cep"  >
