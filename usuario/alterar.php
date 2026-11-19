@@ -27,26 +27,25 @@
 <?php
 session_start();
 
+
 if (!isset($_SESSION['dados']['id_usuario']))
 {
     echo "<script>window.location.href='../index.php';</script>";
     exit();
 }
 
+if ($_SERVER["REQUEST_METHOD"] == "GET")
+{
+    unset($_SESSION['alterar_endereco']);
+}elseif (isset($_POST['acao']) && $_POST['acao'] == 'alterar_endereco')
+{
+    $_SESSION['alterar_endereco'] = true;
+}
+
 echo '<script src="../API_endereço.js"></script>';
 
 require_once "../conexao.php";
 
-$sql = "SELECT * FROM usuario
-        WHERE id_usuario = ?";
-
-$stmt = $conexao->prepare($sql);
-$stmt->bind_param('i', $_SESSION['dados']['id_usuario']);
-$stmt->execute();
-$resultado = $stmt->get_result();
-$stmt->close();
-
-$usuario = $resultado -> fetch_assoc();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
@@ -81,6 +80,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     
 }
 
+    $sql = "SELECT * FROM usuario 
+            WHERE id_usuario = ?";
+            
+    $stmt = $conexao->prepare($sql);
+    $stmt->bind_param('i', $_SESSION['dados']['id_usuario']);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+    $stmt->close();
+
+    $usuario = $resultado->fetch_assoc();
+
 ?>
 
 <header class="header-listar">
@@ -93,20 +103,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                 <i class="bi bi-arrow-left"></i> <span>Voltar ao início</span>
             </a>
 
-            <?php 
-                if(isset($_POST['acao']) && $_POST['acao'] == 'alterar_endereco')
-                    $_SESSION['alterar_endereco'] = true;
+        <?php
 
-                else
-                    $_SESSION['alterar_endereco'] = false;
-
-                if($_SESSION['alterar_endereco'])
-                {
-                    echo "<a href='../produto/carrinho.php' class='link-voltar'>
-                            <i class='bi bi-cart3'></i> <span>Voltar para carrinho</span>
-                          </a>";
-                }
-            ?>
+            if (!empty($_SESSION['alterar_endereco']))
+            {
+                echo "<a href='../produto/carrinho.php' class='link-voltar'>
+                        <i class='bi bi-cart3'></i> <span>Voltar para carrinho</span>
+                    </a>";
+            }
+        ?>
         </div>
     </div>
 </header>
@@ -137,11 +142,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     <label for="num">Nº: </label>
     <input type="number" name="num" id="num" ><br>
 
-    <input type="submit" value="Alterar">
+    <input type="submit"  name="ALterar"value="Alterar">
 
 </form>
 
 <?php 
 echo "<script>preencher_input('" . $usuario['endereco'] . "', '" . $usuario['email'] . "')</script>";
-unset($_SESSION['alterar_endereco']);
 ?>

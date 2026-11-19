@@ -141,6 +141,13 @@ while($produto = $resultado -> fetch_assoc())
             continue;
         }
 
+       if ($key == "preco")
+       {
+            echo "<div class='campo campo-" . $key . "'><span class='rotulo'>" . $key . "</span> <span class='valor'>" . htmlspecialchars(number_format($value, 2, ',', '.')) . "</span></div>";
+            continue;
+       }
+ "</span></div>";
+
         echo "<div class='campo campo-" . $key . "'><span class='rotulo'>" . $key . "</span> <span class='valor'>" . htmlspecialchars($produto[$key]) . "</span></div>";
     }
 

@@ -107,15 +107,6 @@ body {
     min-width: 0;
 }
 
-/* carrinho vazio */
-.carrinho-itens:not(:has(form))::before {
-    content: "Seu carrinho está vazio.";
-    text-align: center;
-    font-family: var(--serif);
-    font-size: 22px;
-    color: var(--cinza-texto);
-    padding: 50px 0;
-}
 
 /* =========================
    ITEM DO CARRINHO

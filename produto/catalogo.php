@@ -154,7 +154,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
             </li>
 
             <li class="nav-item">
-                <a class="nav-link active" href="catalogo.php">CATALOGO</a>
+                <a class="nav-link active" href="catalogo.php">CATÁLOGO</a>
             </li>
 
             <li class="nav-item">
@@ -195,6 +195,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
                 Pesquisar
             </button>
 
+
         </form>
 
 
@@ -227,7 +228,7 @@ if ($resultado->num_rows > 0)
         
         echo "<div class='produto-nome'><span class='rotulo'>Nome: </span>" . $produto['nome'] . "</div>";
         
-        echo "<div class='produto-preco'><span class='rotulo'>Preço: </span>R$" . $produto['preco'] . "</div>";
+        echo "<div class='produto-preco'><span class='rotulo'>Preço: </span>R$" . number_format($produto['preco'] , 2, ',', '.'). "</div>";
         
         echo "<br>";
         

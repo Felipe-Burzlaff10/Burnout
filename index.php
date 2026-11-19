@@ -150,7 +150,7 @@ if (!isset($_SESSION['dados']['id_usuario']))
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="produto/catalogo.php">CATALOGO</a>
+                <a class="nav-link" href="produto/catalogo.php">CATÁLOGO</a>
             </li>
 
             <li class="nav-item">

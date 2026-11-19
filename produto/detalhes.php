@@ -111,7 +111,7 @@ echo "<div class='detalhes-info'>";
 
 echo "<h2 class='detalhes-nome'>" . $produto['nome'] . "</h2>";
 
-echo "<div class='detalhes-preco'>R$" . $produto['preco'] . "</div>";
+echo "<div class='detalhes-preco'>R$" . number_format($produto['preco'] , 2, ',', '.') . "</div>";
 
 
 echo "<div class='detalhes-campo'><span class='rotulo'>Categoria</span><span class='valor'>" . $produto['categoria'] . "</span></div>";

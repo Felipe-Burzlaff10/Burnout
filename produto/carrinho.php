@@ -78,7 +78,7 @@ while($p = $resultado->fetch_assoc())
     echo "</span>";
 
     echo "<span class='item-preco'>";
-    echo "R$" . htmlspecialchars($p['preco']) . "<br>";
+    echo "R$" . htmlspecialchars(number_format($p['preco'] , 2, ',', '.')) . "<br>";
     echo "</span>";
 
     echo "<span class='item-dado'>";
@@ -94,7 +94,8 @@ while($p = $resultado->fetch_assoc())
     echo "</span>";
 
     echo "<span class='item-subtotal'>";
-    echo "Subtotal do Produto: R$" . htmlspecialchars($p['preco'] * $p['qtd_carrinho']) . "<br>";
+    echo "Subtotal do Produto: R$" . htmlspecialchars(number_format($p['preco'] * $p['qtd_carrinho'], 2, ',', '.'))
+ . "<br>";
     echo "</span>";
 
     echo "</div>";
@@ -202,19 +203,19 @@ if(in_array($uf, $estados_frete_gratis))
     echo "</div>";
 
     echo "<div class='resumo-total'>";
-    echo "<br>Valor Total: ". $valor_total;
+    echo "<br>Valor Total: ".  number_format($valor_total, 2, ',', '.');
     echo "</div>";
 }
 else
 {
     echo "<div class='resumo-frete frete-pago'>";
-    echo "Para sua região o frete é R$50.00";
+    echo "Para sua região o frete é R$50,00";
     echo "</div>";
 
     $valor_total += 50;
 
     echo "<div class='resumo-total'>";
-    echo "<br>Valor Total: ".$valor_total;
+    echo "<br>Valor Total: ". number_format($valor_total, 2, ',', '.');
     echo "</div>";
 }
 

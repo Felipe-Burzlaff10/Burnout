@@ -91,8 +91,8 @@ if($resultado->num_rows > 0)
 
         echo "<div class='item-dados'>";
         echo "<div class='dado'><span class='rotulo'>Quantidade</span><span class='valor'>" . $item['quantidade'] . "</span></div>";
-        echo "<div class='dado'><span class='rotulo'>Preço unitário</span><span class='valor'>R$" . $item['preco_unitario'] . "</span></div>";
-        echo "<div class='dado dado-subtotal'><span class='rotulo'>Subtotal</span><span class='valor'>R$" . $item['preco'] . "</span></div>";
+        echo "<div class='dado'><span class='rotulo'>Preço unitário</span><span class='valor'>R$" .number_format($item['preco_unitario'], 2, ',', '.') . "</span></div>";
+        echo "<div class='dado dado-subtotal'><span class='rotulo'>Subtotal</span><span class='valor'>R$" .  number_format($item['preco'], 2, ',', '.') . "</span></div>";
         echo "</div>";
 
         echo "</article>";
@@ -100,7 +100,7 @@ if($resultado->num_rows > 0)
 
     echo "</div>";
 
-    echo "<div class='pedido-total'><span class='rotulo'>Total do pedido</span><span class='valor'>R$" . $total . "</span></div>";
+    echo "<div class='pedido-total'><span class='rotulo'>Total do pedido</span><span class='valor'>R$" . number_format($total, 2, ',', '.') . "</span></div>";
 }
 else
 {

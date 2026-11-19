@@ -134,7 +134,7 @@ if (!isset($_SESSION['dados']['id_usuario'])) {
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="produto/catalogo.php">CATALOGO</a>
+                <a class="nav-link" href="produto/catalogo.php">CATÁLOGO</a>
             </li>
 
             <li class="nav-item">
@@ -218,7 +218,7 @@ O resultado foi a criação de um site que representa nossa visão de uma loja d
                         <p>
                             Acreditamos que estilo não é sobre criar tendências, é sobre criar presença. Cada peça é pensada na atitude no contraste e detalhes marcantes que fazem toda a diferença pra quem te enxerga na rua, transformando o básico em algo memorável. 
 Burnout nasceu não apenas para ser uma loja de roupas, mas sim para criar identidade, atitude e personalidade para quem não foi feito para passar despercebido. Criamos coleções únicas que entregam não só uma estampa, mas sim conforto e caráter em um único visual.
-Vista Burnout, vista indentidade.
+Vista Burnout, vista identidade.
                         </p>
                     </article>
                 </div>

@@ -36,16 +36,6 @@ echo '<script src="../API_endereço.js"></script>';
 
 require_once "../conexao.php";
 
-$sql = "SELECT * FROM usuario
-        WHERE id_usuario = ?";
-
-$stmt = $conexao->prepare($sql);
-$stmt->bind_param('i', $_GET['id_usuario']);
-$stmt->execute();
-$resultado = $stmt->get_result();
-$stmt->close();
-
-$usuario = $resultado -> fetch_assoc();
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
@@ -87,6 +77,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     
 }
 
+$sql = "SELECT * FROM usuario
+        WHERE id_usuario = ?";
+
+$stmt = $conexao->prepare($sql);
+$stmt->bind_param('i', $_GET['id_usuario']);
+$stmt->execute();
+$resultado = $stmt->get_result();
+$stmt->close();
+
+$usuario = $resultado -> fetch_assoc();
 ?>
 
 <header class="header-listar">
