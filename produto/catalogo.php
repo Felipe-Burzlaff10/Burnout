@@ -183,9 +183,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
                 placeholder="Pesquisar produto..."
             >
 
-            <button type="submit">
-                Pesquisar
-            </button>
 
             <label for="categoria">Categoria: </label>
         <select name="categoria" id="categoria">
@@ -193,6 +190,10 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['pesquisa']))
             <option value="Calça">Calça</option>
             <option value="Tênis">Tênis</option>
         </select><br>
+
+          <button type="submit">
+                Pesquisar
+            </button>
 
         </form>
 
