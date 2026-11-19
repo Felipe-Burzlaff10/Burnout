@@ -1,0 +1,59 @@
+create database burnout;
+use burnout;
+
+
+create table usuario(
+id_usuario int primary key not null auto_increment,
+nome text not null,
+cpf char(11) unique not null,
+email text not null,
+senha text not null,
+endereco text,
+root boolean
+);
+
+
+create table produto(
+id_produto int primary key not null auto_increment,
+nome text not null,
+categoria text not null,
+preco decimal(10, 2) not null,
+tamanho varchar(3) not null,
+estoque int not null,
+descricao text not null,
+foto text not null
+);
+
+
+
+
+create table carrinho_possui_produto(
+id_usuario int not null,
+id_produto int not null,
+quantidade int not null,
+primary key (id_usuario, id_produto),
+foreign key (id_usuario) references usuario(id_usuario),
+foreign key (id_produto) references produto(id_produto)
+);
+
+
+create table pedido(
+id_pedido int primary key not null auto_increment,
+id_usuario int not null,
+data_compra datetime not null,
+foreign key (id_usuario) references usuario(id_usuario)
+);
+
+
+
+
+create table pedido_contem_produto(
+id_pedido int,
+id_produto int,
+quantidade int not null,
+preco decimal(10, 2) not null,
+preco_unitario decimal(10, 2) not null,
+primary key(id_pedido, id_produto),
+foreign key (id_pedido) references pedido(id_pedido),
+foreign key (id_produto) references produto(id_produto)
+);
